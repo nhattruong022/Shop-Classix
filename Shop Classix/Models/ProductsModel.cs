@@ -26,7 +26,7 @@ namespace Shop_Classix.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
-        //[NotMapped]
+       // [NotMapped]
         //[FileExtension]
         public IFormFile ImageUpload { get; set; }
     }
