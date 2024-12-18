@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Edit Category";
+    Layout = "_AdminSubLayout";
+}
+
+@section Link {
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+
+    <link rel="icon" href="@Url.Content("~/Classix/admin/images/favicon.ico")" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/css/bootstrap/css/bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/icon/themify-icons/themify-icons.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/icon/icofont/css/icofont.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/css/style.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/css/jquery.mCustomScrollbar.css")">
+}
+
+@section Scripts {
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/jquery/jquery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/jquery-ui/jquery-ui.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/popper.js/popper.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/bootstrap/js/bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/jquery-slimscroll/jquery.slimscroll.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/modernizr/modernizr.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/modernizr/css-scrollbars.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/classie/classie.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/script.js")"></script>
+    <script src="@Url.Content("~/Classix/admin/js/pcoded.min.js")"></script>
+    <script src="@Url.Content("~/Classix/admin/js/demo-12.js")"></script>
+    <script src="@Url.Content("~/Classix/admin/js/jquery.mCustomScrollbar.concat.min.js")"></script>
+}
+
+<div class="card-header bg-primary text-white">
+    <h5>Edit Category</h5>
+</div>
+<div class="card-body">
+    <form>
+
+        <!-- Name -->
+        <div class="mb-3 text-start">
+            <label for="name" class="form-label">Category Name</label>
+            <input type="text" class="form-control" id="name" value="Classix" placeholder="Enter name">
+        </div>
+
+        <div class="mb-3 text-start">
+            <label for="name" class="form-label">Status</label>
+            <select class="form-control">
+                <option value="1">1</option>
+                <option value="0">0</option>
+            </select>
+        </div>
+
+
+        <!-- Submit and Cancel Buttons -->
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Edit Category</button>
+            <button type="button" class="btn btn-secondary">Cancel</button>
+        </div>
+    </form>
+</div>

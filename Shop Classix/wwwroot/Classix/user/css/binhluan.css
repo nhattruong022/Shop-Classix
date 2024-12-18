@@ -1,0 +1,49 @@
+
+.comment-container {
+    display: flex; /* Arrange comment and product info side by side */
+    justify-content: space-between; /* Space out the comment and product */
+    align-items: center; /* Vertically align items */
+    border: 1px solid #ddd; /* Border around the entire container */
+    border-radius: 5px; /* Rounded corners */
+    padding: 15px; /* Padding for the container */
+    margin-bottom: 15px; /* Space below the comment container */
+}
+
+.comment {
+    flex: 1; /* Allow the comment section to take available space */
+    margin-right: 20px; /* Space between the comment and product */
+}
+
+.star {
+    color: gold;
+}
+
+.profile-image {
+    width: 100px; /* Size for the profile image */
+    height: 100px; /* Size for the profile image */
+    border-radius: 50%; /* Make image circular */
+    object-fit: cover; /* Maintain aspect ratio */
+    margin-right: 20px; /* Space between avatar and text */
+}
+
+.product-info {
+    text-align: right; /* Align text to the right for the product info */
+    flex: 0 0 200px; /* Set a fixed width for the product info section */
+}
+
+.product-image {
+    width: 100px; /* Desired width for the product image */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 10px; /* Space below the product image */
+}
+
+.product-name {
+    font-weight: bold; /* Make product name bold */
+    margin: 0; /* Remove default margin for consistent spacing */
+}
+
+.product-price {
+    color: #ff5722; /* Change color for product price (optional) */
+    font-size: 1.2em; /* Increase the font size of the price (optional) */
+    margin: 0; /* Remove default margin for consistent spacing */
+}

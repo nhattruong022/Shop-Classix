@@ -1,0 +1,110 @@
+﻿@{
+    ViewData["Title"] = "Contact";
+    Layout = "_AdminSubLayout";
+}
+
+@section Link {
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+
+    <link rel="icon" href="@Url.Content("~/Classix/admin/images/favicon.ico")" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/css/bootstrap/css/bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/icon/themify-icons/themify-icons.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/icon/icofont/css/icofont.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/css/style.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/css/jquery.mCustomScrollbar.css")">
+}
+
+@section Scripts {
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/jquery/jquery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/jquery-ui/jquery-ui.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/popper.js/popper.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/bootstrap/js/bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/jquery-slimscroll/jquery.slimscroll.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/modernizr/modernizr.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/modernizr/css-scrollbars.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/classie/classie.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/script.js")"></script>
+    <script src="@Url.Content("~/Classix/admin/js/pcoded.min.js")"></script>
+    <script src="@Url.Content("~/Classix/admin/js/demo-12.js")"></script>
+    <script src="@Url.Content("~/Classix/admin/js/jquery.mCustomScrollbar.concat.min.js")"></script>
+}
+
+<!-- Page-header start -->
+<div class="page-header card">
+    <div class="row align-items-end">
+        <div class="col-lg-8">
+            <div class="page-header-title">
+                <i class="icofont icofont-table bg-c-blue"></i>
+                <div class="d-inline">
+                    <h4>Quản lý admin </h4>
+                    <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="page-header-breadcrumb">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item">
+                        <a href="@Url.Action("Index", "Home", new { area = "Admin" })">
+                            <i class="icofont icofont-home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="@Url.Action("Contact", "Dashboard", new { area = "Admin" })">Contact Management</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page-header end --> <!-- Page-body start -->
+<div class="page-body">
+    <!-- Basic table card start -->
+    <div class="card">
+        <div class="card-header">
+            <h5>Table Orders</h5>
+            <div class="card-header-right">
+                <ul class="list-unstyled card-option">
+                    <li><i class="icofont icofont-simple-left "></i></li>
+                    <li><i class="icofont icofont-maximize full-card"></i></li>
+                    <li><i class="icofont icofont-minus minimize-card"></i></li>
+                    <li><i class="icofont icofont-refresh reload-card"></i></li>
+                    <li><i class="icofont icofont-error close-card"></i></li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Map</th>
+                            <th>Logo</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">Classix</th>
+                            <td>Đây là trang web bán nội thất gỗ</td>
+                            <td><div style="width: 100%"><iframe height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=13/1%20H%C3%A0%20B%C3%A1%20T%C6%B0%E1%BB%9Dng%20P12%20Qu%E1%BA%ADn%20t%C3%A2n%20b%C3%ACnh+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">gps systems</iframe></div></td>
+                            <td><img style="width:150px;" src="~/Classix/img/logo/logo.png" alt=""></td>
+                            <td>0902442725</td>
+                            <td>nhattruongp78@gmail.com</td>
+                            <td>
+                                <button class="btn btn-warning btn-sm">Edit</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

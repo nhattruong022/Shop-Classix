@@ -1,0 +1,98 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Edit Profile";
+}
+
+@section Link
+{
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/bootstrap.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/font-awesome.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/elegant-icons.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/nice-select.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/jquery-ui.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/owl.carousel.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/slicknav.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/style.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/xuan.css")" type="text/css" />
+}
+
+
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="https://e7.pngegg.com/pngimages/550/997/png-clipart-user-icon-foreigners-avatar-child-face.png"
+                 alt="Profile Picture"
+                 class="profile-picturex" />
+            <div class="edit-buttonx">
+                <button class="btn btn-secondary btn-sm">Photo Editing</button>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h2>My profile</h2>
+            <form>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text"
+                           class="form-control"
+                           id="name"
+                           value="trankienxuan" />
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email"
+                           class="form-control"
+                           id="email"
+                           value="ki***********gmail.com" />
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel"
+                           class="form-control"
+                           id="phone"
+                           value="******96" />
+                </div>
+                <div class="form-group">
+                    <label>Gender:</label>
+                    <div class="form-check">
+                        <input class="form-check-input"
+                               type="radio"
+                               name="gender"
+                               id="gender-male"
+                               checked />
+                        <label class="form-check-label" for="gender-male">Male</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input"
+                               type="radio"
+                               name="gender"
+                               id="gender-female" />
+                        <label class="form-check-label" for="gender-female">Female</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="birthday">Date:</label>
+                    <input type="date"
+                           class="form-control"
+                           id="birthday"
+                           value="2023-12-10" />
+                </div>
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+  @section Script
+  {
+    <script src="@Url.Content("~/Classix/user/js/jquery-3.3.1.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/jquery.nice-select.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/jquery-ui.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/jquery.slicknav.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/mixitup.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/owl.carousel.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/main.js")"></script>
+  }

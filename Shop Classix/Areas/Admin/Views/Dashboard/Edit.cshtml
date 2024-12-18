@@ -1,0 +1,82 @@
+﻿@{
+    ViewData["Title"] = "Edit Contact";
+    Layout = "_AdminSubLayout";
+}
+
+@section Link {
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+
+    <link rel="icon" href="@Url.Content("~/Classix/admin/images/favicon.ico")" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/css/bootstrap/css/bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/icon/themify-icons/themify-icons.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/icon/icofont/css/icofont.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/css/style.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/css/jquery.mCustomScrollbar.css")">
+}
+
+@section Scripts {
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/jquery/jquery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/jquery-ui/jquery-ui.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/popper.js/popper.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/bootstrap/js/bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/jquery-slimscroll/jquery.slimscroll.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/modernizr/modernizr.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/modernizr/css-scrollbars.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/classie/classie.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/script.js")"></script>
+    <script src="@Url.Content("~/Classix/admin/js/pcoded.min.js")"></script>
+    <script src="@Url.Content("~/Classix/admin/js/demo-12.js")"></script>
+    <script src="@Url.Content("~/Classix/admin/js/jquery.mCustomScrollbar.concat.min.js")"></script>
+}
+
+<div class="card-header bg-primary text-white">
+    <h5>Edit Information</h5>
+</div>
+<div class="card-body">
+    <form>
+        <!-- Name -->
+        <div class="mb-3 text-start">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" value="Classix" placeholder="Enter name">
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3 text-start">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" rows="3" placeholder="Enter description">Đây là trang web bán nội thất gỗ</textarea>
+        </div>
+
+        <!-- Map -->
+        <div class="mb-3 text-start">
+            <label for="map" class="form-label">Map</label>
+            <input type="text" class="form-control" id="map" value="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=13/1%20H%C3%A0%20B%C3%A1%20T%C6%B0%E1%BB%9Dng%20P12%20Qu%E1%BA%ADn%20t%C3%A2n%20b%C3%ACnh+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" placeholder="Enter map URL">
+        </div>
+
+        <!-- Logo -->
+        <div class="mb-3 text-start">
+            <label for="logo" class="form-label">Logo</label>
+            <input type="file" class="form-control" id="logo">
+            <div class="mt-3">
+                <img src="~/Classix/images/logo/logo.png" alt="Logo" class="img-thumbnail" style="width: 150px;">
+            </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="mb-3 text-start">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="text" class="form-control" id="phone" value="0902442725" placeholder="Enter phone number">
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3 text-start">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" value="nhattruongp78@gmail.com" placeholder="Enter email">
+        </div>
+
+        <!-- Submit and Cancel Buttons -->
+        <div class="d-flex justify-content-between">
+            <button type="submit" class="btn btn-success">Save Changes</button>
+            <button type="button" class="btn btn-secondary">Cancel</button>
+        </div>
+    </form>
+</div>

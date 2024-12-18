@@ -1,0 +1,202 @@
+﻿@{
+    ViewData["Title"] = "Product";
+    Layout = "_AdminSubLayout";
+}
+
+@section Link {
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
+
+    <link rel="icon" href="@Url.Content("~/Classix/admin/images/favicon.ico")" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/css/bootstrap/css/bootstrap.min.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/icon/themify-icons/themify-icons.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/icon/icofont/css/icofont.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/css/style.css")">
+    <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/css/jquery.mCustomScrollbar.css")">
+}
+
+@section Scripts {
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/jquery/jquery.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/jquery-ui/jquery-ui.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/popper.js/popper.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/bootstrap/js/bootstrap.min.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/jquery-slimscroll/jquery.slimscroll.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/modernizr/modernizr.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/modernizr/css-scrollbars.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/classie/classie.js")"></script>
+    <script type="text/javascript" src="@Url.Content("~/Classix/admin/js/script.js")"></script>
+    <script src="@Url.Content("~/Classix/admin/js/pcoded.min.js")"></script>
+    <script src="@Url.Content("~/Classix/admin/js/demo-12.js")"></script>
+    <script src="@Url.Content("~/Classix/admin/js/jquery.mCustomScrollbar.concat.min.js")"></script>
+}
+
+<!-- Page-header start -->
+<div class="page-header card">
+    <div class="row align-items-end">
+        <div class="col-lg-8">
+            <div class="page-header-title">
+                <i class="icofont icofont-table bg-c-blue"></i>
+                <div class="d-inline">
+                    <h4>Quản lý Admin </h4>
+                    <span>lorem ipsum dolor sit amet, consectetur adipisicing elit</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="page-header-breadcrumb">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item">
+                        <a href="@Url.Action("Index", "Home", new { area = "Admin" })">
+                            <i class="icofont icofont-home"></i>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a href="@Url.Action("Index", "Product", new { area = "Admin" })">Products Management</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Page-body start -->
+<div class="page-body">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Search by Product Name">
+                </div>
+                <div class="col-md-4">
+                    <select class="form-control" id="filterCategory">
+                        <option value="">All Categories</option>
+                        <option value="Table">Table</option>
+                        <option value="Desk">Desk</option>
+                        <option value="Light">Light</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-primary" onclick="filterResults()">Search</button>
+                </div>
+            </div>
+        </div>
+        <!-- Page-body start -->
+        <div class="page-body">
+            <!-- Basic table card start -->
+            <div class="card">
+                <div class="card-header">
+                    <h5>Table Orders</h5>
+                    <div class="card-header-right">
+                        <ul class="list-unstyled card-option">
+                            <li><i class="icofont icofont-simple-left "></i></li>
+                            <li><i class="icofont icofont-maximize full-card"></i></li>
+                            <li><i class="icofont icofont-minus minimize-card"></i></li>
+                            <li><i class="icofont icofont-refresh reload-card"></i></li>
+                            <li><i class="icofont icofont-error close-card"></i></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card-block table-border-style">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Image</th>
+                                    <th>Product Name</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Description</th>
+                                    <th>Slug</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td><img style="width:150px;" src="~/Classix/img/bed/CARM113-019-122_2.jpg" alt=""></td>
+                                    <td>wood table</td>
+                                    <td>Table</td>
+                                    <td>100000VND</td>
+                                    <td>
+                                        Bold. Iconic. Uncomplicated. When it comes to
+                                        commanding attention, <br>
+                                        this bed has no rival. Its svelte modern shape <br>
+                                        is underscored by a rich Cerused Oak finish and lined with a metal <br>
+                                        rail in Bronze Metallic Paint outlining the top of both the headboard and footboard. <br>
+                                    </td>
+                                    <td>wood-table</td>
+                                    <td>1</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">Add</button>
+                                        <button class="btn btn-warning btn-sm">Edit</button>
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td><img style="width: 150px;" src="~/Classix/img/table/DBOCWA3710N_3.jpg" alt=""></td>
+                                    <td>wood desk</td>
+                                    <td>Desk</td>
+                                    <td>200000VND</td>
+                                    <td>
+                                        Bold. Iconic. Uncomplicated. When it comes to
+                                        commanding attention, <br>
+                                        this bed has no rival. Its svelte modern shape <br>
+                                        is underscored by a rich Cerused Oak finish and lined with a metal <br>
+                                        rail in Bronze Metallic Paint outlining the top of both the headboard and footboard. <br>
+                                    </td>
+                                    <td>wood-desk</td>
+                                    <td>1</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">Add</button>
+                                        <button class="btn btn-warning btn-sm">Edit</button>
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td><img style="width: 150px;" src="~/Classix/img/light/DBOLBN2015N_600x.jpg" alt=""></td>
+                                    <td>wood light</td>
+                                    <td>Light</td>
+                                    <td>300000VND</td>
+                                    <td>
+                                        Bold. Iconic. Uncomplicated. When it comes to
+                                        commanding attention, <br>
+                                        this bed has no rival. Its svelte modern shape <br>
+                                        is underscored by a rich Cerused Oak finish and lined with a metal <br>
+                                        rail in Bronze Metallic Paint outlining the top of both the headboard and footboard. <br>
+                                    </td>
+                                    <td>wood-light</td>
+                                    <td>1</td>
+                                    <td>
+                                        <button class="btn btn-primary btn-sm">Add</button>
+                                        <button class="btn btn-warning btn-sm">Edit</button>
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" href="#">2</a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>

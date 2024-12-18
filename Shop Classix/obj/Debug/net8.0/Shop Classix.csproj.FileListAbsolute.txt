@@ -1,0 +1,737 @@
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\bin\Debug\net8.0\appsettings.Development.json
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\bin\Debug\net8.0\appsettings.json
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.staticwebassets.runtime.json
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.exe
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.deps.json
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.runtimeconfig.json
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.pdb
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.AssemblyInfoInputs.cache
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.AssemblyInfo.cs
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.csproj.CoreCompileInputs.cache
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.RazorAssemblyInfo.cache
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.RazorAssemblyInfo.cs
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.Shop Classix.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.build.Shop Classix.props
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Shop Classix.props
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Shop Classix.props
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\bundle\Shop Classix.styles.css
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\projectbundle\Shop Classix.bundle.scp.css
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\refint\Shop Classix.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.pdb
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.genruntimeconfig.cache
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\obj\Debug\net8.0\ref\Shop Classix.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\appsettings.Development.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\appsettings.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.staticwebassets.runtime.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.staticwebassets.endpoints.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.exe
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.deps.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.runtimeconfig.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.pdb
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Humanizer.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.AspNetCore.Razor.Language.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Build.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Build.Framework.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.AnalyzerUtilities.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Features.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Elfie.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Features.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Razor.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Scripting.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.DiaSymReader.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.DotNet.Scaffolding.Shared.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.NET.StringTools.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\dotnet-aspnet-codegenerator-design.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Common.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Configuration.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.DependencyResolver.Core.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Frameworks.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.LibraryModel.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Packaging.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.ProjectModel.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Protocol.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Versioning.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\System.CodeDom.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.AttributedModel.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.Convention.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.Hosting.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.Runtime.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.TypedParts.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Reflection.MetadataLoadContext.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\af\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ar\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\az\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\bg\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\bn-BD\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\da\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\el\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\fa\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\fi-FI\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\fr-BE\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\he\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\hr\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\hu\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\hy\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\id\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\is\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ko-KR\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ku\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\lv\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ms-MY\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\mt\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\nb\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\nb-NO\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\nl\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pt\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ro\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\sk\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\sl\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\sr\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\sr-Latn\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\sv\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\th-TH\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\uk\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\uz-Cyrl-UZ\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\uz-Latn-UZ\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\vi\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-CN\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.csproj.AssemblyReference.cache
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.GeneratedMSBuildEditorConfig.editorconfig
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.AssemblyInfoInputs.cache
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.AssemblyInfo.cs
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.csproj.CoreCompileInputs.cache
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.MvcApplicationPartsAssemblyInfo.cache
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.RazorAssemblyInfo.cache
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.RazorAssemblyInfo.cs
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\bundle\Shop Classix.styles.css
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\projectbundle\Shop Classix.bundle.scp.css
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.build.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.development.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.Shop Classix.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.Shop Classix.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.build.Shop Classix.props
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Shop Classix.props
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Shop Classix.props
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.pack.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Cla.8CE47865.Up2Date
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\refint\Shop Classix.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.pdb
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.genruntimeconfig.cache
+D:\Đồ án\Web\Shop Classix\Shop Classix\obj\Debug\net8.0\ref\Shop Classix.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Formats.Asn1.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\System.IO.Pipelines.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Text.Json.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\appsettings.Development.json
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\appsettings.json
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.staticwebassets.runtime.json
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.exe
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.deps.json
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.runtimeconfig.json
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.pdb
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Humanizer.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.AspNetCore.Razor.Language.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Build.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Build.Framework.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.AnalyzerUtilities.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Features.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Elfie.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Features.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Razor.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Scripting.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.DiaSymReader.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.DotNet.Scaffolding.Shared.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.NET.StringTools.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\dotnet-aspnet-codegenerator-design.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Common.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Configuration.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.DependencyResolver.Core.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Frameworks.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.LibraryModel.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Packaging.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.ProjectModel.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Protocol.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Versioning.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.CodeDom.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.AttributedModel.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.Convention.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.Hosting.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.Runtime.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.TypedParts.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Formats.Asn1.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.IO.Pipelines.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Reflection.MetadataLoadContext.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Text.Json.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\af\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ar\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\az\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\bg\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\bn-BD\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\da\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\el\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fa\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fi-FI\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr-BE\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\he\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\hr\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\hu\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\hy\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\id\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\is\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko-KR\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ku\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\lv\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ms-MY\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\mt\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\nb\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\nb-NO\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\nl\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ro\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\sk\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\sl\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\sr\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\sr-Latn\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\sv\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\th-TH\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\uk\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\uz-Cyrl-UZ\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\uz-Latn-UZ\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\vi\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-CN\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Humanizer.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.csproj.AssemblyReference.cache
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.GeneratedMSBuildEditorConfig.editorconfig
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.AssemblyInfoInputs.cache
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.AssemblyInfo.cs
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.csproj.CoreCompileInputs.cache
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.MvcApplicationPartsAssemblyInfo.cache
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.RazorAssemblyInfo.cache
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.RazorAssemblyInfo.cs
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.build.json
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.development.json
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.Shop Classix.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.build.Shop Classix.props
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Shop Classix.props
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Shop Classix.props
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.pack.json
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\bundle\Shop Classix.styles.css
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\projectbundle\Shop Classix.bundle.scp.css
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Cla.8CE47865.Up2Date
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.dll
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\refint\Shop Classix.dll
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.pdb
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.genruntimeconfig.cache
+D:\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\ref\Shop Classix.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\appsettings.Development.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\appsettings.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.staticwebassets.endpoints.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.staticwebassets.runtime.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.exe
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.deps.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.runtimeconfig.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.pdb
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Humanizer.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.AspNetCore.Razor.Language.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Build.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Build.Framework.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.AnalyzerUtilities.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Features.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Elfie.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Features.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Razor.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Scripting.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.DiaSymReader.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.DotNet.Scaffolding.Shared.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.NET.StringTools.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\dotnet-aspnet-codegenerator-design.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Newtonsoft.Json.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Common.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Configuration.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.DependencyResolver.Core.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Frameworks.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.LibraryModel.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Packaging.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.ProjectModel.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Protocol.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Versioning.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.CodeDom.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.AttributedModel.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.Convention.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.Hosting.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.Runtime.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.TypedParts.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Formats.Asn1.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.IO.Pipelines.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Reflection.MetadataLoadContext.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Text.Json.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\af\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ar\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\az\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\bg\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\bn-BD\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\da\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\el\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fa\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fi-FI\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr-BE\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\he\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\hr\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\hu\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\hy\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\id\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\is\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko-KR\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ku\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\lv\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ms-MY\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\mt\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\nb\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\nb-NO\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\nl\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ro\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\sk\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\sl\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\sr\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\sr-Latn\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\sv\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\th-TH\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\uk\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\uz-Cyrl-UZ\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\uz-Latn-UZ\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\vi\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-CN\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Humanizer.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Features.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.csproj.AssemblyReference.cache
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.GeneratedMSBuildEditorConfig.editorconfig
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.AssemblyInfoInputs.cache
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.AssemblyInfo.cs
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.csproj.CoreCompileInputs.cache
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.MvcApplicationPartsAssemblyInfo.cache
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.RazorAssemblyInfo.cache
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.RazorAssemblyInfo.cs
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\bundle\Shop Classix.styles.css
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\projectbundle\Shop Classix.bundle.scp.css
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.build.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.development.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.Shop Classix.Microsoft.AspNetCore.StaticWebAssets.props
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.Shop Classix.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.build.Shop Classix.props
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Shop Classix.props
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Shop Classix.props
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.pack.json
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Cla.8CE47865.Up2Date
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\refint\Shop Classix.dll
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.pdb
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.genruntimeconfig.cache
+D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\ref\Shop Classix.dll
