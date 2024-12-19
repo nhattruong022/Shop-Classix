@@ -15,7 +15,7 @@ namespace Shop_Classix.Models
 
            //cho phép CategoryModel lưu trữ nhiều đối tượng ProductModel.
         //Điều này có nghĩa là mỗi danh mục(category) có thể chứa nhiều sản phẩm.-> mối quan hệ một-nhiều
-        public ICollection<ProductsModel> Products { get; set; }
+        public ICollection<ProductsModel> products { get; set; }
 
     }
 }
