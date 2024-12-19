@@ -3,6 +3,8 @@
     Layout = "_AdminSubLayout";
 }
 
+@model Shop_Classix.Models.ContactModel
+
 @section Link {
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
 
@@ -78,6 +80,24 @@
         });
     </script>
 }
+
+
+<div class="col-md-6 col-xl-4">
+    <div class="card">
+        <div class="card-header">
+            <h5>Thông tin liên hệ</h5>
+        </div>
+        <div class="card-block">
+            <p><strong>Tên:</strong> @(Model?.Name??"chưa có thông tin")</p>
+            <p><strong>Email:</strong> @(Model?.Email??"Chưa có thông tin")</p>
+            <p><strong>Điện thoại:</strong> @Model.PhoneNumber</p>
+            <p><strong>Địa chỉ:</strong> @Model.Address</p> 
+            
+        </div>
+    </div>
+</div>
+
+
 
 <div class="page-body">
     <div class="row">

@@ -15,6 +15,7 @@ namespace Shop_Classix.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 

@@ -13,16 +13,15 @@ namespace Shop_Classix.Models
         [Required(ErrorMessage ="Yêu cầu nhập bản đồ")]
         public string map {  get; set; }
 
-        [Required(ErrorMessage = "yeu cau nhap ten danh muc")]
+        [Required(ErrorMessage = "yeu cau nhap Email")]
         public string Email { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "yeu cau nhap ten danh muc")]
+        [Required(ErrorMessage = "yeu cau nhap số điện thoại")]
         public string PhoneNumber { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "yeu cau nhap ten danh muc")]
+        [Required(ErrorMessage = "yeu cau nhap địa chỉ")]
         public string Address { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "yeu cau nhap ten danh muc")]
         public string Logo { get; set; } = string.Empty;
 
 

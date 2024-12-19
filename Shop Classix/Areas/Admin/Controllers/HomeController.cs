@@ -1,14 +1,26 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Shop_Classix.Repository;
 
 namespace Shop_Classix.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class HomeController : Controller
     {
+        private readonly DataContext _dataContext;
+
+        public HomeController(DataContext dataContext)
+        {
+            _dataContext = dataContext;
+        }
+
         [HttpGet("Admin/Home")]
         public IActionResult Index()
         {
-            return View();
+            //hiển thị thông tin liên hệ lên dashboard
+            var contactInfo = _dataContext.contacts.FirstOrDefault(); //lấy thông tin từ admin cntact
+            return View(contactInfo);
         }
+
+
     }
 }

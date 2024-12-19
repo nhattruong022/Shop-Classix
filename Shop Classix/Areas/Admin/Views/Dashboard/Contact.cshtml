@@ -3,6 +3,9 @@
     Layout = "_AdminSubLayout";
 }
 
+@model IEnumerable<Shop_Classix.Models.ContactModel>
+
+
 @section Link {
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
 
@@ -80,27 +83,31 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Description</th>
+                            @* <th>Description</th> *@
                             <th>Map</th>
                             <th>Logo</th>
                             <th>Phone</th>
                             <th>Email</th>
+                            <th>Address</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">Classix</th>
-                            <td>Đây là trang web bán nội thất gỗ</td>
-                            <td><div style="width: 100%"><iframe height="300" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=13/1%20H%C3%A0%20B%C3%A1%20T%C6%B0%E1%BB%9Dng%20P12%20Qu%E1%BA%ADn%20t%C3%A2n%20b%C3%ACnh+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed">gps systems</iframe></div></td>
-                            <td><img style="width:150px;" src="~/Classix/img/logo/logo.png" alt=""></td>
-                            <td>0902442725</td>
-                            <td>nhattruongp78@gmail.com</td>
-                            <td>
-                                <button class="btn btn-warning btn-sm">Edit</button>
-                            </td>
-                        </tr>
-
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <th scope="row">@item.Name</th>
+                              @*    <td>Đây là trang web bán nội thất gỗ</td> *@
+                               <td>@Html.Raw(@item.map)</td>
+                                <td><img style="width:150px;" src="~/Classix/img/logo/@item.Logo" alt=""></td>
+                                <td>@item.PhoneNumber</td>
+                                <td>@item.Email</td>
+                                <td>@item.Address</td>
+                                <td>
+                                    <a asp-action="Edit" asp-controller="Dashboard"><button class="btn btn-warning btn-sm">Edit</button></a>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
 
