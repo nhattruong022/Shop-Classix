@@ -12,8 +12,8 @@ using Shop_Classix.Repository;
 namespace Shop_Classix.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241219134323_INITIAL")]
-    partial class INITIAL
+    [Migration("20241220153413_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

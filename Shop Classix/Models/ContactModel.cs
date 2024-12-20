@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Shop_Classix.Repository.Validation;
 
 namespace Shop_Classix.Models
 {
@@ -26,7 +27,7 @@ namespace Shop_Classix.Models
 
 
         [NotMapped]
-      //[FileExtension]
+        [FileExtension]
         public IFormFile ImageUpload {  get; set; }
     }
 }

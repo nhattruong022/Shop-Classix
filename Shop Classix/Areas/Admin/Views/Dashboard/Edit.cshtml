@@ -37,11 +37,11 @@
     <h5>Edit Information</h5>
 </div>
 <div class="card-body">
-    <form asp-action="Edit" asp-controller="Dashboard" method="post" enctype="multipart/form-data">
+    <form asp-area="Admin" asp-action="Edit" asp-controller="Dashboard" method="post" enctype="multipart/form-data">
         <!-- Name -->
         <div class="mb-3 text-start">
             <label asp-for="Name" class="form-label"></label>
-            <input asp-for="Name" type="text" class="form-control" id="name" value="Classix" placeholder="Enter name">
+            <input asp-for="Name" type="text" class="form-control" id="name">
             <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
@@ -59,29 +59,39 @@
             <label asp-for="Logo" class="form-label"></label>
             <input type="file" asp-for="ImageUpload" class="form-control" id="logo" accept=".jpg,.png"/>
             <span asp-validation-for="ImageUpload" class="text-danger"></span>
+
             <div class="mt-3">
-                <img src="~/Classix/images/logo/@Model.Logo" alt="Logo" class="img-thumbnail" style="width: 150px;">
+                <img src="~/Classix/img/logo/@Model.Logo" alt="Logo" class="img-thumbnail" style="width: 150px;">
             </div>
         </div>
 
         <!-- Phone -->
         <div class="mb-3 text-start">
             <label asp-for="PhoneNumber" class="form-label"></label>
-            <input asp-for="PhoneNumber" type="text" class="form-control" id="phone" placeholder="Enter phone number">
+            <input asp-for="PhoneNumber" type="number" class="form-control" id="phone">
             <span asp-validation-for="PhoneNumber" class="text-danger"></span>
         </div>
 
         <!-- Email -->
         <div class="mb-3 text-start">
             <label asp-for="Email" class="form-label"></label>
-            <input asp-for="Email" type="email" class="form-control" id="email"  placeholder="Enter email">
+            <input asp-for="Email" type="email" class="form-control" id="email">
             <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3 text-start">
+            <label asp-for="Address" class="form-label"></label>
+            <input asp-for="Address" type="text" class="form-control" id="address">
+            <span asp-validation-for="Address" class="text-danger"></span>
         </div>
 
         <!-- Submit and Cancel Buttons -->
         <div class="d-flex justify-content-between">
             <button type="submit" class="btn btn-success">Save Changes</button>
-            <button type="button" class="btn btn-secondary">Cancel</button>
+            <a asp-action="Contact" asp-controller="Dashboard" asp-area="Admin">
+                <button type="button" class="btn btn-secondary">Cancel</button>
+            </a>
         </div>
     </form>
 </div>

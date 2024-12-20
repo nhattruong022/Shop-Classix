@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "xuFt7Qf9RYTi+SqNQ4rZ3r9AmX4LBnRVo+z/Fdjh6BU=",
+  "Hash": "w77zjE9QAWHInxZSoRanreTvzKFc9YNdOoTAs7fliME=",
   "Source": "Shop Classix",
   "BasePath": "_content/Shop Classix",
   "Mode": "Default",
@@ -1955,12 +1955,12 @@
       "OriginalItemSpec": "wwwroot\\Classix\\img\\language.png"
     },
     {
-      "Identity": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\Classix\\img\\light\\DBOLBN2015N_600x.jpg",
+      "Identity": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\Classix\\img\\light\\Braided Rattan Hanging Lamp.jpg",
       "SourceId": "Shop Classix",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\",
       "BasePath": "_content/Shop Classix",
-      "RelativePath": "Classix/img/light/DBOLBN2015N_600x.jpg",
+      "RelativePath": "Classix/img/light/Braided Rattan Hanging Lamp.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -1971,7 +1971,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Classix\\img\\light\\DBOLBN2015N_600x.jpg"
+      "OriginalItemSpec": "wwwroot\\Classix\\img\\light\\Braided Rattan Hanging Lamp.jpg"
     },
     {
       "Identity": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\Classix\\img\\light\\DBOLBR2043N_DBOLBR2044N_DBOLBR2045N_3.jpg",
@@ -2012,25 +2012,6 @@
       "OriginalItemSpec": "wwwroot\\Classix\\img\\light\\DBOLBR2043N_DBOLBR2044N_DBOLBR2045N_4.jpg"
     },
     {
-      "Identity": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\Classix\\img\\light\\DBOLBR2045N.jpg",
-      "SourceId": "Shop Classix",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\",
-      "BasePath": "_content/Shop Classix",
-      "RelativePath": "Classix/img/light/DBOLBR2045N.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Classix\\img\\light\\DBOLBR2045N.jpg"
-    },
-    {
       "Identity": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\Classix\\img\\light\\DBOLDR2037N_1.jpg",
       "SourceId": "Shop Classix",
       "SourceType": "Discovered",
@@ -2069,12 +2050,12 @@
       "OriginalItemSpec": "wwwroot\\Classix\\img\\light\\DBOLDR2037N_2.jpg"
     },
     {
-      "Identity": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\Classix\\img\\light\\DBOLDR2037N_600x.jpg",
+      "Identity": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\Classix\\img\\light\\Natural Rattan Hanging Lamp.jpg",
       "SourceId": "Shop Classix",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\",
       "BasePath": "_content/Shop Classix",
-      "RelativePath": "Classix/img/light/DBOLDR2037N_600x.jpg",
+      "RelativePath": "Classix/img/light/Natural Rattan Hanging Lamp.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -2085,7 +2066,26 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\Classix\\img\\light\\DBOLDR2037N_600x.jpg"
+      "OriginalItemSpec": "wwwroot\\Classix\\img\\light\\Natural Rattan Hanging Lamp.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\Classix\\img\\light\\Rustic Braided Rattan Hanging Lamp.jpg",
+      "SourceId": "Shop Classix",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\",
+      "BasePath": "_content/Shop Classix",
+      "RelativePath": "Classix/img/light/Rustic Braided Rattan Hanging Lamp.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Classix\\img\\light\\Rustic Braided Rattan Hanging Lamp.jpg"
     },
     {
       "Identity": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\Classix\\img\\logo.jpg",
