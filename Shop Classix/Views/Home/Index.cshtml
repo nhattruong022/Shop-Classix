@@ -1,4 +1,7 @@
-﻿@{
+﻿@model IEnumerable<Shop_Classix.Models.ProductsModel>;
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -7,6 +10,9 @@
 <!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
 rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+
 <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/bootstrap.min.css")" type="text/css" />
 <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/font-awesome.min.css")" type="text/css" />
 <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/elegant-icons.css")" type="text/css" />
@@ -76,10 +82,10 @@ rel="stylesheet" />
                         <div class="featured__controls">
                             <ul>
                                 <li class="active" data-filter="*">All</li>
-                                <li data-filter=".oranges">Oranges</li>
-                                <li data-filter=".fresh-meat">Fresh Meat</li>
-                                <li data-filter=".vegetables">Vegetables</li>
-                                <li data-filter=".fastfood">Fastfood</li>
+                                <li data-filter=".oranges">Table</li>
+                                <li data-filter=".fresh-meat">Chair</li>
+                                <li data-filter=".vegetables">Bed</li>
+                                <li data-filter=".fastfood">Light </li>
                             </ul>
                         </div>
                     </div>
@@ -87,29 +93,57 @@ rel="stylesheet" />
 
 
                 <div class="row featured__filter">
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                        <div class="featured__item">
-                            <div class="featured__item__pic set-bg"
-                                 data-setbg="@Url.Content("~/Classix/img/lamp.jpg")">
-                                <ul class="featured__item__pic__hover">
-                                    <li>
-                                        <a href="#"><i class="fa fa-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-retweet"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="featured__item__text">
-                                <h6><a href="#">Crab Pool Security</a></h6>
-                                <h5>$30.00</h5>
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="featured__item">
+                                <div class="featured__item__pic set-bg"
+                                     data-setbg="@Url.Content("~/Classix/img/" + item.Image)">
+                                    <ul class="featured__item__pic__hover">
+                                        <li>
+                                            <a href="#"><i class="fa fa-heart"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-retweet"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="featured__item__text">
+                                    <h6><a href="#">@item.Name</a></h6>
+                                    <h5>@item.Price.ToString("C")</h5>
+                                    <p>Category: @item.categoryName</p>
+                                    <p>
+                                        @for(var i=1;i<=5;i++)
+                                        {
+                                            if(i<=Math.Floor(item.Rating??0)) //lấy phần nguyên của rating
+                                            {
+                                                <i class="fa fa-star" style="color:gold";></i>
+                                            } 
+                                            else if(i==Math.Ceiling(item.Rating??0)&&(item.Rating??0)%1!=0)  //ceiling lấy giá trị làm tròn và kiểm tra phần lẻ
+                                            {
+                                                <i class="fas fa-star-half-alt" style="color: gold;"></i>
+                                                //sao nửa
+                                            }
+                                            else
+                                            {
+                                                <i class="fa fa-star" style="color: lightgray;"></i> <!-- Sao rỗng -->
+                                            }
+                                        }
+
+                                    </p>
+                                    
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
+                    }
+                </div>
+                
+
+
+                   @*  <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
                         <div class="featured__item">
                             <div class="featured__item__pic set-bg"
                                  data-setbg="@Url.Content("~/Classix/img/lamp.jpg")">
@@ -263,10 +297,10 @@ rel="stylesheet" />
                                 <h6><a href="#">Ethnicraft Eye</a></h6>
                                 <h5>15000000VND</h5>
                             </div>
-                        </div>
-                    </div>
+                        </div> *@
+               @*      </div>
                 </div>
-            </div>
+            </div> *@
         </section>
         <!-- Featured Section End -->
         <!-- Latest Product Section Begin -->

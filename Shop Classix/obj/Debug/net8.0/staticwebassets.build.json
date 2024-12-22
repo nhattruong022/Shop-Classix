@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "nrc6FpDtWDE8y28W3/8tR9SwHC+9EjH23QEIvEXbe1M=",
+  "Hash": "x8cHSahTjf8RxQhowRzw0gFQbHuYk6B3HwkK5ruKPtE=",
   "Source": "Shop Classix",
   "BasePath": "_content/Shop Classix",
   "Mode": "Default",
@@ -2143,6 +2143,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Classix\\img\\logo\\3970b10b-16d6-414b-992f-003d1826c55b_logo.png"
+    },
+    {
+      "Identity": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\Classix\\img\\logo\\a58541be-0b40-4401-8fcd-813a242d3bf5_logo.png",
+      "SourceId": "Shop Classix",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\",
+      "BasePath": "_content/Shop Classix",
+      "RelativePath": "Classix/img/logo/a58541be-0b40-4401-8fcd-813a242d3bf5_logo.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Classix\\img\\logo\\a58541be-0b40-4401-8fcd-813a242d3bf5_logo.png"
     },
     {
       "Identity": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\wwwroot\\Classix\\img\\logo\\logo.png",

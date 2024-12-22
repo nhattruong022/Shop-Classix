@@ -19,25 +19,29 @@ namespace Shop_Classix.Models
         [Required(ErrorMessage ="Plesae enter description")]        
         
         public string Description { get; set; } = string.Empty;
-        public int FavoriteNumber { get; set; }
+        public int? FavoriteNumber { get; set; }
         public int Status { get; set; }
 
         [Required(ErrorMessage ="Please insert into image")]
         public string Image { get; set; } = string.Empty;
 
-        public string Slug { get; set; } = string.Empty;
+        public string? Slug { get; set; } = string.Empty;
 
-        public double Rating { get; set; }
+        public double? Rating { get; set; }
 
-        public string Size { get; set; } = string.Empty;
+        public string? Size { get; set; } = string.Empty;
 
-        public int Quantity { get; set; }
-        public int CategoryId { get; set; }
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
+        public int? Quantity { get; set; }
+        public int? CategoryId { get; set; } //khóa ngoại
+        public DateTime? CreatedAt { get; set; }
+        public DateTime? UpdatedAt { get; set; }
 
         [NotMapped]
         [FileExtension]
-        public IFormFile ImageUpLoad { get; set; }
+        public IFormFile? ImageUpLoad { get; set; }
+
+        public CategoryModel category { get; set; } //navigation property
+
+        public string? categoryName { get; set; }
     }
 }

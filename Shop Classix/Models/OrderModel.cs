@@ -15,7 +15,7 @@ namespace Shop_Classix.Models
 
         [ForeignKey("customers")]
         public int CustomerId { get; set; }
-        public DateTime CreateAt { get; set; }
-        public DateTime UpdateAt { get; set; }
+        public DateTime? CreateAt { get; set; }
+        public DateTime? UpdateAt { get; set; }
     }
 }
