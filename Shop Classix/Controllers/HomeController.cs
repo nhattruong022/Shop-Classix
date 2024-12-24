@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Models;
 using Shop_Classix.Repository;
 using System.Diagnostics;
+using X.PagedList.Extensions;
+
 
 namespace Shop_Classix.Controllers
 {
@@ -18,7 +20,8 @@ namespace Shop_Classix.Controllers
         }
 
         public IActionResult Index(int? categoryId)
-        {
+        {  
+
             // Lấy tất cả các danh mục để hiển thị trên giao diện
             ViewBag.categories = new SelectList(dataContext.categories, "Id", "Name");
 
@@ -30,11 +33,18 @@ namespace Shop_Classix.Controllers
                                               .Where(p => !categoryId.HasValue || p.CategoryId == categoryId) // Kiểm tra categoryId có khớp không
                                               .ToList();
 
+     
+
             return View(products);
         }
 
-        public IActionResult TimKiem(string keyword, int? categoryId)
+        public IActionResult TimKiem(string keyword, int? categoryId,int ?page)
         {
+            int pageSize = 4;
+            int pageNumber = (page ?? 1);
+
+
+            
             var products = dataContext.products.Include(p => p.category).AsQueryable();
 
             // Lọc theo danh mục
@@ -49,11 +59,18 @@ namespace Shop_Classix.Controllers
                 products = products.Where(p => p.Name.Contains(keyword));
             }
 
+            //tìm kiếm phân trang sắp xếp theo id
+            var pagedProducts= products.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
+
+
+            //truyền danh mục và tham số tìm kiếm vào viewBag để sử dụng cho phần phân trang
+            ViewBag.keyword = keyword;
+            ViewBag.categoryId = categoryId;
 
             ViewBag.categories = new SelectList(dataContext.categories, "Id", "Name");
 
             // Trả về kết quả tìm kiếm
-            return View("TimKiem", products.ToList());
+            return View("TimKiem",pagedProducts);
         }   
 
 

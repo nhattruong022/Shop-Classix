@@ -1,4 +1,4 @@
-/******************************************************************
+﻿/******************************************************************
   Template Name: Ogani
   Description:  Ogani eCommerce  HTML Template
   Author: Colorlib
@@ -3247,6 +3247,10 @@ ol {
 	.header .container {
 		position: relative;
 	}
+
+
+
+
 	.humberger__menu__wrapper {
 		width: 300px;
 		background: #ffffff;
@@ -3466,3 +3470,4 @@ ol {
 		font-size: 24px;
 	}
 }
+

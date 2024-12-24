@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mFK6IBvCGDOMt5smf9ItFI2pU9wrGXoNvXkFg/CIjBsA34YMdgGkaRr0jwXEZ4HorDGgiOK0ZiiBU4zxSjyu1g==",
+  "dgSpecHash": "0cRVScIyX56ivrKc4eCqgBQz3kxla1D+cgSuqcs8Q4GfctwvjYOaO3DyCS9aMpk3YwXHf0hJPFEG9H9HANLGOg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix.csproj",
   "expectedPackageFiles": [
@@ -159,7 +159,9 @@
     "C:\\Users\\Nhat Truong\\.nuget\\packages\\system.text.json\\9.0.0\\system.text.json.9.0.0.nupkg.sha512",
     "C:\\Users\\Nhat Truong\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
     "C:\\Users\\Nhat Truong\\.nuget\\packages\\system.threading.tasks.dataflow\\8.0.0\\system.threading.tasks.dataflow.8.0.0.nupkg.sha512",
-    "C:\\Users\\Nhat Truong\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+    "C:\\Users\\Nhat Truong\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
+    "C:\\Users\\Nhat Truong\\.nuget\\packages\\x.pagedlist\\10.5.7\\x.pagedlist.10.5.7.nupkg.sha512",
+    "C:\\Users\\Nhat Truong\\.nuget\\packages\\x.pagedlist.mvc.core\\10.5.7\\x.pagedlist.mvc.core.10.5.7.nupkg.sha512"
   ],
   "logs": []
 }
