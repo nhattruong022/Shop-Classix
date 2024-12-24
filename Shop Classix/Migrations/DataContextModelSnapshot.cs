@@ -33,10 +33,6 @@ namespace Shop_Classix.Migrations
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -46,6 +42,10 @@ namespace Shop_Classix.Migrations
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
+
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -185,11 +185,11 @@ namespace Shop_Classix.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PhoneNumber")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("image")
+                    b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -439,7 +439,7 @@ namespace Shop_Classix.Migrations
             modelBuilder.Entity("Shop_Classix.Models.CustomerModel", b =>
                 {
                     b.HasOne("Shop_Classix.Models.AccountModel", "accounts")
-                        .WithMany()
+                        .WithMany("Customers")
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -530,6 +530,11 @@ namespace Shop_Classix.Migrations
                         .HasForeignKey("CategoryId");
 
                     b.Navigation("category");
+                });
+
+            modelBuilder.Entity("Shop_Classix.Models.AccountModel", b =>
+                {
+                    b.Navigation("Customers");
                 });
 
             modelBuilder.Entity("Shop_Classix.Models.CategoryModel", b =>

@@ -1,8 +1,6 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿
+@model Shop_Classix.Models.ViewModels.RegisterViewModel;
+
 
 @section Link
 {
@@ -17,88 +15,80 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 }
 
-  <section class="text-center text-lg-start">
 
-    <!-- Jumbotron -->
-    <div class="container py-4">
-      <div class="row g-0 align-items-center">
-        <!-- Form Section -->
-        <div class="col-lg-6 mb-5 mb-lg-0">
-          <div class="card cascading-right bg-light" style="backdrop-filter: blur(30px);">
-            <div class="card-body p-5 shadow-5 text-center">
-              <h2 class="fw-bold mb-5">Sign up now</h2>
-              <form>
-                <!-- First and Last Name -->
-                <div class="row">
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <label class="form-label" for="form3Example1">First name</label>
-                      <input type="text" id="form3Example1" class="form-control" required />
-                    
+<section class="text-center text-lg-start">
+    <div class="container py-5">
+        <div class="row align-items-center">
+
+            <!-- Form Section -->
+            <div class="col-lg-6 mb-5">
+                <div class="card cascading-right bg-light" style="backdrop-filter: blur(30px);">
+                    <div class="card-body p-5 shadow-5 text-center">
+                        <h2 class="fw-bold mb-4">Sign Up Now</h2>
+                        <form asp-action="Register" asp-controller="KhachHang">
+                            <!-- Full Name -->
+                            <div class="form-outline mb-4">
+                                <label asp-for="@Model.Hoten" class="form-label" for="fullName">Full Name</label>
+                                <input asp-for="@Model.Hoten" type="text" id="fullName" class="form-control" />
+                                <span asp-validation-for="@Model.Hoten" class="text-danger"></span>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="form-outline mb-4">
+                                <label asp-for="@Model.email" class="form-label" for="email">Email Address</label>
+                                <input asp-for="@Model.email" type="email" id="email" class="form-control" />
+                                <span asp-validation-for="@Model.email" class="text-danger"></span>
+                            </div>
+
+                            <!-- Phone Number -->
+                            <div class="form-outline mb-4">
+                                <label asp-for="@Model.phoneNumber" class="form-label" for="phoneNumber">Phone Number</label>
+                                <input asp-for="@Model.phoneNumber" type="text" id="phoneNumber" class="form-control" />
+                                <span asp-validation-for="@Model.phoneNumber" class="text-danger"></span>
+                            </div>
+
+                            <!-- Password -->
+                            <div class="form-outline mb-4">
+                                <label asp-for="@Model.password" class="form-label" for="password">Password</label>
+                                <input asp-for="@Model.password" type="password" id="password" class="form-control" />
+                                <span asp-validation-for="@Model.password" class="text-danger"></span>
+                            </div>
+
+                            <!-- Newsletter Checkbox -->
+                            <div class="form-check d-flex justify-content-center mb-4">
+                                <input class="form-check-input me-2" type="checkbox" id="newsletter" checked />
+                                <label class="form-check-label" for="newsletter">Subscribe to our newsletter</label>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button type="submit" class="btn btn-primary btn-block mb-4">Sign Up</button>
+
+                            <!-- Social Media Signup -->
+                            <p>or sign up with:</p>
+                            <div class="d-flex justify-content-center">
+                                <button type="button" class="btn btn-link btn-floating mx-2">
+                                    <i class="fab fa-facebook-f"></i>
+                                </button>
+                                <button type="button" class="btn btn-link btn-floating mx-2">
+                                    <i class="fab fa-google"></i>
+                                </button>
+                                <button type="button" class="btn btn-link btn-floating mx-2">
+                                    <i class="fab fa-twitter"></i>
+                                </button>
+                                <button type="button" class="btn btn-link btn-floating mx-2">
+                                    <i class="fab fa-github"></i>
+                                </button>
+                            </div>
+                        </form>
+
                     </div>
-                  </div>
-                  <div class="col-md-6 mb-4">
-                    <div class="form-outline">
-                      <label class="form-label" for="form3Example2">Last name</label>
-                      <input type="text" id="form3Example2" class="form-control" required />
-                     
-                    </div>
-                  </div>
                 </div>
-
-                <!-- Email -->
-                <div class="form-outline mb-4">
-                  <label class="form-label" for="form3Example3">Email address</label>
-                  <input type="email" id="form3Example3" class="form-control" required />
-                
-                </div>
-
-                <!-- Password -->
-                <div class="form-outline mb-4">
-                  <label class="form-label" for="form3Example4">Password</label>
-                  <input type="password" id="form3Example4" class="form-control" required />
-                
-                </div>
-
-                <!-- Newsletter Checkbox -->
-                <div class="form-check d-flex justify-content-center mb-4">
-                  <input class="form-check-input me-2" type="checkbox" id="form2Example33" checked />
-                  <label class="form-check-label" for="form2Example33">
-                    Subscribe to our newsletter
-                  </label>
-                </div>
-
-                <!-- Submit Button -->
-                <button type="submit" class="btn btn-primary btn-block mb-4">
-                  Sign up
-                </button>
-
-                <!-- Social Buttons -->
-                <div class="text-center">
-                  <p>or sign up with:</p>
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-facebook-f"></i>
-                  </button>
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-google"></i>
-                  </button>
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-twitter"></i>
-                  </button>
-                  <button type="button" class="btn btn-link btn-floating mx-1">
-                    <i class="fab fa-github"></i>
-                  </button>
-                </div>
-              </form>
             </div>
-          </div>
-        </div>
 
-        <!-- Image Section -->
-        <div class="col-lg-6 mb-5 mb-lg-0">
-          <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" class="w-100 rounded-4 shadow-4" alt="Sign up image" />
+            <!-- Image Section -->
+            <div class="col-lg-6">
+                <img src="https://mdbootstrap.com/img/new/ecommerce/vertical/004.jpg" class="w-100 rounded-4 shadow-4" alt="Sign up image" />
+            </div>
         </div>
-      </div>
     </div>
-    <!-- Jumbotron -->
-  </section>
+</section>
