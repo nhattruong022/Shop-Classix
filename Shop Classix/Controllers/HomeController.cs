@@ -38,7 +38,7 @@ namespace Shop_Classix.Controllers
             return View(products);
         }
 
-        public IActionResult TimKiem(string keyword, int? categoryId,int ?page)
+        public IActionResult TimKiem(string keyword, int? categoryId,int? price,int ?page)
         {
             int pageSize = 4;
             int pageNumber = (page ?? 1);
@@ -59,6 +59,24 @@ namespace Shop_Classix.Controllers
                 products = products.Where(p => p.Name.Contains(keyword));
             }
 
+            if(price.HasValue)
+            {
+                switch(price.Value)
+                {
+                    case 1:
+                        products = products.Where(p => p.Price < 100000);
+                        break;
+                    case 2:
+                        products = products.Where(p => p.Price >= 100000 && p.Price <= 500000);
+                        break;
+                    case 3:
+                        products = products.Where(p => p.Price > 500000);
+                        break;
+                }    
+            }
+
+            
+
             //tìm kiếm phân trang sắp xếp theo id
             var pagedProducts= products.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
 
@@ -66,6 +84,7 @@ namespace Shop_Classix.Controllers
             //truyền danh mục và tham số tìm kiếm vào viewBag để sử dụng cho phần phân trang
             ViewBag.keyword = keyword;
             ViewBag.categoryId = categoryId;
+            ViewBag.price = price;
 
             ViewBag.categories = new SelectList(dataContext.categories, "Id", "Name");
 

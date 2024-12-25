@@ -220,7 +220,7 @@
 
 
                 <div class="text-center">
-                    @Html.PagedListPager(Model, page => Url.Action("TimKiem", new { page = page, keyword =ViewBag.keyword, categoryId=ViewBag.categoryId }))
+                    @Html.PagedListPager(Model, page => Url.Action("TimKiem", new { page = page, keyword =ViewBag.keyword, categoryId=ViewBag.categoryId,price=ViewBag.price }))
                 </div>
         </div>
     </div>
