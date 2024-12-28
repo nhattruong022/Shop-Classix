@@ -33,10 +33,14 @@ namespace Shop_Classix.Controllers
                                               .Where(p => !categoryId.HasValue || p.CategoryId == categoryId) // Kiểm tra categoryId có khớp không
                                               .ToList();
 
-     
+      
+          
 
             return View(products);
         }
+
+
+
 
         public IActionResult TimKiem(string keyword, int? categoryId,int? price,int ?page)
         {
@@ -75,7 +79,6 @@ namespace Shop_Classix.Controllers
                 }    
             }
 
-            
 
             //tìm kiếm phân trang sắp xếp theo id
             var pagedProducts= products.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
@@ -90,7 +93,38 @@ namespace Shop_Classix.Controllers
 
             // Trả về kết quả tìm kiếm
             return View("TimKiem",pagedProducts);
-        }   
+        }
+
+
+        [HttpPost]
+        public IActionResult ToggleFavorite(int productId)
+        {
+            var product = dataContext.products.SingleOrDefault(p => p.Id == productId);
+
+            if (product == null)
+            {
+                return Json(new { success = false, message = "Product not found" });
+            }
+
+            // Chuyển đổi trạng thái yêu thích
+            product.IsFavorite = !product.IsFavorite;
+
+            // Cập nhật FavoriteNumber
+            product.FavoriteNumber = product.IsFavorite ? 1 : 0;
+
+            dataContext.SaveChanges();
+
+            return Json(new
+            {
+                success = true,
+                isFavorite = product.IsFavorite,
+                favoriteCount = product.IsFavorite ? 1 : 0 // trả về 1 nếu yêu thích, 0 nếu không
+            });
+        }
+
+
+
+
 
 
 

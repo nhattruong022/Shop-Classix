@@ -12,8 +12,8 @@ using Shop_Classix.Repository;
 namespace Shop_Classix.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241223100922_INITIAL")]
-    partial class INITIAL
+    [Migration("20241228184713_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -167,9 +167,6 @@ namespace Shop_Classix.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("AccountId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -197,8 +194,6 @@ namespace Shop_Classix.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("AccountId");
 
                     b.ToTable("customers");
                 });
@@ -309,6 +304,8 @@ namespace Shop_Classix.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
 
                     b.ToTable("orders");
                 });
@@ -439,17 +436,6 @@ namespace Shop_Classix.Migrations
                     b.Navigation("accounts");
                 });
 
-            modelBuilder.Entity("Shop_Classix.Models.CustomerModel", b =>
-                {
-                    b.HasOne("Shop_Classix.Models.AccountModel", "accounts")
-                        .WithMany("Customers")
-                        .HasForeignKey("AccountId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("accounts");
-                });
-
             modelBuilder.Entity("Shop_Classix.Models.FavoriteProductModel", b =>
                 {
                     b.HasOne("Shop_Classix.Models.CustomerModel", "customers")
@@ -507,6 +493,17 @@ namespace Shop_Classix.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("Shop_Classix.Models.OrderModel", b =>
+                {
+                    b.HasOne("Shop_Classix.Models.CustomerModel", "customers")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("customers");
+                });
+
             modelBuilder.Entity("Shop_Classix.Models.ProductCommentModel", b =>
                 {
                     b.HasOne("Shop_Classix.Models.AccountModel", "accounts")
@@ -533,11 +530,6 @@ namespace Shop_Classix.Migrations
                         .HasForeignKey("CategoryId");
 
                     b.Navigation("category");
-                });
-
-            modelBuilder.Entity("Shop_Classix.Models.AccountModel", b =>
-                {
-                    b.Navigation("Customers");
                 });
 
             modelBuilder.Entity("Shop_Classix.Models.CategoryModel", b =>

@@ -20,6 +20,7 @@ namespace Shop_Classix.Models
         
         public string Description { get; set; } = string.Empty;
         public int? FavoriteNumber { get; set; }
+
         public int Status { get; set; }
 
         [Required(ErrorMessage ="Please insert into image")]
@@ -43,5 +44,10 @@ namespace Shop_Classix.Models
         public CategoryModel category { get; set; } //navigation property
 
         public string? categoryName { get; set; }
+
+        [NotMapped]
+        public bool IsFavorite { get; set; }  //trạng thái yêu thích
+
+        
     }
 }

@@ -37,7 +37,9 @@ namespace Shop_Classix.Controllers
 
         public IActionResult Contact()
         {
-            return View();
-        }
+			var connectshop = _dataContext.contacts.ToList();
+			ViewBag.Connectshop = connectshop;
+			return View();
+		}
     }
 }

@@ -4,6 +4,9 @@ using Shop_Classix.Models;
 using Shop_Classix.Repository;
 using Shop_Classix.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Shop_Classix.Controllers
 {
@@ -16,60 +19,112 @@ namespace Shop_Classix.Controllers
             _dataContext = dataContext;
         }
 
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
         }
-        [HttpPost]
-        public IActionResult Register(RegisterViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                // Kiểm tra nếu email đã tồn tại
-                var accountExist = _dataContext.customers.FirstOrDefault(p => p.Email == model.email);
 
-                if (accountExist != null)
-                {
-                    ModelState.AddModelError("", "Email already exists.");
-                    return View(model);
-                }
+			[HttpPost]
+			public IActionResult Register(RegisterViewModel model)
+			{
+				if (ModelState.IsValid)
+				{
+					//Kiểm tra email đã tồn tại
+					var existingUser = _dataContext.customers.FirstOrDefault(c => c.Email == model.Email);
 
-                // Mã hóa mật khẩu
-                var passwordHasher = new PasswordHasher<CustomerModel>();
-                var hashedPassword = passwordHasher.HashPassword(null, model.password);
+					if (existingUser != null)
+					{
+						ModelState.AddModelError("Email", "Email already exists.");
+						return View(model);
+					}
 
-                var user = new CustomerModel
-                {
-                    Name = model.Hoten,
-                    Email = model.email,
-                    PhoneNumber = model.phoneNumber,
-                    Password = hashedPassword, // Đảm bảo mật khẩu đã mã hóa được lưu vào database
-                    Address = model.diachi,
-                    Gender = model.gioitinh ?? false, // Giả sử là 'false' nếu chưa chọn
-                    DateOfBirth = model.NgaySinh ?? DateTime.Now, // Giá trị mặc định nếu không có
-                };
+					// Mã hóa mật khẩu
+					var passwordHasher = new PasswordHasher<CustomerModel>();
+					var hashedPassword = passwordHasher.HashPassword(new CustomerModel(), model.Password);
 
-                // Thêm người dùng vào cơ sở dữ liệu
-                _dataContext.customers.Add(user);
-                _dataContext.SaveChanges();
+					// Tạo khách hàng mới
+					var newCustomer = new CustomerModel
+					{
+						Name = model.Hoten,
+						Email = model.Email,
+						PhoneNumber = model.PhoneNumber,
+						Password = hashedPassword
+						//Gender = model.Gender,
+						//DateOfBirth = model.DateOfBirth,
+						//Address = model.Address
+					};
 
-                // Chuyển hướng người dùng sau khi đăng ký thà  nh công
-                return RedirectToAction("Login","KhachHang");
-            }
+					// Thêm vào cơ sở dữ liệu
+					_dataContext.customers.Add(newCustomer);
+					_dataContext.SaveChanges();
 
-            // Nếu ModelState không hợp lệ, trả lại form và hiển thị lỗi
-            return View(model);
-        }
+					// Chuyển hướng đến trang đăng nhập
+					return RedirectToAction("Login", "KhachHang");
+				}
 
-
-
-        public IActionResult Login()
-        {
-            return View();
-        }
+				// Nếu ModelState không hợp lệ
+				return View(model);
+			}
 
 
-        public IActionResult Profile()
+
+		[HttpGet]
+		public IActionResult Login(string returnUrl)
+		{
+		    ViewBag.returnUrl = returnUrl;
+
+		    return View();
+		}
+
+		[HttpPost]
+		public async Task<IActionResult> Login(LoginViewModel model, string? returnUrl)
+		{
+		    if (ModelState.IsValid)
+		    {
+		        var khachHang = _dataContext.customers.SingleOrDefault(kh => kh.Email == model.Email);
+
+		        if (khachHang == null)
+		        {
+		            ModelState.AddModelError("loi", "Không có khách hàng này");
+		            return View();
+		        }
+		        else if (khachHang.Password !=model.Password)
+		        {
+		            ModelState.AddModelError("loi", "Mật khẩu không đúng");
+		            return View();
+		       }
+		       else
+		       {
+		           var claims = new List<Claim>
+		   {
+		       new Claim(ClaimTypes.Email, khachHang.Email),
+		       new Claim(ClaimTypes.NameIdentifier, khachHang.Id.ToString())
+		   };
+
+		           var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+		           var authProperties = new AuthenticationProperties
+		           {
+		               IsPersistent = true,
+		               RedirectUri = returnUrl ?? Url.Action("Index", "Home")
+		           };
+
+		           await HttpContext.SignInAsync(
+		               CookieAuthenticationDefaults.AuthenticationScheme,
+		               new ClaimsPrincipal(claimsIdentity),
+		               authProperties);
+
+		           return Redirect(returnUrl ?? Url.Action("Index", "Home"));
+		       }
+		   }
+
+		   return View();
+		}
+
+
+
+		public IActionResult Profile()
         {
             return View();
         }

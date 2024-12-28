@@ -13,8 +13,8 @@ namespace Shop_Classix.Models
         [Required(ErrorMessage ="Please enter your password")]
         public string Password { get; set; } = string.Empty;    
 
-        //mối quan hệ với customerModel
-        public virtual ICollection<CustomerModel> Customers { get; set; }
+        //mối quan hệ 1-n với customerModel
+        //public virtual ICollection<CustomerModel> customers { get; set; }
 
         public int Type { get; set; }
         

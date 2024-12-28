@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using Shop_Classix.Repository.Validation;
+using Microsoft.EntityFrameworkCore;
 
 
 namespace Shop_Classix.Models
@@ -16,11 +17,11 @@ namespace Shop_Classix.Models
         [EmailAddress]
         public string Email { get; set; } = string.Empty;
 
-        [Required(ErrorMessage ="Please enter your password")]
-        public string Password { get; set; }= string.Empty;
-
         [Required(ErrorMessage = "Please enter your phone")]
         public string? PhoneNumber { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Please enter your password")]
+        public string Password { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Please enter your address")]
         public string? Address { get; set; } = string.Empty;
@@ -34,11 +35,10 @@ namespace Shop_Classix.Models
 
         //public string? image {  get; set; } = string.Empty;
 
-        [ForeignKey("accounts")]
-        public int AccountId { get; set; }
+
 
         //tham chieu den Accounts
-        public virtual AccountModel accounts { get; set; }
+        //public virtual AccountModel accounts { get; set; }
 
         //[NotMapped]
         //[FileExtension]

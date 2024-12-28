@@ -2,6 +2,7 @@
 @model Shop_Classix.Models.ViewModels.RegisterViewModel;
 
 
+
 @section Link
 {
 <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/bootstrap.min.css")" type="text/css">
@@ -25,34 +26,46 @@
                 <div class="card cascading-right bg-light" style="backdrop-filter: blur(30px);">
                     <div class="card-body p-5 shadow-5 text-center">
                         <h2 class="fw-bold mb-4">Sign Up Now</h2>
-                        <form asp-action="Register" asp-controller="KhachHang">
-                            <!-- Full Name -->
+
+
+
+                        <form asp-action="Register" asp-controller="KhachHang" method="post">
+
+                            @if(!ViewData.ModelState.IsValid&&ViewData.ModelState["Email"]!=null)
+                            {
+                                <div class="alert alert-danger">
+                                    @foreach (var error in ViewData.ModelState["Email"].Errors)
+                                    {
+                                        <p>@error.ErrorMessage</p>
+                                    }
+                                </div>
+                            }
+
                             <div class="form-outline mb-4">
-                                <label asp-for="@Model.Hoten" class="form-label" for="fullName">Full Name</label>
-                                <input asp-for="@Model.Hoten" type="text" id="fullName" class="form-control" />
-                                <span asp-validation-for="@Model.Hoten" class="text-danger"></span>
+                                <label asp-for="Hoten" class="form-label">Full Name</label>
+                                <input asp-for="Hoten" type="text" class="form-control" />
+								<span asp-validation-for="Hoten" class="text-danger"></span>
                             </div>
 
-                            <!-- Email -->
                             <div class="form-outline mb-4">
-                                <label asp-for="@Model.email" class="form-label" for="email">Email Address</label>
-                                <input asp-for="@Model.email" type="email" id="email" class="form-control" />
-                                <span asp-validation-for="@Model.email" class="text-danger"></span>
+                                <label asp-for="Email" class="form-label">Email Address</label>
+                                <input asp-for="Email" type="email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
                             </div>
 
-                            <!-- Phone Number -->
                             <div class="form-outline mb-4">
-                                <label asp-for="@Model.phoneNumber" class="form-label" for="phoneNumber">Phone Number</label>
-                                <input asp-for="@Model.phoneNumber" type="text" id="phoneNumber" class="form-control" />
-                                <span asp-validation-for="@Model.phoneNumber" class="text-danger"></span>
+                                <label asp-for="PhoneNumber" class="form-label">Phone Number</label>
+                                <input asp-for="PhoneNumber" type="text" class="form-control" />
+                                <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                             </div>
 
-                            <!-- Password -->
                             <div class="form-outline mb-4">
-                                <label asp-for="@Model.password" class="form-label" for="password">Password</label>
-                                <input asp-for="@Model.password" type="password" id="password" class="form-control" />
-                                <span asp-validation-for="@Model.password" class="text-danger"></span>
+                                <label asp-for="Password" class="form-label">Password</label>
+                                <input asp-for="Password" type="password" class="form-control" />
+                                <span asp-validation-for="Password" class="text-danger"></span>
                             </div>
+
+                           
 
                             <!-- Newsletter Checkbox -->
                             <div class="form-check d-flex justify-content-center mb-4">
@@ -62,6 +75,7 @@
 
                             <!-- Submit Button -->
                             <button type="submit" class="btn btn-primary btn-block mb-4">Sign Up</button>
+                        </form>
 
                             <!-- Social Media Signup -->
                             <p>or sign up with:</p>
@@ -79,7 +93,7 @@
                                     <i class="fab fa-github"></i>
                                 </button>
                             </div>
-                        </form>
+                       
 
                     </div>
                 </div>

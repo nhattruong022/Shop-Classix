@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Repository;
 using Shop_Classix.Service;
 
@@ -14,6 +15,19 @@ builder.Services.AddDbContext<DataContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+
+//AddAuthentication: đăng ký dịch vụ xác thực cho ứng dụng
+
+//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+//{
+//    options.LoginPath = "KhachHang/DangNhap";   //người dùng chưa đăng nhập -> chuyển hướng tới trang đăng nhập
+//    options.LoginPath = "KhachHang/Logout";  //trang xử lý đăng xuất
+//    options.AccessDeniedPath = "/AccessDenied"; //người dùng đã đăng nhập nhưng không đủ quyền truy cập
+//});
+
+
+
+
 builder.Services.AddTransient<IEmailService, EmailService>();
 
 var app = builder.Build();
@@ -25,10 +39,6 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
-
-
-
 
 
 
@@ -64,6 +74,7 @@ app.MapControllerRoute(
     name: "Contact",
     pattern: "{controller=Contact}/{action=Contact}/{id?}"
 );
+
 
 
 //cấu hình route About

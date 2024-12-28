@@ -10,8 +10,10 @@ namespace Shop_Classix.Models
         public string Cotent { get; set; } = string.Empty;
         public int Status { get; set; }
         public int Rating { get; set; }
+
         [ForeignKey("accounts")]
         public int AccountId { get; set; }
+
         [ForeignKey("products")]
         public int ProductId { get; set; }
         public DateTime CreateAt { get; set; }
