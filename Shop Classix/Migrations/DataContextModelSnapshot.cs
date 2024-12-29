@@ -22,36 +22,6 @@ namespace Shop_Classix.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Shop_Classix.Models.AccountModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreateAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<string>("email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("accounts");
-                });
-
             modelBuilder.Entity("Shop_Classix.Models.CartItemModel", b =>
                 {
                     b.Property<int>("CustomerId")
@@ -165,17 +135,16 @@ namespace Shop_Classix.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DateOfBirth")
+                    b.Property<DateTime?>("DateOfBirth")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Gender")
+                    b.Property<bool?>("Gender")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
@@ -188,6 +157,12 @@ namespace Shop_Classix.Migrations
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("image")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -424,13 +399,13 @@ namespace Shop_Classix.Migrations
 
             modelBuilder.Entity("Shop_Classix.Models.ChatUsersModel", b =>
                 {
-                    b.HasOne("Shop_Classix.Models.AccountModel", "accounts")
+                    b.HasOne("Shop_Classix.Models.CustomerModel", "customers")
                         .WithMany()
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("accounts");
+                    b.Navigation("customers");
                 });
 
             modelBuilder.Entity("Shop_Classix.Models.FavoriteProductModel", b =>
@@ -503,7 +478,7 @@ namespace Shop_Classix.Migrations
 
             modelBuilder.Entity("Shop_Classix.Models.ProductCommentModel", b =>
                 {
-                    b.HasOne("Shop_Classix.Models.AccountModel", "accounts")
+                    b.HasOne("Shop_Classix.Models.CustomerModel", "customers")
                         .WithMany()
                         .HasForeignKey("AccountId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -515,7 +490,7 @@ namespace Shop_Classix.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("accounts");
+                    b.Navigation("customers");
 
                     b.Navigation("products");
                 });

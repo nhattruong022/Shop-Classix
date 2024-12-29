@@ -20,19 +20,24 @@ namespace Shop_Classix.Models.ViewModels
     [MinLength(8, ErrorMessage = "Password must have at least 8 characters.")]
     public string Password { get; set; }
 
-    //[Required(ErrorMessage = "Please choose your gender.")]
-    //public bool? Gender { get; set; }
 
-    //[Required(ErrorMessage = "Please choose your Date of Birth.")]
-    //public DateTime? DateOfBirth { get; set; }
+        [Required(ErrorMessage = "Please select a role.")]
+        public string Role { get; set; } = "User"; // Default role can be "User"
 
-    //[Required(ErrorMessage = "Please enter your address.")]
-    //public string Address { get; set; }
 
-    // Nếu bạn cần thêm một hình ảnh, ví dụ:
-    // [NotMapped] // Không lưu vào cơ sở dữ liệu
-    // public IFormFile ImageUpload { get; set; }
-}
+        //[Required(ErrorMessage = "Please choose your gender.")]
+        //public bool? Gender { get; set; }
+
+        //[Required(ErrorMessage = "Please choose your Date of Birth.")]
+        //public DateTime? DateOfBirth { get; set; }
+
+        //[Required(ErrorMessage = "Please enter your address.")]
+        //public string Address { get; set; }
+
+        // Nếu bạn cần thêm một hình ảnh, ví dụ:
+        // [NotMapped] // Không lưu vào cơ sở dữ liệu
+        // public IFormFile ImageUpload { get; set; }
+    }
 
 
 }

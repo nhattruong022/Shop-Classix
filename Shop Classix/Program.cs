@@ -17,13 +17,24 @@ builder.Services.AddControllersWithViews();
 
 
 //AddAuthentication: đăng ký dịch vụ xác thực cho ứng dụng
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+    options.LoginPath = "/KhachHang/Login"; //  người dùng chưa đăng nhập -> chuyển hướng tới trang đăng nhập
+    options.LoginPath = "/KhachHang/LogOut";  //trang xử lý đăng xuất
+    options.AccessDeniedPath = "/AccessDenied";  //người dùng đã đăng nhập nhưng không đủ quyền truy cập
+});
 
-//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-//{
-//    options.LoginPath = "KhachHang/DangNhap";   //người dùng chưa đăng nhập -> chuyển hướng tới trang đăng nhập
-//    options.LoginPath = "KhachHang/Logout";  //trang xử lý đăng xuất
-//    options.AccessDeniedPath = "/AccessDenied"; //người dùng đã đăng nhập nhưng không đủ quyền truy cập
-//});
+
+//phân quyền admin
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+});
+
+
+
+
+
 
 
 

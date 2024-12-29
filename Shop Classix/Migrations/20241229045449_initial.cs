@@ -12,23 +12,6 @@ namespace Shop_Classix.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "accounts",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Type = table.Column<int>(type: "int", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
-                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_accounts", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "categories",
                 columns: table => new
                 {
@@ -71,9 +54,11 @@ namespace Shop_Classix.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Gender = table.Column<bool>(type: "bit", nullable: false),
-                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Gender = table.Column<bool>(type: "bit", nullable: true),
+                    DateOfBirth = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    image = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -93,27 +78,6 @@ namespace Shop_Classix.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_imports", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "chatUsers",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    MessageContent = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AccountId = table.Column<int>(type: "int", nullable: false),
-                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_chatUsers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_chatUsers_accounts_AccountId",
-                        column: x => x.AccountId,
-                        principalTable: "accounts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -145,6 +109,27 @@ namespace Shop_Classix.Migrations
                         column: x => x.CategoryId,
                         principalTable: "categories",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "chatUsers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    MessageContent = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AccountId = table.Column<int>(type: "int", nullable: false),
+                    CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_chatUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_chatUsers_customers_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "customers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -264,9 +249,9 @@ namespace Shop_Classix.Migrations
                 {
                     table.PrimaryKey("PK_productComments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_productComments_accounts_AccountId",
+                        name: "FK_productComments_customers_AccountId",
                         column: x => x.AccountId,
-                        principalTable: "accounts",
+                        principalTable: "customers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
@@ -378,9 +363,6 @@ namespace Shop_Classix.Migrations
 
             migrationBuilder.DropTable(
                 name: "orders");
-
-            migrationBuilder.DropTable(
-                name: "accounts");
 
             migrationBuilder.DropTable(
                 name: "products");

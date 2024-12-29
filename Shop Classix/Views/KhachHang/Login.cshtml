@@ -1,4 +1,4 @@
-﻿@model Shop_Classix.Models.AccountModel;
+﻿@model Shop_Classix.Models.ViewModels.LoginViewModel;
 
 @{
     ViewData["Title"] = "Login Page";
@@ -42,9 +42,9 @@
 
                     <!-- Email Input -->
                     <div class="form-outline mb-4">
-                        <label asp-for="email" class="form-label">Email address</label>
-                        <input asp-for="email" class="form-control form-control-lg" type="email" placeholder="Enter your email" />
-                        <span asp-validation-for="email" class="text-danger"></span>
+                        <label asp-for="Email" class="form-label">Email address</label>
+                        <input asp-for="Email" class="form-control form-control-lg" type="email" placeholder="Enter your email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
 
                     <div class="form-outline mb-4">
@@ -59,6 +59,7 @@
                         <button type="submit" class="btn btn-info btn-lg w-100">Login</button>
                     </div>
 
+                </form>
                     <!-- Links -->
                     <p class="small mb-2">
                         <a class="text-muted" href="#">Forgot password?</a>
@@ -66,7 +67,7 @@
                     <p>
                         Don't have an account? <a href="#" class="link-info">Register here</a>
                     </p>
-                </form>
+        
             </div>
 
             <!-- Right Section -->
