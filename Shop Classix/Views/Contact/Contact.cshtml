@@ -1,11 +1,19 @@
 ﻿@model IEnumerable<Shop_Classix.Models.ContactModel>
 @{
+
     ViewData["Title"] = "Contact Page";
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> f42b1965892b1ad10d049ab12c14fa76acf00cb0
     var connectshop = ViewBag.connectshop;
 }
 
 
 @section Link
+
 {
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
           rel="stylesheet" />
@@ -41,10 +49,18 @@
         <!-- Breadcrumb Section End -->
         <!-- Contact Section Begin -->
         @foreach (var cn in connectshop)
+<<<<<<< HEAD
+=======
+
+>>>>>>> f42b1965892b1ad10d049ab12c14fa76acf00cb0
         {
             <section class="contact spad">
                 <div class="container">
                     <div class="row">
+<<<<<<< HEAD
+=======
+
+>>>>>>> f42b1965892b1ad10d049ab12c14fa76acf00cb0
                         <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                             <div class="contact__widget">
                                 <span class="icon_phone"></span>
@@ -75,6 +91,7 @@
                                 <p>@cn.Email</p>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </section>
@@ -83,6 +100,11 @@
             <div class="map">
                 <!-- .raw dùng hiển thị map-->
                 @Html.Raw(cn.map)
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> f42b1965892b1ad10d049ab12c14fa76acf00cb0
             </div>
         }
         <!-- Map End -->
@@ -126,6 +148,7 @@
 
 
 @section Script
+
 {
     <script src="@Url.Content("~/Classix/user/js/jquery-3.3.1.min.js")"></script>
     <script src="@Url.Content("~/Classix/user/js/bootstrap.min.js")"></script>

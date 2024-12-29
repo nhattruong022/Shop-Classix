@@ -36,10 +36,18 @@ namespace Shop_Classix.Controllers
         }
 
         public IActionResult Contact()
+<<<<<<< HEAD
         {
 			var connectshop = _dataContext.contacts.ToList();
 			ViewBag.Connectshop = connectshop;
 			return View();
 		}
+=======
+        {
+            var connectshop = _dataContext.contacts.ToList();
+            ViewBag.Connectshop = connectshop;
+            return View();
+        }
+>>>>>>> f42b1965892b1ad10d049ab12c14fa76acf00cb0
     }
 }
