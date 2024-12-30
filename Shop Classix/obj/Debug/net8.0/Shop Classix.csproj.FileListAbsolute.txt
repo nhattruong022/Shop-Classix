@@ -735,6 +735,16 @@ D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\refint\
 D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.pdb
 D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.genruntimeconfig.cache
 D:\Đồ án\Web\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\ref\Shop Classix.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.csproj.AssemblyReference.cache
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.AssemblyInfoInputs.cache
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.AssemblyInfo.cs
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.csproj.CoreCompileInputs.cache
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.RazorAssemblyInfo.cache
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.RazorAssemblyInfo.cs
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.sourcelink.json
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\appsettings.json
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.staticwebassets.runtime.json
@@ -743,11 +753,14 @@ C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Cl
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.runtimeconfig.json
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Shop Classix.pdb
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Azure.Core.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Azure.Identity.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Humanizer.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Build.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Build.Framework.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Build.Locator.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.AnalyzerUtilities.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
@@ -758,12 +771,19 @@ C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Cl
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Razor.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Scripting.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Data.SqlClient.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.DiaSymReader.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.DotNet.Scaffolding.Shared.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
@@ -771,7 +791,16 @@ C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Cl
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Identity.Client.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.NET.StringTools.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\dotnet-aspnet-codegenerator-design.dll
@@ -790,6 +819,7 @@ C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Cl
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.ProjectModel.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Protocol.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\NuGet.Versioning.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.ClientModel.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.CodeDom.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.AttributedModel.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Composition.Convention.dll
@@ -799,11 +829,16 @@ C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Cl
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Formats.Asn1.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.IO.Pipelines.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Memory.Data.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Reflection.MetadataLoadContext.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Runtime.Caching.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Text.Encodings.Web.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Text.Json.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\X.PagedList.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\af\Humanizer.resources.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\ar\Humanizer.resources.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\az\Humanizer.resources.dll
@@ -943,55 +978,6 @@ C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Cl
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.csproj.AssemblyReference.cache
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.AssemblyInfoInputs.cache
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.AssemblyInfo.cs
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.csproj.CoreCompileInputs.cache
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.RazorAssemblyInfo.cache
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.RazorAssemblyInfo.cs
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.sourcelink.json
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.build.json
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.development.json
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.Shop Classix.Microsoft.AspNetCore.StaticWebAssets.props
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.build.Shop Classix.props
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Shop Classix.props
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Shop Classix.props
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.pack.json
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\bundle\Shop Classix.styles.css
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\projectbundle\Shop Classix.bundle.scp.css
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Cla.8CE47865.Up2Date
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\refint\Shop Classix.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.pdb
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.genruntimeconfig.cache
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\ref\Shop Classix.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Azure.Core.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Azure.Identity.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Build.Locator.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Data.SqlClient.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.SqlServer.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Identity.Client.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.Identity.Client.Extensions.Msal.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.IdentityModel.Abstractions.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.IdentityModel.Logging.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.IdentityModel.Tokens.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.ClientModel.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.IdentityModel.Tokens.Jwt.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Memory.Data.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\System.Runtime.Caching.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
@@ -1012,6 +998,20 @@ C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Cl
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.MvcApplicationPartsAssemblyInfo.cs
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\X.PagedList.dll
-C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.build.json
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.development.json
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.Shop Classix.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.build.Shop Classix.props
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.Shop Classix.props
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.Shop Classix.props
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\staticwebassets.pack.json
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\bundle\Shop Classix.styles.css
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\scopedcss\projectbundle\Shop Classix.bundle.scp.css
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Cla.8CE47865.Up2Date
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\refint\Shop Classix.dll
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.pdb
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\Shop Classix.genruntimeconfig.cache
+C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\obj\Debug\net8.0\ref\Shop Classix.dll

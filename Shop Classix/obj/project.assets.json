@@ -7760,25 +7760,11 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\LE VAN VUI\\.nuget\\packages\\": {}
-=======
     "C:\\Users\\Nhat Truong\\.nuget\\packages\\": {}
->>>>>>> 530415a1261ec62520d56d4ac4531679f5024d6f
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "D:\\Đồ án\\Shop-Classix\\Shop Classix\\Shop Classix.csproj",
-      "projectName": "Shop Classix",
-      "projectPath": "D:\\Đồ án\\Shop-Classix\\Shop Classix\\Shop Classix.csproj",
-      "packagesPath": "C:\\Users\\LE VAN VUI\\.nuget\\packages\\",
-      "outputPath": "D:\\Đồ án\\Shop-Classix\\Shop Classix\\obj\\",
-      "projectStyle": "PackageReference",
-      "configFilePaths": [
-        "C:\\Users\\LE VAN VUI\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
       "projectUniqueName": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix.csproj",
       "projectName": "Shop Classix",
       "projectPath": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix.csproj",
@@ -7787,7 +7773,6 @@
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Nhat Truong\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> 530415a1261ec62520d56d4ac4531679f5024d6f
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7795,10 +7780,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-<<<<<<< HEAD
-        "C:\\Program Files\\dotnet\\library-packs": {},
-=======
->>>>>>> 530415a1261ec62520d56d4ac4531679f5024d6f
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7874,11 +7855,7 @@
             "privateAssets": "all"
           }
         },
-<<<<<<< HEAD
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
-=======
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
->>>>>>> 530415a1261ec62520d56d4ac4531679f5024d6f
       }
     }
   }
