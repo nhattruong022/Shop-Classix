@@ -8,10 +8,10 @@ namespace Shop_Classix.Models
         [Key]
         public int Id { get; set; }
         public string? MessageContent { get; set; }
-        [ForeignKey("accounts")]
+        [ForeignKey("customers")]
         public int AccountId { get; set; }
         public DateTime CreateAt { get; set; }
         //tham chieu den Accounts
-        public virtual AccountModel accounts { get; set; }
+        public virtual CustomerModel customers { get; set; }
     }
 }

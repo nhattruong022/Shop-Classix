@@ -10,13 +10,15 @@ namespace Shop_Classix.Models
         public string Cotent { get; set; } = string.Empty;
         public int Status { get; set; }
         public int Rating { get; set; }
-        [ForeignKey("accounts")]
+
+        [ForeignKey("customers")]
         public int AccountId { get; set; }
+
         [ForeignKey("products")]
         public int ProductId { get; set; }
         public DateTime CreateAt { get; set; }
         //tham chieu den Accounts
-        public virtual AccountModel accounts { get; set; }
+        public virtual CustomerModel customers { get; set; }
         //tham chieu den products
         public virtual ProductsModel products { get; set; }
     }

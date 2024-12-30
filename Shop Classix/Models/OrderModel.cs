@@ -13,9 +13,13 @@ namespace Shop_Classix.Models
         public int Status { get; set; }
         public int PaymentMethod { get; set; }
 
-        [ForeignKey("customers")]
         public int CustomerId { get; set; }
-        public DateTime? CreateAt { get; set; }
+
+
+		[ForeignKey("CustomerId")]
+        public CustomerModel customers { get; set; }
+
+		public DateTime? CreateAt { get; set; }
         public DateTime? UpdateAt { get; set; }
     }
 }

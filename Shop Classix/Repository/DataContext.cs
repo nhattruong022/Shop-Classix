@@ -11,7 +11,7 @@ namespace Shop_Classix.Repository
         public DbSet<FavoriteProductModel>favoriteProducts { get; set; }
         public DbSet<CategoryModel> categories { get; set; }
         public DbSet<CustomerModel> customers { get; set; }
-        public DbSet<AccountModel> accounts { get; set; }
+        //public DbSet<AccountModel> accounts { get; set; }
         public DbSet<ContactModel> contacts { get; set; }   
         public DbSet<OrderModel> orders { get; set; }
         public DbSet<OrderDetailModel> orderDetails { get; set; }
