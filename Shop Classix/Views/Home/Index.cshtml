@@ -241,42 +241,45 @@ rel="stylesheet" />
 
 
                 @*                 Hiển thị danh sách sản phẩm từ Database *@
-                      <div class="row featured__filter">
-    @foreach (var item in Model)
-    {
-        <div class="col-lg-3 col-md-4 col-sm-6">
-            <div class="featured__item">
-                <div class="featured__item__pic set-bg"
-                     data-setbg="@Url.Content("~/Classix/img/" + item.Image)">
-                    <ul class="featured__item__pic__hover">
-                        <li>
-                            <a href="javascript:void(0);" onclick="toggleFavorite(@item.Id)">
-                                <i class="fa @(item.IsFavorite ? "fa-heart" : "fa-heart-o")"
-                                   style="color: @(item.IsFavorite ? "red" : "gray");"></i>
-                            </a>
-                                                    <!-- Chỉ hiển thị số yêu thích nếu > 0 -->
-                            @if (item.FavoriteNumber > 0) 
+                        <div class="row featured__filter">
+                            @foreach (var item in Model)
                             {
-                                <p id="favoriteCount_@item.Id">@item.FavoriteNumber</p>
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <div class="featured__item">
+                                        <div class="featured__item__pic set-bg"
+                                             data-setbg="@Url.Content("~/Classix/img/" + item.Image)">
+                                            <ul class="featured__item__pic__hover">
+                                                @if (User.Identity.IsAuthenticated)
+                                                {
+                                                    <li>
+                                                        <a href="javascript:void(0);" onclick="toggleFavorite(@item.Id)">
+                                                            <i class="fa @(item.IsFavorite ? "fa-heart" : "fa-heart-o")"
+                                                               style="color: @(item.IsFavorite ? "red" : "gray");"></i>
+                                                        </a>
+                                                        @if (item.FavoriteNumber > 0)
+                                                        {
+                                                            <p id="favoriteCount_@item.Id">@item.FavoriteNumber</p>
+                                                        }
+                                                    </li>
+                                                    <li>
+                                                        <a href="#"><i class="fa fa-retweet"></i></a>
+                                                    </li>
+                                                }
+                                                <li>
+                                                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="featured__item__text">
+                                            <h6><a href="#">@item.Name</a></h6>
+                                            <h5>@item.Price.ToString("C")</h5>
+                                            <p>Category: @item.category?.Name</p>
+                                        </div>
+                                    </div>
+                                </div>
                             }
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-retweet"></i></a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="featured__item__text">
-                    <h6><a href="#">@item.Name</a></h6>
-                    <h5>@item.Price.ToString("C")</h5>
-                    <p>Category: @item.category?.Name</p>
-                </div>
-            </div>
-        </div>
-    }
-</div>
+                        </div>
+
 
 
 

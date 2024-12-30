@@ -45,8 +45,8 @@ namespace Shop_Classix.Controllers
 
         public IActionResult TimKiem(string keyword, int? categoryId,int? price,int ?page)
         {
-            int pageSize = 4;
-            int pageNumber = (page ?? 1);
+            int pageSize = 4;   //số sản phẩm trong 1 trang
+            int pageNumber = (page ?? 1);  //mặc định là trang 1
 
 
             
@@ -96,7 +96,7 @@ namespace Shop_Classix.Controllers
             return View("TimKiem",pagedProducts);
         }
 
-     
+        [Authorize]     
         [HttpPost]
         public IActionResult ToggleFavorite(int productId)
         {

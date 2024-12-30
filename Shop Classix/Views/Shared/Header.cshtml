@@ -1,4 +1,6 @@
 ﻿
+
+
 <header class="header">
       <div class="header__top">
         <div class="container">
@@ -23,19 +25,21 @@
                   <a href="#"><i class="fa fa-pinterest-p"></i></a>
                 </div>
                
-                <div class="header__top__right__auth">
-                  <a asp-action="Login" asp-controller="KhachHang"><i class="fa fa-user"></i> Login</a>
-
-             
-               
-              </div>
+                @if(User.Identity.IsAuthenticated)
+                {                
                         <form asp-action="Logout" asp-controller="KhachHang" method="post" style="display: inline;">
                             <button type="submit" style="border: none; background: none; cursor: pointer; color: #333;">
                                 <i class="fa fa-sign-out"></i> Logout
                             </button>
                         </form>
-
-            </div>
+                }
+                else{
+                 <div class="header__top__right__auth">
+                     <a asp-action="Login" asp-controller="KhachHang"><i class="fa fa-user"></i> Login</a>
+                  </div>
+                }
+             
+         
           </div>
         </div>
       </div>
