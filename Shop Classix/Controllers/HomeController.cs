@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Models;
@@ -95,7 +96,7 @@ namespace Shop_Classix.Controllers
             return View("TimKiem",pagedProducts);
         }
 
-
+     
         [HttpPost]
         public IActionResult ToggleFavorite(int productId)
         {
