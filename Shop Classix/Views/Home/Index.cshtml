@@ -275,6 +275,23 @@ rel="stylesheet" />
                                             <h6><a href="#">@item.Name</a></h6>
                                             <h5>@item.Price.ToString("C")</h5>
                                             <p>Category: @item.category?.Name</p>
+                                            <p>
+                                                @for (var i = 1; i <= 5; i++)
+                                                {
+                                                    if (i <= Math.Floor(item.Rating ?? 0))
+                                                    {
+                                                        <i class="fa fa-star" style="color: gold;"></i> <!-- Sao vàng -->
+                                                    }
+                                                    else if (i == Math.Ceiling(item.Rating ?? 0) && (item.Rating ?? 0) % 1 != 0)
+                                                    {
+                                                        <i class="fas fa-star-half-alt" style="color: gold;"></i> <!-- Sao nửa -->
+                                                    }
+                                                    else
+                                                    {
+                                                        <i class="fa fa-star" style="color: lightgray;"></i> <!-- Sao rỗng -->
+                                                    }
+                                                }
+                                            </p>
                                         </div>
                                     </div>
                                 </div>

@@ -113,6 +113,7 @@ namespace Shop_Classix.Controllers
 				   {
 					   new Claim(ClaimTypes.Email, khachHang.Email), //email khách hàng
 					   new Claim(ClaimTypes.NameIdentifier, khachHang.Id.ToString()), //id khách hàng
+					   new Claim(ClaimTypes.Name,khachHang.Email), //gán email vào claimtypes.name để hiển thị trong @User.identity.Name
 					   new Claim(ClaimTypes.Role,khachHang.Role??"User")
 				   };
 
@@ -128,6 +129,8 @@ namespace Shop_Classix.Controllers
 					};
 
 					HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties).Wait();
+
+				
 
 
 					if (khachHang.Role == "Admin")

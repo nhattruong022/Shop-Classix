@@ -1,6 +1,5 @@
 ﻿
 
-
 <header class="header">
       <div class="header__top">
         <div class="container">
@@ -8,9 +7,12 @@
             <div class="col-lg-6">
               <div class="header__top__left">
                 <ul>
-                  <li>
-                    <i class="fa fa-envelope"></i> 0306221289@caothang.edu.vn
-                  </li>
+                            <li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <i class="fa fa-envelope"></i> @User.Identity.Name
+                                }
+                            </li>
                   <li>Free Shipping for all Order of $99</li>
                 </ul>
               </div>
