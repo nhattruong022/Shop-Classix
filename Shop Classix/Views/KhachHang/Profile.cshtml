@@ -1,6 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model CustomerModel
 @{
     ViewData["Title"] = "Personal Information Page";
 }
@@ -70,27 +68,27 @@
                         <h3 class="card-title">Personal Information</h3>
                         <div class="info-row">
                             <h4>Name:</h4>
-                            <p>Tran kien Xuan</p>
+                            <p>@Model.Name</p>
                         </div>
                         <div class="info-row">
                             <h4>Gender:</h4>
-                            <p>Male</p>
+                            <p>@Model.Gender</p>
                         </div>
                         <div class="info-row">
                             <h4>Address:</h4>
-                            <p>65 Huỳnh Thúc Kháng, phường Bến Nghé, Quận 1</p>
+                            <p>@Model.Address</p>
                         </div>
                         <div class="info-row">
                             <h4>Phone:</h4>
-                            <p>0399459299</p>
+                            <p>@Model.PhoneNumber</p>
                         </div>
                         <div class="info-row">
                             <h4>Date of Birth:</h4>
-                            <p>9/9/2004</p>
+                            <p>@Model.DateOfBirth</p>
                         </div>
                         <div class="info-row">
                             <h4>Email:</h4>
-                            <p>xuan123@gmail.com</p>
+                            <p>@Model.Email</p>
                         </div>
                         <button type="button" class="btn btn-primary">
                             Edit Information

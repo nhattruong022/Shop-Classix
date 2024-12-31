@@ -17,175 +17,177 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Shop_Classix
 build_property.RootNamespace = Shop_Classix
-build_property.ProjectDir = C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix\
+build_property.ProjectDir = /Users/duyluong/Developer/Shop-Classix/Shop Classix/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\Nhat Truong\source\repos\Shop Classix\Shop Classix\Shop Classix\Shop Classix
+build_property.MSBuildProjectDirectory = /Users/duyluong/Developer/Shop-Classix/Shop Classix
 build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Category/Add.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2F0ZWdvcnlcQWRkLmNzaHRtbA==
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Category/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQ2F0ZWdvcnkvQWRkLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Category/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2F0ZWdvcnlcRWRpdC5jc2h0bWw=
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Category/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQ2F0ZWdvcnkvRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Category/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcQ2F0ZWdvcnlcSW5kZXguY3NodG1s
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Category/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvQ2F0ZWdvcnkvSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Dashboard/Chart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXENoYXJ0LmNzaHRtbA==
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Dashboard/Chart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRGFzaGJvYXJkL0NoYXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Dashboard/Comments.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXENvbW1lbnRzLmNzaHRtbA==
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Dashboard/Comments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRGFzaGJvYXJkL0NvbW1lbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Dashboard/Contact.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXENvbnRhY3QuY3NodG1s
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Dashboard/Contact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRGFzaGJvYXJkL0NvbnRhY3QuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Dashboard/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcRGFzaGJvYXJkXEVkaXQuY3NodG1s
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Dashboard/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvRGFzaGJvYXJkL0VkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Orders/Orders.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcT3JkZXJzXE9yZGVycy5jc2h0bWw=
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Orders/Orders.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvT3JkZXJzL09yZGVycy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Product/Add.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFxBZGQuY3NodG1s
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Product/Add.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUHJvZHVjdC9BZGQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Product/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFxFZGl0LmNzaHRtbA==
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Product/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUHJvZHVjdC9FZGl0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Product/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdFxJbmRleC5jc2h0bWw=
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Product/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvUHJvZHVjdC9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Shared/Header.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXEhlYWRlci5jc2h0bWw=
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Shared/Header.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL0hlYWRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Shared/_AdminLayout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Shared/_AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL19BZG1pbkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Shared/_AdminSubLayout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9BZG1pblN1YkxheW91dC5jc2h0bWw=
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Shared/_AdminSubLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL19BZG1pblN1YkxheW91dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Shared/_Header.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9IZWFkZXIuY3NodG1s
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Shared/_Header.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvU2hhcmVkL19IZWFkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Users/Sign_in.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlcnNcU2lnbl9pbi5jc2h0bWw=
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Users/Sign_in.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVXNlcnMvU2lnbl9pbi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/Users/Sign_up.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcVXNlcnNcU2lnbl91cC5jc2h0bWw=
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/Users/Sign_up.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvVXNlcnMvU2lnbl91cC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Areas/Admin/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Areas/Admin/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXMvQWRtaW4vVmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/About/About.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvdXRcQWJvdXQuY3NodG1s
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/About/About.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWJvdXQvQWJvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/Cart/Cart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxDYXJ0LmNzaHRtbA==
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/Cart/Cart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FydC9DYXJ0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/Cart/CheckOut.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FydFxDaGVja091dC5jc2h0bWw=
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/Cart/CheckOut.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ2FydC9DaGVja091dC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/Contact/Contact.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFxDb250YWN0LmNzaHRtbA==
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/Contact/Contact.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29udGFjdC9Db250YWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/Home/DetailProduct.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxEZXRhaWxQcm9kdWN0LmNzaHRtbA==
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/Home/DetailProduct.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9EZXRhaWxQcm9kdWN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/Home/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/Home/TimKiem.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxUaW1LaWVtLmNzaHRtbA==
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/Home/TimKiem.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9UaW1LaWVtLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/KhachHang/Comments.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hhY2hIYW5nXENvbW1lbnRzLmNzaHRtbA==
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/KhachHang/Comments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS2hhY2hIYW5nL0NvbW1lbnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/KhachHang/EditProfile.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hhY2hIYW5nXEVkaXRQcm9maWxlLmNzaHRtbA==
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/KhachHang/EditProfile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS2hhY2hIYW5nL0VkaXRQcm9maWxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/KhachHang/Login.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hhY2hIYW5nXExvZ2luLmNzaHRtbA==
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/KhachHang/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS2hhY2hIYW5nL0xvZ2luLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/KhachHang/MyOrder.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hhY2hIYW5nXE15T3JkZXIuY3NodG1s
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/KhachHang/MyOrder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS2hhY2hIYW5nL015T3JkZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/KhachHang/Profile.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hhY2hIYW5nXFByb2ZpbGUuY3NodG1s
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/KhachHang/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS2hhY2hIYW5nL1Byb2ZpbGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/KhachHang/Register.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcS2hhY2hIYW5nXFJlZ2lzdGVyLmNzaHRtbA==
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/KhachHang/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvS2hhY2hIYW5nL1JlZ2lzdGVyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/Shared/Chat.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXENoYXQuY3NodG1s
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/Shared/Chat.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0NoYXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/Shared/Error.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/Shared/Footer.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEZvb3Rlci5jc2h0bWw=
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/Shared/Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Zvb3Rlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/Shared/Header.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEhlYWRlci5jc2h0bWw=
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/Shared/Header.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0hlYWRlci5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/Shared/Section.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXFNlY3Rpb24uY3NodG1s
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/Shared/Section.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL1NlY3Rpb24uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/Shared/_ValidationScriptsPartial.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/_ViewImports.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/_ViewStart.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Nhat Truong/source/repos/Shop Classix/Shop Classix/Shop Classix/Shop Classix/Views/Shared/_Layout.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = b-jemtgfjdiw
+[/Users/duyluong/Developer/Shop-Classix/Shop Classix/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-f11s9vsgws
