@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0cRVScIyX56ivrKc4eCqgBQz3kxla1D+cgSuqcs8Q4GfctwvjYOaO3DyCS9aMpk3YwXHf0hJPFEG9H9HANLGOg==",
+  "dgSpecHash": "NuHKx1c0e/WApZloeuekZ6U7nXOu6kqqtizuj+p9typ8+rat26dGUoxVhPHULnl/LbHN3q3VmG1N1j3y2fsu9w==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix.csproj",
+  "projectFilePath": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop-Classix.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Nhat Truong\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\Nhat Truong\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",

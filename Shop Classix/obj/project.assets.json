@@ -7765,9 +7765,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix.csproj",
-      "projectName": "Shop Classix",
-      "projectPath": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix.csproj",
+      "projectUniqueName": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop-Classix.csproj",
+      "projectName": "Shop-Classix",
+      "projectPath": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop-Classix.csproj",
       "packagesPath": "C:\\Users\\Nhat Truong\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\obj\\",
       "projectStyle": "PackageReference",
