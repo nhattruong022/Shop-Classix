@@ -9,31 +9,42 @@ namespace Shop_Classix.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly DataContext _dataContext;
+        private const int PageSize = 5;
         public ProductController(DataContext dataContext)
         {
             _dataContext = dataContext;
         }
         [HttpGet("Admin/Product")]
-        public IActionResult Index(string? name, string cate)
+        public async Task<IActionResult> Index(string? name, string cate, int page = 1)
         {
-            var products = _dataContext.products.Include(p => p.category).AsQueryable();
+            var productQuery = _dataContext.products.Include(p => p.category).AsQueryable();
 
             // Tìm kiếm theo tên sản phẩm
             if (!string.IsNullOrEmpty(name))
             {
-                products = products
-                    .Where(p => p.Name.Contains(name));
+                productQuery = productQuery.Where(p => p.Name.Contains(name));
             }
 
             // Lọc theo danh mục
             if (!string.IsNullOrEmpty(cate))
             {
-                products = products
-                    .Where(p => p.category.Name == cate);
+                productQuery = productQuery.Where(p => p.category.Name == cate);
             }
 
-            // Chuyển đổi kết quả thành danh sách và gán cho ViewBag
-            ViewBag.Products = products.ToList(); // Chuyển đổi thành danh sách để thực thi truy vấn
+            // Tính tổng số sản phẩm sau khi áp dụng bộ lọc
+            var totalOrders = await productQuery.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
+
+            // Lấy danh sách sản phẩm với phân trang
+            var products = await productQuery
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize)
+                .ToListAsync();
+
+            // Gán dữ liệu cho ViewBag
+            ViewBag.Products = products;
+            ViewBag.TotalPages = totalPages;
+            ViewBag.CurrentPage = page;
 
             return View();
         }
