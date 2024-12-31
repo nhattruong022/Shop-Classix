@@ -1,6 +1,16 @@
-﻿@{
+﻿@model IEnumerable<Shop_Classix.Models.ProductsModel>
+
+@{
+
     ViewData["Title"] = "Product";
+
     Layout = "_AdminSubLayout";
+
+
+
+
+
+    var productlist = ViewBag.Products;
 }
 
 @section Link {
@@ -27,6 +37,8 @@
     <script src="@Url.Content("~/Classix/admin/js/pcoded.min.js")"></script>
     <script src="@Url.Content("~/Classix/admin/js/demo-12.js")"></script>
     <script src="@Url.Content("~/Classix/admin/js/jquery.mCustomScrollbar.concat.min.js")"></script>
+
+
 }
 
 <!-- Page-header start -->
@@ -61,24 +73,26 @@
 <!-- Page-body start -->
 <div class="page-body">
     <div class="card">
-        <div class="card-header">
-            <div class="row">
-                <div class="col-md-4">
-                    <input type="text" class="form-control" id="searchInput" placeholder="Search by Product Name">
-                </div>
-                <div class="col-md-4">
-                    <select class="form-control" id="filterCategory">
-                        <option value="">All Categories</option>
-                        <option value="Table">Table</option>
-                        <option value="Desk">Desk</option>
-                        <option value="Light">Light</option>
-                    </select>
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-primary" onclick="filterResults()">Search</button>
+        <form method="get" asp-controller="Product" asp-action="Index">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" name="name" class="form-control" id="searchInput" placeholder="Search by Product Name">
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" name="Cate" id="filterCategory">
+                            <option value="">All Categories</option>
+                            <option value="Table">Table</option>
+                            <option value="Desk">Desk</option>
+                            <option value="Light">Light</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" type="submit" onclick="filterResults()">Search</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
         <!-- Page-body start -->
         <div class="page-body">
             <!-- Basic table card start -->
@@ -111,71 +125,77 @@
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td><img style="width:150px;" src="~/Classix/img/bed/CARM113-019-122_2.jpg" alt=""></td>
-                                    <td>wood table</td>
-                                    <td>Table</td>
-                                    <td>100000VND</td>
-                                    <td>
-                                        Bold. Iconic. Uncomplicated. When it comes to
-                                        commanding attention, <br>
-                                        this bed has no rival. Its svelte modern shape <br>
-                                        is underscored by a rich Cerused Oak finish and lined with a metal <br>
-                                        rail in Bronze Metallic Paint outlining the top of both the headboard and footboard. <br>
-                                    </td>
-                                    <td>wood-table</td>
-                                    <td>1</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">Add</button>
-                                        <button class="btn btn-warning btn-sm">Edit</button>
-                                        <button class="btn btn-danger btn-sm">Delete</button>
-                                    </td>
-                                </tr>
+                            <tbody id="table-product">
+                                @foreach (var item in productlist)
 
+
+
+                                {
+
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td><img style="width: 150px;" src="~/Classix/img/@item.Image"></td>
+                                        <td>@item.Name</td>
+                                        <td>@item.category.Name</td>
+                                        <td>@item.Price</td>
+                                        <td>
+                                            @item.Description
+                                        </td>
+                                        <td>@item.Slug</td>
+                                        <td>@item.Status</td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm">Add</button>
+                                            <button class="btn btn-warning btn-sm">Edit</button>
+                                            <button class="btn btn-danger btn-sm">Delete</button>
+                                        </td>
+                                    </tr>
+
+                                    @*
                                 <tr>
-                                    <th scope="row">2</th>
-                                    <td><img style="width: 150px;" src="~/Classix/img/table/DBOCWA3710N_3.jpg" alt=""></td>
-                                    <td>wood desk</td>
-                                    <td>Desk</td>
-                                    <td>200000VND</td>
-                                    <td>
-                                        Bold. Iconic. Uncomplicated. When it comes to
-                                        commanding attention, <br>
-                                        this bed has no rival. Its svelte modern shape <br>
-                                        is underscored by a rich Cerused Oak finish and lined with a metal <br>
-                                        rail in Bronze Metallic Paint outlining the top of both the headboard and footboard. <br>
-                                    </td>
-                                    <td>wood-desk</td>
-                                    <td>1</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">Add</button>
-                                        <button class="btn btn-warning btn-sm">Edit</button>
-                                        <button class="btn btn-danger btn-sm">Delete</button>
-                                    </td>
+                                <th scope="row">2</th>
+                                <td><img style="width: 150px;" src="~/Classix/img/table/DBOCWA3710N_3.jpg" alt=""></td>
+                                <td>wood desk</td>
+                                <td>Desk</td>
+                                <td>200000VND</td>
+                                <td>
+                                Bold. Iconic. Uncomplicated. When it comes to
+                                commanding attention, <br>
+                                this bed has no rival. Its svelte modern shape <br>
+                                is underscored by a rich Cerused Oak finish and lined with a metal <br>
+                                rail in Bronze Metallic Paint outlining the top of both the headboard and footboard. <br>
+                                </td>
+                                <td>wood-desk</td>
+                                <td>1</td>
+                                <td>
+                                <button class="btn btn-primary btn-sm">Add</button>
+                                <button class="btn btn-warning btn-sm">Edit</button>
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                                </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">3</th>
-                                    <td><img style="width: 150px;" src="~/Classix/img/light/DBOLBN2015N_600x.jpg" alt=""></td>
-                                    <td>wood light</td>
-                                    <td>Light</td>
-                                    <td>300000VND</td>
-                                    <td>
-                                        Bold. Iconic. Uncomplicated. When it comes to
-                                        commanding attention, <br>
-                                        this bed has no rival. Its svelte modern shape <br>
-                                        is underscored by a rich Cerused Oak finish and lined with a metal <br>
-                                        rail in Bronze Metallic Paint outlining the top of both the headboard and footboard. <br>
-                                    </td>
-                                    <td>wood-light</td>
-                                    <td>1</td>
-                                    <td>
-                                        <button class="btn btn-primary btn-sm">Add</button>
-                                        <button class="btn btn-warning btn-sm">Edit</button>
-                                        <button class="btn btn-danger btn-sm">Delete</button>
-                                    </td>
-                                </tr>
+                                <th scope="row">3</th>
+                                <td><img style="width: 150px;" src="~/Classix/img/light/DBOLBN2015N_600x.jpg" alt=""></td>
+                                <td>wood light</td>
+                                <td>Light</td>
+                                <td>300000VND</td>
+                                <td>
+                                Bold. Iconic. Uncomplicated. When it comes to
+                                commanding attention, <br>
+                                this bed has no rival. Its svelte modern shape <br>
+                                is underscored by a rich Cerused Oak finish and lined with a metal <br>
+                                rail in Bronze Metallic Paint outlining the top of both the headboard and footboard. <br>
+                                </td>
+                                <td>wood-light</td>
+                                <td>1</td>
+                                <td>
+                                <button class="btn btn-primary btn-sm">Add</button>
+                                <button class="btn btn-warning btn-sm">Edit</button>
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                                </td>
+                                </tr>*@
+
+                                }
+
                             </tbody>
                         </table>
 
