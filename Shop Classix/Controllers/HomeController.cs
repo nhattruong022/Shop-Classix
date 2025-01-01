@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Models;
 using Shop_Classix.Repository;
 using System.Diagnostics;
+using System.Security.Claims;
 using X.PagedList.Extensions;
 
 
@@ -96,37 +97,46 @@ namespace Shop_Classix.Controllers
             return View("TimKiem",pagedProducts);
         }
 
-        [Authorize]     
+        //thêm sản phẩm yêu thích
+        [Authorize]
         [HttpPost]
         public IActionResult ToggleFavorite(int productId)
         {
-            var product = dataContext.products.SingleOrDefault(p => p.Id == productId);
+            var userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value);
+            var favoriteProduct = dataContext.favoriteProducts
+                .SingleOrDefault(fp => fp.CustomerId == userId && fp.ProductId == productId);
 
-            if (product == null)
+            if (favoriteProduct == null)
             {
-                return Json(new { success = false, message = "Product not found" });
+                // Thêm sản phẩm vào danh sách yêu thích nếu chưa có
+                favoriteProduct = new FavoriteProductModel
+                {
+                    CustomerId = userId,
+                    ProductId = productId,
+            
+                };
+                dataContext.favoriteProducts.Add(favoriteProduct);
+            }
+            else
+            {
+                // Xóa sản phẩm khỏi danh sách yêu thích nếu đã có
+                dataContext.favoriteProducts.Remove(favoriteProduct);
             }
 
-            // Chuyển đổi trạng thái yêu thích
-            product.IsFavorite = !product.IsFavorite;
-
-            // Cập nhật FavoriteNumber
-            product.FavoriteNumber = product.IsFavorite ? 1 : 0;
-
             dataContext.SaveChanges();
+
+            // Đếm số lượng yêu thích của sản phẩm
+            var favoriteCount = dataContext.favoriteProducts.Count(fp => fp.ProductId == productId);
 
             return Json(new
             {
                 success = true,
-                isFavorite = product.IsFavorite,
-                favoriteCount = product.IsFavorite ? 1 : 0 // trả về 1 nếu yêu thích, 0 nếu không
+                isFavorite = favoriteProduct != null,
+                favoriteCount
             });
         }
 
-
-     
-
-
+        
 
 
         public IActionResult DetailProduct()    
