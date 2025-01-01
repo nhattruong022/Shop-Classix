@@ -33,15 +33,24 @@ namespace Shop_Classix.Controllers
             var products = dataContext.products.Include(p => p.category) // Lấy thông tin category cùng với sản phẩm
                                               .Where(p => !categoryId.HasValue || p.CategoryId == categoryId) // Kiểm tra categoryId có khớp không
                                               .ToList();
-
-      
-          
-
             return View(products);
         }
+        public IActionResult Details(int id)
+        {
+            // Lấy sản phẩm từ cơ sở dữ liệu theo Id
+            var product = dataContext.products
+                .Include(p => p.category)
+                .FirstOrDefault(p => p.Id == id);
 
+            if (product == null)
+            {
+                return NotFound(); // Nếu không tìm thấy sản phẩm, trả về lỗi 404
+            }
 
-
+            // Trả về view chi tiết với sản phẩm
+            return View(new List<Shop_Classix.Models.ProductsModel> { product });
+        }
+      
 
         public IActionResult TimKiem(string keyword, int? categoryId,int? price,int ?page)
         {
