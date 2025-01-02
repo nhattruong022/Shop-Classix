@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Shop_Classix.Repository;
-using Shop_Classix.ViewModel;
+using Shop_Classix.Models.ViewModels;
 using Shop_Classix.Helper;
+using Microsoft.AspNetCore.Authorization;
 namespace Shop_Classix.Controllers
 {
     public class CartController : Controller
@@ -37,7 +38,7 @@ namespace Shop_Classix.Controllers
             return Ok(); // Trả về phản hồi thành công
         }
 
-        public IActionResult AddToCart(int id, int quantity) // Thêm tham số quantity
+        public IActionResult AddToCart(int id, int quantity=1) // Thêm tham số quantity
         {
             var product = dataContext.products.FirstOrDefault(p => p.Id == id);
             if (product == null)
@@ -69,6 +70,17 @@ namespace Shop_Classix.Controllers
 
             return RedirectToAction("Cart"); // Chuyển hướng đến trang giỏ hàng
         }
+
+
+        [Authorize]
+        public IActionResult CheckOut()
+        {
+            var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
+            return View(cart.Items);
+        }
+
+
+
 
     }
 }
