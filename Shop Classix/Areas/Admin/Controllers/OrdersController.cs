@@ -17,9 +17,15 @@ namespace Shop_Classix.Areas.Admin.Controllers
         }
 
         [HttpGet("Admin/Orders")]
-        public async Task<IActionResult> Orders(int page = 1)
+        public async Task<IActionResult> Orders(int page = 1, string search = null)
         {
             var ordersQuery = _dataContext.orders.Include(o => o.customers).Where(o => o.Status != 0);
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                ordersQuery = ordersQuery.Where(o => o.Id.ToString().Contains(search));
+            }
+
             var totalOrders = await ordersQuery.CountAsync();
             var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
 
@@ -30,6 +36,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
 
             ViewBag.TotalPages = totalPages;
             ViewBag.CurrentPage = page;
+            ViewBag.Search = search;
 
             return View(orders);
         }
