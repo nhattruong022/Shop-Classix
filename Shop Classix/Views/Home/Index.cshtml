@@ -1,5 +1,6 @@
 ﻿@* ﻿@model IEnumerable<Shop_Classix.Models.ProductsModel>; *@
-@model IEnumerable<Shop_Classix.Models.ProductsModel>
+@model Shop_Classix.Models.ViewModels.ProductPageViewModel;
+
 
 
 @{
@@ -25,27 +26,33 @@
     <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/style.css")" type="text/css" />
 }
 
-
 <script>
     function toggleFavorite(productId) {
+        // Gửi yêu cầu POST tới server
         $.post('/Home/ToggleFavorite', { productId: productId }, function (response) {
+            // Kiểm tra nếu yêu cầu thành công
             if (response.success) {
                 const heartIcon = $(`#favoriteIcon_${productId}`);
                 const favoriteCount = $(`#favoriteCount_${productId}`);
 
-                // Cập nhật biểu tượng và số lượng "tym"
+                // Cập nhật biểu tượng yêu thích
                 heartIcon.toggleClass('fa-heart fa-heart-o');
                 heartIcon.css('color', response.isFavorite ? 'red' : 'gray');
-                favoriteCount.text(response.favoriteCount);
+
+                // Cập nhật số lượng "tym"
+                if (favoriteCount.length > 0) {
+                    favoriteCount.text(response.favoriteCount);
+                }
             } else {
                 alert('Có lỗi xảy ra! Vui lòng thử lại.');
             }
-        }).fail(function () {
-            alert('Không thể kết nối với server. Vui lòng kiểm tra lại kết nối.');
-        });
+        })
+            .fail(function () {
+                alert('Không thể kết nối với server. Vui lòng kiểm tra lại kết nối.');
+            });
     }
-
 </script>
+
 
 
 <div class="container">
@@ -94,6 +101,7 @@
             </div>
         </section>
 
+
         <!-- Categories Section End -->
         <!-- Featured Section Begin -->
         <section class="featured spad">
@@ -101,7 +109,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-title">
-                            <h2>Featured Product</h2>
+                            <h2>Feature Product</h2>
                         </div>
                         <div class="featured__controls">
                             <ul>
@@ -115,8 +123,14 @@
                     </div>
                 </div>
 
+
+
+                <div class="favorite-products-title" style="text-align: center; margin-bottom: 20px;">
+                    <h2>Favorite Products</h2>
+                </div>
+
                 <div class="row featured__filter">
-                    @foreach (var item in Model)
+                    @foreach (var item in Model.FavoriteProducts)
                     {
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <div class="featured__item">
@@ -125,17 +139,7 @@
                                         <img src="@Url.Content("~/Classix/img/" + item.Image)" alt="Product Image" />
                                     </a>
                                     <ul class="featured__item__pic__hover">
-                                        <li>
-                                            <a href="javascript:void(0);" onclick="toggleFavorite(@item.Id)">
-                                                <i id="favoriteIcon_@item.Id"
-                                                   class="fa @(item.IsFavorite ? "fa-heart" : "fa-heart-o")"
-                                                   style="color: @(item.IsFavorite ? "red" : "gray");">
-                                                </i>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="fa fa-retweet"></i></a>
-                                        </li>
+                                      
                                         <li>
                                             <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id">
                                                 <i class="fa fa-shopping-cart"></i>
@@ -147,7 +151,7 @@
                                     <h6><a>@item.Name</a></h6>
                                     <h5>@item.Price.ToString("C")</h5>
                                     <p>Category: @item.category?.Name</p>
-                                  
+
                                     <p>
                                         @for (var i = 1; i <= 5; i++)
                                         {
@@ -169,8 +173,70 @@
                             </div>
                         </div>
                     }
-                    }
+                </div>
 
+
+
+
+
+                <div class="favorite-products-title" style="text-align: center; margin-top: 20px;">
+                    <h2>All Products</h2>
+                </div>
+                <div class="row featured__filter">
+                    @foreach (var item in Model.AllProducts)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="featured__item">
+                                <div class="featured__item__pic set-bg" data-setbg="@Url.Content("~/Classix/img/" + item.Image)">
+                                    <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">
+                                        <img src="@Url.Content("~/Classix/img/" + item.Image)" alt="Product Image" />
+                                    </a>
+                                    <ul class="featured__item__pic__hover">
+                                        <li>
+                                            <a href="javascript:void(0);" onclick="toggleFavorite(@item.Id)">
+                                                <i id="favoriteIcon_@item.Id"
+                                                   class="fa @(Model.FavoriteProducts.Any(fp => fp.Id == item.Id) ? "fa-heart" : "fa-heart-o")"
+                                                   style="color: @(Model.FavoriteProducts.Any(fp => fp.Id == item.Id) ? "red" : "gray");">
+                                                </i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-retweet"></i></a>
+                                        </li>
+                                        <li>
+                                            <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="featured__item__text">
+                                    <h6><a>@item.Name</a></h6>
+                                    <h5>@item.Price.ToString("C")</h5>
+                                    <p>Category: @item.category?.Name</p>
+
+                                    <p>
+                                        @for (var i = 1; i <= 5; i++)
+                                        {
+                                            if (i <= Math.Floor(item.Rating ?? 0)) // Sao đầy
+                                            {
+                                                <i class="fa fa-star" style="color: gold;"></i>
+                                            }
+                                            else if (i == Math.Ceiling(item.Rating ?? 0) && (item.Rating ?? 0) % 1 != 0) // Sao nửa
+                                            {
+                                                <i class="fas fa-star-half-alt" style="color: gold;"></i>
+                                            }
+                                            else // Sao rỗng
+                                            {
+                                                <i class="fa fa-star" style="color: lightgray;"></i>
+                                            }
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
 
 
         </section>

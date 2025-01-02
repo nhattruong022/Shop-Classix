@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Models;
+using Shop_Classix.Models.ViewModels;
 using Shop_Classix.Repository;
 using System.Diagnostics;
 using System.Security.Claims;
@@ -22,7 +23,11 @@ namespace Shop_Classix.Controllers
         }
 
         public IActionResult Index(int? categoryId)
-        {  
+        {
+            // Lấy thông tin user hiện tại
+            var userId = User.Identity.IsAuthenticated
+                                                   ? int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value)
+                                                   : (int?)null;
 
             // Lấy tất cả các danh mục để hiển thị trên giao diện
             ViewBag.categories = new SelectList(dataContext.categories, "Id", "Name");
@@ -31,11 +36,29 @@ namespace Shop_Classix.Controllers
             ViewBag.SelectedCategoryId = categoryId;
 
             // Lọc sản phẩm theo danh mục nếu có categoryId, nếu không lấy tất cả sản phẩm
-            var products = dataContext.products.Include(p => p.category) // Lấy thông tin category cùng với sản phẩm
-                                              .Where(p => !categoryId.HasValue || p.CategoryId == categoryId) // Kiểm tra categoryId có khớp không
-                                              .ToList();
-            return View(products);
+            var AllProducts = dataContext.products.Include(p => p.category) // Lấy thông tin category cùng với sản phẩm
+                                                 .Where(p => !categoryId.HasValue || p.CategoryId == categoryId) // Kiểm tra categoryId có khớp không
+                                                 .ToList();
+
+            // Lấy danh sách sản phẩm yêu thích
+            var favoriteProducts = dataContext.favoriteProducts
+                                               .Where(fp => fp.CustomerId == userId)
+                                               .Include(fp => fp.products)
+                                               .Select(fp => fp.products)
+                                               .ToList();
+
+            // Tạo ViewModel để gộp cả danh sách yêu thích và tất cả sản phẩm
+            var model = new ProductPageViewModel
+            {
+                AllProducts = AllProducts,
+                FavoriteProducts = favoriteProducts
+            };
+
+            return View(model);
         }
+
+
+
         public IActionResult Details(int id)
         {
             // Lấy sản phẩm từ cơ sở dữ liệu theo Id
@@ -144,6 +167,8 @@ namespace Shop_Classix.Controllers
                 favoriteCount
             });
         }
+
+ 
 
         
 
