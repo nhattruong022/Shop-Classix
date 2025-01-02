@@ -10,94 +10,94 @@ using Microsoft.AspNetCore.Authentication;
 
 namespace Shop_Classix.Controllers
 {
-    public class KhachHangController : Controller
-    {
-        private readonly DataContext _dataContext;
+	public class KhachHangController : Controller
+	{
+		private readonly DataContext _dataContext;
 
-        public KhachHangController(DataContext dataContext)
-        {
-            _dataContext = dataContext;
-        }
+		public KhachHangController(DataContext dataContext)
+		{
+			_dataContext = dataContext;
+		}
 
-        [HttpGet]
-        public IActionResult Register()
-        {
-            return View();
-        }
+		[HttpGet]
+		public IActionResult Register()
+		{
+			return View();
+		}
 
-			[HttpPost]
-			public IActionResult Register(RegisterViewModel model)
+		[HttpPost]
+		public IActionResult Register(RegisterViewModel model)
+		{
+			if (ModelState.IsValid)
 			{
-				if (ModelState.IsValid)
+
+				//Kiểm tra email đã tồn tại
+				var existingUser = _dataContext.customers.FirstOrDefault(c => c.Email != null && c.Email == model.Email);
+
+				if (existingUser != null)
 				{
-				
-					//Kiểm tra email đã tồn tại
-					var existingUser = _dataContext.customers.FirstOrDefault(c => c.Email!=null&& c.Email == model.Email);
-
-					if (existingUser != null)
-					{
-						ModelState.AddModelError("Email", "Email already exists.");
-						return View(model);
-					}
-
-                // Mã hóa mật khẩu
-                var passwordHasher = new PasswordHasher<CustomerModel>();
-                var hashedPassword = passwordHasher.HashPassword(new CustomerModel(), model.Password);
-
-
-                // Tạo khách hàng mới
-                var newCustomer = new CustomerModel
-					{
-						Name = model.Hoten,
-						Email = model.Email,
-						PhoneNumber = model.PhoneNumber,
-						Password = hashedPassword,
-						Role=model.Role??"User"
-						//Gender = model.Gender,
-						//DateOfBirth = model.DateOfBirth,
-						//Address = model.Address
-					};
-
-					// Thêm vào cơ sở dữ liệu
-					_dataContext.customers.Add(newCustomer);
-					_dataContext.SaveChanges();
-
-					// Chuyển hướng đến trang đăng nhập
-					return RedirectToAction("Login", "KhachHang");
+					ModelState.AddModelError("Email", "Email already exists.");
+					return View(model);
 				}
 
-				// Nếu ModelState không hợp lệ
-				return View(model);
+				// Mã hóa mật khẩu
+				var passwordHasher = new PasswordHasher<CustomerModel>();
+				var hashedPassword = passwordHasher.HashPassword(new CustomerModel(), model.Password);
+
+
+				// Tạo khách hàng mới
+				var newCustomer = new CustomerModel
+				{
+					Name = model.Hoten,
+					Email = model.Email,
+					PhoneNumber = model.PhoneNumber,
+					Password = hashedPassword,
+					Role = model.Role ?? "User"
+					//Gender = model.Gender,
+					//DateOfBirth = model.DateOfBirth,
+					//Address = model.Address
+				};
+
+				// Thêm vào cơ sở dữ liệu
+				_dataContext.customers.Add(newCustomer);
+				_dataContext.SaveChanges();
+
+				// Chuyển hướng đến trang đăng nhập
+				return RedirectToAction("Login", "KhachHang");
 			}
+
+			// Nếu ModelState không hợp lệ
+			return View(model);
+		}
 
 
 
 		[HttpGet]
 		public IActionResult Login(string returnUrl)
 		{
-		    ViewBag.returnUrl = returnUrl;
+			ViewBag.returnUrl = returnUrl;
 
-		    return View();
+			return View();
 		}
 
 		[HttpPost]
 		public IActionResult Login(LoginViewModel model, string? returnUrl)
 		{
-		    if (ModelState.IsValid)
-		    {
-			//kiểm tra email có tồn tại trong database ko
+			if (ModelState.IsValid)
+			{
+				//kiểm tra email có tồn tại trong database ko
 
-		        var khachHang = _dataContext.customers.SingleOrDefault(kh => kh.Email==model.Email);
+				var khachHang = _dataContext.customers.SingleOrDefault(kh => kh.Email == model.Email);
 
-		        if (khachHang == null)
-		        {
-		            ModelState.AddModelError("loi", "This customer does not exist");
-		            return View();
-		        }
+				if (khachHang == null)
+				{
+					ModelState.AddModelError("loi", "This customer does not exist");
+					return View();
+				}
 
-                // Kiểm tra mật khẩu đã mã hóa
-                var passwordHasher = new PasswordHasher<CustomerModel>();
-                var passwordVerificationResult = passwordHasher.VerifyHashedPassword(khachHang, khachHang.Password, model.Password);
+				// Kiểm tra mật khẩu đã mã hóa
+				var passwordHasher = new PasswordHasher<CustomerModel>();
+				var passwordVerificationResult = passwordHasher.VerifyHashedPassword(khachHang, khachHang.Password, model.Password);
 
 				if (passwordVerificationResult == PasswordVerificationResult.Failed)
 				{
@@ -130,52 +130,54 @@ namespace Shop_Classix.Controllers
 
 					HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties).Wait();
 
-				
+
 
 
 					if (khachHang.Role == "Admin")
 					{
-                        return RedirectToAction("Index", "Home", new { area = "Admin" });  // Redirect to Admin area, Admin/Index
-                    }
+						return RedirectToAction("Index", "Home", new { area = "Admin" });  // Redirect to Admin area, Admin/Index
+					}
 					else
 					{
 						return Redirect(returnUrl ?? Url.Action("Index", "Home"));
 					}
 				}
-		   }
+			}
 
-		   return View();
+			return View();
 		}
 
-		public  IActionResult LogOut()
+		public IActionResult LogOut()
 		{
 			HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-				return RedirectToAction("Login", "KhachHang");
+			return RedirectToAction("Login", "KhachHang");
 		}
 
 
 		public IActionResult Profile()
-        {
-            return View();
-        }
+		{
+			CustomerModel customer = _dataContext.customers.FirstOrDefault(p => p.Email == User.Identity.Name);
 
-        public IActionResult EditProfile()
-        {
-            return View();
-        }
+			return View(customer);
+		}
+
+		public IActionResult EditProfile()
+		{
+			return View();
+		}
 
 
-        public IActionResult MyOrder()
-        {
-            return View();  
-        }
+		public IActionResult MyOrder()
+		{
+			return View();
+		}
 
-        public IActionResult Comments()
-        {
-            return View();
-        }
+		public IActionResult Comments()
+		{
+			return View();
+		}
 
-    
 
-    }
+
+	}
 }
