@@ -1,6 +1,13 @@
-﻿@{
+﻿@model IEnumerable<Shop_Classix.Models.CategoryModel>;
+@{
+
     ViewData["Title"] = "Category";
+
     Layout = "_AdminSubLayout";
+
+
+
+    var category = ViewBag.categories;
 }
 
 @section Link {
@@ -60,20 +67,22 @@
 </div>
 <!-- Page-header end -->
 <!-- Page-body start -->
-<div class="page-body">
-    <div class="card">
-        <div class="card-header">
-            <div class="row">
-                <div class="col-md-4">
-                    <input type="text" class="form-control" id="searchInput" placeholder="Search by Category Name">
-                </div>
-                <div class="col-md-4">
-                    <button class="btn btn-primary" onclick="filterResults()">Search</button>
+<form method="get" asp-controller="Category" asp-action="Index">
+    <div class="page-body">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" name="name" id="searchInput" placeholder="Search by Category Name">
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" class="btn btn-primary" onclick="filterResults()">Search</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 <!-- Page-body start -->
 <div class="page-body">
     <div class="card">
@@ -102,41 +111,48 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach (var item in category)
+
+                        {
+
+                            <tr>
+                                <th scope="row">@item.Id</th>
+                                <td>@item.Name</td>
+                                <td>@item.Status</td>
+
+
+                                <td>
+                                    <button class="btn btn-primary btn-sm">View</button>
+                                    <button class="btn btn-warning btn-sm">Edit</button>
+                                    <button class="btn btn-danger btn-sm">Delete</button>
+                                </td>
+                            </tr>
+
+                            @*
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Table</td>
-                            <td>1</td>
+                        <th scope="row">2</th>
 
-
-                            <td>
-                                <button class="btn btn-primary btn-sm">View</button>
-                                <button class="btn btn-warning btn-sm">Edit</button>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">2</th>
-
-                            <td>Desk</td>
-                            <td>1</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm">View</button>
-                                <button class="btn btn-warning btn-sm">Edit</button>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                            </td>
+                        <td>Desk</td>
+                        <td>1</td>
+                        <td>
+                        <button class="btn btn-primary btn-sm">View</button>
+                        <button class="btn btn-warning btn-sm">Edit</button>
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                        </td>
                         </tr>
                         <tr>
-                            <th scope="row">3</th>
+                        <th scope="row">3</th>
 
-                            <td>Light</td>
-                            <td>1</td>
-                            <td>
-                                <button class="btn btn-primary btn-sm">View</button>
-                                <button class="btn btn-warning btn-sm">Edit</button>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                            </td>
+                        <td>Light</td>
+                        <td>1</td>
+                        <td>
+                        <button class="btn btn-primary btn-sm">View</button>
+                        <button class="btn btn-warning btn-sm">Edit</button>
+                        <button class="btn btn-danger btn-sm">Delete</button>
+                        </td>
                         </tr>
+                        *@
+                        }
                     </tbody>
                 </table>
 

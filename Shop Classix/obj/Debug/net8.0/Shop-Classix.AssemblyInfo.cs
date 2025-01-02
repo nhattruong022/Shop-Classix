@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Shop-Classix")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+71d45198e2b983faf3c47b8caf6e6d12db96a376")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1a83c5b255a6cf2aa615d9872485ae624e25ed4c")]
 [assembly: System.Reflection.AssemblyProductAttribute("Shop-Classix")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Shop-Classix")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
