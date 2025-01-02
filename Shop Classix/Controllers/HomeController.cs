@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Models;
+using Shop_Classix.Models.ViewModels;
 using Shop_Classix.Repository;
 using System.Diagnostics;
+using System.Security.Claims;
 using X.PagedList.Extensions;
 
 
@@ -21,7 +23,11 @@ namespace Shop_Classix.Controllers
         }
 
         public IActionResult Index(int? categoryId)
-        {  
+        {
+            // Lấy thông tin user hiện tại
+            var userId = User.Identity.IsAuthenticated
+                                                   ? int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value)
+                                                   : (int?)null;
 
             // Lấy tất cả các danh mục để hiển thị trên giao diện
             ViewBag.categories = new SelectList(dataContext.categories, "Id", "Name");
@@ -30,18 +36,45 @@ namespace Shop_Classix.Controllers
             ViewBag.SelectedCategoryId = categoryId;
 
             // Lọc sản phẩm theo danh mục nếu có categoryId, nếu không lấy tất cả sản phẩm
-            var products = dataContext.products.Include(p => p.category) // Lấy thông tin category cùng với sản phẩm
-                                              .Where(p => !categoryId.HasValue || p.CategoryId == categoryId) // Kiểm tra categoryId có khớp không
-                                              .ToList();
+            var AllProducts = dataContext.products.Include(p => p.category) // Lấy thông tin category cùng với sản phẩm
+                                                 .Where(p => !categoryId.HasValue || p.CategoryId == categoryId) // Kiểm tra categoryId có khớp không
+                                                 .ToList();
 
-      
-          
+            // Lấy danh sách sản phẩm yêu thích
+            var favoriteProducts = dataContext.favoriteProducts
+                                               .Where(fp => fp.CustomerId == userId)
+                                               .Include(fp => fp.products)
+                                               .Select(fp => fp.products)
+                                               .ToList();
 
-            return View(products);
+            // Tạo ViewModel để gộp cả danh sách yêu thích và tất cả sản phẩm
+            var model = new ProductPageViewModel
+            {
+                AllProducts = AllProducts,
+                FavoriteProducts = favoriteProducts
+            };
+
+            return View(model);
         }
 
 
 
+        public IActionResult Details(int id)
+        {
+            // Lấy sản phẩm từ cơ sở dữ liệu theo Id
+            var product = dataContext.products
+                .Include(p => p.category)
+                .FirstOrDefault(p => p.Id == id);
+
+            if (product == null)
+            {
+                return NotFound(); // Nếu không tìm thấy sản phẩm, trả về lỗi 404
+            }
+
+            // Trả về view chi tiết với sản phẩm
+            return View(new List<Shop_Classix.Models.ProductsModel> { product });
+        }
+      
 
         public IActionResult TimKiem(string keyword, int? categoryId,int? price,int ?page)
         {
@@ -96,37 +129,48 @@ namespace Shop_Classix.Controllers
             return View("TimKiem",pagedProducts);
         }
 
-        [Authorize]     
+        //thêm sản phẩm yêu thích
+        [Authorize]
         [HttpPost]
         public IActionResult ToggleFavorite(int productId)
         {
-            var product = dataContext.products.SingleOrDefault(p => p.Id == productId);
+            var userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value);
+            var favoriteProduct = dataContext.favoriteProducts
+                .SingleOrDefault(fp => fp.CustomerId == userId && fp.ProductId == productId);
 
-            if (product == null)
+            if (favoriteProduct == null)
             {
-                return Json(new { success = false, message = "Product not found" });
+                // Thêm sản phẩm vào danh sách yêu thích nếu chưa có
+                favoriteProduct = new FavoriteProductModel
+                {
+                    CustomerId = userId,
+                    ProductId = productId,
+            
+                };
+                dataContext.favoriteProducts.Add(favoriteProduct);
+            }
+            else
+            {
+                // Xóa sản phẩm khỏi danh sách yêu thích nếu đã có
+                dataContext.favoriteProducts.Remove(favoriteProduct);
             }
 
-            // Chuyển đổi trạng thái yêu thích
-            product.IsFavorite = !product.IsFavorite;
-
-            // Cập nhật FavoriteNumber
-            product.FavoriteNumber = product.IsFavorite ? 1 : 0;
-
             dataContext.SaveChanges();
+
+            // Đếm số lượng yêu thích của sản phẩm
+            var favoriteCount = dataContext.favoriteProducts.Count(fp => fp.ProductId == productId);
 
             return Json(new
             {
                 success = true,
-                isFavorite = product.IsFavorite,
-                favoriteCount = product.IsFavorite ? 1 : 0 // trả về 1 nếu yêu thích, 0 nếu không
+                isFavorite = favoriteProduct != null,
+                favoriteCount
             });
         }
 
+ 
 
-     
-
-
+        
 
 
         public IActionResult DetailProduct()    

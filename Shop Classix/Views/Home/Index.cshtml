@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Shop_Classix.Models.ProductsModel>;
+﻿@* ﻿@model IEnumerable<Shop_Classix.Models.ProductsModel>; *@
+@model Shop_Classix.Models.ViewModels.ProductPageViewModel;
+
 
 
 @{
@@ -6,153 +8,50 @@
     ViewData["Title"] = "Home Page";
 }
 
- @* url: Đây là địa chỉ API sẽ nhận yêu cầu POST. /Home/ToggleFavorite là URL gửi tới phương thức ToggleFavorite trong controller HomeController trên server.
- type: Phương thức HTTP là POST, có nghĩa là dữ liệu sẽ được gửi lên server để thay đổi trạng thái sản phẩm.
- data: Dữ liệu gửi lên server là productId, chính là ID của sản phẩm mà người dùng muốn thay đổi trạng thái yêu thích.
- success: Hàm này sẽ được gọi nếu yêu cầu AJAX thành công (trả về kết quả từ server).
- error: Hàm này sẽ được gọi nếu yêu cầu AJAX gặp sự cố (lỗi kết nối hoặc lỗi từ server). *@
-
-<script>
-    function toggleFavorite(productId) {
-        $.ajax({
-            url: '/Home/ToggleFavorite', // Địa chỉ gọi đến action ToggleFavorite trong controller
-            type: 'POST',
-            data: { productId: productId },
-            success: function (response) {
-                if (response.success) {
-                    // Tìm phần tử liên quan (biểu tượng tim và số lượng yêu thích)
-                    const icon = $(`#favoriteCount_${productId}`).prev('a').find('i');
-                    const favoriteCount = $(`#favoriteCount_${productId}`);
-
-                    // Cập nhật biểu tượng tim và màu sắc
-                    icon.toggleClass('fa-heart fa-heart-o');  // Chuyển đổi giữa tim đầy và tim rỗng
-                    icon.css('color', response.isFavorite ? 'red' : 'gray');  // Thay đổi màu sắc tim
-
-                    // Nếu số lượng yêu thích là 0, ẩn phần tử hiển thị số yêu thích
-                    if (response.favoriteCount === 0) {
-                        favoriteCount.hide(); // Ẩn phần tử số yêu thích
-                    } else {
-                        favoriteCount.show(); // Hiển thị lại phần tử số yêu thích
-                        favoriteCount.text(response.favoriteCount);  // Cập nhật số lượng yêu thích
-                    }
-                } else {
-                    alert('Failed to toggle favorite status.');
-                }
-            },
-            error: function () {
-                alert('An error occurred while processing your request.');
-            }
-        });
-    }
-
-
-
-
-
-
-
-</script>
-
 @section Link
 {
-<!-- Google Font -->
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
-rel="stylesheet" />
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
+          rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
 
-<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/bootstrap.min.css")" type="text/css" />
-<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/font-awesome.min.css")" type="text/css" />
-<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/elegant-icons.css")" type="text/css" />
-<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/nice-select.css")" type="text/css" />
-<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/jquery-ui.min.css")" type="text/css" />
-<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/owl.carousel.min.css")" type="text/css" />
-<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/slicknav.min.css")" type="text/css" />
-<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/style.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/bootstrap.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/font-awesome.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/elegant-icons.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/nice-select.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/jquery-ui.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/owl.carousel.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/slicknav.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/style.css")" type="text/css" />
 }
 
+<script>
+    function toggleFavorite(productId) {
+        // Gửi yêu cầu POST tới server
+        $.post('/Home/ToggleFavorite', { productId: productId }, function (response) {
+            // Kiểm tra nếu yêu cầu thành công
+            if (response.success) {
+                const heartIcon = $(`#favoriteIcon_${productId}`);
+                const favoriteCount = $(`#favoriteCount_${productId}`);
 
+                // Cập nhật biểu tượng yêu thích
+                heartIcon.toggleClass('fa-heart fa-heart-o');
+                heartIcon.css('color', response.isFavorite ? 'red' : 'gray');
 
-
-
-<section class="hero hero-normal">
-    <div class="container">
-        <div class="row">
-            <!-- Danh mục -->
-            <div class="col-lg-3">
-                <div class="hero__categories">
-                    <div class="hero__categories__all">
-                        <i class="fa fa-bars"></i>
-                        <span>All departments</span>
-                    </div>
-                    <ul class="list-unstyled">
-                        <li><a href="#">Fresh Meat</a></li>
-                        <li><a href="#">Vegetables</a></li>
-                        <li><a href="#">Fruit & Nut Gifts</a></li>
-                        <li><a href="#">Fresh Berries</a></li>
-                        <li><a href="#">Ocean Foods</a></li>
-                        <li><a href="#">Butter & Eggs</a></li>
-                        <li><a href="#">Fastfood</a></li>
-                        <li><a href="#">Fresh Onion</a></li>
-                        <li><a href="#">Papaya & Crisps</a></li>
-                        <li><a href="#">Oatmeal</a></li>
-                        <li><a href="#">Fresh Bananas</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Form tìm kiếm -->
-            <div class="col-lg-9">
-                <form asp-action="TimKiem" asp-controller="Home" method="get" class="d-flex">
-                    <!-- Chọn danh mục -->
-                    <div class="me-4">
-                        <select name="categoryId" class="form-select">
-                            <option value="">--Select Categories--</option>
-                            @if (ViewBag.categories != null)
-                            {
-                                foreach (SelectListItem category in ViewBag.categories)
-                                {
-                                    <option value="@category.Value">@category.Text</option>
-                                }
-                            }
-                        </select>
-
-                        <select name="price" class="form-control w-100">
-                            <option value="">Select Price</option>
-                            <option value="1">Under $100000</option>
-                            <option value="2">$100000-$500000</option>
-                            <option value="3">Above $500000</option>
-                        </select>
-                       
-                    </div>
-
-
-
-                    <!-- Tìm kiếm từ khóa -->
-                    <div class="me-4">
-                        <input name="keyword" type="text" class="form-control" placeholder="What do you need?" />
-                    </div>
-
-                    <!-- Nút tìm kiếm -->
-                    <div>
-                        <button type="submit" class="site-btn btn btn-primary">SEARCH</button>
-                    </div>
-                </form>
-            </div>
-
-
-        <!-- Hỗ trợ điện thoại -->
-        <div class="hero__search__phone mt-3">
-            <div class="hero__search__phone__icon">
-                <i class="fa fa-phone"></i>
-            </div>
-            <div class="hero__search__phone__text">
-                <h5>+84 399 459 299</h5>
-                <span>support 24/7 time</span>
-            </div>
-        </div>
-    </div>
-</section>
+                // Cập nhật số lượng "tym"
+                if (favoriteCount.length > 0) {
+                    favoriteCount.text(response.favoriteCount);
+                }
+            } else {
+                alert('Có lỗi xảy ra! Vui lòng thử lại.');
+            }
+        })
+            .fail(function () {
+                alert('Không thể kết nối với server. Vui lòng kiểm tra lại kết nối.');
+            });
+    }
+</script>
 
 
 
@@ -202,19 +101,6 @@ rel="stylesheet" />
             </div>
         </section>
 
-        <section class="featured spad">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>Feature Product</h2>
-                        </div>
-                      
-
-
-                    </div>
-                </div>
-
 
         <!-- Categories Section End -->
         <!-- Featured Section Begin -->
@@ -239,231 +125,119 @@ rel="stylesheet" />
 
 
 
-
-
-                @*                 Hiển thị danh sách sản phẩm từ Database *@
-                        <div class="row featured__filter">
-                            @foreach (var item in Model)
-                            {
-                                <div class="col-lg-3 col-md-4 col-sm-6">
-                                    <div class="featured__item">
-                                        <div class="featured__item__pic set-bg"
-                                             data-setbg="@Url.Content("~/Classix/img/" + item.Image)">
-                                            <ul class="featured__item__pic__hover">
-                                                @if (User.Identity.IsAuthenticated)
-                                                {
-                                                    <li>
-                                                        <a href="javascript:void(0);" onclick="toggleFavorite(@item.Id)">
-                                                            <i class="fa @(item.IsFavorite ? "fa-heart" : "fa-heart-o")"
-                                                               style="color: @(item.IsFavorite ? "red" : "gray");"></i>
-                                                        </a>
-                                                        @if (item.FavoriteNumber > 0)
-                                                        {
-                                                            <p id="favoriteCount_@item.Id">@item.FavoriteNumber</p>
-                                                        }
-                                                    </li>
-                                                    <li>
-                                                        <a href="#"><i class="fa fa-retweet"></i></a>
-                                                    </li>
-                                                }
-                                                <li>
-                                                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <div class="featured__item__text">
-                                            <h6><a href="#">@item.Name</a></h6>
-                                            <h5>@item.Price.ToString("C")</h5>
-                                            <p>Category: @item.category?.Name</p>
-                                            <p>
-                                                @for (var i = 1; i <= 5; i++)
-                                                {
-                                                    if (i <= Math.Floor(item.Rating ?? 0))
-                                                    {
-                                                        <i class="fa fa-star" style="color: gold;"></i> <!-- Sao vàng -->
-                                                    }
-                                                    else if (i == Math.Ceiling(item.Rating ?? 0) && (item.Rating ?? 0) % 1 != 0)
-                                                    {
-                                                        <i class="fas fa-star-half-alt" style="color: gold;"></i> <!-- Sao nửa -->
-                                                    }
-                                                    else
-                                                    {
-                                                        <i class="fa fa-star" style="color: lightgray;"></i> <!-- Sao rỗng -->
-                                                    }
-                                                }
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            }
-                        </div>
-
-
-
-
-
-               
-                
-
-
-                   @*  <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
-                        <div class="featured__item">
-                            <div class="featured__item__pic set-bg"
-                                 data-setbg="@Url.Content("~/Classix/img/lamp.jpg")">
-                                <ul class="featured__item__pic__hover">
-                                    <li>
-                                        <a href="#"><i class="fa fa-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-retweet"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="featured__item__text">
-                                <h6><a href="#">Crab Pool Security</a></h6>
-                                <h5>3000000</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
-                        <div class="featured__item">
-                            <div class="featured__item__pic set-bg"
-                                 data-setbg="@Url.Content("~/Classix/img/lampnon.jpg")">
-                                <ul class="featured__item__pic__hover">
-                                    <li>
-                                        <a href="#"><i class="fa fa-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-retweet"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="featured__item__text">
-                                <h6><a href="#">dBodhi Banjo</a></h6>
-                                <h5>2000000VND</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
-                        <div class="featured__item">
-                            <div class="featured__item__pic set-bg"
-                                 data-setbg="@Url.Content("~/Classix/img/lampvuong.jpg")">
-                                <ul class="featured__item__pic__hover">
-                                    <li>
-                                        <a href="#"><i class="fa fa-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-retweet"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="featured__item__text">
-                                <h6><a href="#">dBodhi Barrel</a></h6>
-                                <h5>2500000VND</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                        <div class="featured__item">
-                            <div class="featured__item__pic set-bg"
-                                 data-setbg="@Url.Content("~/Classix/img/chair.jpg")">
-                                <ul class="featured__item__pic__hover">
-                                    <li>
-                                        <a href="#"><i class="fa fa-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-retweet"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="featured__item__text">
-                                <h6><a href="#">Ethnicraft Bok</a></h6>
-                                <h5>9000000VND</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
-                        <div class="featured__item">
-                            <div class="featured__item__pic set-bg"
-                                 data-setbg="@Url.Content("~/Classix/img/table.jpg")">
-                                <ul class="featured__item__pic__hover">
-                                    <li>
-                                        <a href="#"><i class="fa fa-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-retweet"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="featured__item__text">
-                                <h6><a href="#">dBodhi Wave</a></h6>
-                                <h5>11000000VND</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                        <div class="featured__item">
-                            <div class="featured__item__pic set-bg"
-                                 data-setbg="@Url.Content("~/Classix/img/bed.jpg")">
-                                <ul class="featured__item__pic__hover">
-                                    <li>
-                                        <a href="#"><i class="fa fa-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-retweet"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="featured__item__text">
-                                <h6>
-                                    <a href="#">Crab Pool SecurityAndrew Martin Gilded Star</a>
-                                </h6>
-                                <h5>30000000VND</h5>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
-                        <div class="featured__item">
-                            <div class="featured__item__pic set-bg"
-                                 data-setbg="@Url.Content("~/Classix/img/chair1.jpg")">
-                                <ul class="featured__item__pic__hover">
-                                    <li>
-                                        <a href="#"><i class="fa fa-heart"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-retweet"></i></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="featured__item__text">
-                                <h6><a href="#">Ethnicraft Eye</a></h6>
-                                <h5>15000000VND</h5>
-                            </div>
-                        </div> *@
-               @*      </div>
+                <div class="favorite-products-title" style="text-align: center; margin-bottom: 20px;">
+                    <h2>Favorite Products</h2>
                 </div>
-            </div> *@
+
+                <div class="row featured__filter">
+                    @foreach (var item in Model.FavoriteProducts)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="featured__item">
+                                <div class="featured__item__pic set-bg" data-setbg="@Url.Content("~/Classix/img/" + item.Image)">
+                                    <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">
+                                        <img src="@Url.Content("~/Classix/img/" + item.Image)" alt="Product Image" />
+                                    </a>
+                                    <ul class="featured__item__pic__hover">
+                                      
+                                        <li>
+                                            <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="featured__item__text">
+                                    <h6><a>@item.Name</a></h6>
+                                    <h5>@item.Price.ToString("C")</h5>
+                                    <p>Category: @item.category?.Name</p>
+
+                                    <p>
+                                        @for (var i = 1; i <= 5; i++)
+                                        {
+                                            if (i <= Math.Floor(item.Rating ?? 0)) // Sao đầy
+                                            {
+                                                <i class="fa fa-star" style="color: gold;"></i>
+                                            }
+                                            else if (i == Math.Ceiling(item.Rating ?? 0) && (item.Rating ?? 0) % 1 != 0) // Sao nửa
+                                            {
+                                                <i class="fas fa-star-half-alt" style="color: gold;"></i>
+                                            }
+                                            else // Sao rỗng
+                                            {
+                                                <i class="fa fa-star" style="color: lightgray;"></i>
+                                            }
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+
+
+
+
+                <div class="favorite-products-title" style="text-align: center; margin-top: 20px;">
+                    <h2>All Products</h2>
+                </div>
+                <div class="row featured__filter">
+                    @foreach (var item in Model.AllProducts)
+                    {
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <div class="featured__item">
+                                <div class="featured__item__pic set-bg" data-setbg="@Url.Content("~/Classix/img/" + item.Image)">
+                                    <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">
+                                        <img src="@Url.Content("~/Classix/img/" + item.Image)" alt="Product Image" />
+                                    </a>
+                                    <ul class="featured__item__pic__hover">
+                                        <li>
+                                            <a href="javascript:void(0);" onclick="toggleFavorite(@item.Id)">
+                                                <i id="favoriteIcon_@item.Id"
+                                                   class="fa @(Model.FavoriteProducts.Any(fp => fp.Id == item.Id) ? "fa-heart" : "fa-heart-o")"
+                                                   style="color: @(Model.FavoriteProducts.Any(fp => fp.Id == item.Id) ? "red" : "gray");">
+                                                </i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"><i class="fa fa-retweet"></i></a>
+                                        </li>
+                                        <li>
+                                            <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="featured__item__text">
+                                    <h6><a>@item.Name</a></h6>
+                                    <h5>@item.Price.ToString("C")</h5>
+                                    <p>Category: @item.category?.Name</p>
+
+                                    <p>
+                                        @for (var i = 1; i <= 5; i++)
+                                        {
+                                            if (i <= Math.Floor(item.Rating ?? 0)) // Sao đầy
+                                            {
+                                                <i class="fa fa-star" style="color: gold;"></i>
+                                            }
+                                            else if (i == Math.Ceiling(item.Rating ?? 0) && (item.Rating ?? 0) % 1 != 0) // Sao nửa
+                                            {
+                                                <i class="fas fa-star-half-alt" style="color: gold;"></i>
+                                            }
+                                            else // Sao rỗng
+                                            {
+                                                <i class="fa fa-star" style="color: lightgray;"></i>
+                                            }
+                                        }
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
 
         </section>
         <!-- Featured Section End -->
@@ -478,7 +252,7 @@ rel="stylesheet" />
                                 <div class="latest-prdouct__slider__item">
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/chair1.jpg")" alt="" />
+                                            <img src="@Url.Content("~/Classix/img/e.jpg")" alt="" />
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Ethnicraft Eye</h6>
@@ -507,7 +281,7 @@ rel="stylesheet" />
                                 <div class="latest-prdouct__slider__item">
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/chair1.jpg")" alt="" />
+                                            <img src="@Url.Content("~/Classix/img/e.jpg")" alt="" />
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Ethnicraft Eye</h6>
@@ -543,7 +317,7 @@ rel="stylesheet" />
                                 <div class="latest-prdouct__slider__item">
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/chair1.jpg")" alt="" />
+                                            <img src="@Url.Content("~/Classix/img/e.jpg")" alt="" />
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Ethnicraft Eye</h6>
@@ -572,7 +346,7 @@ rel="stylesheet" />
                                 <div class="latest-prdouct__slider__item">
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/chair1.jpg")" alt="" />
+                                            <img src="@Url.Content("~/Classix/img/e.jpg")" alt="" />
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Ethnicraft Eye</h6>
@@ -608,7 +382,7 @@ rel="stylesheet" />
                                 <div class="latest-prdouct__slider__item">
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/chair1.jpg")" alt="" />
+                                            <img src="@Url.Content("~/Classix/img/e.jpg")" alt="" />
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Ethnicraft Eye</h6>
@@ -637,7 +411,7 @@ rel="stylesheet" />
                                 <div class="latest-prdouct__slider__item">
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/chair1.jpg")" alt="" />
+                                            <img src="@Url.Content("~/Classix/img/e.jpg")" alt="" />
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Ethnicraft Eye</h6>
@@ -678,12 +452,12 @@ rel="stylesheet" />
 
 @section Script
 {
-<script src="@Url.Content("~/Classix/user/js/jquery-3.3.1.min.js")"></script>
-<script src="@Url.Content("~/Classix/user/js/bootstrap.min.js")"></script>
-<script src="@Url.Content("~/Classix/user/js/jquery.nice-select.min.js")"></script>
-<script src="@Url.Content("~/Classix/user/js/jquery-ui.min.js")"></script>
-<script src="@Url.Content("~/Classix/user/js/jquery.slicknav.js")"></script>
-<script src="@Url.Content("~/Classix/user/js/mixitup.min.js")"></script>
-<script src="@Url.Content("~/Classix/user/js/owl.carousel.min.js")"></script>
-<script src="@Url.Content("~/Classix/user/js/main.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/jquery-3.3.1.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/jquery.nice-select.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/jquery-ui.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/jquery.slicknav.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/mixitup.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/owl.carousel.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/main.js")"></script>
 }

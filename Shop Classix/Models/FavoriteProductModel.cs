@@ -9,8 +9,8 @@ namespace Shop_Classix.Models
     {
         public int CustomerId { get; set; }
         public int ProductId { get; set; }
-        //tham chieu den Customers
 
+       //tham chieu den Customers
         [ForeignKey(nameof(CustomerId))]
         public virtual CustomerModel customers { get; set; }
 

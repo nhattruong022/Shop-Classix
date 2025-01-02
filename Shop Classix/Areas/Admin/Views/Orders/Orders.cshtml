@@ -64,16 +64,16 @@
 <div class="page-body">
     <div class="card">
         <div class="card">
-            <div class="card-header">
-                <div class="row">
-                    <div class="col-md-4">
-                        <input type="text" class="form-control" id="searchInput" placeholder="Search by Order ID">
+            <form asp-controller="Orders" asp-action="Orders" method="get">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="searchInput" name="search" placeholder="Search by Order ID" value="@ViewBag.Search">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Search</button>
                     </div>
-
-                    <button class="btn btn-primary" onclick="filterResults()">Search</button>
-
                 </div>
-            </div>
+            </form>
             <div class="card-block table-border-style">
                 <div class="table-responsive">
                     <table class="table">
@@ -175,5 +175,5 @@
                 </li>
             }
         </ul>
-    </nav>>
+    </nav>
 </div>

@@ -1,25 +1,25 @@
 {
   "format": 1,
   "restore": {
-    "/Users/duyluong/Developer/Shop-Classix/Shop Classix/Shop-Classix.csproj": {}
+    "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop-Classix.csproj": {}
   },
   "projects": {
-    "/Users/duyluong/Developer/Shop-Classix/Shop Classix/Shop-Classix.csproj": {
+    "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop-Classix.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/duyluong/Developer/Shop-Classix/Shop Classix/Shop-Classix.csproj",
+        "projectUniqueName": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop-Classix.csproj",
         "projectName": "Shop-Classix",
-        "projectPath": "/Users/duyluong/Developer/Shop-Classix/Shop Classix/Shop-Classix.csproj",
-        "packagesPath": "/Users/duyluong/.nuget/packages/",
-        "outputPath": "/Users/duyluong/Developer/Shop-Classix/Shop Classix/obj/",
+        "projectPath": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop-Classix.csproj",
+        "packagesPath": "C:\\Users\\Nhat Truong\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/duyluong/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Nhat Truong\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
-        "originalTargetFrameworks": [
-          "net8.0"
-        ],
+        "originalTargetFrameworks": ["net8.0"],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -29,16 +29,13 @@
           }
         },
         "warningProperties": {
-          "warnAsError": [
-            "NU1605"
-          ]
+          "warnAsError": ["NU1605"]
         },
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -96,7 +93,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

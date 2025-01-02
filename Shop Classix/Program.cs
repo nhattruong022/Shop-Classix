@@ -23,7 +23,15 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     options.LoginPath = "/KhachHang/LogOut";  //trang xử lý đăng xuất
     options.AccessDeniedPath = "/AccessDenied";  //người dùng đã đăng nhập nhưng không đủ quyền truy cập
 });
+//session
+builder.Services.AddDistributedMemoryCache();
 
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 //phân quyền admin
 builder.Services.AddAuthorization(options =>
 {
@@ -47,6 +55,8 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
+
+app.UseSession();
 
 app.UseAuthorization();
 
