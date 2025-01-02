@@ -52,6 +52,7 @@
 
                         </div>
                     </div>
+                  
                     <div class="col-lg-6 col-md-6">
                         <div class="product__details__text">
                             <h3>@Model.First().Name</h3>
@@ -63,23 +64,18 @@
                                 <i class="fa fa-star-half-o"></i>
                                 <span>(18 reviews)</span>
                             </div>
-                            <div class="product__details__price"> @Model.First().Price.ToString("C")VNĐ</div>
-                            <p>
-                                @Model.First().Description
-                            </p>
-                         
-                            <form asp-action="AddToCart" asp-controller="Cart" method="post">
-                                <div class="product__details__quantity">
-                                    <div class="quantity">
-                                        <div class="pro-qty">
-                                            <input type="number" name="quantity" value="1" min="1" />
-                                        </div>
+                            <div class="product__details__price">@Model.First().Price.ToString("C")VNĐ</div>
+                            <p>@Model.First().Description</p>
+
+                            <div class="product__details__quantity">
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <input type="number" id="quantity" value="1" min="1" />
                                     </div>
                                 </div>
-                                <input type="hidden" name="id" value="@Model.First().Id" />
-                                <button type="submit" class="primary-btn">ADD TO CART</button>
-                            </form>
-
+                            </div>
+                            <input type="hidden" id="productId" value="@Model.First().Id" />
+                            <button onclick="addToCart(event, '@Model.First().Id')" class="primary-btn">ADD TO CART</button>
 
                             <a href="#" class="heart-icon">
                                 <span class="icon_heart_alt"></span>
@@ -89,10 +85,43 @@
                                     <b>Size: </b>
                                     <span>@Model.First().Size</span>
                                 </li>
-
                             </ul>
                         </div>
                     </div>
+
+                    <script>
+                        function addToCart(event, itemId) {
+                            event.preventDefault(); // Ngăn chặn việc tải lại trang
+
+                            var quantity = document.getElementById('quantity').value;
+
+                            var formData = new URLSearchParams();
+                            formData.append('id', itemId);
+                            formData.append('quantity', quantity);
+
+                            fetch('/Cart/AddToCart', {
+                                method: 'POST',
+                                body: formData,
+                                headers: {
+                                    'X-Requested-With': 'XMLHttpRequest'
+                                }
+                            })
+                                .then(response => {
+                                    if (response.ok) {
+                                        return response.json();
+                                    } else {
+                                        throw new Error('Có lỗi xảy ra khi thêm vào giỏ.');
+                                    }
+                                })
+                                .then(data => {
+                                    alert(data.message); // Hiển thị thông báo thành công
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    alert('Có lỗi xảy ra.');
+                                });
+                        }
+                    </script>
 
                     <!--Comment-->
                     <!--Comment end-->
