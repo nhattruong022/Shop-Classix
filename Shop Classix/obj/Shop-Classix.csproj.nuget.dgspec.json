@@ -1,42 +1,20 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "D:\\Đồ án\\Shop-Classix\\Shop Classix\\Shop-Classix.csproj": {}
+    "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop-Classix.csproj": {}
   },
   "projects": {
-    "D:\\Đồ án\\Shop-Classix\\Shop Classix\\Shop-Classix.csproj": {
+    "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop-Classix.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Đồ án\\Shop-Classix\\Shop Classix\\Shop-Classix.csproj",
+        "projectUniqueName": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop-Classix.csproj",
         "projectName": "Shop-Classix",
-        "projectPath": "D:\\Đồ án\\Shop-Classix\\Shop Classix\\Shop-Classix.csproj",
-        "packagesPath": "C:\\Users\\LE VAN VUI\\.nuget\\packages\\",
-        "outputPath": "D:\\Đồ án\\Shop-Classix\\Shop Classix\\obj\\",
-=======
-    "D:\\Đồ án\\Web\\node\\Shop-Classix\\Shop Classix\\Shop-Classix.csproj": {}
-  },
-  "projects": {
-    "D:\\Đồ án\\Web\\node\\Shop-Classix\\Shop Classix\\Shop-Classix.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\Đồ án\\Web\\node\\Shop-Classix\\Shop Classix\\Shop-Classix.csproj",
-        "projectName": "Shop-Classix",
-        "projectPath": "D:\\Đồ án\\Web\\node\\Shop-Classix\\Shop Classix\\Shop-Classix.csproj",
-        "packagesPath": "C:\\Users\\TPT\\.nuget\\packages\\",
-        "outputPath": "D:\\Đồ án\\Web\\node\\Shop-Classix\\Shop Classix\\obj\\",
->>>>>>> 80b21734e0fff825084e97d7cf4a44f73e56d6a8
+        "projectPath": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\Shop-Classix.csproj",
+        "packagesPath": "C:\\Users\\Nhat Truong\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\Shop Classix\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-<<<<<<< HEAD
-          "C:\\Users\\LE VAN VUI\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-          "C:\\Users\\TPT\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
->>>>>>> 80b21734e0fff825084e97d7cf4a44f73e56d6a8
+          "C:\\Users\\Nhat Truong\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -44,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -62,8 +39,7 @@
           "enableAudit": "true",
           "auditLevel": "low",
           "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "9.0.100"
+        }
       },
       "frameworks": {
         "net8.0": {
@@ -121,11 +97,7 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
->>>>>>> 80b21734e0fff825084e97d7cf4a44f73e56d6a8
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

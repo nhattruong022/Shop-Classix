@@ -26,6 +26,27 @@
 }
 
 
+<script>
+    function toggleFavorite(productId) {
+        $.post('/Home/ToggleFavorite', { productId: productId }, function (response) {
+            if (response.success) {
+                const heartIcon = $(`#favoriteIcon_${productId}`);
+                const favoriteCount = $(`#favoriteCount_${productId}`);
+
+                // Cập nhật biểu tượng và số lượng "tym"
+                heartIcon.toggleClass('fa-heart fa-heart-o');
+                heartIcon.css('color', response.isFavorite ? 'red' : 'gray');
+                favoriteCount.text(response.favoriteCount);
+            } else {
+                alert('Có lỗi xảy ra! Vui lòng thử lại.');
+            }
+        }).fail(function () {
+            alert('Không thể kết nối với server. Vui lòng kiểm tra lại kết nối.');
+        });
+    }
+
+</script>
+
 
 <div class="container">
     <main role="main" class="pb-3">
@@ -103,53 +124,53 @@
                                     <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">
                                         <img src="@Url.Content("~/Classix/img/" + item.Image)" alt="Product Image" />
                                     </a>
-
                                     <ul class="featured__item__pic__hover">
                                         <li>
-                                            <a href="#"><i class="fa fa-heart"></i></a>
+                                            <a href="javascript:void(0);" onclick="toggleFavorite(@item.Id)">
+                                                <i id="favoriteIcon_@item.Id"
+                                                   class="fa @(item.IsFavorite ? "fa-heart" : "fa-heart-o")"
+                                                   style="color: @(item.IsFavorite ? "red" : "gray");">
+                                                </i>
+                                            </a>
                                         </li>
                                         <li>
                                             <a href="#"><i class="fa fa-retweet"></i></a>
                                         </li>
                                         <li>
-                                            <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id"><i class="fa fa-shopping-cart"></i></a>
+                                            <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
-
                                 <div class="featured__item__text">
                                     <h6><a>@item.Name</a></h6>
                                     <h5>@item.Price.ToString("C")</h5>
                                     <p>Category: @item.category?.Name</p>
-                                     <p>
-                                @for(var i=1;i<=5;i++)
-                                {
-                                if(i<=Math.Floor(item.Rating??0)) //lấy phần nguyên của rating, khi cần làm tròn xuống
-                                {
-                                <i class="fa fa-star" style="color:gold";></i>
-                                }
-                                else if(i==Math.Ceiling(item.Rating??0)&&(item.Rating??0)%1!=0)  //ceiling lấy giá trị làm tròn gần nhất và làm tròn lên và kiểm tra phần lẻ
-                                {
-                                <i class="fas fa-star-half-alt" style="color: gold;"></i>
-                                //sao nửa
-                                }
-                                else
-                                {
-                                <i class="fa fa-star" style="color: lightgray;"></i> <!-- Sao rỗng -->
-                                }
-                                }
-
-                                </p>
-                               
+                                  
+                                    <p>
+                                        @for (var i = 1; i <= 5; i++)
+                                        {
+                                            if (i <= Math.Floor(item.Rating ?? 0)) // Sao đầy
+                                            {
+                                                <i class="fa fa-star" style="color: gold;"></i>
+                                            }
+                                            else if (i == Math.Ceiling(item.Rating ?? 0) && (item.Rating ?? 0) % 1 != 0) // Sao nửa
+                                            {
+                                                <i class="fas fa-star-half-alt" style="color: gold;"></i>
+                                            }
+                                            else // Sao rỗng
+                                            {
+                                                <i class="fa fa-star" style="color: lightgray;"></i>
+                                            }
+                                        }
+                                    </p>
                                 </div>
                             </div>
-
                         </div>
-
+                    }
                     }
 
-                </div>
-            </div>
 
 
         </section>
