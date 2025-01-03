@@ -9,6 +9,7 @@ namespace Shop_Classix.Controllers
     {
       
         private readonly DataContext dataContext;
+        private const int PageSize = 1;
 
         public CartController(DataContext context)
         {
@@ -16,11 +17,24 @@ namespace Shop_Classix.Controllers
         }
 
         // Hiển thị giỏ hàng
-        public IActionResult Cart()
+        public async Task<IActionResult> Cart(int page = 1)
         {
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
+
+            var totalOrders = cart.Items.Count;
+            var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
+
+            cart.Items = cart.Items
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize)
+                .ToList();
+
+            ViewBag.TotalPages = totalPages;
+            ViewBag.CurrentPage = page;
+
             return View(cart);
         }
+
         [HttpPost]
         public IActionResult UpdateQuantity(int id, int quantity)
         {

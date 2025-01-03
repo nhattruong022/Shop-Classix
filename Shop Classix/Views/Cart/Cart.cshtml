@@ -70,11 +70,11 @@
                                                     <img src="@Url.Content("~/Classix/img/" + item.ImageUrl)" alt="" />
                                                     <h5>@item.ProductName</h5>
                                                 </td>
-                                                <td class="shoping__cart__price">@item.Price.ToString("C")VNĐ</td>
+                                                <td class="shoping__cart__price">@item.Price.ToString("C") VNĐ</td>
                                                 <td class="shoping__cart__quantity">
                                                     <input type="number" value="@item.Quantity" min="1" data-id="@item.ProductId" class="quantity-input" />
                                                 </td>
-                                                <td class="shoping__cart__total">@((item.Price * item.Quantity).ToString("C"))VNĐ</td>
+                                                <td class="shoping__cart__total">@((item.Price * item.Quantity).ToString("C")) VNĐ</td>
                                                 <td>
                                                     <form asp-action="RemoveFromCart" asp-controller="Cart" method="post">
                                                         <input type="hidden" name="id" value="@item.ProductId" />
@@ -85,6 +85,18 @@
                                         }
                                     </tbody>
                                 </table>
+
+                                <!-- Phân trang -->
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination justify-content-center">
+                                        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+                                        {
+                                            <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
+                                                <a class="page-link" href="@Url.Action("Cart", new { page = i })">@i</a>
+                                            </li>
+                                        }
+                                    </ul>
+                                </nav>
                             }
                         </div>
 
