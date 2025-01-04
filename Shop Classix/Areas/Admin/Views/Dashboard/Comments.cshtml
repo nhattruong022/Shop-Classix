@@ -3,9 +3,11 @@
     Layout = "_AdminSubLayout";
 }
 
+@model IEnumerable<Shop_Classix.ViewModel.CommentViewModel>
+
 @section Link {
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
     <link rel="icon" href="@Url.Content("~/Classix/admin/images/favicon.ico")" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/css/bootstrap/css/bootstrap.min.css")">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/icon/themify-icons/themify-icons.css")">
@@ -89,60 +91,62 @@
                         <tr>
                             <th>Customer ID</th>
                             <th>Image</th>
-                            <th>Product Name</th>
-                            <th>Category</th>
                             <th>Content</th>
+                            <th>Product Name</th>
                             <th>Rating</th>
-                            <th>Order Notes</th>
                             <th>Status</th>
-                            <th>Action</th>
+                       <th>button</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td><img style="width:150px;" src="~/Classix/img/bed/CARM113-019-122_2.jpg" alt=""></td>
-                            <td>wood table</td>
-                            <td>Table</td>
-                            <td>beautiful table, 10đ</td>
-                            <td>★★★★★</td> <!-- Hiển thị số sao -->
-                            <td>please delivery in the morning</td>
-                            <td>1</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                                <button class="btn btn-primary btn-sm" onclick="openFeedbackModal('wood light')">Phản hồi</button>
-                            </td>
-                        </tr>
+                        @foreach (var comment in Model)
+                        {
+                            <tr>
+                                <th scope="row">@comment.Id</th>
+                                <td> <img src="@Url.Content("~/Classix/img/" + comment.ProductImageUrl)" alt="" style="max-width: 100px; max-height: 100px;" /></td>
+                                <td>@comment.Content</td>
+                                <th>@comment.ProductName</th>
+                                <td>
+                                    <p>
+                                        @if (comment.Rating.HasValue)
+                                        {
+                                            double rating = comment.Rating.Value;
+                                            for (var i = 1; i <= 5; i++)
+                                            {
+                                                if (i <= Math.Floor(rating))
+                                                {
+                                                    <i class="fa fa-star" style="color:gold" ;></i>
+                                                }
+                                                else if (i == Math.Ceiling(rating) && rating % 1 != 0)
+                                                {
+                                                    <i class="fas fa-star-half-alt" style="color: gold;"></i>
+                                                }
+                                                else
+                                                {
+                                                    <i class="fa fa-star" style="color: lightgray;"></i>
+                                                }
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <span>No rating available</span>
+                                        }
 
-                        <tr>
-                            <th scope="row">2</th>
-                            <td><img style="width: 150px;"src="~/Classix/img/table/DBOCWA3710N_3.jpg" alt=""></td>
-                            <td>wood desk</td>
-                            <td>Desk</td>
-                            <td>beautiful desk, 10đ</td>
-                            <td>★★★★★</td> <!-- Hiển thị số sao -->
-                            <td>please delivery in the morning</td>
-                            <td>1</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                                <button class="btn btn-primary btn-sm" onclick="openFeedbackModal('wood light')">Phản hồi</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td><img style="width: 150px;"src="~/Classix/img/light/DBOLBN2015N_600x.jpg" alt=""></td>
-                            <td>wood light</td>
-                            <td>Light</td>
-                            <td>beautiful light, 10đ</td>
-                            <td>★★★★★</td> <!-- Hiển thị số sao -->
-                            <td>please delivery in the morning</td>
-                            <td>1</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                                <button class="btn btn-primary btn-sm" onclick="openFeedbackModal('wood light')">Phản hồi</button>
-                            </td>
-
-                        </tr>
+                                    </p>
+                                </td> <!-- Hiển thị số sao -->
+                                <td>@comment.Status</td>
+                                <td>
+                                    <form method="post" asp-action="ToggleComment">
+                                        <input type="hidden" name="id" value="@comment.Id" />
+                                        <input type="hidden" name="action" value="@(comment.Status == 1 ? 0 : 1)" />
+                                        <button type="submit" class="btn @(comment.Status == 1 ? "btn-danger" : "btn-success") btn-sm">
+                                            @(comment.Status == 1 ? "Hide" : "Show")
+                                        </button>
+                                    </form>
+                                </td>
+                               
+                            </tr>
+                        }
                     </tbody>
                 </table>
 
@@ -150,6 +154,7 @@
         </div>
     </div>
 
+  
     <!-- Modal -->
     <div class="modal" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -188,3 +193,4 @@
         </ul>
     </nav>
 </div>
+
