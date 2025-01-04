@@ -72,6 +72,7 @@
 
 //    }
 //}
+
 using Microsoft.AspNetCore.Mvc;
 using Shop_Classix.Repository;
 using Shop_Classix.ViewModel;
@@ -146,6 +147,30 @@ namespace Shop_Classix.Controllers
 
             // Trả về phản hồi JSON thay vì chuyển hướng
             return Json(new { success = true, message = "Thêm vào giỏ thành công!" });
+        }
+        [HttpPost]
+        public IActionResult RemoveFromCart(int productId)
+        {
+            var cart = HttpContext.Session.Get<CartViewModel>("Cart");
+            if (cart != null)
+            {
+                var itemToRemove = cart.Items.FirstOrDefault(item => item.ProductId == productId);
+                if (itemToRemove != null)
+                {
+                    cart.Items.Remove(itemToRemove); // Xóa sản phẩm khỏi giỏ hàng
+                }
+            }
+
+            HttpContext.Session.Set("Cart", cart);
+            return RedirectToAction("Cart"); // Chuyển hướng về trang giỏ hàng
+        }
+
+        [HttpPost]
+        public IActionResult RemoveAllFromCart()
+        {
+            // Xóa giỏ hàng bằng cách thiết lập lại session
+            HttpContext.Session.Set("Cart", new CartViewModel());
+            return RedirectToAction("Cart"); // Chuyển hướng về trang giỏ hàng
         }
     }
 }

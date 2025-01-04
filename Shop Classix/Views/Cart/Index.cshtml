@@ -39,7 +39,36 @@
         </section>
         <!-- Breadcrumb Section End -->
         <!-- Shoping Cart Section Begin -->
-       
+        @* @if (Model.Items.Count == 0)
+        {
+            <p>Your cart is empty.</p>
+        }
+        else
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@item.ProductName</td>
+                            <td>@item.Price.ToString("C")</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.TotalPrice.ToString("C")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <h4>Total Amount: @Model.TotalAmount.ToString("C")</h4>
+        } *@
 
         <section class="shoping-cart spad">
             <div class="container">
@@ -52,68 +81,42 @@
                             }
                             else
                             {
-                                <table >
-                                    <thead>
-                                        <tr>
-                                            <th class="shoping__product">Products</th>
-                                            <th>Price</th>
-                                            <th>Quantity</th>
-                                            <th>Total</th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="shoping__product">Products</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Total</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                         @foreach (var item in Model.Items)
                                         {
-                                            <tr>
-                                                <td class="shoping__cart__item">
-                                                    <img src="@Url.Content("~/Classix/img/" + item.ImageUrl)" alt="" style="max-width: 200px; max-height: 200px;" />
-                                                    <h5>@item.ProductName</h5>
-                                                </td>
+                                    <tr>
+                                        <td class="shoping__cart__item">
+                                            <img src="@Url.Content("~/Classix/img/chair.jpg")" alt="" />
+                                            <h5>@item.ProductName</h5>
+                                        </td>
                                                 <td class="shoping__cart__price">@item.Price.ToString("C")VNĐ</td>
-                                                <td class="shoping__cart__quantity">
-                                                    <input type="number" value="@item.Quantity" min="1" data-id="@item.ProductId" class="quantity-input" />
-                                                </td>
-                                                <td class="shoping__cart__total">@((item.Price * item.Quantity).ToString("C"))VNĐ</td>
-                                                <td>
-                                                    <form asp-action="RemoveFromCart" asp-controller="Cart" method="post">
-                                                        <input type="hidden" name="productId" value="@item.ProductId" />
-                                                        <button type="submit" class="btn btn-danger">Remove</button>
-                                                    </form>
-                                                </td>
-                                            </tr>
+                                        <td class="shoping__cart__quantity">
+                                            <div class="quantity">
+                                                <div class="pro-qty">
+                                                    <input type="text" value="1" />
+                                                </div>
+                                            </div>
+                                        </td>
+                                                <td class="shoping__cart__total">@item.TotalPrice.ToString("C")</td>
+                                        <td class="shoping__cart__item__close">
+                                            <span class="icon_close"></span>
+                                        </td>
+                                    </tr>
                                         }
-                                    </tbody>
-                                </table>
-                                <form asp-action="RemoveAllFromCart" asp-controller="Cart" method="post" style=" text-align: right; margin-top=200px">
-                                    <button type="submit" class="btn btn-danger">Xóa tất cả</button>
-                                </form>
+                                </tbody>
+                            </table>
                             }
-                          
                         </div>
-
-                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                        <script>
-                            $(document).ready(function () {
-                                $('.quantity-input').on('change', function () {
-                                    var quantity = $(this).val();
-                                    var productId = $(this).data('id');
-
-                                    $.ajax({
-                                        url: '@Url.Action("UpdateQuantity", "Cart")', // URL đến phương thức cập nhật
-                                        type: 'POST',
-                                        data: { id: productId, quantity: quantity },
-                                        success: function (response) {
-                                            // Cập nhật lại tổng tiền hoặc làm gì đó sau khi cập nhật thành công
-                                            location.reload(); // Tải lại trang để cập nhật giỏ hàng
-                                        },
-                                        error: function () {
-                                            alert('Error updating quantity.'); // Thông báo lỗi
-                                        }
-                                    });
-                                });
-                            });
-                        </script>
                     </div>
                 </div>
                 <div class="row">
@@ -143,8 +146,8 @@
                         <div class="shoping__checkout">
                             <h5>Cart Total</h5>
                             <ul>
-                                @* <li>Subtotal <span>40.000.000VNĐ</span></li> *@
-                                <li>Total <span>@Model.TotalAmount.ToString("C")VNĐ</span></li>
+                                <li>Subtotal <span>40.000.000VNĐ</span></li>
+                                <li>Total <span>40.000.000VNĐ</span></li>
                             </ul>
                             <a href="#" class="primary-btn">PROCEED TO CHECKOUT</a>
                         </div>
