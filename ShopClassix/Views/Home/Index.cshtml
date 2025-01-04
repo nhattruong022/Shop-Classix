@@ -191,15 +191,19 @@
                                     <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">
                                         <img src="@Url.Content("~/Classix/img/" + item.Image)" alt="Product Image" />
                                     </a>
+
                                     <ul class="featured__item__pic__hover">
-                                        <li>
-                                            <a href="javascript:void(0);" onclick="toggleFavorite(@item.Id)">
-                                                <i id="favoriteIcon_@item.Id"
-                                                   class="fa @(Model.FavoriteProducts.Any(fp => fp.Id == item.Id) ? "fa-heart" : "fa-heart-o")"
-                                                   style="color: @(Model.FavoriteProducts.Any(fp => fp.Id == item.Id) ? "red" : "gray");">
-                                                </i>
-                                            </a>
-                                        </li>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            <li>
+                                                <a href="javascript:void(0);" onclick="toggleFavorite(@item.Id)">
+                                                    <i id="favoriteIcon_@item.Id"
+                                                       class="fa @(Model.FavoriteProducts.Any(fp => fp.Id == item.Id) ? "fa-heart" : "fa-heart-o")"
+                                                       style="color: @(Model.FavoriteProducts.Any(fp => fp.Id == item.Id) ? "red" : "gray");">
+                                                    </i>
+                                                </a>
+                                            </li>
+                                        }
                                         <li>
                                             <a href="#"><i class="fa fa-retweet"></i></a>
                                         </li>
@@ -237,6 +241,7 @@
                         </div>
                     }
                 </div>
+
 
 
         </section>
