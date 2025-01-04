@@ -14,7 +14,6 @@ namespace Shop_Classix.Repository
         public DbSet<ContactModel> contacts { get; set; }   
         public DbSet<OrderModel> orders { get; set; }
         public DbSet<OrderDetailModel> orderDetails { get; set; }
-        public DbSet<CartItemModel> cartItems { get; set; }
         public DbSet<ChatUsersModel> chatUsers { get; set; }
         public DbSet<ImportsModel> imports { get; set; }
         public DbSet<ImportsDetailModel> importsDetails { get; set; }
