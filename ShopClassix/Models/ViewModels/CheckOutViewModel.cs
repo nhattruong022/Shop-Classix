@@ -20,6 +20,9 @@ namespace Shop_Classix.Models.ViewModels
         public string Email { get; set; }
 
 
+        public decimal deposit {  get; set; }
+
+
 
         public string OrderNotes { get; set; }
 
@@ -29,6 +32,10 @@ namespace Shop_Classix.Models.ViewModels
         public decimal Total { get; set; } // Calculated from the cart
 
         public List<CartItemViewModel> Items { get; set; } // Representing cart items
+
+
+        
+
     }
 }
 

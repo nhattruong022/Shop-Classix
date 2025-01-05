@@ -126,12 +126,28 @@ namespace Shop_Classix.Controllers
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
 
 
+            // Tổng giá trị giỏ hàng
+            var totalPrice = cart.Items.Sum(item => item.TotalPrice);
+
+            // Tính tiền cọc (10%)
+            var depositAmount = totalPrice * 0.1m;
+
+
             // Create the checkout model
             var model = new CheckOutViewModel
             {
                 Items = cart.Items,
-                Total = cart.Items.Sum(item => item.TotalPrice)
+                Total = cart.Items.Sum(item => item.TotalPrice),
+                deposit=depositAmount
             };
+
+
+
+            return View(model);
+
+
+
+
 
             return View(model);
         }
@@ -159,11 +175,19 @@ namespace Shop_Classix.Controllers
                 ModelState.AddModelError("", "Customer not found");
                 return View(model);
             }
+ 
+               // Tổng giá trị giỏ hàng và tiền cọc
+            var totalPrice = cart.Items.Sum(item => item.TotalPrice);
+            var depositAmount = totalPrice * 0.1m;
+        
+
+
 
             //tạo đơn hàng
             var order = new OrderModel
             {
                 TotalPrice = cart.Items.Sum(item => item.TotalPrice),
+                deposit = depositAmount,
                 Status = 1,
                 PaymentMethod = model.PaymentMethod,
                 CustomerId = customer.Id,
