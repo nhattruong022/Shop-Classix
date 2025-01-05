@@ -54,7 +54,12 @@ namespace Shop_Classix.Controllers
             return Ok(); // Trả về phản hồi thành công
         }
 
-        public IActionResult AddToCart(int id, int quantity=1) // Thêm tham số quantity
+
+        [HttpPost] // Đảm bảo rằng đây là yêu cầu POST
+
+
+        public IActionResult AddToCart(int id, int quantity = 1) // Thêm tham số quantity
+
         {
             var product = dataContext.products.FirstOrDefault(p => p.Id == id);
             if (product == null)
@@ -64,7 +69,7 @@ namespace Shop_Classix.Controllers
 
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
 
-            var existingItem = cart.Items.FirstOrDefault(item => item.ProductName == product.Name);
+            var existingItem = cart.Items.FirstOrDefault(item => item.ProductId == product.Id);
             if (existingItem != null)
             {
                 existingItem.Quantity += quantity; // Tăng số lượng theo giá trị từ input
@@ -84,7 +89,33 @@ namespace Shop_Classix.Controllers
 
             HttpContext.Session.Set("Cart", cart);
 
-            return RedirectToAction("Cart"); // Chuyển hướng đến trang giỏ hàng
+            // Trả về phản hồi JSON thay vì chuyển hướng
+            return Json(new { success = true, message = "Thêm vào giỏ thành công!" });
+        }
+        [HttpPost]
+        public IActionResult RemoveFromCart(int productId)
+        {
+            var cart = HttpContext.Session.Get<CartViewModel>("Cart");
+            if (cart != null)
+            {
+                var itemToRemove = cart.Items.FirstOrDefault(item => item.ProductId == productId);
+                if (itemToRemove != null)
+                {
+                    cart.Items.Remove(itemToRemove); // Xóa sản phẩm khỏi giỏ hàng
+                }
+            }
+
+            HttpContext.Session.Set("Cart", cart);
+            return RedirectToAction("Cart"); // Chuyển hướng về trang giỏ hàng
+        }
+
+
+        [HttpPost]
+        public IActionResult RemoveAllFromCart()
+        {
+            // Xóa giỏ hàng bằng cách thiết lập lại session
+            HttpContext.Session.Set("Cart", new CartViewModel());
+            return RedirectToAction("Cart"); // Chuyển hướng về trang giỏ hàng
         }
 
 
