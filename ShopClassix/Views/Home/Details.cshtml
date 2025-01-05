@@ -67,12 +67,22 @@
                             <p>
                                 @Model.First().Description
                             </p>
-                         
-                            <form asp-action="AddToCart" asp-controller="Cart" method="post">
+                @* 
+                            <div class="product__details__quantity">
+                                <div class="quantity">
+                                    <div class="pro-qty">
+                                        <input type="number" id="quantity" value="1" min="1" />
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="productId" value="@Model.First().Id" />
+                            <button onclick="addToCart(event, '@Model.First().Id')" class="primary-btn">ADD TO CART</button>
+ *@
+                            <form onsubmit="addToCart(event, '@Model.First().Id')">
                                 <div class="product__details__quantity">
                                     <div class="quantity">
                                         <div class="pro-qty">
-                                            <input type="number" name="quantity" value="1" min="1" />
+                                            <input type="number" id="quantity" name="quantity" value="1" min="1" />
                                         </div>
                                     </div>
                                 </div>
@@ -93,7 +103,39 @@
                             </ul>
                         </div>
                     </div>
+                    <script>
+                        function addToCart(event, itemId) {
+                            event.preventDefault(); // Ngăn chặn việc tải lại trang
 
+                            var quantity = document.getElementById('quantity').value;
+
+                            var formData = new URLSearchParams();
+                            formData.append('id', itemId);
+                            formData.append('quantity', quantity);
+
+                            fetch('/Cart/AddToCart', {
+                                method: 'POST',
+                                body: formData,
+                                headers: {
+                                    'X-Requested-With': 'XMLHttpRequest'
+                                }
+                            })
+                                .then(response => {
+                                    if (response.ok) {
+                                        return response.json();
+                                    } else {
+                                        throw new Error('Có lỗi xảy ra khi thêm vào giỏ.');
+                                    }
+                                })
+                                .then(data => {
+                                    alert(data.message); // Hiển thị thông báo thành công
+                                })
+                                .catch(error => {
+                                    console.error('Error:', error);
+                                    alert('Có lỗi xảy ra.');
+                                });
+                        }
+                    </script>
                     <!--Comment-->
                     <div class="comment-section">
                         <h2>Product Comments</h2>

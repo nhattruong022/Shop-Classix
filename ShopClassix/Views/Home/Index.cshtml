@@ -208,9 +208,11 @@
                                             <a href="#"><i class="fa fa-retweet"></i></a>
                                         </li>
                                         <li>
-                                            <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id">
+                                     
+                                            <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id" onclick="addToCart(event, @item.Id)">
                                                 <i class="fa fa-shopping-cart"></i>
                                             </a>
+
                                         </li>
                                     </ul>
                                 </div>
@@ -242,7 +244,37 @@
                     }
                 </div>
 
+                <script>
+                    function addToCart(event, itemId) {
+                        event.preventDefault(); // Ngăn chặn việc tải lại trang
+                        // Tạo dữ liệu để gửi
+                        var formData = new URLSearchParams();
+                        formData.append('id', itemId);
+                        formData.append('quantity', '1'); // Số lượng mặc định là 1
 
+                        // Gửi yêu cầu đến server
+                        fetch('/Cart/AddToCart', { // Chỉ định rõ controller và action
+                            method: 'POST',
+                            body: formData,
+                            headers: {
+                                'X-Requested-With': 'XMLHttpRequest' // Để server biết đây là yêu cầu AJAX
+                            }
+                        })
+                            .then(response => {
+                                if (response.ok) {
+                                    // Xử lý thành công (có thể cập nhật giỏ hàng hoặc hiển thị thông báo)
+                                    alert('Thêm vào giỏ thành công!');
+                                } else {
+                                    // Xử lý lỗi
+                                    alert('Có lỗi xảy ra khi thêm vào giỏ.');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error:', error);
+                                alert('Có lỗi xảy ra.');
+                            });
+                    }
+                </script>
 
         </section>
         <!-- Featured Section End -->
