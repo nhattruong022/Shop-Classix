@@ -84,7 +84,8 @@
                                 <th>Phone</th>
                                 <th>Address</th>
                                 <th>Total Price</th>
-                                <th>Quantity</th>
+                                <th>PaymentMethod</th>
+                                <th>Notes</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -95,45 +96,42 @@
                                 <tr>
                                     <td>@order.Id</td>
                                     <td>@order.customers.Id</td>
-                                    <td>@order.customers.PhoneNumber</td>
-                                    <td>@order.customers.Address</td>
+                                    <td>@order.Phone</td>
+                                    <td>@order.Address</td>
                                     <td>@order.TotalPrice VNĐ</td>
-                                    <td>@order.PaymentMethod</td>
+                                    <td>
+                                        @if(@order.PaymentMethod == 1){
+                                            <p>Credit Card(@order.deposit)</p>
+                                        }
+                                        else{
+                                            <p>COD</p>
+                                        }
+                                    </td>
+                                    <td>@order.OrderNotes</td>
                                     <td>
                                         @switch (order.Status)
                                         {
                                             case 1:
-                                                <p>waiting for delivery</p>
+                                            <form asp-action="ChangeOrder" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to change this order status?');">
+                                                <input type="hidden" name="id" value="@order.Id" />
+                                                <button type="submit" class="btn btn-success btn-sm">Waiting for delivery</button>
+                                            </form>
                                                 break;
                                             case 2:
-                                                <p>Transport</p>
+                                                <form asp-action="ChangeOrder" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to change this order status?');">
+                                                <input type="hidden" name="id" value="@order.Id" />
+                                                <button type="submit" class="btn btn-success btn-sm">Transport</button>
+                                            </form>
                                                 break;
                                             case 3:
-                                                <p>Waiting for payment</p>
-                                                break;
-                                            case 4:
-                                                <p>completed</p>
+                                                <p>Completed</p>
                                                 break;
                                             default:
-                                                <p>canceled</p>
+                                                <p>Canceled</p>
                                                 break;
                                         }
                                     </td>
                                     <td>
-                                        <button class="btn btn-warning btn-sm">Detail</button>
-
-                                        @if (0 < order.Status && order.Status <= 3)
-                                        {
-                                            <form asp-action="ChangeOrder" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to change this order status?');">
-                                                <input type="hidden" name="id" value="@order.Id" />
-                                                <button type="submit" class="btn btn-success btn-sm">Next status</button>
-                                            </form>
-                                        }
-                                        else
-                                        {
-                                            <button class="btn btn-success btn-sm">Next status</button>
-                                        }
-
                                         @if (order.Status == 1 || order.Status == 2)
                                         {
                                             <form asp-action="CancelOrder" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to cancel order?');">
@@ -146,7 +144,7 @@
                                             <button class="btn btn-danger btn-sm">Cancel order</button>
                                         }
 
-                                        @if (order.Status > 3)
+                                        @if (order.Status > 2)
                                         {
                                             <form asp-action="DeleteOrder" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this order?');">
                                                 <input type="hidden" name="id" value="@order.Id" />

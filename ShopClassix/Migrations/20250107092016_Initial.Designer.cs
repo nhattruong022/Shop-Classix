@@ -12,7 +12,7 @@ using Shop_Classix.Repository;
 namespace Shop_Classix.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250107084105_Initial")]
+    [Migration("20250107092016_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
