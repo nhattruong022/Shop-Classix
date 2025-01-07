@@ -1,6 +1,14 @@
 ﻿@model CustomerModel
+
+@using Shop_Classix.Repository;
+
 @{
+
     ViewData["Title"] = "Personal Information Page";
+
+
+
+    var favoritelist = ViewBag.favoritelist as List<Shop_Classix.Models.ProductList>;
 }
 
 
@@ -100,6 +108,7 @@
     </div>
 </div>
 
+
 <section class="related-product">
     <div class="container">
         <div class="row">
@@ -109,7 +118,10 @@
                 </div>
             </div>
         </div>
+      
         <div class="row">
+            @foreach (var item in favoritelist)
+            {
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="product__item">
                     <div class="product__item__pic set-bg"
@@ -127,80 +139,15 @@
                         </ul>
                     </div>
                     <div class="product__item__text">
-                        <h6><a href="#">Drawer Travertine Side Table</a></h6>
-                        <h5>$1500</h5>
+                            <h6><a href="#">@item.Name</a></h6>
+                            <h5>@item.Price</h5>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg"
-                         data-setbg="https://cdn.shopify.com/s/files/1/0285/8683/6027/products/DBOLDR2037N_300x.png?v=1650962649">
-                        <ul class="product__item__pic__hover">
-                            <li>
-                                <a href="#"><i class="fa fa-heart"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-retweet"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Drawer Bamboo Nightstand</a></h6>
-                        <h5>$3000</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg"
-                         data-setbg="https://cdn.shopify.com/s/files/1/0285/8683/6027/products/CARM113-019-122_2_300x.png?v=1697565591">
-                        <ul class="product__item__pic__hover">
-                            <li>
-                                <a href="#"><i class="fa fa-heart"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-retweet"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6><a href="#">Cerused Oak Bed </a></h6>
-                        <h5>$5600</h5>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="product__item">
-                    <div class="product__item__pic set-bg"
-                         data-setbg="https://cdn.shopify.com/s/files/1/0285/8683/6027/products/CARC063-419-102_4_300x.png?v=1697548926">
-                        <ul class="product__item__pic__hover">
-                            <li>
-                                <a href="#"><i class="fa fa-heart"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-retweet"></i></a>
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-shopping-cart"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="product__item__text">
-                        <h6>
-                            <a href="#">Brass Wood Framed Mirror Queen Size Bed </a>
-                        </h6>
-                        <h5>$3400</h5>
-                    </div>
-                </div>
-            </div>
+            }
+
         </div>
+          
     </div>
 </section>
 <!-- Related Product Section End -->

@@ -18,8 +18,8 @@ namespace Shop_Classix.Controllers
 		{
 			_dataContext = dataContext;
 		}
-
-		[HttpGet]
+       
+        [HttpGet]
 		public IActionResult Register()
 		{
 			return View();
@@ -106,10 +106,11 @@ namespace Shop_Classix.Controllers
 				}
 				else
 				{
-					//Nếu người dùng nhập đúng thông tin: Tạo ra các claim
-					//thiết lập cookie xác thực
+                   
+                    //Nếu người dùng nhập đúng thông tin: Tạo ra các claim
+                    //thiết lập cookie xác thực
 
-					var claims = new List<Claim>
+                    var claims = new List<Claim>
 				   {
 					   new Claim(ClaimTypes.Email, khachHang.Email), //email khách hàng
 					   new Claim(ClaimTypes.NameIdentifier, khachHang.Id.ToString()), //id khách hàng
@@ -153,11 +154,32 @@ namespace Shop_Classix.Controllers
 			return RedirectToAction("Login", "KhachHang");
 		}
 
-
-		public IActionResult Profile()
+       
+        public IActionResult Profile()
 		{
 			CustomerModel customer = _dataContext.customers.FirstOrDefault(p => p.Email == User.Identity.Name);
 
+            //danh sách yêu thích vui
+            // Lấy ID người dùng đang đăng nhập
+            var customerEmail = User.Identity.Name;
+            var customerId = _dataContext.customers
+             .Where(c => c.Email == customerEmail)
+             .Select(c => c.Id)
+             .FirstOrDefault();
+			var favorite = _dataContext.favoriteProducts
+				.Where(f => f.CustomerId == customerId)
+				.ToList();
+			var favoritelist = from f in favorite
+							   join p in _dataContext.products on f.ProductId equals p.Id
+							   select new ProductList
+                               {
+								   Id=p.Id,
+							   Image=p.Image,
+							   Name=p.Name,
+							   Price=p.Price
+							   };
+            ViewBag.AlertMessage = customerEmail;
+			ViewBag.favoritelist = favoritelist.ToList();
 			return View(customer);
 		}
 
