@@ -52,6 +52,9 @@
                             }
                             else
                             {
+                                <form asp-action="RemoveAllFromCart" asp-controller="Cart" method="post">
+                                    <button type="submit" class="btn btn-danger">Remove All</button>
+                                </form>
                                 <table>
                                     <thead>
                                         <tr>
@@ -67,7 +70,7 @@
                                         {
                                             <tr>
                                                 <td class="shoping__cart__item">
-                                                    <img src="@Url.Content("~/Classix/img/" + item.ImageUrl)" alt="" />
+                                                    <img src="@Url.Content("~/Classix/img/" + item.ImageUrl)" alt="" style="max-width: 200px; max-height: 200px;"  />
                                                     <h5>@item.ProductName</h5>
                                                 </td>
                                                 <td class="shoping__cart__price">@item.Price.ToString("C") VNĐ</td>
@@ -84,6 +87,7 @@
                                             </tr>
                                         }
                                     </tbody>
+                                 
                                 </table>
 
                                 <!-- Phân trang -->
@@ -153,7 +157,7 @@
                             <h5>Cart Total</h5>
                             <ul>
                                 @* <li>Subtotal <span>40.000.000VNĐ</span></li> *@
-                                <li>Total <span>@Model.TotalAmount.ToString("C")VNĐ</span></li>
+                                <li>Total <span>@* @Model.TotalAmount.ToString("C") *@@ViewBag.TotalAmount.ToString("C") VNĐ</span></li>
                             </ul>
                             <a asp-action="CheckOut" asp-controller="Cart" class="primary-btn">PROCEED TO CHECKOUT</a>
                         </div>

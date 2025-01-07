@@ -11,22 +11,32 @@ namespace Shop_Classix.Controllers
     {
       
         private readonly DataContext dataContext;
-        private const int PageSize = 1;
+        private const int PageSize = 2;
 
         public CartController(DataContext context)
         {
             dataContext = context;
         }
+        private int GetUniqueProductCount()
+        {
+            var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
+            return cart.Items.Select(item => item.ProductId).Distinct().Count();
+        }
 
-        // Hiển thị giỏ hàng
+
+     
         public async Task<IActionResult> Cart(int page = 1)
         {
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
 
+            // Tính số lượng sản phẩm khác nhau
+            ViewBag.UniqueProductCount = GetUniqueProductCount();
+
             var totalOrders = cart.Items.Count;
             var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
 
-            cart.Items = cart.Items
+            // Chỉ lấy sản phẩm cho trang hiện tại
+            var paginatedItems = cart.Items
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize)
                 .ToList();
@@ -34,7 +44,19 @@ namespace Shop_Classix.Controllers
             ViewBag.TotalPages = totalPages;
             ViewBag.CurrentPage = page;
 
+            // Lưu tổng tiền của tất cả sản phẩm vào ViewBag
+            ViewBag.TotalAmount = CalculateTotalAmount(cart.Items); // Tổng tiền cho tất cả sản phẩm
+            //ViewBag.CurrentPageTotalAmount = CalculateTotalAmount(paginatedItems); // Tổng tiền cho sản phẩm trong trang hiện tại
+
+            // Trả về giỏ hàng với các sản phẩm đã phân trang
+            cart.Items = paginatedItems;
             return View(cart);
+        }
+
+        // Hàm tính tổng tiền cho sản phẩm
+        private decimal CalculateTotalAmount(List<CartItemViewModel> items)
+        {
+            return items.Sum(item => item.TotalPrice);
         }
 
         [HttpPost]
@@ -61,6 +83,7 @@ namespace Shop_Classix.Controllers
         public IActionResult AddToCart(int id, int quantity = 1) // Thêm tham số quantity
 
         {
+            
             var product = dataContext.products.FirstOrDefault(p => p.Id == id);
             if (product == null)
             {
@@ -86,19 +109,20 @@ namespace Shop_Classix.Controllers
                 };
                 cart.Items.Add(cartItem);
             }
-
+            // Tính số lượng sản phẩm khác nhau
+        
             HttpContext.Session.Set("Cart", cart);
 
             // Trả về phản hồi JSON thay vì chuyển hướng
             return Json(new { success = true, message = "Thêm vào giỏ thành công!" });
         }
         [HttpPost]
-        public IActionResult RemoveFromCart(int productId)
+        public IActionResult RemoveFromCart(int id) // Đổi tên tham số thành id cho nhất quán
         {
             var cart = HttpContext.Session.Get<CartViewModel>("Cart");
             if (cart != null)
             {
-                var itemToRemove = cart.Items.FirstOrDefault(item => item.ProductId == productId);
+                var itemToRemove = cart.Items.FirstOrDefault(item => item.ProductId == id);
                 if (itemToRemove != null)
                 {
                     cart.Items.Remove(itemToRemove); // Xóa sản phẩm khỏi giỏ hàng
@@ -106,7 +130,7 @@ namespace Shop_Classix.Controllers
             }
 
             HttpContext.Session.Set("Cart", cart);
-            return RedirectToAction("Cart"); // Chuyển hướng về trang giỏ hàng
+            return RedirectToAction("Cart", new { page = 1 }); // Chuyển hướng về trang giỏ hàng với trang đầu tiên
         }
 
 

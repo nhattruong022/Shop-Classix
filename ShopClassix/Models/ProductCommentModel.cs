@@ -8,7 +8,7 @@ namespace Shop_Classix.Models
         [Key]
         public int Id { get; set; }
         public string Cotent { get; set; } = string.Empty;
-        public int Status { get; set; }
+     
         public int Rating { get; set; }
 
         [ForeignKey("customers")]
