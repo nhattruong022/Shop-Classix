@@ -8,7 +8,7 @@ using Shop_Classix.Repository;
 using System.Diagnostics;
 using System.Security.Claims;
 using X.PagedList.Extensions;
-
+using Shop_Classix.Helper;
 
 namespace Shop_Classix.Controllers
 {
@@ -53,7 +53,8 @@ namespace Shop_Classix.Controllers
                 AllProducts = AllProducts,
                 FavoriteProducts = favoriteProducts
             };
-
+            var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
+            ViewBag.UniqueProductCount = cart.Items.Select(item => item.ProductId).Distinct().Count();
             return View(model);
         }
 

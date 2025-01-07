@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Models;
 using Shop_Classix.Repository;
-
+using Shop_Classix.Models.ViewModels;
 namespace Shop_Classix.Areas.Admin.Controllers
 {
     [Area("Admin")]
@@ -91,16 +91,50 @@ namespace Shop_Classix.Areas.Admin.Controllers
             return View(contact);
         }
 
-
-
-
-
- 
-
+        //[HttpGet("Admin/Dashboard/Comments")]
+        //public IActionResult Comments()
+        //{
+        //    return View();
+        //}
         [HttpGet("Admin/Dashboard/Comments")]
         public IActionResult Comments()
         {
-            return View();
+            var comments = _datacontext.productComments
+                .Include(pc => pc.customers)
+                .Include(pc => pc.products)
+                .ThenInclude(p => p.category)
+                .Select(pc => new CommentViewModel
+                {
+                    CommentId = pc.Id,
+                    CustomerName = pc.customers.Name,
+                    ProductName = pc.products.Name,
+                    ProductImage = pc.products.Image,
+                    Category = pc.products.category.Name,
+                    Content = pc.Cotent,
+                    Rating = pc.Rating
+                }).ToList();
+
+            return View(comments);
         }
+
+        [HttpPost("Admin/Dashboard/DeleteComment/{id}")]
+        public IActionResult DeleteComment(int id)
+        {
+            // Tìm bình luận theo ID
+            var comment = _datacontext.productComments.Find(id);
+
+            if (comment != null)
+            {
+                // Xóa bình luận
+                _datacontext.productComments.Remove(comment);
+                _datacontext.SaveChanges(); // Lưu thay đổi vào CSDL
+            }
+
+            // Chuyển hướng về trang danh sách bình luận
+            return RedirectToAction("Comments");
+        }
+
+
+
     }
 }
