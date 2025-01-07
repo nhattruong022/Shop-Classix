@@ -8,7 +8,7 @@ using Shop_Classix.Repository;
 using System.Diagnostics;
 using System.Security.Claims;
 using X.PagedList.Extensions;
-
+using Shop_Classix.Helper;
 
 namespace Shop_Classix.Controllers
 {
@@ -16,9 +16,9 @@ namespace Shop_Classix.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly DataContext dataContext;
-        public HomeController(ILogger<HomeController> logger,DataContext _datacontext)
+        public HomeController(ILogger<HomeController> logger, DataContext _datacontext)
         {
-            dataContext=_datacontext;
+            dataContext = _datacontext;
             _logger = logger;
         }
 
@@ -53,7 +53,8 @@ namespace Shop_Classix.Controllers
                 AllProducts = AllProducts,
                 FavoriteProducts = favoriteProducts
             };
-
+            var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
+            ViewBag.UniqueProductCount = cart.Items.Select(item => item.ProductId).Distinct().Count();
             return View(model);
         }
 
@@ -66,23 +67,32 @@ namespace Shop_Classix.Controllers
                 .Include(p => p.category)
                 .FirstOrDefault(p => p.Id == id);
 
+            // Kiểm tra xem sản phẩm có tồn tại không
             if (product == null)
             {
                 return NotFound(); // Nếu không tìm thấy sản phẩm, trả về lỗi 404
             }
 
-            // Trả về view chi tiết với sản phẩm
+            // Lấy danh sách sản phẩm liên quan cùng danh mục, loại trừ sản phẩm hiện tại
+            var relatedProducts = dataContext.products
+                .Include(p => p.category)
+                .Where(p => p.CategoryId == product.CategoryId && p.Id != id)
+                .Take(4)
+                .ToList();
+
+            // Gán danh sách sản phẩm liên quan vào ViewBag
+            ViewBag.RelatedProducts = relatedProducts;
             return View(new List<Shop_Classix.Models.ProductsModel> { product });
         }
-      
 
-        public IActionResult TimKiem(string keyword, int? categoryId,int? price,int ?page)
+
+        public IActionResult TimKiem(string keyword, int? categoryId, int? price, int? page)
         {
             int pageSize = 4;   //số sản phẩm trong 1 trang
             int pageNumber = (page ?? 1);  //mặc định là trang 1
 
 
-            
+
             var products = dataContext.products.Include(p => p.category).AsQueryable();
 
             // Lọc theo danh mục
@@ -97,9 +107,9 @@ namespace Shop_Classix.Controllers
                 products = products.Where(p => p.Name.Contains(keyword));
             }
 
-            if(price.HasValue)
+            if (price.HasValue)
             {
-                switch(price.Value)
+                switch (price.Value)
                 {
                     case 1:
                         products = products.Where(p => p.Price < 100000);
@@ -110,12 +120,12 @@ namespace Shop_Classix.Controllers
                     case 3:
                         products = products.Where(p => p.Price > 500000);
                         break;
-                }    
+                }
             }
 
 
             //tìm kiếm phân trang sắp xếp theo id
-            var pagedProducts= products.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
+            var pagedProducts = products.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
 
 
             //truyền danh mục và tham số tìm kiếm vào viewBag để sử dụng cho phần phân trang
@@ -126,7 +136,7 @@ namespace Shop_Classix.Controllers
             ViewBag.categories = new SelectList(dataContext.categories, "Id", "Name");
 
             // Trả về kết quả tìm kiếm
-            return View("TimKiem",pagedProducts);
+            return View("TimKiem", pagedProducts);
         }
 
         //thêm sản phẩm yêu thích
@@ -145,7 +155,7 @@ namespace Shop_Classix.Controllers
                 {
                     CustomerId = userId,
                     ProductId = productId,
-            
+
                 };
                 dataContext.favoriteProducts.Add(favoriteProduct);
             }
@@ -168,17 +178,17 @@ namespace Shop_Classix.Controllers
             });
         }
 
- 
-
-        
 
 
-        public IActionResult DetailProduct()    
+
+
+
+        public IActionResult DetailProduct()
         {
             return View();
         }
 
-        
+
 
 
 
