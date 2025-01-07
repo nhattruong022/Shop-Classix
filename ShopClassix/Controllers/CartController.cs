@@ -5,17 +5,20 @@ using Shop_Classix.Helper;
 using Microsoft.AspNetCore.Authorization;
 using Shop_Classix.Models;
 using System.Security.Claims;
+using Shop_Classix.Service;
+using System.Net.WebSockets;
 namespace Shop_Classix.Controllers
 {
     public class CartController : Controller
     {
-      
+        private readonly IVnPayService _vnPayService;
         private readonly DataContext dataContext;
         private const int PageSize = 1;
 
-        public CartController(DataContext context)
+        public CartController(DataContext context,IVnPayService vnPayService)
         {
             dataContext = context;
+            _vnPayService = vnPayService;
         }
 
         // Hiển thị giỏ hàng
@@ -36,6 +39,8 @@ namespace Shop_Classix.Controllers
 
             return View(cart);
         }
+
+
 
         [HttpPost]
         public IActionResult UpdateQuantity(int id, int quantity)
@@ -127,10 +132,10 @@ namespace Shop_Classix.Controllers
 
 
             // Tổng giá trị giỏ hàng
-            var totalPrice = cart.Items.Sum(item => item.TotalPrice);
+            var totalPrice =cart.Items.Sum(item => item.TotalPrice);
 
             // Tính tiền cọc (10%)
-            var depositAmount = totalPrice * 0.1m;
+            var depositAmount = totalPrice * 0.1;
 
 
             // Create the checkout model
@@ -154,7 +159,7 @@ namespace Shop_Classix.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult CheckOut(CheckOutViewModel model)
+        public IActionResult CheckOut(CheckOutViewModel model,string payment="C0D")
         {
             // Lấy giỏ hàng từ Session
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
@@ -164,6 +169,21 @@ namespace Shop_Classix.Controllers
                 return RedirectToAction("Cart", "Cart");
             }
 
+                if (payment == "Payment VNPAY")
+                {
+                    var vnPayModel = new VnPaymentRequestModel
+                    {
+                        Amount = cart.Items.Sum(item => item.TotalPrice),
+                        CreatedDate = DateTime.Now,
+                        description = $"{model.Receiver} {model.Phone}",
+                        FullName = model.Receiver,
+                        OrderId = DateTime.UtcNow.Ticks.ToString()
+                    };
+                return Redirect(_vnPayService.CreatePaymentUrl(HttpContext,vnPayModel));
+                }
+            
+          
+          
             //lấy thông tin cookie email
             var customerEmail = HttpContext.User.Claims.SingleOrDefault(p => p.Type == ClaimTypes.Email)?.Value;
 
@@ -177,19 +197,19 @@ namespace Shop_Classix.Controllers
             }
  
                // Tổng giá trị giỏ hàng và tiền cọc
-            var totalPrice = cart.Items.Sum(item => item.TotalPrice);
-            var depositAmount = totalPrice * 0.1m;
-        
+            var totalPrice =cart.Items.Sum(item => item.TotalPrice);
+            var depositAmount =totalPrice * 0.1;
 
 
+           
 
             //tạo đơn hàng
             var order = new OrderModel
             {
-                TotalPrice = cart.Items.Sum(item => item.TotalPrice),
+                TotalPrice =cart.Items.Sum(item => item.TotalPrice),
                 deposit = depositAmount,
                 Status = 1,
-                PaymentMethod = model.PaymentMethod,
+                PaymentMethod ="COD",
                 CustomerId = customer.Id,
                 CustomerName = model.Receiver,
                 Address = model.Address,
@@ -232,6 +252,36 @@ namespace Shop_Classix.Controllers
             }
         }
 
+
+        [Authorize]
+        public IActionResult PaymentFail()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult PaymentSuccess()
+        {
+            return View("Success", "Cart");
+        }
+
+        //sau khi thanh toán xong thì trả về gì
+        [Authorize]
+        public IActionResult PaymentCallBack()
+        {
+            var response = _vnPayService.PaymentExecute(Request.Query);
+
+            if(response==null||response.VnPayResponseCode!="00") //00 là giao dịch thành công
+            {
+                TempData["Message"] = $"Failed Pay VNPAY:{response.VnPayResponseCode} ";
+                return RedirectToAction("PaymentFail");
+            }
+
+
+            TempData["Message"] = $"Success Pay VNPAY";
+            
+            return RedirectToAction("PaymentSuccess");
+        }
 
 
 

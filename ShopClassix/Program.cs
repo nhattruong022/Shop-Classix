@@ -3,13 +3,20 @@ using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Repository;
 using Shop_Classix.Service;
 
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+//connect VNPay
+builder.Services.AddSingleton<IVnPayService, VnPayService>();
+
 
 //Connect DB
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration["ConnectionStrings:ConnectDb"]);
 });
+
 
 
 // Add services to the container.
@@ -32,6 +39,9 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+
+
+
 //phân quyền admin
 builder.Services.AddAuthorization(options =>
 {

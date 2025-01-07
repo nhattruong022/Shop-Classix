@@ -143,18 +143,10 @@
                                     do eiusmod tempor incididunt ut labore et dolore magna
                                     aliqua.
                                 </p>
-                            <div class="form-check mb-4">
-                                <input asp-for="PaymentMethod" value="1" class="form-check-input" type="radio" id="cod" />
-                                <label class="form-check-label" for="cod">COD</label>
-                            </div>
-                            <div class="form-check mb-4">
-                                <input asp-for="PaymentMethod" value="2" class="form-check-input" type="radio" id="creditCard" />
-                                <label class="form-check-label" for="creditCard">Credit Card</label>
-                            </div>
 
-                            <button type="submit" class="btn btn-primary btn-block">
-                                PLACE ORDER
-                            </button>
+
+                            <input type="submit" name="payment" value="Payment(COD)" class="btn btn-primary btn-block" />
+                            <input type="submit" name="payment" value="Payment VNPAY" class="btn btn-primary btn-block" />
                         </div>
                     </div>
                 </div>

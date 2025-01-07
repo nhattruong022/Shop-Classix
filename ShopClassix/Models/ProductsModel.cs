@@ -13,12 +13,11 @@ namespace Shop_Classix.Models
         public string Name { get; set; } = string.Empty;
 
         [Required(ErrorMessage ="Please enter price")]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal Price { get; set; }
+		public double Price { get; set; }
 
         [Required(ErrorMessage ="Plesae enter description")]        
-        
         public string Description { get; set; } = string.Empty;
+
         public int? FavoriteNumber { get; set; }
 
         public int Status { get; set; }

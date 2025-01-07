@@ -80,8 +80,9 @@
                   <a href="#"><i class="fa fa-heart"></i> <span>1</span></a>
                 </li>
                 <li>
-                  <a href="#"
-                    ><i class="fa fa-shopping-bag"></i> <span>3</span></a
+                                    <a asp-action="Cart" asp-controller="Cart">
+                                        <i class="fa fa-shopping-bag"></i> <span>@ViewBag.UniqueProductCount</span>
+                                    </a>
                   >
                 </li>
               </ul>
