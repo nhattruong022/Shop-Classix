@@ -3,6 +3,8 @@ using Shop_Classix.Repository;
 using Shop_Classix.Models.ViewModels;
 using Shop_Classix.Helper;
 using Microsoft.AspNetCore.Authorization;
+using Shop_Classix.Models;
+using System.Security.Claims;
 namespace Shop_Classix.Controllers
 {
     public class CartController : Controller
@@ -141,13 +143,119 @@ namespace Shop_Classix.Controllers
         }
 
 
-
+        [HttpGet]
         [Authorize]
         public IActionResult CheckOut()
         {
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
-            return View(cart.Items);
+
+
+            // Tổng giá trị giỏ hàng
+            var totalPrice = cart.Items.Sum(item => item.TotalPrice);
+
+            // Tính tiền cọc (10%)
+            var depositAmount = totalPrice * 0.1m;
+
+
+            // Create the checkout model
+            var model = new CheckOutViewModel
+            {
+                Items = cart.Items,
+                Total = cart.Items.Sum(item => item.TotalPrice),
+                deposit=depositAmount
+            };
+
+
+
+            return View(model);
+
+
+
+
+
+            return View(model);
         }
+
+        [HttpPost]
+        [Authorize]
+        public IActionResult CheckOut(CheckOutViewModel model)
+        {
+            // Lấy giỏ hàng từ Session
+            var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
+
+            if (cart.Items == null || !cart.Items.Any())
+            {
+                return RedirectToAction("Cart", "Cart");
+            }
+
+            //lấy thông tin cookie email
+            var customerEmail = HttpContext.User.Claims.SingleOrDefault(p => p.Type == ClaimTypes.Email)?.Value;
+
+            //kiểm tra email khách hàng có giống với cookie email đã đăng nhập
+            var customer = dataContext.customers.SingleOrDefault(c => c.Email == customerEmail);
+
+            if (customer == null)
+            {
+                ModelState.AddModelError("", "Customer not found");
+                return View(model);
+            }
+ 
+               // Tổng giá trị giỏ hàng và tiền cọc
+            var totalPrice = cart.Items.Sum(item => item.TotalPrice);
+            var depositAmount = totalPrice * 0.1m;
+        
+
+
+
+            //tạo đơn hàng
+            var order = new OrderModel
+            {
+                TotalPrice = cart.Items.Sum(item => item.TotalPrice),
+                deposit = depositAmount,
+                Status = 1,
+                PaymentMethod = model.PaymentMethod,
+                CustomerId = customer.Id,
+                CustomerName = model.Receiver,
+                Address = model.Address,
+                Email = model.Email,
+                Phone = model.Phone,
+                OrderNotes = model.OrderNotes,
+                CreateAt = DateTime.Now,
+                UpdateAt = DateTime.Now
+            };
+
+            try
+            {
+                dataContext.orders.Add(order);
+                dataContext.SaveChanges();
+
+                //lưu đơn hàng chi tiết
+                var orderDetails = cart.Items.Select(item => new OrderDetailModel
+                {
+                    OrderId = order.Id,
+                    ProductId = item.ProductId,
+                    Quantity = item.Quantity,
+                    TotalPrice = item.TotalPrice
+                }).ToList();
+
+                dataContext.orderDetails.AddRange(orderDetails);
+                dataContext.SaveChanges();
+
+                // xóa giỏ hàng
+                HttpContext.Session.Remove("Cart");
+
+                TempData["ThankYouMessage"] = "Thank you for your order! We will process it shortly.";
+
+                return RedirectToAction("CheckOut","Cart");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error during checkout: {ex.Message}");
+                TempData["ErrorMessage"] = "An error occurred during checkout. Please try again.";
+                return View(model);
+            }
+        }
+
 
 
 

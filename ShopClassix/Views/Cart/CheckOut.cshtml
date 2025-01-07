@@ -1,8 +1,9 @@
-﻿@model IEnumerable<Shop_Classix.Models.ViewModels.CartItemViewModel>
+﻿@model Shop_Classix.Models.ViewModels.CheckOutViewModel;
+
 
 
 @{
-	ViewData["Title"] = "Check Out Page";
+    ViewData["Title"] = "Check Out Page";
 }
 
 
@@ -23,8 +24,16 @@
 }
 
 
+
 <section class="checkout spad">
     <div class="container">
+        @if (TempData["ThankYouMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["ThankYouMessage"]
+            </div>
+        }
+
         <div class="row">
             <div class="col-lg-12">
                 <h6>
@@ -35,15 +44,7 @@
         </div>
         <div class="checkout__form">
             <h4>Billing Details</h4>
-            <form action="#">
-
-                <div class="form-check mb-4">
-                    <label class="form-check-label" for="paypal">
-                        Same as customer information
-                    </label>
-                    <input class="form-check-input" type="checkbox"/>
-                </div>
-                
+            <form asp-action="CheckOut" asp-controller="Cart" method="post">
                 <div class="row">
                     <!-- Left Section: Customer Information -->
                     <div class="col-lg-8 col-md-6">
@@ -51,38 +52,40 @@
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>Receiver<span>*</span></p>
-                                    <input type="text" />
+                                    <input asp-for="Receiver" type="text" />
+                                    <span class="text-danger" asp-validation-for="Receiver"></span>
                                 </div>
                             </div>
                         </div>
-                        <div class="checkout__input">
-                            <p>Town/City<span>*</span></p>
-                            <input type="text" value="HCM city" />
-                        </div>
+
                         <div class="checkout__input">
                             <p>Address<span>*</span></p>
-                            <input type="text"
+                            <input asp-for="Address" type="text"
                                    placeholder="Your Address"
                                    class="checkout__input__add" />
+                            <span class="text-danger" asp-validation-for="Address"></span>
                         </div>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>Phone<span>*</span></p>
-                                    <input type="text" />
+                                    <input asp-for="Phone" type="text" />
+                                    <span class="text-danger" asp-validation-for="Phone"></span>
                                 </div>
                             </div>
                             <div class="col-lg-6">
                                 <div class="checkout__input">
                                     <p>Email<span>*</span></p>
-                                    <input type="text" />
+                                    <input asp-for="Email" type="text" />
+                                    <span class="text-danger" asp-validation-for="Email"></span>
                                 </div>
                             </div>
                         </div>
                         <div class="checkout__input">
                             <p>Order notes<span>*</span></p>
-                            <input type="text"
+                            <input asp-for="OrderNotes" type="text"
                                    placeholder="Notes about your order, e.g. special notes for delivery." />
+                            <span class="text-danger" asp-validation-for="OrderNotes"></span>
                         </div>
                     </div>
 
@@ -97,41 +100,58 @@
                                     <div class="col-3 text-right">Total</div>
                                 </div>
                             </div>
-                            <ul class="list-unstyled">
-                                @foreach (var item in Model)
-                                {
-                                    <li class="row mb-2">
-                                        <div class="col-6">@item.ProductName</div>
-                                        <div class="col-3 text-center">@item.Quantity</div>
-                                        <div class="col-3 text-right">@item.Price</div>
-                                    </li>
-                                }
-                            </ul>
-                            <div class="checkout__order__subtotal font-weight-bold mt-3 d-flex justify-content-between">
-                                <span>Subtotal:</span>
-                                <span>@Model.Sum(item => item.TotalPrice).ToString("C")</span>
+
+                            @if (Model?.Items != null && Model.Items.Any())
+                            {
+                                <ul class="list-unstyled">
+                                    @foreach (var item in Model.Items)
+                                    {
+                                        <li class="row mb-2">
+                                            <div class="col-6">@item.ProductName</div>
+                                            <div class="col-3 text-center">@item.Quantity</div>
+                                            <div class="col-3 text-right">@item.Price</div>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <p>No items in the cart.</p>
+                            }
+
+                                <div class="checkout__order__subtotal font-weight-bold mt-3 d-flex justify-content-between">
+                                    <span>Subtotal:</span>
+                                    <span>@Model?.Items?.Sum(item => item.TotalPrice)</span>
+                                </div>
+                                <div class="checkout__order__total font-weight-bold mt-3 d-flex justify-content-between">
+                                    <span>Total:</span>
+                                    <span>@Model?.Items?.Sum(item => item.TotalPrice)</span>
+                                </div>
+
+
+
+
+                            <div class="checkout__order__deposit font-weight-bold mt-3 d-flex justify-content-between">
+                                <span>Deposit (10%):</span>
+                                <span>@Model.deposit.ToString("C")</span>
                             </div>
-                            <div class="checkout__order__total font-weight-bold mt-3 d-flex justify-content-between">
-                                <span>Total:</span>
-                                <span>@Model.Sum(item => item.TotalPrice).ToString("C")</span>
-                            </div>
-                            <p class="mt-3 text-muted small">
-                                Lorem ipsum dolor sit amet, consectetur adip elit, sed
-                                do eiusmod tempor incididunt ut labore et dolore magna
-                                aliqua.
-                            </p>
-                            <div class="form-check mb-3">
-                                <input class="form-check-input" type="checkbox" id="payment" />
-                                <label class="form-check-label" for="payment">
-                                    Check Payment
-                                </label>
+
+
+
+                                <p class="mt-3 text-muted small">
+                                    Lorem ipsum dolor sit amet, consectetur adip elit, sed
+                                    do eiusmod tempor incididunt ut labore et dolore magna
+                                    aliqua.
+                                </p>
+                            <div class="form-check mb-4">
+                                <input asp-for="PaymentMethod" value="1" class="form-check-input" type="radio" id="cod" />
+                                <label class="form-check-label" for="cod">COD</label>
                             </div>
                             <div class="form-check mb-4">
-                                <input class="form-check-input" type="checkbox" id="paypal" />
-                                <label class="form-check-label" for="paypal">
-                                    COD
-                                </label>
+                                <input asp-for="PaymentMethod" value="2" class="form-check-input" type="radio" id="creditCard" />
+                                <label class="form-check-label" for="creditCard">Credit Card</label>
                             </div>
+
                             <button type="submit" class="btn btn-primary btn-block">
                                 PLACE ORDER
                             </button>
@@ -144,9 +164,12 @@
     </div>
 </section>
 
-        
 
-    @section Script
+
+
+
+
+@section Script
     {
     <script src="@Url.Content("~/Classix/user/js/jquery-3.3.1.min.js")"></script>
     <script src="@Url.Content("~/Classix/user/js/bootstrap.min.js")"></script>
@@ -156,4 +179,5 @@
     <script src="@Url.Content("~/Classix/user/js/mixitup.min.js")"></script>
     <script src="@Url.Content("~/Classix/user/js/owl.carousel.min.js")"></script>
     <script src="@Url.Content("~/Classix/user/js/main.js")"></script>
-    }
+  
+}
