@@ -1,5 +1,7 @@
 ﻿namespace Shop_Classix.Models.ViewModels
 {
+
+    // model VNPAY
     public class VnPaymentResponseModel
     {
         public bool Success { get; set; }

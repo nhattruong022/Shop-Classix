@@ -11,8 +11,8 @@ namespace Shop_Classix.Service
         public VnPayService(IConfiguration config) {
             _configuration=config;
         }
-
-
+        
+        //cấu hình dữ liệu VNPay
         public string CreatePaymentUrl(HttpContext context, VnPaymentRequestModel model)
         {
             var tick = DateTime.Now.ToString();

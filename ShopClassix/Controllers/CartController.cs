@@ -56,15 +56,16 @@ namespace Shop_Classix.Controllers
             return View(cart);
         }
 
-<<<<<<< HEAD
 
-=======
+
+
         // Hàm tính tổng tiền cho sản phẩm
-        private decimal CalculateTotalAmount(List<CartItemViewModel> items)
+        private double CalculateTotalAmount(List<CartItemViewModel> items)
         {
             return items.Sum(item => item.TotalPrice);
         }
->>>>>>> 86f4e7a97673861590b0aa9b7fc9250439e7ecfe
+
+
 
         [HttpPost]
         public IActionResult UpdateQuantity(int id, int quantity)
@@ -123,6 +124,8 @@ namespace Shop_Classix.Controllers
             // Trả về phản hồi JSON thay vì chuyển hướng
             return Json(new { success = true, message = "Thêm vào giỏ thành công!" });
         }
+
+
         [HttpPost]
         public IActionResult RemoveFromCart(int id) // Đổi tên tham số thành id cho nhất quán
         {

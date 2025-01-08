@@ -6,6 +6,7 @@ using System.Text;
 
 namespace Shop_Classix.Helper
 {
+    //thư viện VNPAY tích hợp
     public class VnPayLibrary
     {
         private readonly SortedList<string, string> _requestData = new SortedList<string, string>(new VnPayCompare());

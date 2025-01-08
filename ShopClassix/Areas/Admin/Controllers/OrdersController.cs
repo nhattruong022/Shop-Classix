@@ -50,14 +50,13 @@ namespace Shop_Classix.Areas.Admin.Controllers
         //        return NotFound();
         //    }
 
-<<<<<<< HEAD
         //    if (order.Status == 2 && order.PaymentMethod == 1)
         //        order.Status = 4;
         //    else
         //        order.Status++;
-=======
-            order.Status++;
->>>>>>> 86f4e7a97673861590b0aa9b7fc9250439e7ecfe
+
+        //    order.Status++;
+
 
         //    await _dataContext.SaveChangesAsync();
 

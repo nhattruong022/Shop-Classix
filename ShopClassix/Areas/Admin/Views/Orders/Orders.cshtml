@@ -100,7 +100,7 @@
                                     <td>@order.Address</td>
                                     <td>@order.TotalPrice VNĐ</td>
                                     <td>
-                                        @if(@order.PaymentMethod == 1){
+                                        @if(@order.PaymentMethod == "C0D"){
                                             <p>Credit Card(@order.deposit)</p>
                                         }
                                         else{

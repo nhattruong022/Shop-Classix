@@ -275,13 +275,8 @@ namespace Shop_Classix.Migrations
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
 
-<<<<<<< HEAD
                     b.Property<double>("deposit")
                         .HasColumnType("float");
-=======
-                    b.Property<decimal>("deposit")
-                        .HasColumnType("decimal(18,2)");
->>>>>>> 86f4e7a97673861590b0aa9b7fc9250439e7ecfe
 
                     b.HasKey("Id");
 
