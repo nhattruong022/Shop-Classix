@@ -1,14 +1,8 @@
 ﻿@model IEnumerable<Shop_Classix.Models.ProductsModel>
 
 @{
-
-    ViewData["Title"] = "Product";
-
+    ViewData["Title"] = "Admin-Product";
     Layout = "_AdminSubLayout";
-
-
-
-
 
     var productlist = ViewBag.Products;
 }
@@ -77,7 +71,8 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-4">
-                        <input type="text" name="name" class="form-control" id="searchInput" placeholder="Search by Product Name">
+                        <input type="text" name="name" class="form-control" id="searchInput"
+                            placeholder="Search by Product Name">
                     </div>
                     <div class="col-md-4">
                         <select class="form-control" name="Cate" id="filterCategory">
@@ -128,7 +123,6 @@
                             <tbody id="table-product">
                                 @foreach (var item in productlist)
                                 {
-
                                     <tr>
                                         <th scope="row">1</th>
                                         <td><img style="width: 150px;" src="~/Classix/img/@item.Image"></td>
@@ -146,70 +140,22 @@
                                             <button class="btn btn-danger btn-sm">Delete</button>
                                         </td>
                                     </tr>
-
-                                    @*
-                                <tr>
-                                <th scope="row">2</th>
-                                <td><img style="width: 150px;" src="~/Classix/img/table/DBOCWA3710N_3.jpg" alt=""></td>
-                                <td>wood desk</td>
-                                <td>Desk</td>
-                                <td>200000VND</td>
-                                <td>
-                                Bold. Iconic. Uncomplicated. When it comes to
-                                commanding attention, <br>
-                                this bed has no rival. Its svelte modern shape <br>
-                                is underscored by a rich Cerused Oak finish and lined with a metal <br>
-                                rail in Bronze Metallic Paint outlining the top of both the headboard and footboard. <br>
-                                </td>
-                                <td>wood-desk</td>
-                                <td>1</td>
-                                <td>
-                                <button class="btn btn-primary btn-sm">Add</button>
-                                <button class="btn btn-warning btn-sm">Edit</button>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                                </td>
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td><img style="width: 150px;" src="~/Classix/img/light/DBOLBN2015N_600x.jpg" alt=""></td>
-                                <td>wood light</td>
-                                <td>Light</td>
-                                <td>300000VND</td>
-                                <td>
-                                Bold. Iconic. Uncomplicated. When it comes to
-                                commanding attention, <br>
-                                this bed has no rival. Its svelte modern shape <br>
-                                is underscored by a rich Cerused Oak finish and lined with a metal <br>
-                                rail in Bronze Metallic Paint outlining the top of both the headboard and footboard. <br>
-                                </td>
-                                <td>wood-light</td>
-                                <td>1</td>
-                                <td>
-                                <button class="btn btn-primary btn-sm">Add</button>
-                                <button class="btn btn-warning btn-sm">Edit</button>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                                </td>
-                                </tr>*@
-
                                 }
-
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
                     @for (int i = 1; i <= ViewBag.TotalPages; i++)
-
                     {
                         <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
                             <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
                         </li>
                     }
                 </ul>
-            </nav>>
+            </nav>
         </div>
     </div>
 </div>

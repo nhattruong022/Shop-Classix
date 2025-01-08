@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Contact";
+    ViewData["Title"] = "Admin-Contact";
     Layout = "_AdminSubLayout";
 }
 
@@ -55,7 +55,6 @@
                     <li class="breadcrumb-item">
                         <a href="@Url.Action("Contact", "Dashboard", new { area = "Admin" })">Contact Management</a>
                     </li>
-
                 </ul>
             </div>
         </div>
@@ -95,23 +94,23 @@
                     <tbody>
                         @foreach (var item in Model)
                         {
-                            <tr>    
+                            <tr>
                                 <th scope="row">@item.Name</th>
-                              @*    <td>Đây là trang web bán nội thất gỗ</td> *@
-                               <td>@Html.Raw(@item.map)</td>
+                                @*    <td>Đây là trang web bán nội thất gỗ</td> *@
+                                <td>@Html.Raw(@item.map)</td>
                                 <td><img style="width:150px;" src="~/Classix/img/logo/@item.Logo" alt=""></td>
                                 <td>@item.PhoneNumber</td>
                                 <td>@item.Email</td>
                                 <td>@item.Address</td>
                                 <td>
-                                    <a asp-action="Edit" asp-controller="Dashboard"><button class="btn btn-warning btn-sm">Edit</button></a>
+                                    <a asp-action="Edit" asp-controller="Dashboard"><button
+                                            class="btn btn-warning btn-sm">Edit</button></a>
                                     <button class="btn btn-danger btn-sm">Delete</button>
                                 </td>
                             </tr>
                         }
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>

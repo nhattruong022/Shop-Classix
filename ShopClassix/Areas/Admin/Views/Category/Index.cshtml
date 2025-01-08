@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<Shop_Classix.Models.CategoryModel>;
 @{
 
-    ViewData["Title"] = "Category";
+    ViewData["Title"] = "Admin-Category";
 
     Layout = "_AdminSubLayout";
 
@@ -59,7 +59,6 @@
                     <li class="breadcrumb-item">
                         <a href="@Url.Action("Index", "Category", new { area = "Admin" })">Category Management</a>
                     </li>
-
                 </ul>
             </div>
         </div>
@@ -73,7 +72,8 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-4">
-                        <input type="text" class="form-control" name="name" id="searchInput" placeholder="Search by Category Name">
+                        <input type="text" class="form-control" name="name" id="searchInput"
+                            placeholder="Search by Category Name">
                     </div>
                     <div class="col-md-4">
                         <button type="submit" class="btn btn-primary" onclick="filterResults()">Search</button>
@@ -104,7 +104,6 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-
                             <th>Category</th>
                             <th>Status</th>
                             <th>Action</th>
@@ -112,50 +111,20 @@
                     </thead>
                     <tbody>
                         @foreach (var item in category)
-
                         {
-
                             <tr>
                                 <th scope="row">@item.Id</th>
                                 <td>@item.Name</td>
                                 <td>@item.Status</td>
-
-
                                 <td>
                                     <button class="btn btn-primary btn-sm">View</button>
                                     <button class="btn btn-warning btn-sm">Edit</button>
                                     <button class="btn btn-danger btn-sm">Delete</button>
                                 </td>
                             </tr>
-
-                            @*
-                        <tr>
-                        <th scope="row">2</th>
-
-                        <td>Desk</td>
-                        <td>1</td>
-                        <td>
-                        <button class="btn btn-primary btn-sm">View</button>
-                        <button class="btn btn-warning btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                        </td>
-                        </tr>
-                        <tr>
-                        <th scope="row">3</th>
-
-                        <td>Light</td>
-                        <td>1</td>
-                        <td>
-                        <button class="btn btn-primary btn-sm">View</button>
-                        <button class="btn btn-warning btn-sm">Edit</button>
-                        <button class="btn btn-danger btn-sm">Delete</button>
-                        </td>
-                        </tr>
-                        *@
                         }
                     </tbody>
                 </table>
-
             </div>
         </div>
     </div>
