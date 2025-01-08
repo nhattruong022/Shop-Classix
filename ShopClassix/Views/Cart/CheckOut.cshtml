@@ -109,7 +109,7 @@
                                         <li class="row mb-2">
                                             <div class="col-6">@item.ProductName</div>
                                             <div class="col-3 text-center">@item.Quantity</div>
-                                            <div class="col-3 text-right">@item.Price</div>
+                                            <div class="col-3 text-right">@string.Format("{0:0,0} VND",item.Price)</div>
                                         </li>
                                     }
                                 </ul>
@@ -121,11 +121,11 @@
 
                                 <div class="checkout__order__subtotal font-weight-bold mt-3 d-flex justify-content-between">
                                     <span>Subtotal:</span>
-                                    <span>@Model?.Items?.Sum(item => item.TotalPrice)</span>
+                                    <span>@string.Format("{0:0,0 VND}",Model?.Items?.Sum(item => item.TotalPrice)??0)</span>
                                 </div>
                                 <div class="checkout__order__total font-weight-bold mt-3 d-flex justify-content-between">
                                     <span>Total:</span>
-                                    <span>@Model?.Items?.Sum(item => item.TotalPrice)</span>
+                                    <span>@string.Format("{0:0,0 VND}",Model?.Items?.Sum(item => item.TotalPrice)??0)</span>
                                 </div>
 
 
@@ -133,7 +133,7 @@
 
                             <div class="checkout__order__deposit font-weight-bold mt-3 d-flex justify-content-between">
                                 <span>Deposit (10%):</span>
-                                <span>@Model.deposit.ToString("C")</span>
+                                <span>@string.Format("{0:0,0} VND",Model.deposit)</span>
                             </div>
 
 

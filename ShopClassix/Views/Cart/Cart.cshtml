@@ -73,11 +73,11 @@
                                                     <img src="@Url.Content("~/Classix/img/" + item.ImageUrl)" alt="" style="max-width: 200px; max-height: 200px;"  />
                                                     <h5>@item.ProductName</h5>
                                                 </td>
-                                                <td class="shoping__cart__price">@item.Price.ToString("C") VNĐ</td>
+                                                <td class="shoping__cart__price">@string.Format("{0:0,0} VND",item.Price)</td>
                                                 <td class="shoping__cart__quantity">
                                                     <input type="number" value="@item.Quantity" min="1" data-id="@item.ProductId" class="quantity-input" />
                                                 </td>
-                                                <td class="shoping__cart__total">@((item.Price * item.Quantity).ToString("C")) VNĐ</td>
+                                                <td class="shoping__cart__total">@string.Format("{0:0,0 VND}",item.Price * item.Quantity)</td>
                                                 <td>
                                                     <form asp-action="RemoveFromCart" asp-controller="Cart" method="post">
                                                         <input type="hidden" name="id" value="@item.ProductId" />
