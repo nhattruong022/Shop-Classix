@@ -2,6 +2,7 @@
     ViewData["Title"] = "Comments";
     Layout = "_AdminSubLayout";
 }
+@model List<Shop_Classix.Models.ViewModels.CommentViewModel>
 
 @section Link {
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
@@ -87,64 +88,45 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Customer ID</th>
-                            <th>Image</th>
+                            <th>Comment ID</th>
+                            <th>Customer Name</th>
                             <th>Product Name</th>
+                            <th>Image</th>
                             <th>Category</th>
                             <th>Content</th>
                             <th>Rating</th>
-                            <th>Order Notes</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td><img style="width:150px;" src="~/Classix/img/bed/CARM113-019-122_2.jpg" alt=""></td>
-                            <td>wood table</td>
-                            <td>Table</td>
-                            <td>beautiful table, 10đ</td>
-                            <td>★★★★★</td> <!-- Hiển thị số sao -->
-                            <td>please delivery in the morning</td>
-                            <td>1</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                                <button class="btn btn-primary btn-sm" onclick="openFeedbackModal('wood light')">Phản hồi</button>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th scope="row">2</th>
-                            <td><img style="width: 150px;"src="~/Classix/img/table/DBOCWA3710N_3.jpg" alt=""></td>
-                            <td>wood desk</td>
-                            <td>Desk</td>
-                            <td>beautiful desk, 10đ</td>
-                            <td>★★★★★</td> <!-- Hiển thị số sao -->
-                            <td>please delivery in the morning</td>
-                            <td>1</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                                <button class="btn btn-primary btn-sm" onclick="openFeedbackModal('wood light')">Phản hồi</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td><img style="width: 150px;"src="~/Classix/img/light/DBOLBN2015N_600x.jpg" alt=""></td>
-                            <td>wood light</td>
-                            <td>Light</td>
-                            <td>beautiful light, 10đ</td>
-                            <td>★★★★★</td> <!-- Hiển thị số sao -->
-                            <td>please delivery in the morning</td>
-                            <td>1</td>
-                            <td>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                                <button class="btn btn-primary btn-sm" onclick="openFeedbackModal('wood light')">Phản hồi</button>
-                            </td>
-
-                        </tr>
+                        @foreach (var comment in Model)
+                        {
+                            <tr>
+                                <th scope="row">@comment.CommentId</th>
+                                <td>@comment.CustomerName</td>
+                                <td>@comment.ProductName</td>
+                                <td>
+                                    <img style="width:150px;" src="/Classix/img/@comment.ProductImage" alt="">
+                                </td>
+                                <td>@comment.Category</td>
+                                <td>@comment.Content</td>
+                                <td>
+                                    @for (int i = 0; i < comment.Rating; i++)
+                                    {
+                                        <span>★</span>
+                                    }
+                                </td>
+                                <td>
+                                    <form asp-action="DeleteComment" asp-route-id="@comment.CommentId" method="post" style="display:inline;">
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                    <button class="btn btn-primary btn-sm" onclick="openFeedbackModal('@comment.ProductName')">Phản hồi</button>
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
+
 
             </div>
         </div>
