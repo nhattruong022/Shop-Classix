@@ -198,7 +198,16 @@ namespace Shop_Classix.Controllers
                 return RedirectToAction("Cart", "Cart");
             }
 
-                if (payment == "Payment VNPAY")
+
+            // Tổng giá trị giỏ hàng và tiền cọc
+            var totalPrice = cart.Items.Sum(item => item.TotalPrice);
+            var depositAmount = totalPrice * 0.1;
+
+            model.Items = cart.Items;
+            model.Total = totalPrice;
+            model.deposit = depositAmount;
+
+            if (payment == "Payment VNPAY")
                 {
                     var vnPayModel = new VnPaymentRequestModel
                     {
@@ -225,10 +234,7 @@ namespace Shop_Classix.Controllers
                 return View(model);
             }
  
-               // Tổng giá trị giỏ hàng và tiền cọc
-            var totalPrice =cart.Items.Sum(item => item.TotalPrice);
-            var depositAmount =totalPrice * 0.1;
-
+             
 
            
 
