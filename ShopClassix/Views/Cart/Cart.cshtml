@@ -112,15 +112,15 @@
                                     var productId = $(this).data('id');
 
                                     $.ajax({
-                                        url: '@Url.Action("UpdateQuantity", "Cart")', // URL đến phương thức cập nhật
+                                        url: '@Url.Action("UpdateQuantity", "Cart")', 
                                         type: 'POST',
                                         data: { id: productId, quantity: quantity },
                                         success: function (response) {
-                                            // Cập nhật lại tổng tiền hoặc làm gì đó sau khi cập nhật thành công
-                                            location.reload(); // Tải lại trang để cập nhật giỏ hàng
+                                           
+                                            location.reload(); 
                                         },
                                         error: function () {
-                                            alert('Error updating quantity.'); // Thông báo lỗi
+                                            alert('Error updating quantity.'); 
                                         }
                                     });
                                 });
@@ -133,10 +133,7 @@
                     <div class="col-lg-12">
                         <div class="shoping__cart__btns">
                             <a asp-action="Index" asp-controller="Home" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
-                            <a href="#" class="primary-btn cart-btn cart-btn-right">
-                                <span class="icon_loading"></span>
-                                Upadate Cart
-                            </a>
+                        
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -156,8 +153,8 @@
                         <div class="shoping__checkout">
                             <h5>Cart Total</h5>
                             <ul>
-                                @* <li>Subtotal <span>40.000.000VNĐ</span></li> *@
-                                <li>Total <span>@* @Model.TotalAmount.ToString("C") *@@ViewBag.TotalAmount.ToString("C") VNĐ</span></li>
+                      
+                                <li>Total <span>@ViewBag.TotalAmount.ToString("C") VNĐ</span></li>
                             </ul>
                             <a asp-action="CheckOut" asp-controller="Cart" class="primary-btn">PROCEED TO CHECKOUT</a>
                         </div>
