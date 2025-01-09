@@ -53,12 +53,14 @@ namespace Shop_Classix.Controllers
                 AllProducts = AllProducts,
                 FavoriteProducts = favoriteProducts
             };
+
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
             ViewBag.UniqueProductCount = cart.Items.Select(item => item.ProductId).Distinct().Count();
+            ViewBag.TotalAmount = cart.TotalAmount;
             return View(model);
+         
         }
-
-
+      
 
         public IActionResult Details(int id)
         {
