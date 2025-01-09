@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Security.Claims;
 using X.PagedList.Extensions;
 using Shop_Classix.Helper;
+using Microsoft.CodeAnalysis;
 
 namespace Shop_Classix.Controllers
 {
@@ -82,6 +83,36 @@ namespace Shop_Classix.Controllers
 
             // Gán danh sách sản phẩm liên quan vào ViewBag
             ViewBag.RelatedProducts = relatedProducts;
+            // Kiểm tra session để xem lượt xem đã được tăng chưa vui
+            var sessionKey = $"ProductView_{id}";
+            if (HttpContext.Session.GetInt32(sessionKey) == null)
+            {
+                // Tăng lượt xem
+                product.Views++;
+                dataContext.SaveChanges();
+
+               // Lưu thông tin vào session để không tăng lượt xem trong phiên này
+                HttpContext.Session.SetInt32(sessionKey, 1);
+            }
+            ViewBag.view = product.Views;
+           ViewBag.productid = product.Id;
+            var reviewCount = dataContext.productComments.Count();
+            // Gán giá trị vào ViewBag
+            ViewBag.reviews = reviewCount > 0 ? reviewCount : 0;
+            ViewBag.favorite = product.FavoriteNumber;
+            var productcomment = dataContext.productComments
+             .Where(rt => rt.ProductId == product.Id);
+            double rating = 5;
+           if (productcomment.Any())
+            {
+              rating= productcomment
+                .Average(rc => rc.Rating);
+                
+            }
+           ViewBag.rating = rating; 
+           
+    
+
             return View(new List<Shop_Classix.Models.ProductsModel> { product });
         }
 
