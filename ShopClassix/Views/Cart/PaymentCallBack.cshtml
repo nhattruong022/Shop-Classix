@@ -1,0 +1,60 @@
+﻿@{
+	ViewData["Title"] = "Successful Transaction VNPAY";
+}
+
+@model Shop_Classix.Models.ViewModels.VnPaymentResponseModel;
+
+
+@section Link
+{
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap"
+          rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/bootstrap.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/font-awesome.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/elegant-icons.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/nice-select.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/jquery-ui.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/owl.carousel.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/slicknav.min.css")" type="text/css" />
+    <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/style.css")" type="text/css" />
+}
+
+
+
+<div class="container mt-5">
+    <div class="alert alert-success">
+        <h4 class="alert-heading">Successful Transaction VNPAY!</h4>
+        <p>Your payment was successful. Please find the details below:</p>
+
+        <div class="mb-3">
+            <h6 class="mb-1"><strong>Order ID:</strong> @Model.OrderId</h6>
+            <h6 class="mb-1"><strong>Order Info:</strong> @Model.OrderDescription</h6>
+            <h6 class="mb-1"><strong>Total:</strong> @Model.PaymentMethod</h6>
+            <h6 class="mb-1"><strong>Transaction Code:</strong> @Model.TransactionId</h6>
+        </div>
+
+        <a href="#" class="btn btn-primary">View Order History</a>
+    </div>
+</div>
+
+
+
+
+
+
+
+@section Script
+{
+    <script src="@Url.Content("~/Classix/user/js/jquery-3.3.1.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/bootstrap.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/jquery.nice-select.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/jquery-ui.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/jquery.slicknav.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/mixitup.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/owl.carousel.min.js")"></script>
+    <script src="@Url.Content("~/Classix/user/js/main.js")"></script>
+}
