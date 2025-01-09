@@ -65,8 +65,9 @@ namespace Shop_Classix.Controllers
                       Id=p.Id,
                       Name=p.Name,
                       Price=p.Price,
-                       Image=p.Image,
-                      Quantity=od.TotalSold
+                      Image=p.Image,
+                      Quantity=od.TotalSold,
+                      Rating=p.Rating
                   }).ToList();
 
           ViewBag.BestSellingProduct = bestSellingProduct;
@@ -80,7 +81,9 @@ namespace Shop_Classix.Controllers
                     Id=p.Id,
                     Name=p.Name,
                     Price=p.Price,
-                    Image=p.Image
+                    Image=p.Image,
+                    CreatedAt=p.CreatedAt,
+                    Rating=p.Rating
                 }).ToList();
           
 

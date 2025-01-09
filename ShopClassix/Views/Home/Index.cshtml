@@ -114,11 +114,15 @@
                         <div class="featured__controls">
                             <ul>
                                 <li class="active" data-filter="*">All</li>
-                                <li data-filter=".oranges">Table</li>
-                                <li data-filter=".fresh-meat">Chair</li>
-                                <li data-filter=".vegetables">Bed</li>
-                                <li data-filter=".fastfood">Light </li>
+                                @foreach (var category in ViewBag.categories as SelectList)
+                                {
+                                    <li data-filter="@category.Value" class="@(ViewBag.SelectedCategoryId == int.Parse(category.Value) ? "selected" : "")">
+                                        @category.Text
+                                    </li>
+                                }
                             </ul>
+
+
                         </div>
                     </div>
                 </div>
@@ -297,6 +301,24 @@
                                             <div class="latest-product__item__text">
                                                 <h6>@product.Name</h6>
                                                 <span>@string.Format("{0:0,0} VND",product.Price)</span>
+                                                <p>
+                                                    @for (var i = 1; i <= 5; i++)
+                                                    {
+                                                        if (i <= Math.Floor(@product.Rating ?? 0)) // Sao đầy
+                                                        {
+                                                            <i class="fa fa-star" style="color: gold;"></i>
+                                                        }
+                                                        else if (i == Math.Ceiling(@product.Rating ?? 0) && (product.Rating ?? 0) % 1 != 0) // Sao nửa
+                                                        {
+                                                            <i class="fas fa-star-half-alt" style="color: gold;"></i>
+                                                        }
+                                                        else // Sao rỗng
+                                                        {
+                                                            <i class="fa fa-star" style="color: lightgray;"></i>
+                                                        }
+                                                    }
+                                                </p>
+                                                <p>CreatedAt: @product.CreatedAt</p>
                                             </div>
                                         </a>
                                     }
@@ -321,6 +343,24 @@
                                             <div class="latest-product__item__text">
                                                 <h6>@item.Name</h6>
                                                 <span>@string.Format("{0:0,0} VND", item.Price)</span>
+                                                <h6>TotalSold: @item.Quantity</h6>
+                                                <p>
+                                                    @for (var i = 1; i <= 5; i++)
+                                                    {
+                                                        if (i <= Math.Floor(item.Rating ?? 0)) // Sao đầy
+                                                        {
+                                                            <i class="fa fa-star" style="color: gold;"></i>
+                                                        }
+                                                        else if (i == Math.Ceiling(item.Rating ?? 0) && (item.Rating ?? 0) % 1 != 0) // Sao nửa
+                                                        {
+                                                            <i class="fas fa-star-half-alt" style="color: gold;"></i>
+                                                        }
+                                                        else // Sao rỗng
+                                                        {
+                                                            <i class="fa fa-star" style="color: lightgray;"></i>
+                                                        }
+                                                    }
+                                                </p>
                                             </div>
                                         </a>
                                     }

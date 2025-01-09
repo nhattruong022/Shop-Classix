@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5AF53DE7-0DA0-42C5-A473-5650C3A19870}|ShopClassix\\Shop-Classix.csproj|c:\\users\\nhat truong\\source\\repos\\shop classix\\shop classix\\shop classix\\shopclassix\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{5AF53DE7-0DA0-42C5-A473-5650C3A19870}|ShopClassix\\Shop-Classix.csproj|solutionrelative:shopclassix\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5AF53DE7-0DA0-42C5-A473-5650C3A19870}|ShopClassix\\Shop-Classix.csproj|c:\\users\\nhat truong\\source\\repos\\shop classix\\shop classix\\shop classix\\shopclassix\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{5AF53DE7-0DA0-42C5-A473-5650C3A19870}|ShopClassix\\Shop-Classix.csproj|solutionrelative:shopclassix\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5AF53DE7-0DA0-42C5-A473-5650C3A19870}|ShopClassix\\Shop-Classix.csproj|c:\\users\\nhat truong\\source\\repos\\shop classix\\shop classix\\shop classix\\shopclassix\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5AF53DE7-0DA0-42C5-A473-5650C3A19870}|ShopClassix\\Shop-Classix.csproj|solutionrelative:shopclassix\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5AF53DE7-0DA0-42C5-A473-5650C3A19870}|ShopClassix\\Shop-Classix.csproj|c:\\users\\nhat truong\\source\\repos\\shop classix\\shop classix\\shop classix\\shopclassix\\models\\productsmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -306,39 +306,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "20250109170131_initial.cs",
-              "DocumentMoniker": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\ShopClassix\\Migrations\\20250109170131_initial.cs",
-              "RelativeDocumentMoniker": "ShopClassix\\Migrations\\20250109170131_initial.cs",
-              "ToolTip": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\ShopClassix\\Migrations\\20250109170131_initial.cs",
-              "RelativeToolTip": "ShopClassix\\Migrations\\20250109170131_initial.cs",
-              "ViewState": "AQIAAFYAAAAAAAAAAAAIwAoAAAAQAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T17:01:31.76Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\ShopClassix\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "ShopClassix\\Controllers\\HomeController.cs",
-              "ToolTip": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\ShopClassix\\Controllers\\HomeController.cs*",
-              "RelativeToolTip": "ShopClassix\\Controllers\\HomeController.cs*",
-              "ViewState": "AQIAADoAAAAAAAAAAAArwFQAAAAKAAAA",
+              "ToolTip": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\ShopClassix\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "ShopClassix\\Controllers\\HomeController.cs",
+              "ViewState": "AQIAAEAAAAAAAAAAAIAzwFQAAAAqAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-06T08:37:08.233Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\ShopClassix\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "ShopClassix\\Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\ShopClassix\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "ShopClassix\\Views\\Home\\Index.cshtml",
-              "ViewState": "AQIAAC0BAAAAAAAAAAA6wDwBAABsAAAA",
+              "ViewState": "AQIAAC8BAAAAAAAAAAA+wEABAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2025-01-08T18:18:32.362Z",
               "EditorCaption": ""
@@ -353,8 +340,7 @@
               "RelativeToolTip": "ShopClassix\\Models\\OrderModel.cs",
               "ViewState": "AQIAABYAAAAAAAAAAIBHwCgAAAAGAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-04T18:22:24.936Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-04T18:22:24.936Z"
             },
             {
               "$type": "Document",
@@ -366,8 +352,7 @@
               "RelativeToolTip": "ShopClassix\\Models\\ProductsModel.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T03:43:43.441Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-07T03:43:43.441Z"
             },
             {
               "$type": "Document",
@@ -380,6 +365,18 @@
               "ViewState": "AQIAACYAAAAAAAAAAAAkwHUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-08T09:12:42.063Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "20250109170131_initial.cs",
+              "DocumentMoniker": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\ShopClassix\\Migrations\\20250109170131_initial.cs",
+              "RelativeDocumentMoniker": "ShopClassix\\Migrations\\20250109170131_initial.cs",
+              "ToolTip": "C:\\Users\\Nhat Truong\\source\\repos\\Shop Classix\\Shop Classix\\Shop Classix\\ShopClassix\\Migrations\\20250109170131_initial.cs",
+              "RelativeToolTip": "ShopClassix\\Migrations\\20250109170131_initial.cs",
+              "ViewState": "AQIAAFYAAAAAAAAAAAAIwAoAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-09T17:01:31.76Z"
             },
             {
               "$type": "Document",
