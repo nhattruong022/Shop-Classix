@@ -1,6 +1,24 @@
 ﻿@model IEnumerable<Shop_Classix.Models.ProductsModel>
 @{
+
+
+
+
+
+
+
     ViewData["Title"] = "Detail Page";
+
+    var views = ViewBag.view;
+
+    var productid = ViewBag.productid;
+
+    var reviews = ViewBag.reviews;
+
+    var rating = ViewBag.rating;
+    var favorite = ViewBag.favorite;
+
+   
 }
 
 
@@ -54,12 +72,9 @@
                         <div class="product__details__text">
                             <h3>@Model.First().Name</h3>
                             <div class="product__details__rating">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star-half-o"></i>
-                                <span>(18 reviews)</span>
+                                <span id="rating">@rating</span> <i class="fa fa-star"></i>
+                               
+                                <span id="reviews">(@reviews) </span><span id="viewcount">| (@views)</span>
                             </div>
                             <div class="product__details__price"> @Model.First().Price.ToString("C")VNĐ</div>
                             <p>
@@ -92,6 +107,7 @@
                             <a href="#" class="heart-icon">
                                 <span class="icon_heart_alt"></span>
                             </a>
+                            <span id="favorite"> @favorite</span>
                             <ul>
                                 <li>
                                     <b>Size: </b>
@@ -277,4 +293,164 @@
     <script src="@Url.Content("~/Classix/user/js/mixitup.min.js")"></script>
     <script src="@Url.Content("~/Classix/user/js/owl.carousel.min.js")"></script>
     <script src="@Url.Content("~/Classix/user/js/main.js")"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+        function GetViewCount() {
+
+            $.get(`/api/Product/${@productid}/viewcount`, function (response) {
+
+                console.log(response); // Kiểm tra giá trị của response
+
+                if (response !== undefined && response !== null) {
+
+                    // Kiểm tra nếu response là một số hợp lệ
+
+                    let views = parseInt(response, 10);
+
+                    if (!isNaN(views)) {
+
+                        $('#viewcount').text(`| (${views} views)`); // Hiển thị giá trị dưới định dạng chính xác
+
+                    } else {
+
+                        console.error('viewcount không phải là một số hợp lệ');
+
+                    }
+
+                } else {
+
+                    console.error('viewcount không có trong phản hồi');
+
+                }
+
+            }).fail(function () {
+
+                console.error('Lỗi khi lấy số lượt views');
+
+            });
+
+        }
+
+        // Gọi hàm updateViewCount
+
+        setInterval(GetViewCount, 10);
+
+    </script>
+    <script>
+
+        function GetReviews() {
+
+            $.get(`/api/ProductComment/${@productid}/reviews`, function (response) {
+
+                console.log(response); // Kiểm tra giá trị của response
+
+                if (response !== undefined && response !== null) {
+
+                    // Kiểm tra nếu response là một số hợp lệ
+
+                    let count = parseInt(response, 10);
+
+                    if (!isNaN(count)) {
+
+                        $('#reviews').text(`| (${count} reviews)`); // Hiển thị giá trị dưới định dạng chính xác
+
+                    } else {
+
+                        console.error('reviews không phải là một số hợp lệ');
+
+                    }
+
+                } else {
+
+                    console.error('reviews không có trong phản hồi');
+
+                }
+
+            }).fail(function () {
+
+                console.error('Lỗi khi lấy số lượt reviews');
+
+            });
+
+        }
+
+        // Gọi hàm updateViewCount
+
+        setInterval(GetReviews, 10);
+
+    </script>
+
+    <script>
+
+        function GetFavorite() {
+
+            $.get(`/api/Product/${@productid}/favorite`, function (response) {
+
+                console.log(response); // Kiểm tra giá trị của response
+
+                if (response !== undefined && response !== null) {
+
+                    // Kiểm tra nếu response là một số hợp lệ
+
+                    let favorite = parseInt(response, 10);
+
+                    if (!isNaN(favorite)) {
+
+                        $('#favorite').text(` (${favorite} favorite)`); // Hiển thị giá trị dưới định dạng chính xác
+
+                    } else {
+
+                        console.error('favorite không phải là một số hợp lệ');
+
+                    }
+
+                } else {
+
+                    console.error('favorite không có trong phản hồi');
+
+                }
+
+            }).fail(function () {
+
+                console.error('Lỗi khi lấy số lượt favorite');
+
+            });
+
+        }
+
+        // Gọi hàm updateViewCount
+
+        setInterval(GetFavorite, 10);
+
+    </script>
+    <script>
+        function GetRating() {
+            $.get(`/api/ProductComment/${@productid}/rating`, function (response) {
+                console.log(response); // Kiểm tra giá trị của response
+
+                if (response !== undefined && response !== null) {
+                    // Kiểm tra nếu response là một số hợp lệ
+                    let rating = parseFloat(response);
+                    if (!isNaN(rating)) {
+                        $('#rating').text(`${rating.toFixed(1)}`); // Hiển thị giá trị với 1 chữ số thập phân
+                    } else {
+                        console.error('rating không phải là một số hợp lệ');
+                    }
+                } else {
+                    console.error('rating không có trong phản hồi');
+                }
+            }).fail(function () {
+                console.error('Lỗi khi lấy số lượt rating');
+            });
+        }
+
+        // Gọi hàm GetRating mỗi 10 giây
+        setInterval(GetRating, 10000); // Thay đổi 10 thành 10000 để gọi mỗi 10 giây
+
+        // Gọi hàm ngay khi tải trang để có giá trị ban đầu
+        $(document).ready(function () {
+            GetRating();
+        });
+    </script>
 }
