@@ -88,6 +88,7 @@ namespace Shop_Classix.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<double>(type: "float", nullable: false),
+                    Views = table.Column<int>(type: "int", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     FavoriteNumber = table.Column<int>(type: "int", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
@@ -99,7 +100,8 @@ namespace Shop_Classix.Migrations
                     CategoryId = table.Column<int>(type: "int", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    categoryName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    categoryName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    view = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

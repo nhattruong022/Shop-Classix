@@ -80,7 +80,7 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="categories__item set-bg"
-                                 data-setbg="@Url.Content("~/Classix/img/table.jpg")">
+                                 data-setbg="@Url.Content("~/Classix/img/tablbed.jpg")">
                                 <h5><a href="#">Table</a></h5>
                             </div>
                         </div>
@@ -289,7 +289,7 @@
                                 <div class="latest-prdouct__slider__item">
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/e.jpg")" alt="" />
+                                            <img src="@Url.Content("~/Classix/img/bed.jpg")" alt="" />
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Ethnicraft Eye</h6>
@@ -318,7 +318,7 @@
                                 <div class="latest-prdouct__slider__item">
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/e.jpg")" alt="" />
+                                            <img src="@Url.Content("~/Classix/img/bed.jpg")" alt="" />
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Ethnicraft Eye</h6>
@@ -347,43 +347,35 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="col-lg-4 col-md-6">
                         <div class="latest-product__text">
-                            <h4>Top Rated Products</h4>
+                            <h4>TOP BEST-SELLING PRODUCTS</h4>
+
                             <div class="latest-product__slider owl-carousel">
                                 <div class="latest-prdouct__slider__item">
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/e.jpg")" alt="" />
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Ethnicraft Eye</h6>
-                                            <span>15000000VND</span>
-                                        </div>
-                                    </a>
+                                    @foreach (var item in (List<ProductsModel>)ViewBag.BestSellingProduct)
+                                    {
+                                        <a href="@Url.Action("Details", "Home", new { id = item })" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <img src="@Url.Content("~/Classix/img/" + item.Image)" alt="@item.Name" />
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6>@item.Name</h6>
+                                                <span>@string.Format("{0:0,0} VND", item.Price)</span>
+                                            </div>
+                                        </a>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                                <div class="latest-prdouct__slider__item">
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
                                             <img src="@Url.Content("~/Classix/img/bed.jpg")" alt="" />
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Andrew Martin Gilded Star</h6>
-                                            <span>30000000VND</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/lamp.jpg")" alt="" />
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>dBodhi Barrel</h6>
-                                            <span>3000000VND</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="latest-prdouct__slider__item">
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/e.jpg")" alt="" />
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Ethnicraft Eye</h6>
@@ -412,6 +404,7 @@
                             </div>
                         </div>
                     </div>
+                    
                     <div class="col-lg-4 col-md-6">
                         <div class="latest-product__text">
                             <h4>Review Products</h4>
@@ -419,7 +412,7 @@
                                 <div class="latest-prdouct__slider__item">
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/e.jpg")" alt="" />
+                                            <img src="@Url.Content("~/Classix/img/bed.jpg")" alt="" />
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Ethnicraft Eye</h6>
@@ -448,7 +441,7 @@
                                 <div class="latest-prdouct__slider__item">
                                     <a href="#" class="latest-product__item">
                                         <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/e.jpg")" alt="" />
+                                            <img src="@Url.Content("~/Classix/img/bed.jpg")" alt="" />
                                         </div>
                                         <div class="latest-product__item__text">
                                             <h6>Ethnicraft Eye</h6>

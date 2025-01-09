@@ -10,6 +10,7 @@ using System.Security.Claims;
 using X.PagedList.Extensions;
 using Shop_Classix.Helper;
 using Microsoft.CodeAnalysis;
+using NuGet.Protocol.Plugins;
 
 namespace Shop_Classix.Controllers
 {
@@ -48,8 +49,33 @@ namespace Shop_Classix.Controllers
                                                .Select(fp => fp.products)
                                                .ToList();
 
-            // Tạo ViewModel để gộp cả danh sách yêu thích và tất cả sản phẩm
-            var model = new ProductPageViewModel
+
+            //lấy danh sách sản phẩm bán chạy
+            var bestSellingProduct = dataContext.orderDetails.GroupBy(od => od.ProductId).Select(group => new
+            {
+                ProductId = group.Key,
+                TotalSold = group.Sum(od => od.Quantity)
+            }).OrderByDescending(x=>x.TotalSold) //sắp xếp giảm dần
+            .Take(4) //giới hạn 4 sản phẩm bán chạy
+            .Join(dataContext.products,  //join với bảng products
+                  od=>od.ProductId,
+                  p=>p.Id,
+                  (od,p)=>new ProductsModel
+                  {
+                      Id=p.Id,
+                      Name=p.Name,
+                      Price=p.Price,
+                       Image=p.Image,
+                      Quantity=od.TotalSold
+                  }).ToList();
+
+          ViewBag.BestSellingProduct = bestSellingProduct;
+
+
+
+
+			// Tạo ViewModel để gộp cả danh sách yêu thích và tất cả sản phẩm
+			var model = new ProductPageViewModel
             {
                 AllProducts = AllProducts,
                 FavoriteProducts = favoriteProducts
@@ -178,6 +204,9 @@ namespace Shop_Classix.Controllers
             var userId = int.Parse(User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value);
             var favoriteProduct = dataContext.favoriteProducts
                 .SingleOrDefault(fp => fp.CustomerId == userId && fp.ProductId == productId);
+
+       
+                
 
             if (favoriteProduct == null)
             {

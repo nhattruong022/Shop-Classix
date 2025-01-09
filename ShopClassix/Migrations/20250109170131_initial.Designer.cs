@@ -12,7 +12,7 @@ using Shop_Classix.Repository;
 namespace Shop_Classix.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250108051810_initial")]
+    [Migration("20250109170131_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -371,8 +371,14 @@ namespace Shop_Classix.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Views")
+                        .HasColumnType("int");
+
                     b.Property<string>("categoryName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("view")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
