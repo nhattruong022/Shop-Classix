@@ -15,7 +15,7 @@ namespace Shop_Classix.Controllers
         private readonly DataContext dataContext;
         private const int PageSize = 2;
 
-        public CartController(DataContext context,IVnPayService vnPayService)
+        public CartController(DataContext context, IVnPayService vnPayService)
         {
             dataContext = context;
             _vnPayService = vnPayService;
@@ -27,18 +27,15 @@ namespace Shop_Classix.Controllers
         }
 
 
-     
+
         public async Task<IActionResult> Cart(int page = 1)
         {
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
 
-            // Tính số lượng sản phẩm khác nhau
             ViewBag.UniqueProductCount = GetUniqueProductCount();
 
             var totalOrders = cart.Items.Count;
             var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
-
-            // Chỉ lấy sản phẩm cho trang hiện tại
             var paginatedItems = cart.Items
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize)
@@ -46,52 +43,58 @@ namespace Shop_Classix.Controllers
 
             ViewBag.TotalPages = totalPages;
             ViewBag.CurrentPage = page;
+            if (totalOrders > 0)
+            {
+                ViewBag.TotalAmount = cart.TotalAmount;
+            }
+            else
+            {
+                ViewBag.TotalAmount = 0;
+            }
+            /* ViewBag.TotalAmount = cart.TotalAmount;*/ // Sử dụng TotalAmount từ CartViewModel
 
-            // Lưu tổng tiền của tất cả sản phẩm vào ViewBag
-            ViewBag.TotalAmount = CalculateTotalAmount(cart.Items); // Tổng tiền cho tất cả sản phẩm
-            //ViewBag.CurrentPageTotalAmount = CalculateTotalAmount(paginatedItems); // Tổng tiền cho sản phẩm trong trang hiện tại
+            //ViewBag.TotalAmount = CalculateTotalAmount(cart.Items);
+            //ViewBag.CurrentPageTotalAmount = CalculateTotalAmount(paginatedItems); 
 
-            // Trả về giỏ hàng với các sản phẩm đã phân trang
             cart.Items = paginatedItems;
             return View(cart);
         }
 
-
-
-
-        // Hàm tính tổng tiền cho sản phẩm
-        private double CalculateTotalAmount(List<CartItemViewModel> items)
-        {
-            return items.Sum(item => item.TotalPrice);
-        }
-
-
+        //private double CalculateTotalAmount(List<CartItemViewModel> items)
+        //{
+        //    return items.Sum(item => item.TotalPrice);
+        //}
 
         [HttpPost]
         public IActionResult UpdateQuantity(int id, int quantity)
         {
+            if (quantity < 1)
+            {
+                return BadRequest("Số lượng phải lớn hơn hoặc bằng 1.");
+            }
+
             var cart = HttpContext.Session.Get<CartViewModel>("Cart");
             if (cart != null)
             {
                 var existingItem = cart.Items.FirstOrDefault(item => item.ProductId == id);
                 if (existingItem != null)
                 {
-                    existingItem.Quantity = quantity; // Cập nhật số lượng
+                    existingItem.Quantity = quantity;
                 }
             }
 
             HttpContext.Session.Set("Cart", cart);
-            return Ok(); // Trả về phản hồi thành công
+            return Ok();
         }
 
-
-        [HttpPost] // Đảm bảo rằng đây là yêu cầu POST
-
-
-        public IActionResult AddToCart(int id, int quantity = 1) // Thêm tham số quantity
-
+        [HttpPost]
+        public IActionResult AddToCart(int id, int quantity = 1)
         {
-            
+            if (quantity < 1)
+            {
+                return BadRequest("Số lượng phải lớn hơn hoặc bằng 1.");
+            }
+
             var product = dataContext.products.FirstOrDefault(p => p.Id == id);
             if (product == null)
             {
@@ -103,7 +106,7 @@ namespace Shop_Classix.Controllers
             var existingItem = cart.Items.FirstOrDefault(item => item.ProductId == product.Id);
             if (existingItem != null)
             {
-                existingItem.Quantity += quantity; // Tăng số lượng theo giá trị từ input
+                existingItem.Quantity += quantity;
             }
             else
             {
@@ -112,22 +115,19 @@ namespace Shop_Classix.Controllers
                     ProductId = product.Id,
                     ProductName = product.Name,
                     Price = product.Price,
-                    Quantity = quantity, // Sử dụng giá trị từ input
+                    Quantity = quantity,
                     ImageUrl = product.Image
                 };
                 cart.Items.Add(cartItem);
             }
-            // Tính số lượng sản phẩm khác nhau
-        
             HttpContext.Session.Set("Cart", cart);
-
-            // Trả về phản hồi JSON thay vì chuyển hướng
             return Json(new { success = true, message = "Thêm vào giỏ thành công!" });
+
         }
 
 
         [HttpPost]
-        public IActionResult RemoveFromCart(int id) // Đổi tên tham số thành id cho nhất quán
+        public IActionResult RemoveFromCart(int id)
         {
             var cart = HttpContext.Session.Get<CartViewModel>("Cart");
             if (cart != null)
@@ -135,21 +135,20 @@ namespace Shop_Classix.Controllers
                 var itemToRemove = cart.Items.FirstOrDefault(item => item.ProductId == id);
                 if (itemToRemove != null)
                 {
-                    cart.Items.Remove(itemToRemove); // Xóa sản phẩm khỏi giỏ hàng
+                    cart.Items.Remove(itemToRemove);
                 }
             }
 
             HttpContext.Session.Set("Cart", cart);
-            return RedirectToAction("Cart", new { page = 1 }); // Chuyển hướng về trang giỏ hàng với trang đầu tiên
+            return RedirectToAction("Cart", new { page = 1 });
         }
 
 
         [HttpPost]
         public IActionResult RemoveAllFromCart()
         {
-            // Xóa giỏ hàng bằng cách thiết lập lại session
             HttpContext.Session.Set("Cart", new CartViewModel());
-            return RedirectToAction("Cart"); // Chuyển hướng về trang giỏ hàng
+            return RedirectToAction("Cart");
         }
 
 
@@ -161,7 +160,7 @@ namespace Shop_Classix.Controllers
 
 
             // Tổng giá trị giỏ hàng
-            var totalPrice =cart.Items.Sum(item => item.TotalPrice);
+            var totalPrice = cart.Items.Sum(item => item.TotalPrice);
 
             // Tính tiền cọc (10%)
             var depositAmount = totalPrice * 0.1;
@@ -172,7 +171,7 @@ namespace Shop_Classix.Controllers
             {
                 Items = cart.Items,
                 Total = cart.Items.Sum(item => item.TotalPrice),
-                deposit=depositAmount
+                deposit = depositAmount
             };
 
 
@@ -188,7 +187,7 @@ namespace Shop_Classix.Controllers
 
         [HttpPost]
         [Authorize]
-        public IActionResult CheckOut(CheckOutViewModel model,string payment="C0D")
+        public IActionResult CheckOut(CheckOutViewModel model, string payment = "C0D")
         {
             // Lấy giỏ hàng từ Session
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
@@ -208,20 +207,20 @@ namespace Shop_Classix.Controllers
             model.deposit = depositAmount;
 
             if (payment == "Payment VNPAY")
+            {
+                var vnPayModel = new VnPaymentRequestModel
                 {
-                    var vnPayModel = new VnPaymentRequestModel
-                    {
-                        Amount = cart.Items.Sum(item => item.TotalPrice),
-                        CreatedDate = DateTime.Now,
-                        description = $"{model.Receiver} {model.Phone}",
-                        FullName = model.Receiver,
-                        OrderId = DateTime.UtcNow.Ticks.ToString()
-                    };
-                return Redirect(_vnPayService.CreatePaymentUrl(HttpContext,vnPayModel));
-                }
-            
-          
-          
+                    Amount = cart.Items.Sum(item => item.TotalPrice),
+                    CreatedDate = DateTime.Now,
+                    description = $"{model.Receiver} {model.Phone}",
+                    FullName = model.Receiver,
+                    OrderId = DateTime.UtcNow.Ticks.ToString()
+                };
+                return Redirect(_vnPayService.CreatePaymentUrl(HttpContext, vnPayModel));
+            }
+
+
+
             //lấy thông tin cookie email
             var customerEmail = HttpContext.User.Claims.SingleOrDefault(p => p.Type == ClaimTypes.Email)?.Value;
 
@@ -233,18 +232,18 @@ namespace Shop_Classix.Controllers
                 ModelState.AddModelError("", "Customer not found");
                 return View(model);
             }
- 
-             
 
-           
+
+
+
 
             //tạo đơn hàng
             var order = new OrderModel
             {
-                TotalPrice =cart.Items.Sum(item => item.TotalPrice),
+                TotalPrice = cart.Items.Sum(item => item.TotalPrice),
                 deposit = depositAmount,
                 Status = 1,
-                PaymentMethod ="COD",
+                PaymentMethod = "COD",
                 CustomerId = customer.Id,
                 CustomerName = model.Receiver,
                 Address = model.Address,
@@ -277,7 +276,7 @@ namespace Shop_Classix.Controllers
 
                 TempData["ThankYouMessage"] = "Thank you for your order! We will process it shortly.";
 
-                return RedirectToAction("CheckOut","Cart");
+                return RedirectToAction("CheckOut", "Cart");
             }
             catch (Exception ex)
             {
@@ -306,7 +305,7 @@ namespace Shop_Classix.Controllers
         {
             var response = _vnPayService.PaymentExecute(Request.Query);
 
-            if(response==null||response.VnPayResponseCode!="00") //00 là giao dịch thành công
+            if (response == null || response.VnPayResponseCode != "00") //00 là giao dịch thành công
             {
                 TempData["Message"] = $"Failed Pay VNPAY:{response.VnPayResponseCode} ";
                 return RedirectToAction("PaymentFail");
@@ -314,7 +313,7 @@ namespace Shop_Classix.Controllers
 
 
             TempData["Message"] = $"Success Pay VNPAY";
-            
+
             return RedirectToAction("PaymentSuccess");
         }
 
