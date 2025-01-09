@@ -8,6 +8,7 @@ namespace Shop_Classix.Migrations
     /// <inheritdoc />
     public partial class initial : Migration
     {
+        //udpate
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {

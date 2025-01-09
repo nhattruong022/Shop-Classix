@@ -48,6 +48,7 @@ namespace Shop_Classix.Models
         [NotMapped]
         public bool IsFavorite { get; set; }  //trạng thái yêu thích
 
+        //lượt xem
         public int view {  get; set; }
 
     }

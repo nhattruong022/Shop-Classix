@@ -38,7 +38,7 @@ namespace Shop_Classix.Models
         // One-to-many relationship with OrderDetail
         public ICollection<OrderDetailModel> orderDetails { get; set; }
 
-        
+      
     }
 
 }

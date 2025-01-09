@@ -50,7 +50,7 @@ namespace Shop_Classix.Controllers
                                                .ToList();
 
 
-            //lấy danh sách sản phẩm bán chạy
+            //lấy danh sách sản phẩm bán chạy sau khi thanh toán thành công
             var bestSellingProduct = dataContext.orderDetails.GroupBy(od => od.ProductId).Select(group => new
             {
                 ProductId = group.Key,
@@ -71,6 +71,20 @@ namespace Shop_Classix.Controllers
 
           ViewBag.BestSellingProduct = bestSellingProduct;
 
+
+            //lấy danh sách sản phẩm cuối cùng được thêm vào
+            var lastestProducts = dataContext.products.OrderByDescending(p => p.CreatedAt)
+                .Take(4)
+                .Select(p => new ProductsModel
+                {
+                    Id=p.Id,
+                    Name=p.Name,
+                    Price=p.Price,
+                    Image=p.Image
+                }).ToList();
+          
+
+            ViewBag.LastestProducts = lastestProducts;
 
 
 
@@ -182,7 +196,6 @@ namespace Shop_Classix.Controllers
                 }
             }
 
-
             //tìm kiếm phân trang sắp xếp theo id
             var pagedProducts = products.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
 
@@ -198,6 +211,7 @@ namespace Shop_Classix.Controllers
             return View("TimKiem", pagedProducts);
         }
 
+
         //thêm sản phẩm yêu thích
         [Authorize]
         [HttpPost]
@@ -208,8 +222,6 @@ namespace Shop_Classix.Controllers
                 .SingleOrDefault(fp => fp.CustomerId == userId && fp.ProductId == productId);
 
        
-                
-
             if (favoriteProduct == null)
             {
                 // Thêm sản phẩm vào danh sách yêu thích nếu chưa có
@@ -244,11 +256,6 @@ namespace Shop_Classix.Controllers
 
 
 
-
-        public IActionResult DetailProduct()
-        {
-            return View();
-        }
 
 
 

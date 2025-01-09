@@ -177,8 +177,6 @@
 
 
 
-
-
                 <div class="favorite-products-title" style="text-align: center; margin-top: 20px;">
                     <h2>All Products</h2>
                 </div>
@@ -216,6 +214,8 @@
                                         </li>
                                     </ul>
                                 </div>
+
+
                                 <div class="featured__item__text">
                                     <h6><a>@item.Name</a></h6>
                                     <h5>@string.Format("{0:0,0} VND",item.Price)</h5>
@@ -281,68 +281,26 @@
         <!-- Latest Product Section Begin -->
         <section class="latest-product spad">
             <div class="container">
+
                 <div class="row">
                     <div class="col-lg-4 col-md-6">
                         <div class="latest-product__text">
                             <h4>Latest Products</h4>
                             <div class="latest-product__slider owl-carousel">
                                 <div class="latest-prdouct__slider__item">
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/bed.jpg")" alt="" />
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Ethnicraft Eye</h6>
-                                            <span>15000000VND</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/bed.jpg")" alt="" />
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Andrew Martin Gilded Star</h6>
-                                            <span>30000000VND</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/lamp.jpg")" alt="" />
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>dBodhi Barrel</h6>
-                                            <span>3000000VND</span>
-                                        </div>
-                                    </a>
-                                </div>
-                                <div class="latest-prdouct__slider__item">
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/bed.jpg")" alt="" />
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Ethnicraft Eye</h6>
-                                            <span>15000000VND</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/bed.jpg")" alt="" />
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Andrew Martin Gilded Star</h6>
-                                            <span>30000000VND</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/lamp.jpg")" alt="" />
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>dBodhi Barrel</h6>
-                                            <span>3000000VND</span>
-                                        </div>
-                                    </a>
+                                    @foreach (var product in (List<ProductsModel>)ViewBag.LastestProducts)
+                                    {
+                                        <a asp-action="Details" asp-controller="Home" asp-route-id="@product.Id" class="latest-product__item">
+                                            <div class="latest-product__item__pic">
+                                                <img src="@Url.Content("~/Classix/img/"+product.Image)" alt="" />
+                                            </div>
+                                            <div class="latest-product__item__text">
+                                                <h6>@product.Name</h6>
+                                                <span>@string.Format("{0:0,0} VND",product.Price)</span>
+                                            </div>
+                                        </a>
+                                    }
+
                                 </div>
                             </div>
                         </div>
@@ -351,12 +309,12 @@
                     <div class="col-lg-4 col-md-6">
                         <div class="latest-product__text">
                             <h4>TOP BEST-SELLING PRODUCTS</h4>
-
+                           
                             <div class="latest-product__slider owl-carousel">
                                 <div class="latest-prdouct__slider__item">
                                     @foreach (var item in (List<ProductsModel>)ViewBag.BestSellingProduct)
                                     {
-                                        <a href="@Url.Action("Details", "Home", new { id = item })" class="latest-product__item">
+                                        <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Id" class="latest-product__item">
                                             <div class="latest-product__item__pic">
                                                 <img src="@Url.Content("~/Classix/img/" + item.Image)" alt="@item.Name" />
                                             </div>
@@ -372,39 +330,6 @@
                     </div>
 
 
-                                <div class="latest-prdouct__slider__item">
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/bed.jpg")" alt="" />
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Ethnicraft Eye</h6>
-                                            <span>15000000VND</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/bed.jpg")" alt="" />
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>Andrew Martin Gilded Star</h6>
-                                            <span>30000000VND</span>
-                                        </div>
-                                    </a>
-                                    <a href="#" class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="@Url.Content("~/Classix/img/lamp.jpg")" alt="" />
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>dBodhi Barrel</h6>
-                                            <span>3000000VND</span>
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <div class="col-lg-4 col-md-6">
                         <div class="latest-product__text">
                             <h4>Review Products</h4>
