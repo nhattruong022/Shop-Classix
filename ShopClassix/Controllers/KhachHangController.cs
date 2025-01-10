@@ -157,10 +157,7 @@ namespace Shop_Classix.Controllers
        
         public IActionResult Profile()
 		{
-<<<<<<< HEAD
- 
-=======
->>>>>>> d8e92bee1560337cc4f0903e8563d41a09888e01
+
 			CustomerModel customer = _dataContext.customers.FirstOrDefault(p => p.Email == User.Identity.Name);
 
             //danh sách yêu thích vui
@@ -183,11 +180,11 @@ namespace Shop_Classix.Controllers
 							   Price=p.Price
 							   };
             ViewBag.AlertMessage = customerEmail;
-<<<<<<< HEAD
+
 			ViewBag.favoritelist = favoritelist.ToList();
           
             return View(customer);
-=======
+
 			ViewBag.favoritelist = favoritelist.ToList();
 			return View(customer);
 		}
@@ -195,7 +192,7 @@ namespace Shop_Classix.Controllers
 		public IActionResult EditProfile()
 		{
 			return View();
->>>>>>> d8e92bee1560337cc4f0903e8563d41a09888e01
+
 		}
 
 
