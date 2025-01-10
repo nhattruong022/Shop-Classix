@@ -45,7 +45,7 @@
                         onclick="event.preventDefault(); this.previousElementSibling.submit();">@statusButton.Text</a>
                 </li>
             }
-            
+
             <li class="nav-item mx-3">
                 <a class="nav-link" href="#">Bình luận/Đánh giá</a>
             </li>
@@ -68,7 +68,17 @@
                         </div>
                         <div class="info-row">
                             <h4>Gender:</h4>
-                            <p>@Model.Gender</p>
+                            @{
+                                switch (@Model.Gender)
+                                {
+                                    case false:
+                                        <p>Male</p>
+                                        break;
+                                    case true:
+                                        <p>Female</p>
+                                        break;
+                                }
+                            }
                         </div>
                         <div class="info-row">
                             <h4>Address:</h4>
