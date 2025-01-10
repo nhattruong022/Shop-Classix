@@ -121,9 +121,13 @@ namespace Shop_Classix.Controllers
                 HttpContext.Session.SetString("Phone", firstContact.PhoneNumber);
                 HttpContext.Session.SetString("Email", firstContact.Email);
                 HttpContext.Session.SetString("Logo", firstContact.Logo);
+<<<<<<< HEAD
             }
 
 
+=======
+            }
+>>>>>>> d8e92bee1560337cc4f0903e8563d41a09888e01
             ViewBag.UniqueProductCount = cart.Items.Select(item => item.ProductId).Distinct().Count();
             ViewBag.TotalAmount = cart.TotalAmount;
 

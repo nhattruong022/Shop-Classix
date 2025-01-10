@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.EntityFrameworkCore;
 
 namespace Shop_Classix.Controllers
 {
@@ -19,8 +18,8 @@ namespace Shop_Classix.Controllers
 		{
 			_dataContext = dataContext;
 		}
-
-		[HttpGet]
+       
+        [HttpGet]
 		public IActionResult Register()
 		{
 			return View();
@@ -107,11 +106,11 @@ namespace Shop_Classix.Controllers
 				}
 				else
 				{
+                   
+                    //Nếu người dùng nhập đúng thông tin: Tạo ra các claim
+                    //thiết lập cookie xác thực
 
-					//Nếu người dùng nhập đúng thông tin: Tạo ra các claim
-					//thiết lập cookie xác thực
-
-					var claims = new List<Claim>
+                    var claims = new List<Claim>
 				   {
 					   new Claim(ClaimTypes.Email, khachHang.Email), //email khách hàng
 					   new Claim(ClaimTypes.NameIdentifier, khachHang.Id.ToString()), //id khách hàng
@@ -155,10 +154,13 @@ namespace Shop_Classix.Controllers
 			return RedirectToAction("Login", "KhachHang");
 		}
 
-
-		public IActionResult Profile()
+       
+        public IActionResult Profile()
 		{
+<<<<<<< HEAD
  
+=======
+>>>>>>> d8e92bee1560337cc4f0903e8563d41a09888e01
 			CustomerModel customer = _dataContext.customers.FirstOrDefault(p => p.Email == User.Identity.Name);
 
             //danh sách yêu thích vui
@@ -181,56 +183,24 @@ namespace Shop_Classix.Controllers
 							   Price=p.Price
 							   };
             ViewBag.AlertMessage = customerEmail;
+<<<<<<< HEAD
 			ViewBag.favoritelist = favoritelist.ToList();
           
             return View(customer);
+=======
+			ViewBag.favoritelist = favoritelist.ToList();
+			return View(customer);
 		}
 
-
-		public async Task<IActionResult> MyOrder(int? status, int page = 1)
+		public IActionResult EditProfile()
 		{
-			const int PageSize = 5;
-
-			// Lọc đơn hàng theo trạng thái
-			var filteredOrders = status.HasValue
-				? _dataContext.orders.Where(o => o.Status == status)
-				: _dataContext.orders;
-
-			// Đếm tổng số đơn hàng
-			var totalOrders = await filteredOrders.CountAsync();
-			var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
-
-			// Lấy danh sách đơn hàng theo phân trang
-			var orders = await filteredOrders
-							.Skip((page - 1) * PageSize)
-							.Take(PageSize)
-							.ToListAsync();
-
-			// Truyền dữ liệu đến View
-			ViewBag.TotalPages = totalPages;
-			ViewBag.CurrentPage = page;
-			ViewBag.Orders = orders;
-
 			return View();
+>>>>>>> d8e92bee1560337cc4f0903e8563d41a09888e01
 		}
 
 
-		public async Task<IActionResult> MyOrderdetail(int orderId, int page = 1)
+		public IActionResult MyOrder()
 		{
-			const int PageSize = 5;
-			var OrderDetail = _dataContext.orderDetails.Where(o => o.OrderId == orderId).Include(o => o.Products);
-
-			var totalOrders = await OrderDetail.CountAsync();
-			var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
-
-			var detail = await OrderDetail
-							.Skip((page - 1) * PageSize)
-							.Take(PageSize)
-							.ToListAsync();
-			ViewBag.TotalPages = totalPages;
-			ViewBag.CurrentPage = page;
-			ViewBag.Detail = detail;
-
 			return View();
 		}
 
