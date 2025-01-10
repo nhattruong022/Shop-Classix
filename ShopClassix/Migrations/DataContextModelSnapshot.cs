@@ -368,8 +368,11 @@ namespace Shop_Classix.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("categoryName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Views")
+                        .HasColumnType("int");
+
+                    b.Property<int>("view")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

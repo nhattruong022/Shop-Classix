@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.EntityFrameworkCore;
 
 namespace Shop_Classix.Controllers
 {
@@ -18,8 +19,8 @@ namespace Shop_Classix.Controllers
 		{
 			_dataContext = dataContext;
 		}
-       
-        [HttpGet]
+
+		[HttpGet]
 		public IActionResult Register()
 		{
 			return View();
@@ -106,11 +107,11 @@ namespace Shop_Classix.Controllers
 				}
 				else
 				{
-                   
-                    //Nếu người dùng nhập đúng thông tin: Tạo ra các claim
-                    //thiết lập cookie xác thực
 
-                    var claims = new List<Claim>
+					//Nếu người dùng nhập đúng thông tin: Tạo ra các claim
+					//thiết lập cookie xác thực
+
+					var claims = new List<Claim>
 				   {
 					   new Claim(ClaimTypes.Email, khachHang.Email), //email khách hàng
 					   new Claim(ClaimTypes.NameIdentifier, khachHang.Id.ToString()), //id khách hàng
@@ -154,9 +155,10 @@ namespace Shop_Classix.Controllers
 			return RedirectToAction("Login", "KhachHang");
 		}
 
-       
-        public IActionResult Profile()
+
+		public IActionResult Profile()
 		{
+<<<<<<< HEAD
 			CustomerModel customer = _dataContext.customers.FirstOrDefault(p => p.Email == User.Identity.Name);
 
             //danh sách yêu thích vui
@@ -182,6 +184,32 @@ namespace Shop_Classix.Controllers
 			ViewBag.favoritelist = favoritelist.ToList();
           
             return View(customer);
+=======
+			CustomerModel customer = _dataContext.customers.FirstOrDefault(p => p.Email == User.Identity.Name);
+
+			//danh sách yêu thích vui
+			// Lấy ID người dùng đang đăng nhập
+			var customerEmail = User.Identity.Name;
+			var customerId = _dataContext.customers
+			 .Where(c => c.Email == customerEmail)
+			 .Select(c => c.Id)
+			 .FirstOrDefault();
+			var favorite = _dataContext.favoriteProducts
+				.Where(f => f.CustomerId == customerId)
+				.ToList();
+			var favoritelist = from f in favorite
+							   join p in _dataContext.products on f.ProductId equals p.Id
+							   select new ProductList
+							   {
+								   Id = p.Id,
+								   Image = p.Image,
+								   Name = p.Name,
+								   Price = p.Price
+							   };
+			ViewBag.AlertMessage = customerEmail;
+			ViewBag.favoritelist = favoritelist.ToList();
+			return View(customer);
+>>>>>>> 5840e0ebb45fef40d0c980daf8b474473f3555c8
 		}
 
 		public IActionResult EditProfile()
@@ -190,8 +218,50 @@ namespace Shop_Classix.Controllers
 		}
 
 
-		public IActionResult MyOrder()
+		public async Task<IActionResult> MyOrder(int? status, int page = 1)
 		{
+			const int PageSize = 5;
+
+			// Lọc đơn hàng theo trạng thái
+			var filteredOrders = status.HasValue
+				? _dataContext.orders.Where(o => o.Status == status)
+				: _dataContext.orders;
+
+			// Đếm tổng số đơn hàng
+			var totalOrders = await filteredOrders.CountAsync();
+			var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
+
+			// Lấy danh sách đơn hàng theo phân trang
+			var orders = await filteredOrders
+							.Skip((page - 1) * PageSize)
+							.Take(PageSize)
+							.ToListAsync();
+
+			// Truyền dữ liệu đến View
+			ViewBag.TotalPages = totalPages;
+			ViewBag.CurrentPage = page;
+			ViewBag.Orders = orders;
+
+			return View();
+		}
+
+
+		public async Task<IActionResult> MyOrderdetail(int orderId, int page = 1)
+		{
+			const int PageSize = 5;
+			var OrderDetail = _dataContext.orderDetails.Where(o => o.OrderId == orderId).Include(o => o.Products);
+
+			var totalOrders = await OrderDetail.CountAsync();
+			var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
+
+			var detail = await OrderDetail
+							.Skip((page - 1) * PageSize)
+							.Take(PageSize)
+							.ToListAsync();
+			ViewBag.TotalPages = totalPages;
+			ViewBag.CurrentPage = page;
+			ViewBag.Detail = detail;
+
 			return View();
 		}
 
