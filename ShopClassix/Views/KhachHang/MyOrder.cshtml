@@ -94,28 +94,22 @@
                     <td>
                         <form asp-controller="KhachHang" asp-action="MyOrderDetail" method="post">
                             <input type="hidden" name="orderId" value="@order.Id" />
-                            <button type="submit" class="btn btn-danger">More</button>
+                            <button type="submit" class="btn btn-success">More</button>
                         </form>
                     </td>
                     <td>
                         @switch (order.Status)
                         {
-                            case 1: // Hủy
+                            case 1: case 2:// Hủy
                                 <form asp-controller="KhachHang" asp-action="CancelOrder" method="post">
                                     <input type="hidden" name="orderId" value="@order.Id" />
                                     <button type="submit" class="btn btn-danger">Cancel</button>
                                 </form>
                                 break;
-                            case 2: // Hoàn trả
+                            case 3: // Hoàn trả
                                 <form asp-controller="KhachHang" asp-action="RefundOrder" method="post">
                                     <input type="hidden" name="orderId" value="@order.Id" />
                                     <button type="submit" class="btn btn-warning">Refund</button>
-                                </form>
-                                break;
-                            case 3: // Bình luận
-                                <form asp-controller="KhachHang" asp-action="CommentOrder" method="post">
-                                    <input type="hidden" name="orderId" value="@order.Id" />
-                                    <button type="submit" class="btn btn-info">Comment</button>
                                 </form>
                                 break;
                         }

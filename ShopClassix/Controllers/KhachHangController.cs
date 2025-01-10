@@ -191,31 +191,51 @@ namespace Shop_Classix.Controllers
 
 
 		public async Task<IActionResult> MyOrder(int? status, int page = 1)
-    {
-        const int PageSize = 10;
+		{
+			const int PageSize = 5;
 
-        // Lọc đơn hàng theo trạng thái
-        var filteredOrders = status.HasValue
-            ? _dataContext.orders.Where(o => o.Status == status)
-            : _dataContext.orders;
+			// Lọc đơn hàng theo trạng thái
+			var filteredOrders = status.HasValue
+				? _dataContext.orders.Where(o => o.Status == status)
+				: _dataContext.orders;
 
-        // Đếm tổng số đơn hàng
-        var totalOrders = await filteredOrders.CountAsync();
-        var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
+			// Đếm tổng số đơn hàng
+			var totalOrders = await filteredOrders.CountAsync();
+			var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
 
-        // Lấy danh sách đơn hàng theo phân trang
-        var orders = await filteredOrders
-                        .Skip((page - 1) * PageSize)
-                        .Take(PageSize)
-                        .ToListAsync();
+			// Lấy danh sách đơn hàng theo phân trang
+			var orders = await filteredOrders
+							.Skip((page - 1) * PageSize)
+							.Take(PageSize)
+							.ToListAsync();
 
-        // Truyền dữ liệu đến View
-        ViewBag.TotalPages = totalPages;
-        ViewBag.CurrentPage = page;
-        ViewBag.Orders = orders;
+			// Truyền dữ liệu đến View
+			ViewBag.TotalPages = totalPages;
+			ViewBag.CurrentPage = page;
+			ViewBag.Orders = orders;
 
-        return View();
-    }
+			return View();
+		}
+
+
+		public async Task<IActionResult> MyOrderdetail(int orderId, int page = 1)
+		{
+			const int PageSize = 5;
+			var OrderDetail = _dataContext.orderDetails.Where(o => o.OrderId == orderId).Include(o => o.Products);
+
+			var totalOrders = await OrderDetail.CountAsync();
+			var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
+
+			var detail = await OrderDetail
+							.Skip((page - 1) * PageSize)
+							.Take(PageSize)
+							.ToListAsync();
+			ViewBag.TotalPages = totalPages;
+			ViewBag.CurrentPage = page;
+			ViewBag.Detail = detail;
+
+			return View();
+		}
 
 		public IActionResult Comments()
 		{
