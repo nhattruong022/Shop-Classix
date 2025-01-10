@@ -1,23 +1,37 @@
-﻿<footer class="footer spad">
+﻿@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    var address = HttpContextAccessor.HttpContext.Session.GetString("Address");
+    var phone = HttpContextAccessor.HttpContext.Session.GetString("Phone");
+    var email = HttpContextAccessor.HttpContext.Session.GetString("Email");
+    var Logo = HttpContextAccessor.HttpContext.Session.GetString("Logo");
+
+}
+
+<footer class="footer spad">
     <div class="container">
         <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                <div class="footer__about">
+          
+
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="footer__about">
                     <div class="footer__about__logo">
                         <a href="./index.html">
-                            <img src="@Url.Content("~/Classix/img/logox.png")" style="border-radius: 50%" alt="" />
+                            <img src="@Url.Content("~/Classix/img/logo/" + Logo)" style="border-radius: 50%" alt="Logo" />
                         </a>
                     </div>
-                    <ul>
-                        <li>
-                            Address: 65 Huynh Thuc Khang street, Ben Nghe, District 1, HCM
-                            city
-                        </li>
-                        <li>Phone: +84 902 442 725</li>
-                        <li>Email: 0306221289@caothang.edu.vn</li>
-                    </ul>
+
+                        <ul>
+                        
+                            <li id="footerAddress">Address: @address</li>
+                            <li id="footerPhone">Phone: @phone</li>
+                            <li id="footerEmail">Email: @email</li>
+
+                        </ul>
+
                 </div>
             </div>
+            
             <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
                 <div class="footer__widget">
                     <ul>
@@ -87,3 +101,28 @@
         </div>
     </div>
 </footer>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+@*
+<script>
+    $(document).ready(function () {
+        // Gửi yêu cầu POST tới API
+        $.ajax({
+            url: '/api/Contacts/GetFooterData', // Đường dẫn đến Action trong FooterController
+            type: 'GET',
+            success: function (data) {
+                // Cập nhật các phần tử trong footer với dữ liệu trả về từ API
+                $('#footerAddress').text('Address: ' + data.Address);
+                $('#footerPhone').text('Phone: ' + data.PhoneNumber);
+                $('#footerEmail').text('Email: ' + data.Email);
+            },
+            error: function () {
+                // Nếu có lỗi, hiển thị thông báo lỗi
+                $('#footerAddress').text('Error loading data.');
+                $('#footerPhone').text('Error loading data.');
+                $('#footerEmail').text('Error loading data.');
+            }
+        });
+    });
+</script>
+*@
+

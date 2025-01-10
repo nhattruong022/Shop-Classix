@@ -56,6 +56,28 @@ namespace Shop_Classix.Controllers
             };
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
             ViewBag.UniqueProductCount = cart.Items.Select(item => item.ProductId).Distinct().Count();
+            //lấy dữ liệu footer vui
+            var contacts = dataContext.contacts
+       .Select(c => new ContactModel
+       {
+           Name = c.Name,
+
+           Email = c.Email,
+           PhoneNumber = c.PhoneNumber,
+           Address = c.Address,
+           Logo = c.Logo
+       })
+         .ToList();
+
+            if (contacts != null && contacts.Any())
+            {
+                var firstContact = contacts.FirstOrDefault();
+                HttpContext.Session.SetString("Address", firstContact.Address);
+                HttpContext.Session.SetString("Phone", firstContact.PhoneNumber);
+                HttpContext.Session.SetString("Email", firstContact.Email);
+                HttpContext.Session.SetString("Logo", firstContact.Logo);
+            }
+
             return View(model);
         }
 
@@ -209,10 +231,7 @@ namespace Shop_Classix.Controllers
             });
         }
 
-
-
-
-
+       
 
         public IActionResult DetailProduct()
         {

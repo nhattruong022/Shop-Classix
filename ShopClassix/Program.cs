@@ -40,6 +40,16 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+// Đăng ký dịch vụ HTTP Context Accessor
+builder.Services.AddHttpContextAccessor();
+
+// Đăng ký bộ nhớ cache và session
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession(options =>
+{
+  options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 
 //phân quyền admin

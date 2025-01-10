@@ -180,7 +180,8 @@ namespace Shop_Classix.Controllers
 							   };
             ViewBag.AlertMessage = customerEmail;
 			ViewBag.favoritelist = favoritelist.ToList();
-			return View(customer);
+          
+            return View(customer);
 		}
 
 		public IActionResult EditProfile()

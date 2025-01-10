@@ -53,6 +53,8 @@ namespace Shop_Classix.Controllers
 
             // Trả về giỏ hàng với các sản phẩm đã phân trang
             cart.Items = paginatedItems;
+
+            
             return View(cart);
         }
 
