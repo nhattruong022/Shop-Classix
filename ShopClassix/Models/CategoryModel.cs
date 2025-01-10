@@ -8,7 +8,7 @@ namespace Shop_Classix.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage ="Please enter category name")]
-        public string Name { get; set; } = string.Empty;
+        public string? Name { get; set; }
 
         public int Status { get; set; }
         public string? Slug { get; set; } = string.Empty;
@@ -18,7 +18,7 @@ namespace Shop_Classix.Models
 
            //cho phép CategoryModel lưu trữ nhiều đối tượng ProductModel.
         //Điều này có nghĩa là mỗi danh mục(category) có thể chứa nhiều sản phẩm.-> mối quan hệ một-nhiều
-        public ICollection<ProductsModel> products { get; set; }
+        public ICollection<ProductsModel>? products { get; set; }
 
     }
 }
