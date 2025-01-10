@@ -6,6 +6,7 @@ namespace Shop_Classix.Controllers
     {
         public IActionResult About()
         {
+
             return View();
         }
     }

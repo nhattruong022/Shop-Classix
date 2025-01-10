@@ -71,18 +71,24 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
+                    <!-- Cột chứa ô tìm kiếm và nút Search -->
                     <div class="col-md-4">
                         <input type="text" class="form-control" name="name" id="searchInput"
-                            placeholder="Search by Category Name">
+                               placeholder="Search by Category Name">
                     </div>
                     <div class="col-md-4">
                         <button type="submit" class="btn btn-primary" onclick="filterResults()">Search</button>
+                    </div>
+                    <!-- Cột chứa nút Add Category -->
+                    <div class="col-md-4 text-end">
+                        <a href="@Url.Action("Add", "Category", new { area = "Admin" })" class="btn btn-success">Add Category</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </form>
+
 <!-- Page-body start -->
 <div class="page-body">
     <div class="card">
@@ -117,8 +123,7 @@
                                 <td>@item.Name</td>
                                 <td>@item.Status</td>
                                 <td>
-                                    <button class="btn btn-primary btn-sm">View</button>
-                                    <button class="btn btn-warning btn-sm">Edit</button>
+                                    <a href="@Url.Action("Edit", "Category", new { area = "Admin", id = item.Id })" class="btn btn-warning btn-sm">Edit</a>
                                     <button class="btn btn-danger btn-sm">Delete</button>
                                 </td>
                             </tr>
@@ -145,4 +150,4 @@
         </ul>
     </nav>
 </div>
-<!-- Page-body end -->
+<!-- Page-body end -->  

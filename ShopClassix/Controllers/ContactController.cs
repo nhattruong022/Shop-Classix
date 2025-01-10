@@ -38,8 +38,8 @@ namespace Shop_Classix.Controllers
         public IActionResult Contact()
 
         {
-            var connectshop = _dataContext.contacts.ToList();
-            ViewBag.Connectshop = connectshop;
+            //lấy dữ liệu footer vui
+            ViewBag.connectshop = _dataContext.contacts.ToList();
             return View();
         }
     }
