@@ -371,9 +371,6 @@ namespace Shop_Classix.Migrations
                     b.Property<int>("Views")
                         .HasColumnType("int");
 
-                    b.Property<int>("view")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");

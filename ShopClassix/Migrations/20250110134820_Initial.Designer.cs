@@ -12,7 +12,7 @@ using Shop_Classix.Repository;
 namespace Shop_Classix.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250110061907_Initial")]
+    [Migration("20250110134820_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -372,9 +372,6 @@ namespace Shop_Classix.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("Views")
-                        .HasColumnType("int");
-
-                    b.Property<int>("view")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
