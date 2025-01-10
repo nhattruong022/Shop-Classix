@@ -123,8 +123,7 @@
                                 <td>@item.Name</td>
                                 <td>@item.Status</td>
                                 <td>
-                                    <button class="btn btn-primary btn-sm">View</button>
-                                    <button class="btn btn-warning btn-sm">Edit</button>
+                                    <a href="@Url.Action("Edit", "Category", new { area = "Admin", id = item.Id })" class="btn btn-warning btn-sm">Edit</a>
                                     <button class="btn btn-danger btn-sm">Delete</button>
                                 </td>
                             </tr>
@@ -151,4 +150,4 @@
         </ul>
     </nav>
 </div>
-<!-- Page-body end -->
+<!-- Page-body end -->  

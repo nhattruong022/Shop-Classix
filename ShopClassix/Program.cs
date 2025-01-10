@@ -2,31 +2,31 @@
 using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Repository;
 using Shop_Classix.Service;
+using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Connect VNPay
+// Cấu hình kết nối VNPay
 builder.Services.AddSingleton<IVnPayService, VnPayService>();
 
-// Connect to the database
+// Cấu hình kết nối cơ sở dữ liệu SQL Server
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectDb"));
+    options.UseSqlServer(builder.Configuration["ConnectionStrings:ConnectDb"]);
 });
 
-// Add services to the container
+// Cấu hình MVC cho Controllers và Views
 builder.Services.AddControllersWithViews();
 
-// Configure authentication
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie(options =>
-    {
-        options.LoginPath = "/KhachHang/Login"; // Redirect to login page
-        options.LogoutPath = "/KhachHang/LogOut"; // Redirect for logout
-        options.AccessDeniedPath = "/AccessDenied"; // Redirect for access denied
-    });
+// Cấu hình xác thực với Cookie Authentication
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+{
+    options.LoginPath = "/KhachHang/Login";  // Người dùng chưa đăng nhập -> chuyển hướng đến trang đăng nhập
+    options.LogoutPath = "/KhachHang/LogOut";  // Trang xử lý đăng xuất
+    options.AccessDeniedPath = "/AccessDenied";  // Người dùng đã đăng nhập nhưng không đủ quyền truy cập
+});
 
-// Configure session
+// Cấu hình session
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
@@ -35,70 +35,67 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
-<<<<<<< Updated upstream
-// Đăng ký dịch vụ HTTP Context Accessor
-builder.Services.AddHttpContextAccessor();
-
-// Đăng ký bộ nhớ cache và session
-builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession(options =>
-{
-  options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
-});
-
-
-//phân quyền admin
-=======
-// Authorization policy for admin
->>>>>>> Stashed changes
+// Cấu hình phân quyền admin
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
 });
 
-// Register email service
+// Cấu hình dịch vụ email
 builder.Services.AddTransient<IEmailService, EmailService>();
+
+// Cấu hình IHttpContextAccessor để hỗ trợ HttpContext trong toàn ứng dụng
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
-if (!app.Environment.IsDevelopment())
+// Cấu hình HTTP request pipeline
+if (app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    app.UseHsts();
+    app.UseDeveloperExceptionPage();  // Hiển thị lỗi chi tiết trong môi trường phát triển
+}
+else
+{
+    app.UseExceptionHandler("/Home/Error");  // Xử lý lỗi chung cho ứng dụng trong môi trường sản xuất
+    app.UseHsts();  // Cấu hình HSTS trong môi trường sản xuất
 }
 
-app.UseHttpsRedirection();
-app.UseStaticFiles();
-app.UseRouting();
-app.UseSession();
-app.UseAuthentication(); // Ensure authentication middleware is added
-app.UseAuthorization();
+app.UseHttpsRedirection();  // Chuyển hướng từ HTTP sang HTTPS
+app.UseStaticFiles();  // Cấu hình các file tĩnh
 
-// Configure routes
+app.UseRouting();  // Cấu hình routing
+
+app.UseSession();  // Sử dụng session
+
+app.UseAuthentication();  // Cấu hình xác thực
+app.UseAuthorization();  // Cấu hình phân quyền
+
+// Cấu hình route cho Admin
 app.MapControllerRoute(
     name: "areaRoute",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
-// Configure home route
+// Cấu hình route cho trang chủ
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-// Configure additional routes
+// Cấu hình route cho Cart
 app.MapControllerRoute(
     name: "Cart",
     pattern: "{controller=Cart}/{action=Cart}/{id?}");
 
+// Cấu hình route cho Contact
 app.MapControllerRoute(
     name: "Contact",
     pattern: "{controller=Contact}/{action=Contact}/{id?}");
 
+// Cấu hình route cho About
 app.MapControllerRoute(
     name: "About",
     pattern: "{controller=About}/{action=About}/{id?}");
 
+// Cấu hình route cho KhachHang
 app.MapControllerRoute(
     name: "KhachHang",
     pattern: "{controller=KhachHang}/{action=Register}/{id?}");
