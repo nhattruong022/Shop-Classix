@@ -1,21 +1,13 @@
 ﻿@model IEnumerable<Shop_Classix.Models.ProductsModel>
 
 @{
-
     ViewData["Title"] = "Product";
-
     Layout = "_AdminSubLayout";
-
-
-
-
-
     var productlist = ViewBag.Products;
 }
 
 @section Link {
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
-
     <link rel="icon" href="@Url.Content("~/Classix/admin/images/favicon.ico")" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/css/bootstrap/css/bootstrap.min.css")">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/icon/themify-icons/themify-icons.css")">
@@ -37,8 +29,6 @@
     <script src="@Url.Content("~/Classix/admin/js/pcoded.min.js")"></script>
     <script src="@Url.Content("~/Classix/admin/js/demo-12.js")"></script>
     <script src="@Url.Content("~/Classix/admin/js/jquery.mCustomScrollbar.concat.min.js")"></script>
-
-
 }
 
 <!-- Page-header start -->
@@ -77,8 +67,10 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-4">
-                        <input type="text" name="name" class="form-control" id="searchInput" placeholder="Search by Product Name">
+                        <input type="text" name="name" class="form-control" id="searchInput"
+                            placeholder="Search by Product Name">
                     </div>
+
                     <div class="col-md-4">
                         <select class="form-control" name="Cate" id="filterCategory">
                             <option value="">All Categories</option>
@@ -100,13 +92,7 @@
                 <div class="card-header">
                     <h5>Table Orders</h5>
                     <div class="card-header-right">
-                        <ul class="list-unstyled card-option">
-                            <li><i class="icofont icofont-simple-left "></i></li>
-                            <li><i class="icofont icofont-maximize full-card"></i></li>
-                            <li><i class="icofont icofont-minus minimize-card"></i></li>
-                            <li><i class="icofont icofont-refresh reload-card"></i></li>
-                            <li><i class="icofont icofont-error close-card"></i></li>
-                        </ul>
+                        <button class="btn btn-primary">Add</button>
                     </div>
                 </div>
                 <div class="card-block table-border-style">
@@ -114,98 +100,80 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
                                     <th>Image</th>
                                     <th>Product Name</th>
                                     <th>Category</th>
                                     <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Size</th>
                                     <th>Description</th>
                                     <th>Slug</th>
                                     <th>Status</th>
-                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody id="table-product">
                                 @foreach (var item in productlist)
-
-
-
                                 {
-
                                     <tr>
-                                        <th scope="row">1</th>
                                         <td><img style="width: 150px;" src="~/Classix/img/@item.Image"></td>
                                         <td>@item.Name</td>
-                                        <td>@item.category.Name</td>
+                                        <td>@item.category?.Name</td>
                                         <td>@item.Price</td>
+                                        <td>@item.Quantity</td>
+                                        <td>@item.Size</td>
                                         <td>
                                             @item.Description
                                         </td>
                                         <td>@item.Slug</td>
-                                        <td>@item.Status</td>
                                         <td>
-                                            <button class="btn btn-primary btn-sm">Add</button>
+                                            @{
+                                                switch (item.Status)
+                                                {
+                                                    case 0:
+                                                        <span>Deleted</span>
+                                                        break;
+                                                    case 1:
+                                                        <span>Active</span>
+                                                        break;
+                                                    default:
+                                                        break;
+                                                }
+                                            }
+                                        </td>
+                                        <td>
                                             <button class="btn btn-warning btn-sm">Edit</button>
-                                            <button class="btn btn-danger btn-sm">Delete</button>
+                                        </td>
+                                        <td>
+                                            @{
+                                                switch (item.Status)
+                                                {
+                                                    case 0:
+                                                        <form asp-action="Active" method="post">
+                                                            <input type="hidden" value="@item.Id" name="id">
+                                                            <button class="btn btn-danger btn-sm" type="submit">Active</button>
+                                                        </form>
+                                                        break;
+                                                    case 1:
+                                                        <form asp-action="Delete" method="post">
+                                                            <input type="hidden" value="@item.Id" name="id">
+                                                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                                                        </form>
+                                                        break;
+                                                    default:
+                                                        break;
+                                                }
+                                            }
                                         </td>
                                     </tr>
-
-                                    @*
-                                <tr>
-                                <th scope="row">2</th>
-                                <td><img style="width: 150px;" src="~/Classix/img/table/DBOCWA3710N_3.jpg" alt=""></td>
-                                <td>wood desk</td>
-                                <td>Desk</td>
-                                <td>200000VND</td>
-                                <td>
-                                Bold. Iconic. Uncomplicated. When it comes to
-                                commanding attention, <br>
-                                this bed has no rival. Its svelte modern shape <br>
-                                is underscored by a rich Cerused Oak finish and lined with a metal <br>
-                                rail in Bronze Metallic Paint outlining the top of both the headboard and footboard. <br>
-                                </td>
-                                <td>wood-desk</td>
-                                <td>1</td>
-                                <td>
-                                <button class="btn btn-primary btn-sm">Add</button>
-                                <button class="btn btn-warning btn-sm">Edit</button>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                                </td>
-                                </tr>
-                                <tr>
-                                <th scope="row">3</th>
-                                <td><img style="width: 150px;" src="~/Classix/img/light/DBOLBN2015N_600x.jpg" alt=""></td>
-                                <td>wood light</td>
-                                <td>Light</td>
-                                <td>300000VND</td>
-                                <td>
-                                Bold. Iconic. Uncomplicated. When it comes to
-                                commanding attention, <br>
-                                this bed has no rival. Its svelte modern shape <br>
-                                is underscored by a rich Cerused Oak finish and lined with a metal <br>
-                                rail in Bronze Metallic Paint outlining the top of both the headboard and footboard. <br>
-                                </td>
-                                <td>wood-light</td>
-                                <td>1</td>
-                                <td>
-                                <button class="btn btn-primary btn-sm">Add</button>
-                                <button class="btn btn-warning btn-sm">Edit</button>
-                                <button class="btn btn-danger btn-sm">Delete</button>
-                                </td>
-                                </tr>*@
-
                                 }
-
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
                     @for (int i = 1; i <= ViewBag.TotalPages; i++)
-
                     {
                         <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
                             <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>

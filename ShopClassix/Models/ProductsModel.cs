@@ -12,18 +12,18 @@ namespace Shop_Classix.Models
         [Required(ErrorMessage = "Please enter product name")]
         public string Name { get; set; } = string.Empty;
 
-        [Required(ErrorMessage ="Please enter price")]
+        [Required(ErrorMessage = "Please enter price")]
         [Column(TypeName = "decimal(18,2)")]
         public decimal Price { get; set; }
 
-        [Required(ErrorMessage ="Plesae enter description")]        
-        
+        [Required(ErrorMessage = "Plesae enter description")]
+
         public string Description { get; set; } = string.Empty;
         public int? FavoriteNumber { get; set; }
 
         public int Status { get; set; }
 
-        [Required(ErrorMessage ="Please insert into image")]
+        [Required(ErrorMessage = "Please insert into image")]
         public string Image { get; set; } = string.Empty;
 
         public string? Slug { get; set; } = string.Empty;
@@ -43,11 +43,9 @@ namespace Shop_Classix.Models
 
         public CategoryModel category { get; set; } //navigation property
 
-        public string? categoryName { get; set; }
-
         [NotMapped]
         public bool IsFavorite { get; set; }  //trạng thái yêu thích
 
-        
+
     }
 }
