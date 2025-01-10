@@ -275,8 +275,8 @@ namespace Shop_Classix.Migrations
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("deposit")
-                        .HasColumnType("float");
+                    b.Property<decimal>("deposit")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -367,15 +367,6 @@ namespace Shop_Classix.Migrations
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("Views")
-                        .HasColumnType("int");
-
-                    b.Property<string>("categoryName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("view")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 

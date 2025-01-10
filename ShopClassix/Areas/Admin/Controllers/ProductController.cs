@@ -59,5 +59,32 @@ namespace Shop_Classix.Areas.Admin.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var product = await _dataContext.products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            product.Status--;
+            await _dataContext.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Active(int id)
+        {
+            var product = await _dataContext.products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            product.Status++;
+            await _dataContext.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
     }
+
 }
