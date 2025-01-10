@@ -20,16 +20,16 @@ namespace Shop_Classix.Models.ViewModels
         public string Email { get; set; }
 
 
-        public decimal deposit {  get; set; }
+        public double deposit {  get; set; }
 
 
 
         public string OrderNotes { get; set; }
 
         [Required(ErrorMessage = "Payment method is required")]
-        public int PaymentMethod { get; set; } // Example: 1 = Check Payment, 2 = COD
+        public string PaymentMethod { get; set; } // Example: 1 = Check Payment, 2 = COD
 
-        public decimal Total { get; set; } // Calculated from the cart
+        public double Total { get; set; } // Calculated from the cart
 
         public List<CartItemViewModel> Items { get; set; } // Representing cart items
 

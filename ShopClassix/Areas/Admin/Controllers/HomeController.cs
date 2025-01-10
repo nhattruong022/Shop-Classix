@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
 using Shop_Classix.Repository;
 
 namespace Shop_Classix.Areas.Admin.Controllers
@@ -22,6 +25,9 @@ namespace Shop_Classix.Areas.Admin.Controllers
             var contactInfo = _dataContext.contacts.FirstOrDefault(); //lấy thông tin từ admin cntact
             return View(contactInfo);
         }
+
+
+   
 
 
     }

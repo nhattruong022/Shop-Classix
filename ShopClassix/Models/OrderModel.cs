@@ -7,11 +7,11 @@ namespace Shop_Classix.Models
         [Key]
         public int Id { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal TotalPrice { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal deposit {  get; set; }
+		public double TotalPrice { get; set; }
+
+
+		public double deposit {  get; set; }
 
         public int CustomerId { get; set; }
         public string CustomerName { get; set; }
@@ -20,7 +20,7 @@ namespace Shop_Classix.Models
         public string Email { get; set; }
         public string Phone { get; set; }
 
-        public int PaymentMethod { get; set; }
+        public string PaymentMethod { get; set; }
 
 
 
@@ -38,7 +38,7 @@ namespace Shop_Classix.Models
         // One-to-many relationship with OrderDetail
         public ICollection<OrderDetailModel> orderDetails { get; set; }
 
-        
+      
     }
 
 }

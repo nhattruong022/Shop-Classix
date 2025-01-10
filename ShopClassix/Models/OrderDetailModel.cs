@@ -12,10 +12,10 @@ namespace Shop_Classix.Models
 
         [Key]        
         public int ProductId { get; set; }
+
         public int Quantity { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal TotalPrice { get; set; }
+		public double TotalPrice { get; set; }
 
         // Tham chiếu đến Orders
         [ForeignKey("OrderId")]

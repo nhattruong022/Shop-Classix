@@ -12,8 +12,8 @@ using Shop_Classix.Repository;
 namespace Shop_Classix.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250105143608_CapNhatModel")]
-    partial class CapNhatModel
+    [Migration("20250109170131_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,27 +24,6 @@ namespace Shop_Classix.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Shop_Classix.Models.CartItemModel", b =>
-                {
-                    b.Property<int>("CustomerId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.HasKey("CustomerId", "ProductId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("cartItems");
-                });
 
             modelBuilder.Entity("Shop_Classix.Models.CategoryModel", b =>
                 {
@@ -196,8 +175,8 @@ namespace Shop_Classix.Migrations
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("ProductCost")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("ProductCost")
+                        .HasColumnType("float");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -217,8 +196,8 @@ namespace Shop_Classix.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<decimal>("Cost")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Cost")
+                        .HasColumnType("float");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -242,8 +221,8 @@ namespace Shop_Classix.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
 
                     b.HasKey("OrderId", "ProductId");
 
@@ -260,23 +239,47 @@ namespace Shop_Classix.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("CreateAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
-                    b.Property<int>("PaymentMethod")
-                        .HasColumnType("int");
+                    b.Property<string>("CustomerName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OrderNotes")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentMethod")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("TotalPrice")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("TotalPrice")
+                        .HasColumnType("float");
 
                     b.Property<DateTime?>("UpdateAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<double>("deposit")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 
@@ -347,8 +350,8 @@ namespace Shop_Classix.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
 
                     b.Property<int?>("Quantity")
                         .HasColumnType("int");
@@ -368,33 +371,20 @@ namespace Shop_Classix.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("Views")
+                        .HasColumnType("int");
+
                     b.Property<string>("categoryName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("view")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.ToTable("products");
-                });
-
-            modelBuilder.Entity("Shop_Classix.Models.CartItemModel", b =>
-                {
-                    b.HasOne("Shop_Classix.Models.CustomerModel", "customers")
-                        .WithMany()
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Shop_Classix.Models.ProductsModel", "products")
-                        .WithMany()
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("customers");
-
-                    b.Navigation("products");
                 });
 
             modelBuilder.Entity("Shop_Classix.Models.ChatUsersModel", b =>
@@ -449,7 +439,7 @@ namespace Shop_Classix.Migrations
             modelBuilder.Entity("Shop_Classix.Models.OrderDetailModel", b =>
                 {
                     b.HasOne("Shop_Classix.Models.OrderModel", "Orders")
-                        .WithMany()
+                        .WithMany("orderDetails")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -507,6 +497,11 @@ namespace Shop_Classix.Migrations
             modelBuilder.Entity("Shop_Classix.Models.CategoryModel", b =>
                 {
                     b.Navigation("products");
+                });
+
+            modelBuilder.Entity("Shop_Classix.Models.OrderModel", b =>
+                {
+                    b.Navigation("orderDetails");
                 });
 #pragma warning restore 612, 618
         }

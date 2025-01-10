@@ -41,24 +41,27 @@ namespace Shop_Classix.Areas.Admin.Controllers
             return View(orders);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> ChangeOrder(int id)
-        {
-            var order = await _dataContext.orders.FindAsync(id);
-            if (order == null)
-            {
-                return NotFound();
-            }
+        //[HttpPost]
+        //public async Task<IActionResult> ChangeOrder(int id)
+        //{
+        //    var order = await _dataContext.orders.FindAsync(id);
+        //    if (order == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            if (order.Status == 2 && order.PaymentMethod == 1)
-                order.Status = 4;
-            else
-                order.Status++;
+        //    if (order.Status == 2 && order.PaymentMethod == 1)
+        //        order.Status = 4;
+        //    else
+        //        order.Status++;
 
-            await _dataContext.SaveChangesAsync();
+        //    order.Status++;
 
-            return RedirectToAction("Orders");
-        }
+
+        //    await _dataContext.SaveChangesAsync();
+
+        //    return RedirectToAction("Orders");
+        //}
 
         [HttpPost]
         public async Task<IActionResult> DeleteOrder(int id)
