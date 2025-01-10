@@ -30,6 +30,11 @@
     <script src="@Url.Content("~/Classix/admin/js/demo-12.js")"></script>
     <script src="@Url.Content("~/Classix/admin/js/jquery.mCustomScrollbar.concat.min.js")"></script>
 }
+<style>
+    .centered {
+        text-align: center; /* Căn giữa nội dung */
+    }
+</style>
 
 <!-- Page-header start -->
 <div class="page-header card">
@@ -69,8 +74,7 @@
                     <div class="col-md-4">
                         <input type="text" name="name" class="form-control" id="searchInput"
                             placeholder="Search by Product Name">
-                        <input type="text" name="name" class="form-control" id="searchInput"
-                            placeholder="Search by Product Name">
+                       
                     </div>
 
                     <div class="col-md-4">
@@ -97,6 +101,9 @@
                         <button class="btn btn-primary">Add</button>
                     </div>
                 </div>
+               
+                @if (productlist != null)
+                {
                 <div class="card-block table-border-style">
                     <div class="table-responsive">
                         <table class="table">
@@ -171,8 +178,18 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
+                    </div>
+                }
+
+
+                else
+                {
+                    <div class="centered">
+                        <h4>Không tìm thấy sản phẩm nào!</h4>
+                    </div>
+                }
             </div>
+                
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center">
                     @for (int i = 1; i <= ViewBag.TotalPages; i++)

@@ -56,14 +56,12 @@ namespace Shop_Classix.Controllers
             //ViewBag.TotalAmount = CalculateTotalAmount(cart.Items);
             //ViewBag.CurrentPageTotalAmount = CalculateTotalAmount(paginatedItems); 
 
-<<<<<<< HEAD
+
             // Trả về giỏ hàng với các sản phẩm đã phân trang
             cart.Items = paginatedItems;
 
-            
-=======
             cart.Items = paginatedItems;
->>>>>>> 5840e0ebb45fef40d0c980daf8b474473f3555c8
+
             return View(cart);
         }
 

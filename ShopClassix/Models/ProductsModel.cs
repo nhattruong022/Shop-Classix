@@ -47,7 +47,7 @@ namespace Shop_Classix.Models
                 public bool IsFavorite { get; set; }  //trạng thái yêu thích
 
                 //lượt xem
-                public int view { get; set; }
+        
 
         }
 }

@@ -22,6 +22,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
             // Tìm kiếm theo tên sản phẩm
             if (!string.IsNullOrEmpty(name))
             {
+                
                 productQuery = productQuery.Where(p => p.Name.Contains(name));
             }
 
@@ -30,7 +31,11 @@ namespace Shop_Classix.Areas.Admin.Controllers
             {
                 productQuery = productQuery.Where(p => p.category.Name == cate);
             }
-
+            if (name != null && !productQuery.Any())
+            {
+                ViewBag.Products = null;
+                return View();
+            }
             // Tính tổng số sản phẩm sau khi áp dụng bộ lọc
             var totalOrders = await productQuery.CountAsync();
             var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);

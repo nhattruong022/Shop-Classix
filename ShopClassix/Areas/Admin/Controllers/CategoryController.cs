@@ -20,6 +20,10 @@ namespace Shop_Classix.Areas.Admin.Controllers
             {
                 categories = categories.Where(p => p.Name.Contains(name, StringComparison.OrdinalIgnoreCase)).ToList();
             }
+            if (name != null && !categories.Any()) {
+                ViewBag.categories = null;
+                return View();
+            }
             ViewBag.categories = categories;
             return View();
         }
