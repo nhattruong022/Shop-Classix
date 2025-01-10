@@ -158,6 +158,7 @@ namespace Shop_Classix.Controllers
 		public IActionResult Profile()
 		{
 
+
 			CustomerModel customer = _dataContext.customers.FirstOrDefault(p => p.Email == User.Identity.Name);
 
 			//danh sách yêu thích vui
