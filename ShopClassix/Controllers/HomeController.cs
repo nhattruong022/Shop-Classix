@@ -162,15 +162,10 @@ namespace Shop_Classix.Controllers
         }
 
 
-
-        public IActionResult TimKiem(string keyword, int? categoryId, int? price, int? page)
         public IActionResult TimKiem(string keyword, int? categoryId, int? price, int? page)
         {
-            int pageSize = 4;   //số sản phẩm trong 1 trang
-            int pageNumber = (page ?? 1);  //mặc định là trang 1
-
-
-
+            int pageSize = 4;   // số sản phẩm trong 1 trang
+            int pageNumber = (page ?? 1);  // mặc định là trang 1
 
             var products = dataContext.products.Include(p => p.category).AsQueryable();
 
@@ -186,39 +181,33 @@ namespace Shop_Classix.Controllers
                 products = products.Where(p => p.Name.Contains(keyword));
             }
 
+            // Lọc theo giá
             if (price.HasValue)
-                if (price.HasValue)
-                {
-                    switch (price.Value)
+            {
                 switch (price.Value)
-                    {
-                        case 1:
-                            products = products.Where(p => p.Price < 100000);
-                            break;
-                        case 2:
-                            products = products.Where(p => p.Price >= 100000 && p.Price <= 500000);
-                            break;
-                        case 3:
-                            products = products.Where(p => p.Price > 500000);
-                            break;
-                    }
+                {
+                    case 1:
+                        products = products.Where(p => p.Price < 100000);
+                        break;
+                    case 2:
+                        products = products.Where(p => p.Price >= 100000 && p.Price <= 500000);
+                        break;
+                    case 3:
+                        products = products.Where(p => p.Price > 500000);
+                        break;
                 }
-        }
+            }
 
-        //tìm kiếm phân trang sắp xếp theo id
-        var pagedProducts = products.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
-        var pagedProducts = products.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
+            // Phân trang và sắp xếp theo ID
+            var pagedProducts = products.OrderBy(p => p.Id).ToPagedList(pageNumber, pageSize);
 
-
-        //truyền danh mục và tham số tìm kiếm vào viewBag để sử dụng cho phần phân trang
-        ViewBag.keyword = keyword;
+            // Truyền danh mục và tham số tìm kiếm vào ViewBag để sử dụng cho phần phân trang
+            ViewBag.keyword = keyword;
             ViewBag.categoryId = categoryId;
             ViewBag.price = price;
-
             ViewBag.categories = new SelectList(dataContext.categories, "Id", "Name");
 
             // Trả về kết quả tìm kiếm
-            return View("TimKiem", pagedProducts);
             return View("TimKiem", pagedProducts);
         }
 
@@ -271,11 +260,7 @@ namespace Shop_Classix.Controllers
 
 
 
-        public IActionResult DetailProduct()
-        {
-            return View();
-        }
-
+  
 
 
 
