@@ -2,7 +2,7 @@
     ViewData["Title"] = "Admin-Edit Category";
     Layout = "_AdminSubLayout";
 }
-
+@model Shop_Classix.Models.CategoryModel
 @section Link {
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
 
@@ -33,28 +33,28 @@
     <h5>Edit Category</h5>
 </div>
 <div class="card-body">
-    <form method="post">
-        <input type="hidden" name="Id" value="@Model.Id" /> <!-- Lưu trữ giá trị Id của danh mục -->
-
-        <!-- Tên danh mục -->
+    <form asp-action="Edit" asp-controller="Category" method="post" enctype="multipart/form-data">
+        <!-- Name -->
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="mb-3 text-start">
-            <label for="name" class="form-label">Category Name</label>
-            <input type="text" class="form-control" id="name" name="Name" value="@Model.Name" placeholder="Enter name">
+            <label for="Name" class="form-label">Category Name</label>
+            <input asp-for="Name" class="form-control" id="name" placeholder="Enter name" required>
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
-        <!-- Trạng thái -->
+        <!-- Status -->
         <div class="mb-3 text-start">
             <label for="status" class="form-label">Status</label>
-            <select class="form-control" id="status" name="Status">
-                <option value="1" selected="@((Model.Status == 1) ? "selected" : "")">Active</option>
-                <option value="0" selected="@((Model.Status == 0) ? "selected" : "")">Inactive</option>
+            <select asp-for="Status" class="form-control">
+                <option value="1">Available</option>
+                <option value="0">Unavailable</option>
             </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
         </div>
 
-
-        <!-- Submit và Cancel Buttons -->
+        <!-- Submit and Cancel Buttons -->
         <div class="d-flex justify-content-between">
-            <button type="submit" class="btn btn-success">Edit Category</button>
+            <button type="submit" class="btn btn-success">Update Category</button>
             <a href="@Url.Action("Index", "Category", new { Area = "Admin" })" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
