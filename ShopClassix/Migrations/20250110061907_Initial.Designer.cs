@@ -12,8 +12,8 @@ using Shop_Classix.Repository;
 namespace Shop_Classix.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250109170131_initial")]
-    partial class initial
+    [Migration("20250110061907_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -373,9 +373,6 @@ namespace Shop_Classix.Migrations
 
                     b.Property<int>("Views")
                         .HasColumnType("int");
-
-                    b.Property<string>("categoryName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("view")
                         .HasColumnType("int");
