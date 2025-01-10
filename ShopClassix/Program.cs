@@ -3,36 +3,31 @@ using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Repository;
 using Shop_Classix.Service;
 
-
 var builder = WebApplication.CreateBuilder(args);
 
-
-//connect VNPay
+// Connect VNPay
 builder.Services.AddSingleton<IVnPayService, VnPayService>();
 
-
-//Connect DB
+// Connect to the database
 builder.Services.AddDbContext<DataContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration["ConnectionStrings:ConnectDb"]);
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectDb"));
 });
 
-
-
-// Add services to the container.
+// Add services to the container
 builder.Services.AddControllersWithViews();
 
+// Configure authentication
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.LoginPath = "/KhachHang/Login"; // Redirect to login page
+        options.LogoutPath = "/KhachHang/LogOut"; // Redirect for logout
+        options.AccessDeniedPath = "/AccessDenied"; // Redirect for access denied
+    });
 
-//AddAuthentication: đăng ký dịch vụ xác thực cho ứng dụng
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
-{
-    options.LoginPath = "/KhachHang/Login"; //  người dùng chưa đăng nhập -> chuyển hướng tới trang đăng nhập
-    options.LoginPath = "/KhachHang/LogOut";  //trang xử lý đăng xuất
-    options.AccessDeniedPath = "/AccessDenied";  //người dùng đã đăng nhập nhưng không đủ quyền truy cập
-});
-//session
+// Configure session
 builder.Services.AddDistributedMemoryCache();
-
 builder.Services.AddSession(options =>
 {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -40,6 +35,7 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+<<<<<<< Updated upstream
 // Đăng ký dịch vụ HTTP Context Accessor
 builder.Services.AddHttpContextAccessor();
 
@@ -53,75 +49,58 @@ builder.Services.AddSession(options =>
 
 
 //phân quyền admin
+=======
+// Authorization policy for admin
+>>>>>>> Stashed changes
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
 });
 
+// Register email service
 builder.Services.AddTransient<IEmailService, EmailService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Configure the HTTP request pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseSession();
-
+app.UseAuthentication(); // Ensure authentication middleware is added
 app.UseAuthorization();
 
-//cấu hình admin
+// Configure routes
 app.MapControllerRoute(
     name: "areaRoute",
-    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}" //id? tùy chọn
-);
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
 
-//cấu hình trang chủ
+// Configure home route
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-
-// Cấu hình route Cart
+// Configure additional routes
 app.MapControllerRoute(
     name: "Cart",
-    pattern: "{controller=Cart}/{action=Cart}/{id?}"
-);
-
-
-//cấu hình route Contact
+    pattern: "{controller=Cart}/{action=Cart}/{id?}");
 
 app.MapControllerRoute(
     name: "Contact",
-    pattern: "{controller=Contact}/{action=Contact}/{id?}"
-);
+    pattern: "{controller=Contact}/{action=Contact}/{id?}");
 
-
-
-//cấu hình route About
 app.MapControllerRoute(
     name: "About",
-    pattern: "{controller=About}/{action=About}/{id?}"
-);
+    pattern: "{controller=About}/{action=About}/{id?}");
 
-
-//cấu hình route KhachHang
 app.MapControllerRoute(
     name: "KhachHang",
-    pattern: "{controller=KhachHang}/{action=Register}/{id?}"
-);
-
-
-
+    pattern: "{controller=KhachHang}/{action=Register}/{id?}");
 
 app.Run();

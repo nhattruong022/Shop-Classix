@@ -2,6 +2,7 @@
     ViewData["Title"] = "Admin-Add Category";
     Layout = "_AdminSubLayout";
 }
+@model Shop_Classix.Models.CategoryModel
 
 @section Link {
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
@@ -33,26 +34,35 @@
     <h5>Add Category</h5>
 </div>
 <div class="card-body">
-    <form>
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success">
+            @ViewBag.Message
+        </div>
+    }
 
+    <form asp-action="Add" asp-controller="Category" method="post" enctype="multipart/form-data">
         <!-- Name -->
         <div class="mb-3 text-start">
             <label for="name" class="form-label">Category Name</label>
-            <input type="text" class="form-control" id="name" value="Classix" placeholder="Enter name">
+            <input asp-for="Name" class="form-control" id="name" placeholder="Enter name" required>
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
+        <!-- Status -->
         <div class="mb-3 text-start">
-            <label for="name" class="form-label">Status</label>
-            <select class="form-control">
-                <option value="1">1</option>
-                <option value="0">0</option>
+            <label for="status" class="form-label">Status</label>
+            <select asp-for="Status" class="form-control" id="status">
+                <option value="1">Active</option>
+                <option value="0">Inactive</option>
             </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
         </div>
 
         <!-- Submit and Cancel Buttons -->
         <div class="d-flex justify-content-between">
             <button type="submit" class="btn btn-success">Add Category</button>
-            <button type="button" class="btn btn-secondary">Cancel</button>
+            <a href="@Url.Action("Index", "Category", new { Area = "Admin" })" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
 </div>
