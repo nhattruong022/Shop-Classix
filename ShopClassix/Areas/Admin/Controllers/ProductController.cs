@@ -22,7 +22,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
             // Tìm kiếm theo tên sản phẩm
             if (!string.IsNullOrEmpty(name))
             {
-                
+
                 productQuery = productQuery.Where(p => p.Name.Contains(name));
             }
 
@@ -79,7 +79,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Active(int id)
+        public async Task<IActionResult> Activate(int id)
         {
             var product = await _dataContext.products.FindAsync(id);
             if (product == null)
