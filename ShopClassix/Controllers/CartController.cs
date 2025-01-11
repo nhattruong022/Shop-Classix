@@ -187,12 +187,6 @@ namespace Shop_Classix.Controllers
 
 
             return View(model);
-
-
-
-
-
-            return View(model);
         }
 
         [HttpPost]
@@ -303,11 +297,7 @@ namespace Shop_Classix.Controllers
             return View();
         }
 
-        [Authorize]
-        public IActionResult PaymentSuccess()
-        {
-            return View("Success", "Cart");
-        }
+    
 
         //sau khi thanh toán xong thì trả về gì
         [Authorize]
@@ -315,16 +305,8 @@ namespace Shop_Classix.Controllers
         {
             var response = _vnPayService.PaymentExecute(Request.Query);
 
-            if (response == null || response.VnPayResponseCode != "00") //00 là giao dịch thành công
-            {
-                TempData["Message"] = $"Failed Pay VNPAY:{response.VnPayResponseCode} ";
-                return RedirectToAction("PaymentFail");
-            }
 
-
-            TempData["Message"] = $"Success Pay VNPAY";
-
-            return RedirectToAction("PaymentSuccess");
+            return View(response);
         }
 
 

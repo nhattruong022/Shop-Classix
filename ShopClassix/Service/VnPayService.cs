@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Shop_Classix.Helper;
 using Shop_Classix.Models.ViewModels;
+using System.Text.RegularExpressions;
 
 namespace Shop_Classix.Service
 {
@@ -13,7 +14,7 @@ namespace Shop_Classix.Service
         }
         
         //cấu hình dữ liệu VNPay
-        public string CreatePaymentUrl(HttpContext context, VnPaymentRequestModel model)
+        public string CreatePaymentUrl(HttpContext context,VnPaymentRequestModel model)
         {
             var tick = DateTime.Now.ToString();
 
@@ -34,7 +35,7 @@ namespace Shop_Classix.Service
 
             vnpay.AddRequestData("vnp_OrderInfo", "Thanh toán cho đơn hàng:" + model.OrderId);
             vnpay.AddRequestData("vnp_OrderType", "other"); //default value: other
-            vnpay.AddRequestData("vnp_ReturnUrl", _configuration["VnPay:Locale"]);
+            vnpay.AddRequestData("vnp_ReturnUrl", _configuration["VnPay:PaymentBackReturnUrl"]);
 
 
             vnpay.AddRequestData("vnp_TxnRef", $"{model.OrderId}_{tick}"); // Mã tham chiếu của giao dịch tại hệ 
@@ -52,23 +53,35 @@ namespace Shop_Classix.Service
         public VnPaymentResponseModel PaymentExecute(IQueryCollection collections)
         {
             var vnpay = new VnPayLibrary();
-            foreach(var (key, value) in collections)
+            foreach (var (key, value) in collections)
             {
-                if(!string.IsNullOrEmpty(key)&& key.StartsWith("vnp_"))
+                if (!string.IsNullOrEmpty(key) && key.StartsWith("vnp_"))
                 {
-                    vnpay.AddResponseData(key, value.ToString());   
-                }    
+                    vnpay.AddResponseData(key, value.ToString());
+                }
             }
 
-            var vnp_orderId = Convert.ToInt64(vnpay.GetResponseData("vnp_TxnRef"));
-            var vnp_transaction = Convert.ToInt64(vnpay.GetResponseData("vnp_TransactionNo"));
+            // Lấy giá trị vnp_TxnRef và vnp_TransactionNo
+            var vnp_TxnRefString = vnpay.GetResponseData("vnp_TxnRef");
+            var vnp_TransactionNoString = vnpay.GetResponseData("vnp_TransactionNo");
+
+            // Sử dụng regex để chỉ giữ lại các ký tự số
+            var numericRegex = new Regex(@"\d+");
+            var vnp_TxnRefFiltered = numericRegex.Match(vnp_TxnRefString).Value;
+            var vnp_TransactionNoFiltered = numericRegex.Match(vnp_TransactionNoString).Value;
+
+            // Chuyển đổi sang kiểu long
+            var vnp_orderId = Convert.ToInt64(vnp_TxnRefFiltered);
+            var vnp_transaction = Convert.ToInt64(vnp_TransactionNoFiltered);
+
             var vnp_SecureHash = collections.FirstOrDefault(p => p.Key == "vnp_SecureHash").Value;
             var vnp_ResponseCode = vnpay.GetResponseData("vnp_ResponseCode");
             var vnp_OrderInfo = vnpay.GetResponseData("vnp_OrderInfo");
 
+            // Kiểm tra chữ ký
             bool checkSignature = vnpay.ValidateSignature(vnp_SecureHash, _configuration["VnPay:HashSecret"]);
 
-            if(!checkSignature)
+            if (!checkSignature)
             {
                 return new VnPaymentResponseModel
                 {
@@ -81,16 +94,12 @@ namespace Shop_Classix.Service
                 Success = true,
                 PaymentMethod = "VnPAY",
                 OrderDescription = vnp_OrderInfo,
-                OrderId=vnp_orderId.ToString(),
-                TransactionId=vnp_transaction.ToString(),
-                Token=vnp_SecureHash,
-                VnPayResponseCode=vnp_ResponseCode
-
+                OrderId = vnp_orderId.ToString(),
+                TransactionId = vnp_transaction.ToString(),
+                Token = vnp_SecureHash,
+                VnPayResponseCode = vnp_ResponseCode
             };
-
-
-
-
         }
+
     }
 }
