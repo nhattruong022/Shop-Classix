@@ -12,12 +12,16 @@ namespace Shop_Classix.Models.ViewModels
 
 
         [Required(ErrorMessage = "Phone number is required")]
-        [Phone(ErrorMessage = "Invalid phone number")]
+        [RegularExpression(@"^(\+84|0)\d{9,10}$",ErrorMessage ="Invalid Phone Number")]
         public string Phone { get; set; }
 
+
+
         [Required(ErrorMessage = "Email is required")]
-        [EmailAddress(ErrorMessage = "Invalid email format")]
+        [RegularExpression(@"^[a-zA-Z0-9]+@gmail\.com$", ErrorMessage = "Invalid email format   ")]
         public string Email { get; set; }
+
+
 
 
         public double deposit {  get; set; }
@@ -26,8 +30,8 @@ namespace Shop_Classix.Models.ViewModels
 
         public string OrderNotes { get; set; }
 
-        [Required(ErrorMessage = "Payment method is required")]
-        public string PaymentMethod { get; set; } // Example: 1 = Check Payment, 2 = COD
+
+
 
         public double Total { get; set; } // Calculated from the cart
 

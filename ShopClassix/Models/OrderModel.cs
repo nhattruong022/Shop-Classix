@@ -28,7 +28,7 @@ namespace Shop_Classix.Models
         public virtual CustomerModel customers { get; set; } // Renamed from 'customers' to 'Customer'
 
 
-        public string OrderNotes { get; set; }
+        public string? OrderNotes { get; set; }
 
         public int Status { get; set; }
 

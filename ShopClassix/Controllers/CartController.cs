@@ -8,6 +8,7 @@ using System.Security.Claims;
 using Shop_Classix.Service;
 using System.Net.WebSockets;
 using Shop_Classix.Models.VnPay;
+using System.Text.RegularExpressions;
 namespace Shop_Classix.Controllers
 {
     public class CartController : Controller
@@ -190,10 +191,13 @@ namespace Shop_Classix.Controllers
             return View(model);
         }
 
+
         [HttpPost]
         [Authorize]
         public IActionResult CheckOut(CheckOutViewModel model, string payment = "C0D")
         {
+          
+
             //thiết lập giỏ hàng
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
 
@@ -201,6 +205,9 @@ namespace Shop_Classix.Controllers
             {
                 return RedirectToAction("Cart", "Cart");
             }
+
+            
+           
 
             //tính tiền cọc 10%
             var totalPrice = cart.Items.Sum(item => item.TotalPrice);
@@ -219,6 +226,8 @@ namespace Shop_Classix.Controllers
                 ModelState.AddModelError("", "Customer not found");
                 return View(model);
             }
+
+        
 
             //tạo đơn hàng
             var order = new OrderModel
@@ -278,6 +287,9 @@ namespace Shop_Classix.Controllers
                 return View(model);
             }
         }
+
+      
+
 
 
         [Authorize]
