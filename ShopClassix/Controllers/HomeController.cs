@@ -192,7 +192,7 @@ namespace Shop_Classix.Controllers
 
         public IActionResult TimKiem(string keyword, int? categoryId, int? price, int? page)
         {
-            int pageSize = 4;   // số sản phẩm trong 1 trang
+            int pageSize = 3;   // số sản phẩm trong 1 trang
             int pageNumber = (page ?? 1);  // mặc định là trang 1
 
             var products = dataContext.products.Include(p => p.category).AsQueryable();

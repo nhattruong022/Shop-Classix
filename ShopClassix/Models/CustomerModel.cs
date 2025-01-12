@@ -40,11 +40,6 @@ namespace Shop_Classix.Models
 
 
 
-        //tham chieu den Accounts
-        //public virtual AccountModel accounts { get; set; }
-
-        //[NotMapped]
-        //[FileExtension]
-        //public IFormFile ImageUpload { get; set; }
+   
     }
 }

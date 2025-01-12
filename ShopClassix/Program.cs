@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Repository;
 using Shop_Classix.Service;
 using Microsoft.AspNetCore.Http;
+using SignalRChat.Hubs;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +16,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration["ConnectionStrings:ConnectDb"]);
 });
+
 
 // Cấu hình MVC cho Controllers và Views
 builder.Services.AddControllersWithViews();
@@ -47,7 +50,17 @@ builder.Services.AddTransient<IEmailService, EmailService>();
 // Cấu hình IHttpContextAccessor để hỗ trợ HttpContext trong toàn ứng dụng
 builder.Services.AddHttpContextAccessor();
 
+
+// Thêm SignalR services before building the app
+builder.Services.AddSignalR();
+
+
 var app = builder.Build();
+
+
+
+//cấu hình endpoint cho SignalR
+app.MapHub<ChatHub>("/chathub");
 
 // Cấu hình HTTP request pipeline
 if (app.Environment.IsDevelopment())

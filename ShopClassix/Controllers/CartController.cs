@@ -29,7 +29,7 @@ namespace Shop_Classix.Controllers
         }
 
 
-
+        [Authorize]
         public async Task<IActionResult> Cart(int page = 1)
         {
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
@@ -72,10 +72,7 @@ namespace Shop_Classix.Controllers
             return View(cart);
         }
 
-        //private double CalculateTotalAmount(List<CartItemViewModel> items)
-        //{
-        //    return items.Sum(item => item.TotalPrice);
-        //}
+   
 
         [HttpPost]
         public IActionResult UpdateQuantity(int id, int quantity)
@@ -99,6 +96,7 @@ namespace Shop_Classix.Controllers
             return Ok();
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult AddToCart(int id, int quantity = 1)
         {

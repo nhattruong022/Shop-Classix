@@ -53,9 +53,6 @@ namespace Shop_Classix.Controllers
 					PhoneNumber = model.PhoneNumber,
 					Password = hashedPassword,
 					Role = model.Role ?? "User"
-					//Gender = model.Gender,
-					//DateOfBirth = model.DateOfBirth,
-					//Address = model.Address
 				};
 
 				// Thêm vào cơ sở dữ liệu

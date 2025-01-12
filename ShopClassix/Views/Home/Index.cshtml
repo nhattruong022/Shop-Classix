@@ -102,31 +102,36 @@
         </section>
 
 
-        <!-- Categories Section End -->
-        <!-- Featured Section Begin -->
-        <section class="featured spad">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="section-title">
-                            <h2>Feature Product</h2>
-                        </div>
-                        <div class="featured__controls">
-                            <ul>
-                                <li class="active" data-filter="*">All</li>
-                                @foreach (var category in ViewBag.categories as SelectList)
-                                {
-                                    <li data-filter="@category.Value" class="@(ViewBag.SelectedCategoryId == int.Parse(category.Value) ? "selected" : "")">
-                                        @category.Text
-                                    </li>
-                                }
-                            </ul>
+     @*     <!-- Categories Section End -->
+         <!-- Featured Section Begin -->
+         <section class="featured spad">
+             <div class="container">
+                 <div class="row">
+                     <div class="col-lg-12">
+                         <div class="section-title">
+                             <h2>Feature Product</h2>
+                         </div>
+                         <div class="featured__controls">
+                             <ul>
+                                 <!-- All Products Link -->
+                                 <li class="@(ViewBag.SelectedCategoryId == null ? "active" : "")">
+                                     <a href="@Url.Action("Index", "Home", new { categoryId = (int?)null })">All Products</a>
+                                 </li>
 
-
-                        </div>
-                    </div>
-                </div>
-
+                                 <!-- Category Links -->
+                                 @foreach (var category in ViewBag.categories as SelectList)
+                                 {
+                                     <li class="@(ViewBag.SelectedCategoryId == int.Parse(category.Value) ? "active" : "")">
+                                         <a href="@Url.Action("Index", "Home", new { categoryId = category.Value })">@category.Text</a>
+                                     </li>
+                                 }
+                             </ul>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </section>
+ *@
 
 
                 <div class="favorite-products-title" style="text-align: center; margin-bottom: 20px;">
@@ -182,7 +187,37 @@
 
 
                 <div class="favorite-products-title" style="text-align: center; margin-top: 20px;">
-                    <h2>All Products</h2>
+                 @*     <h2>All Products</h2> *@
+            <!-- Categories Section End -->
+            <!-- Featured Section Begin -->
+            <section class="featured spad">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-title">
+                                <h2>Feature Product</h2>
+                            </div>
+                            <div class="featured__controls">
+                                <ul>
+                                    <!-- All Products Link -->
+                                    <li class="@(ViewBag.SelectedCategoryId == null ? "active" : "")">
+                                        <a href="@Url.Action("Index", "Home", new { categoryId = (int?)null })">All Products</a>
+                                    </li>
+
+                                    <!-- Category Links -->
+                                    @foreach (var category in ViewBag.categories as SelectList)
+                                    {
+                                        <li class="@(ViewBag.SelectedCategoryId == int.Parse(category.Value) ? "active" : "")">
+                                            <a href="@Url.Action("Index", "Home", new { categoryId = category.Value })">@category.Text</a>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
                 </div>
                 <div class="row featured__filter">
                     @foreach (var item in Model.AllProducts)
