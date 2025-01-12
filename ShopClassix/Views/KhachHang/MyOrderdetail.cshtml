@@ -3,7 +3,7 @@
 *@
 @{
     ViewData["Title"] = "My Order Page";
-    var detail = ViewBag.Detail as List<dynamic>;
+    var detail = ViewBag.Detail as List<Shop_Classix.Models.OrderDetailModel>;
 }
 
 @section Link
@@ -34,16 +34,16 @@
         </tr>
     </thead>
     <tbody>
-        @if (detail != null && detail.Count > 0)
+        @if (detail != null && detail.Any())
         {
             foreach (var item in detail)
             {
                 <tr>
-                    <td><img style="width: 150px;" src="~/Classix/img/@item.Image"></td>
-                    <td>@item.ProductName</td>
-                    <td>@item.ProductPrice</td>
+                    <td><img style="width: 150px;" src="~/Classix/img/@item.Products.Image"></td>
+                    <td>@item.Products.Name</td>
+                    <td>@item.Products.Price</td>
                     <td>@item.Quantity</td>
-                    <td>@(item.TotalPrice("C"))</td>
+                    <td>@(item.TotalPrice)</td>
                 </tr>
             }
         }
@@ -55,14 +55,3 @@
         }
     </tbody>
 </table>
-
-<nav aria-label="Page navigation">
-    <ul class="pagination justify-content-center">
-        @for (int i = 1; i <= ViewBag.TotalPages; i++)
-        {
-            <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
-                <a class="page-link" href="@Url.Action("MyOrderDetail", new { page = i })">@i</a>
-            </li>
-        }
-    </ul>
-</nav>
