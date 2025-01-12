@@ -33,7 +33,7 @@ namespace Shop_Classix.Service
             vnpay.AddRequestData("vnp_IpAddr", Utils.GetIpAddress(context));
             vnpay.AddRequestData("vnp_Locale", _configuration["VnPay:Locale"]);
 
-            vnpay.AddRequestData("vnp_OrderInfo", "Thanh toán cho đơn hàng:" + model.OrderId);
+            vnpay.AddRequestData("vnp_OrderInfo", "Thanh toán cho mã đơn hàng:" + model.OrderId);
             vnpay.AddRequestData("vnp_OrderType", "other"); //default value: other
             vnpay.AddRequestData("vnp_ReturnUrl", _configuration["VnPay:PaymentBackReturnUrl"]);
 
@@ -96,6 +96,7 @@ namespace Shop_Classix.Service
                 OrderDescription = vnp_OrderInfo,
                 OrderId = vnp_orderId.ToString(),
                 TransactionId = vnp_transaction.ToString(),
+                PaymentId = vnp_transaction.ToString(),
                 Token = vnp_SecureHash,
                 VnPayResponseCode = vnp_ResponseCode
             };

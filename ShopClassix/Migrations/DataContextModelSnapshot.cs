@@ -378,6 +378,37 @@ namespace Shop_Classix.Migrations
                     b.ToTable("products");
                 });
 
+            modelBuilder.Entity("Shop_Classix.Models.VnPay.VnPayModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("OrderId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransactionId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("createdAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("vnPay");
+                });
+
             modelBuilder.Entity("Shop_Classix.Models.ChatUsersModel", b =>
                 {
                     b.HasOne("Shop_Classix.Models.CustomerModel", "customers")

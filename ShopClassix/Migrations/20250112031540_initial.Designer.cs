@@ -12,8 +12,8 @@ using Shop_Classix.Repository;
 namespace Shop_Classix.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250110134820_Initial")]
-    partial class Initial
+    [Migration("20250112031540_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -379,6 +379,37 @@ namespace Shop_Classix.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("products");
+                });
+
+            modelBuilder.Entity("Shop_Classix.Models.VnPay.VnPayModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("OrderId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PaymentMethod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TransactionId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("createdAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("vnPay");
                 });
 
             modelBuilder.Entity("Shop_Classix.Models.ChatUsersModel", b =>

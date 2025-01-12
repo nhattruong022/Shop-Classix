@@ -7,6 +7,7 @@ using Shop_Classix.Models;
 using System.Security.Claims;
 using Shop_Classix.Service;
 using System.Net.WebSockets;
+using Shop_Classix.Models.VnPay;
 namespace Shop_Classix.Controllers
 {
     public class CartController : Controller
@@ -193,7 +194,7 @@ namespace Shop_Classix.Controllers
         [Authorize]
         public IActionResult CheckOut(CheckOutViewModel model, string payment = "C0D")
         {
-            // Lấy giỏ hàng từ Session
+            //thiết lập giỏ hàng
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
 
             if (cart.Items == null || !cart.Items.Any())
@@ -201,34 +202,16 @@ namespace Shop_Classix.Controllers
                 return RedirectToAction("Cart", "Cart");
             }
 
-
-            // Tổng giá trị giỏ hàng và tiền cọc
+            //tính tiền cọc 10%
             var totalPrice = cart.Items.Sum(item => item.TotalPrice);
             var depositAmount = totalPrice * 0.1;
 
+            
             model.Items = cart.Items;
             model.Total = totalPrice;
             model.deposit = depositAmount;
 
-            if (payment == "Payment VNPAY")
-            {
-                var vnPayModel = new VnPaymentRequestModel
-                {
-                    Amount = cart.Items.Sum(item => item.TotalPrice),
-                    CreatedDate = DateTime.Now,
-                    description = $"{model.Receiver} {model.Phone}",
-                    FullName = model.Receiver,
-                    OrderId = DateTime.UtcNow.Ticks.ToString()
-                };
-                return Redirect(_vnPayService.CreatePaymentUrl(HttpContext, vnPayModel));
-            }
-
-
-
-            //lấy thông tin cookie email
             var customerEmail = HttpContext.User.Claims.SingleOrDefault(p => p.Type == ClaimTypes.Email)?.Value;
-
-            //kiểm tra email khách hàng có giống với cookie email đã đăng nhập
             var customer = dataContext.customers.SingleOrDefault(c => c.Email == customerEmail);
 
             if (customer == null)
@@ -237,17 +220,13 @@ namespace Shop_Classix.Controllers
                 return View(model);
             }
 
-
-
-
-
             //tạo đơn hàng
             var order = new OrderModel
             {
-                TotalPrice = cart.Items.Sum(item => item.TotalPrice),
+                TotalPrice = totalPrice,
                 deposit = depositAmount,
                 Status = 1,
-                PaymentMethod = "COD",
+                PaymentMethod = payment == "Payment VNPAY" ? "VnPay" : "COD",
                 CustomerId = customer.Id,
                 CustomerName = model.Receiver,
                 Address = model.Address,
@@ -262,8 +241,7 @@ namespace Shop_Classix.Controllers
             {
                 dataContext.orders.Add(order);
                 dataContext.SaveChanges();
-
-                //lưu đơn hàng chi tiết
+               
                 var orderDetails = cart.Items.Select(item => new OrderDetailModel
                 {
                     OrderId = order.Id,
@@ -275,11 +253,22 @@ namespace Shop_Classix.Controllers
                 dataContext.orderDetails.AddRange(orderDetails);
                 dataContext.SaveChanges();
 
-                // xóa giỏ hàng
+                if (payment == "Payment VNPAY")
+                {
+                    var vnPayModel = new VnPaymentRequestModel
+                    {
+                        Amount = totalPrice,
+                        CreatedDate = DateTime.Now,
+                        description = $"{model.Receiver} {model.Phone}",
+                        FullName = model.Receiver,
+                        OrderId = order.Id.ToString()
+                    };
+
+                    return Redirect(_vnPayService.CreatePaymentUrl(HttpContext, vnPayModel));
+                }
+
                 HttpContext.Session.Remove("Cart");
-
                 TempData["ThankYouMessage"] = "Thank you for your order! We will process it shortly.";
-
                 return RedirectToAction("CheckOut", "Cart");
             }
             catch (Exception ex)
@@ -297,17 +286,52 @@ namespace Shop_Classix.Controllers
             return View();
         }
 
-    
+
 
         //sau khi thanh toán xong thì trả về gì
         [Authorize]
-        public IActionResult PaymentCallBack()
+        [HttpGet]
+        public async Task<IActionResult> PaymentCallBack()
         {
             var response = _vnPayService.PaymentExecute(Request.Query);
 
+            if (response.VnPayResponseCode == "00") // Transaction successful
+            {
+                var orderId = int.Parse(response.OrderId);
 
-            return View(response);
+                // Retrieve the order
+                var order = await dataContext.orders.FindAsync(orderId);
+
+                if (order != null)
+                {
+                    //Lưu đơn hàng VnPAY
+                    var vnPayModel = new VnPayModel
+                    {
+                        OrderId = response.OrderId,
+                        PaymentMethod = response.PaymentMethod,
+                        description = response.OrderDescription,
+                        TransactionId = response.TransactionId,
+                        PaymentId = response.PaymentId,
+                        createdAt = DateTime.Now
+                    };
+
+                    dataContext.Add(vnPayModel);
+
+                    // CẬP NHẬP TRẠNG THÁI PAYMENT
+                    order.Status = 2; // status =2 -> payment vnpay
+                    dataContext.orders.Update(order);
+
+                    await dataContext.SaveChangesAsync();
+
+                    TempData["ThankYouMessage"] = "Payment successful! Your order has been placed.";
+                    return View(response);
+                }
+            }
+
+            TempData["ErrorMessage"] = "Payment failed or invalid response.";
+            return RedirectToAction("PaymentFail", "Cart");
         }
+
 
 
 

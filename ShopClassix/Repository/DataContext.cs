@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using Shop_Classix.Models;
+using Shop_Classix.Models.VnPay;
 
 namespace Shop_Classix.Repository
 {
@@ -18,7 +19,7 @@ namespace Shop_Classix.Repository
         public DbSet<ImportsModel> imports { get; set; }
         public DbSet<ImportsDetailModel> importsDetails { get; set; }
         public DbSet<ProductCommentModel> productComments { get; set; }
-
+        public DbSet<VnPayModel> vnPay { get; set; }
         
 
     }
