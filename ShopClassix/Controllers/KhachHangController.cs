@@ -212,7 +212,8 @@ namespace Shop_Classix.Controllers
 				.Skip((page - 1) * PageSize)
 				.Take(PageSize)
 				.ToListAsync();
-
+			
+			ViewBag.Status = status;
 			ViewBag.TotalPages = totalPages;
 			ViewBag.CurrentPage = page;
 			ViewBag.Orders = orders;
