@@ -35,6 +35,7 @@
             new { Value = 3, Text = "Completed" },
             new { Value = 4, Text = "Canceled" },
             new { Value = 6, Text = "Refund" }
+           
             })
             {
                 <li class="nav-item mx-3">
@@ -47,8 +48,11 @@
             }
 
             <li class="nav-item mx-3">
-                <a class="nav-link" href="#">Bình luận/Đánh giá</a>
+                <a class="nav-link" asp-controller="KhachHang" asp-action="Comments">Bình luận/Đánh giá</a>
             </li>
+            
+
+          
         </ul>
     </div>
 </nav>

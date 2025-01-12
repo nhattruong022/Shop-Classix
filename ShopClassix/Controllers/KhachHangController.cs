@@ -192,8 +192,37 @@ namespace Shop_Classix.Controllers
 			return View();
 		}
 
-		public IActionResult Comments()
+		public IActionResult Comments(int status)
 		{
+
+			//vui
+
+            var customerEmail = User.Identity.Name;
+            var customerId = _dataContext.customers
+             .Where(c => c.Email == customerEmail)
+             .Select(c => c.Id)
+             .FirstOrDefault();
+
+            var comment = from p in _dataContext.products
+						  join pc in _dataContext.productComments on p.Id equals pc.ProductId
+						  select new {
+						 ID=pc.AccountId,
+						 Images= p.Image,
+						 Names= p.Name,
+						 Content=pc.Cotent,
+						 Ratings=pc.Rating,
+						 IdProduct=pc.ProductId
+						  };
+            ViewBag.status = status;
+            if (status == 1) { return View(); }
+			if (status == 2)
+			{
+				var comments = comment.Where(c => c.ID == customerId);
+				if (comments.Any()) { ViewBag.comment = comments; }
+				else { ViewBag.comment = null; }
+                return View();
+            }
+			
 			return View();
 		}
 
