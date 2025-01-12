@@ -32,7 +32,7 @@
                 new { Value = 2, Text = "Transport" },
                 new { Value = 3, Text = "Completed" },
                 new { Value = 4, Text = "Canceled" },
-                new { Value = 6, Text = "Refund" }
+                new { Value = 5, Text = "Refund" }
             })
             {
                 <li class="nav-item mx-3">
@@ -103,13 +103,13 @@
                             case 1: case 2:// Hủy
                                 <form asp-controller="KhachHang" asp-action="CancelOrder" method="post">
                                     <input type="hidden" name="orderId" value="@order.Id" />
-                                    <button type="submit" class="btn btn-danger">Cancel</button>
+                                    <button type="submit" class="btn btn-danger" onsubmit="return confirm('Are you sure you want to Cancel?');">Cancel order</button>
                                 </form>
                                 break;
                             case 3: // Hoàn trả
                                 <form asp-controller="KhachHang" asp-action="RefundOrder" method="post">
                                     <input type="hidden" name="orderId" value="@order.Id" />
-                                    <button type="submit" class="btn btn-warning">Refund</button>
+                                    <button type="submit" class="btn btn-warning" onsubmit="return confirm('Are you sure you want to Refund?');">Refund</button>
                                 </form>
                                 break;
                         }
