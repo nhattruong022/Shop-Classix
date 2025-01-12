@@ -155,11 +155,11 @@ namespace Shop_Classix.Controllers
 		}
 
 
-		public IActionResult Profile()
+		public IActionResult Profile(int id)
 		{
+            
 
-
-			CustomerModel customer = _dataContext.customers.FirstOrDefault(p => p.Email == User.Identity.Name);
+            CustomerModel customer = _dataContext.customers.FirstOrDefault(p => p.Email == User.Identity.Name);
 
 			//danh sách yêu thích vui
 			// Lấy ID người dùng đang đăng nhập
@@ -168,22 +168,38 @@ namespace Shop_Classix.Controllers
 			 .Where(c => c.Email == customerEmail)
 			 .Select(c => c.Id)
 			 .FirstOrDefault();
-			var favorite = _dataContext.favoriteProducts
+            if (id != 0)
+            {
+                var productf = _dataContext.favoriteProducts.FirstOrDefault(p => p.ProductId == id && p.CustomerId == customerId);
+                if (productf != null)
+                {
+                    // Xóa sản phẩm yêu thích
+                    _dataContext.favoriteProducts.Remove(productf);
+
+                    // Lưu thay đổi vào cơ sở dữ liệu
+                    _dataContext.SaveChanges();
+                }
+            }
+            var favorite = _dataContext.favoriteProducts
 				.Where(f => f.CustomerId == customerId)
 				.ToList();
-			var favoritelist = from f in favorite
+           
+            var favoritelist = from f in favorite
 							   join p in _dataContext.products on f.ProductId equals p.Id
 							   select new ProductList
 							   {
 								   Id = p.Id,
 								   Image = p.Image,
 								   Name = p.Name,
-								   Price = p.Price
+								   Price = p.Price,
+								   Rating = p.Rating
 							   };
 			ViewBag.AlertMessage = customerEmail;
 			ViewBag.favoritelist = favoritelist.ToList();
 
-			return View(customer);
+			
+
+            return View(customer);
 		}
 
 
