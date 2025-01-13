@@ -15,7 +15,7 @@ namespace Shop_Classix.Controllers
     {
         private readonly IVnPayService _vnPayService;
         private readonly DataContext dataContext;
-        private const int PageSize = 2;
+        private const int PageSize = 4;
 
         public CartController(DataContext context, IVnPayService vnPayService)
         {

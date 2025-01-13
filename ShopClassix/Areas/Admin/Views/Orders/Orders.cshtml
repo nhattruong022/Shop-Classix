@@ -133,26 +133,14 @@
                                     <td>
                                         @if (order.Status == 1 || order.Status == 2)
                                         {
-                                            <form asp-action="CancelOrder" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to cancel order?');">
-                                                <input type="hidden" name="id" value="@order.Id" />
-                                                <button type="submit" class="btn btn-danger btn-sm">Cancel order</button>
-                                            </form>
-                                        }
-                                        else
-                                        {
-                                            <button class="btn btn-danger btn-sm">Cancel order</button>
-                                        }
-
-                                        @if (order.Status > 2)
-                                        {
-                                            <form asp-action="DeleteOrder" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this order?');">
+                                            <form asp-action="CancelOrder" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete?');">
                                                 <input type="hidden" name="id" value="@order.Id" />
                                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                                             </form>
                                         }
                                         else
                                         {
-                                            <button class="btn btn-danger btn-sm" disabled>Delete</button>
+                                            <button class="btn btn-danger btn-sm">Delete</button>
                                         }
                                     </td>
                                 </tr>

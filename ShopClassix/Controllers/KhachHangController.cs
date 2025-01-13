@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.EntityFrameworkCore;
 
 namespace Shop_Classix.Controllers
 {
@@ -152,11 +153,11 @@ namespace Shop_Classix.Controllers
 		}
 
 
-		public IActionResult Profile()
+		public IActionResult Profile(int id)
 		{
+            
 
-
-			CustomerModel customer = _dataContext.customers.FirstOrDefault(p => p.Email == User.Identity.Name);
+            CustomerModel customer = _dataContext.customers.FirstOrDefault(p => p.Email == User.Identity.Name);
 
 			//danh sách yêu thích vui
 			// Lấy ID người dùng đang đăng nhập
@@ -165,36 +166,135 @@ namespace Shop_Classix.Controllers
 			 .Where(c => c.Email == customerEmail)
 			 .Select(c => c.Id)
 			 .FirstOrDefault();
-			var favorite = _dataContext.favoriteProducts
+            if (id != 0)
+            {
+                var productf = _dataContext.favoriteProducts.FirstOrDefault(p => p.ProductId == id && p.CustomerId == customerId);
+                if (productf != null)
+                {
+                    // Xóa sản phẩm yêu thích
+                    _dataContext.favoriteProducts.Remove(productf);
+
+                    // Lưu thay đổi vào cơ sở dữ liệu
+                    _dataContext.SaveChanges();
+                }
+            }
+            var favorite = _dataContext.favoriteProducts
 				.Where(f => f.CustomerId == customerId)
 				.ToList();
-			var favoritelist = from f in favorite
+           
+            var favoritelist = from f in favorite
 							   join p in _dataContext.products on f.ProductId equals p.Id
 							   select new ProductList
 							   {
 								   Id = p.Id,
 								   Image = p.Image,
 								   Name = p.Name,
-								   Price = p.Price
+								   Price = p.Price,
+								   Rating = p.Rating
 							   };
 			ViewBag.AlertMessage = customerEmail;
 			ViewBag.favoritelist = favoritelist.ToList();
 
-			return View(customer);
+			
+
+            return View(customer);
 		}
 
 
-		public IActionResult MyOrder()
+		public async Task<IActionResult> MyOrder(int? status, int page = 1)
 		{
+			const int PageSize = 5;
+
+			var customerEmail = User.Identity.Name;
+			var customer = await _dataContext.customers
+				.FirstOrDefaultAsync(c => c.Email == customerEmail);
+
+			if (customer == null)
+			{
+				return NotFound();
+			}
+
+			var filteredOrders = _dataContext.orders
+				.Where(o => o.CustomerId == customer.Id && (!status.HasValue || o.Status == status))
+				.OrderByDescending(o => o.CreateAt);
+
+			var totalOrders = await filteredOrders.CountAsync();
+			var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
+
+			var orders = await filteredOrders
+				.Skip((page - 1) * PageSize)
+				.Take(PageSize)
+				.ToListAsync();
+			
+			ViewBag.Status = status;
+			ViewBag.TotalPages = totalPages;
+			ViewBag.CurrentPage = page;
+			ViewBag.Orders = orders;
+
 			return View();
 		}
 
-		public IActionResult Comments()
+		public async Task<IActionResult> MyOrderDetail(int orderId)
 		{
+			var orderDetail = await _dataContext.orderDetails
+				.Where(o => o.OrderId == orderId)
+				.Include(o => o.Products)
+				.ToListAsync();
+
+			if (orderDetail == null)
+			{
+				return NotFound();
+			}
+			ViewBag.Detail = orderDetail;
 			return View();
 		}
 
+		public async Task<IActionResult> CancelOrder(int orderId)
+		{
+			var order = await _dataContext.orders.FindAsync(orderId);
+			if (order == null)
+			{
+				return NotFound();
+			}
 
+			order.Status = 4; // Canceled
+			await _dataContext.SaveChangesAsync();
 
+			return RedirectToAction("MyOrder");
+		}
+		public IActionResult Comments(int status)
+		{
+
+			//vui
+
+			var customerEmail = User.Identity.Name;
+			var customerId = _dataContext.customers
+			 .Where(c => c.Email == customerEmail)
+			 .Select(c => c.Id)
+			 .FirstOrDefault();
+
+			var comment = from p in _dataContext.products
+						  join pc in _dataContext.productComments on p.Id equals pc.ProductId
+						  select new
+						  {
+							  ID = pc.AccountId,
+							  Images = p.Image,
+							  Names = p.Name,
+							  Content = pc.Cotent,
+							  Ratings = pc.Rating,
+							  IdProduct = pc.ProductId
+						  };
+			ViewBag.status = status;
+			if (status == 1) { return View(); }
+			if (status == 2)
+			{
+				var comments = comment.Where(c => c.ID == customerId);
+				if (comments.Any()) { ViewBag.comment = comments; }
+				else { ViewBag.comment = null; }
+				return View();
+			}
+
+			return View();
+		}
 	}
 }

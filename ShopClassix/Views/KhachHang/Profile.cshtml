@@ -35,6 +35,7 @@
             new { Value = 3, Text = "Completed" },
             new { Value = 4, Text = "Canceled" },
             new { Value = 6, Text = "Refund" }
+           
             })
             {
                 <li class="nav-item mx-3">
@@ -47,8 +48,11 @@
             }
 
             <li class="nav-item mx-3">
-                <a class="nav-link" href="#">Bình luận/Đánh giá</a>
+                <a class="nav-link" asp-controller="KhachHang" asp-action="Comments">Bình luận/Đánh giá</a>
             </li>
+            
+
+          
         </ul>
     </div>
 </nav>
@@ -121,25 +125,73 @@
             @foreach (var item in favoritelist)
             {
                 <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg"
-                            data-setbg="https://woodfurniture.com/cdn/shop/products/DBOCWA3710N_1_600x.png?v=1650962550">
-                            <ul class="product__item__pic__hover">
-                                <li>
-                                    <a href="#"><i class="fa fa-heart"></i></a>
-                                </li>
+                    <div class="featured__item">
+                        <div class="featured__item__pic set-bg" data-setbg="@Url.Content("~/Classix/img/" + item.Image)">
+                            <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">
+                                <img src="@Url.Content("~/Classix/img/" + item.Image)" alt="Product Image" />
+                            </a>
+
+                            <ul class="featured__item__pic__hover">
+                                @if (User.Identity.IsAuthenticated)
+
+                                {
+                                    <li>
+                                        <a asp-action="Profile" asp-controller="KhachHang" asp-route-id="@item.Id">
+                                            <i id="favoriteIcon_@item.Id"
+                                               class="fa fa-heart"
+                                               style="color: red">
+                                            </i>
+                                        </a>
+                                    </li>
+                                }
                                 <li>
                                     <a href="#"><i class="fa fa-retweet"></i></a>
                                 </li>
                                 <li>
-                                    <a href="#"><i class="fa fa-shopping-cart"></i></a>
+
+                                    <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id" onclick="addToCart(event, @item.Id)">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </a>
+
                                 </li>
                             </ul>
                         </div>
                         <div class="product__item__text">
                             <h6><a href="#">@item.Name</a></h6>
                             <h5>@item.Price</h5>
+                            <p>
+                                @for (var i = 1; i <= 5; i++)
+
+                                {
+                                    if (i <= Math.Floor(item.Rating ?? 0)) // Sao đầy
+
+
+
+                                    {
+                                        <i class="fa fa-star" style="color: gold;"></i>
+                                    }
+
+                                    else if (i == Math.Ceiling(item.Rating ?? 0) && (item.Rating ?? 0) % 1 != 0) // Sao nửa
+
+
+
+                                    {
+                                        <i class="fas fa-star-half-alt" style="color: gold;"></i>
+                                    }
+
+                                    else // Sao rỗng
+
+                                    {
+                                        <i class="fa fa-star" style="color: lightgray;"></i>
+                                    }
+
+
+
+                                }
+                            </p>
                         </div>
+
+                       
                     </div>
                 </div>
             }

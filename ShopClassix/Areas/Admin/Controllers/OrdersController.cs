@@ -59,7 +59,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteOrder(int id)
+        public async Task<IActionResult> CancelOrder(int id)
         {
             var order = await _dataContext.orders.FindAsync(id);
             if (order == null)
