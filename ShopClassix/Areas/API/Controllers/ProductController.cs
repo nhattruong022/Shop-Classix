@@ -11,7 +11,7 @@ namespace Shop_Classix.Areas.API.Controllers
         private readonly DataContext _dataContext;
         public ProductController(DataContext dataContext)
         {
-             _dataContext= dataContext;
+            _dataContext = dataContext;
         }
         public JsonResult GetProducts()
         {
@@ -31,7 +31,7 @@ namespace Shop_Classix.Areas.API.Controllers
         {
             var product = _dataContext.products.Find(id);
             if (product == null) return NotFound();
-            var views= product.Views;
+            var views = product.Views;
             return new JsonResult(views);
         }
         [HttpGet("{id}/favorite")]
@@ -39,11 +39,26 @@ namespace Shop_Classix.Areas.API.Controllers
         {
             var favorite = 0;
             var product = _dataContext.products.Find(id);
-            if (product.FavoriteNumber.HasValue) { 
-            favorite = product.FavoriteNumber.Value;
+            if (product.FavoriteNumber.HasValue)
+            {
+                favorite = product.FavoriteNumber.Value;
             }
-            
+
             return new JsonResult(favorite);
+        }
+
+        [HttpGet("{id}/quantitys")]
+        public ActionResult<int> GetQuantity(int id)
+        {
+            var quantity = 0;
+            var product = _dataContext.products.Find(id);
+            if (product.Quantity.HasValue)
+            {
+                quantity = product.Quantity.Value;
+            }
+
+            return new JsonResult(quantity);
+
         }
     }
 }

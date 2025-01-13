@@ -173,8 +173,10 @@ namespace Shop_Classix.Controllers
                 {
                     // Xóa sản phẩm yêu thích
                     _dataContext.favoriteProducts.Remove(productf);
-
                     // Lưu thay đổi vào cơ sở dữ liệu
+                    _dataContext.SaveChanges();
+					var productfa = _dataContext.products.Where(p => p.Id == id).FirstOrDefault();
+					productfa.FavoriteNumber--;
                     _dataContext.SaveChanges();
                 }
             }
