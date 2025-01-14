@@ -19,10 +19,59 @@ namespace Shop_Classix.Areas.Admin.Controllers
 
 
         [HttpGet("Admin/Dashboard/Chart")]
-        public IActionResult Chart()
+        public async Task<IActionResult> Chart()
         {
+            var revenuesThisYear = await GetMonthlyRevenueAsync(2025);
+            var revenuesLastYear = await GetMonthlyRevenueAsync(2024);
+
+            // Gán giá trị 0 cho các tháng không có doanh thu
+            ViewBag.RevenuesThisYear = FillMissingMonths(revenuesThisYear);
+            ViewBag.RevenuesLastYear = FillMissingMonths(revenuesLastYear);
             return View();
         }
+        private async Task<List<double>> GetMonthlyRevenueAsync(int year)
+        {
+            var monthlyRevenues = await _datacontext.orders
+        .Where(o => o.Status == 4 && o.CreateAt.HasValue && o.CreateAt.Value.Year == year)
+        .GroupBy(o => o.CreateAt.Value.Month)
+        .Select(g => new { Month = g.Key, Total = g.Sum(o => o.TotalPrice) })
+        .OrderBy(m => m.Month)
+        .ToListAsync();
+
+            // Khởi tạo danh sách doanh thu với 12 giá trị 0
+            var revenues = new List<double>(new double[12]);
+
+            // Gán doanh thu cho các tháng tương ứng
+            foreach (var revenue in monthlyRevenues)
+            {
+                revenues[revenue.Month - 1] = revenue.Total; // Gán giá trị vào đúng chỉ số
+            }
+
+            return revenues;
+        }
+        private List<double> FillMissingMonths(List<double> revenues)
+        {
+            // Khởi tạo danh sách với 12 giá trị 0
+            var result = new List<double>(new double[12]);
+
+            // Gán doanh thu cho các tháng tương ứng
+            for (int i = 0; i < revenues.Count; i++)
+            {
+                // Giả sử revenues[i] là doanh thu cho tháng i + 1
+                result[i] = revenues[i]; // Gán doanh thu tại chỉ số tương ứng
+            }
+
+            return result;
+        }
+
+
+        public class MonthlyRevenue
+        {
+            public int Year { get; set; }
+            public int Month { get; set; }
+            public decimal TotalRevenue { get; set; }
+        }
+        //het vui
 
         [HttpGet("Admin/Dashboard/Contact")]
         public IActionResult Contact()
