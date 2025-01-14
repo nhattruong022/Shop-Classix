@@ -39,5 +39,44 @@ namespace Shop_Classix.Areas.API.Controllers
             var Status = status;
             return new JsonResult(new { orders, Status });
         }
+
+        [HttpGet("admin")]
+        public async Task<IActionResult> GetOrderAdmin(int page = 1, string? search = null, int? status = null)
+        {
+            const int PageSize = 10;
+
+            var ordersQuery = _dataContext.orders.AsQueryable();
+
+            // Lọc theo trạng thái
+            if (status.HasValue)
+            {
+                ordersQuery = ordersQuery.Where(o => o.Status == status);
+            }
+
+            // Lọc theo tìm kiếm
+            if (!string.IsNullOrEmpty(search))
+            {
+                ordersQuery = ordersQuery.Where(o => o.Id.ToString().Contains(search));
+            }
+
+            var totalOrders = await ordersQuery.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
+
+            var orders = await ordersQuery
+                .OrderBy(o =>
+                    o.Status == 4 ? 0 :
+                    o.Status == 1 ? 1 :
+                    o.Status == 2 ? 2 :
+                    o.Status == 3 ? 3 :
+                    o.Status == 5 ? 4 : 5) // Thay đổi theo độ ưu tiên
+                .Skip((page - 1) * PageSize)
+                .Take(PageSize)
+                .ToListAsync();
+
+            var Status = status;
+            var Search = search;
+
+            return new JsonResult(new { orders, Status, Search });
+        }
     }
 }

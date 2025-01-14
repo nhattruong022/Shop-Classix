@@ -155,9 +155,9 @@ namespace Shop_Classix.Controllers
 
 		public IActionResult Profile(int id)
 		{
-            
 
-            CustomerModel customer = _dataContext.customers.FirstOrDefault(p => p.Email == User.Identity.Name);
+
+			CustomerModel customer = _dataContext.customers.FirstOrDefault(p => p.Email == User.Identity.Name);
 
 			//danh sách yêu thích vui
 			// Lấy ID người dùng đang đăng nhập
@@ -165,6 +165,7 @@ namespace Shop_Classix.Controllers
 			var customerId = _dataContext.customers
 			 .Where(c => c.Email == customerEmail)
 			 .Select(c => c.Id)
+
 			 .FirstOrDefault();
             if (id != 0)
             {
@@ -183,8 +184,8 @@ namespace Shop_Classix.Controllers
             var favorite = _dataContext.favoriteProducts
 				.Where(f => f.CustomerId == customerId)
 				.ToList();
-           
-            var favoritelist = from f in favorite
+
+			var favoritelist = from f in favorite
 							   join p in _dataContext.products on f.ProductId equals p.Id
 							   select new ProductList
 							   {
@@ -202,8 +203,6 @@ namespace Shop_Classix.Controllers
 
             return View(customer);
 		}
-
-
 		public async Task<IActionResult> MyOrder(int? status, int page = 1)
 		{
 			const int PageSize = 5;
@@ -228,7 +227,7 @@ namespace Shop_Classix.Controllers
 				.Skip((page - 1) * PageSize)
 				.Take(PageSize)
 				.ToListAsync();
-			
+
 			ViewBag.Status = status;
 			ViewBag.TotalPages = totalPages;
 			ViewBag.CurrentPage = page;
@@ -236,6 +235,7 @@ namespace Shop_Classix.Controllers
 
 			return View();
 		}
+
 
 		public async Task<IActionResult> MyOrderDetail(int orderId)
 		{
@@ -249,7 +249,7 @@ namespace Shop_Classix.Controllers
 				return NotFound();
 			}
 			ViewBag.Detail = orderDetail;
-			return View();
+			return Json(orderDetail);
 		}
 
 		public async Task<IActionResult> CancelOrder(int orderId)
@@ -263,8 +263,9 @@ namespace Shop_Classix.Controllers
 			order.Status = 4; // Canceled
 			await _dataContext.SaveChangesAsync();
 
-			return RedirectToAction("MyOrder");
+			return Json(new { success = true });
 		}
+
 		public IActionResult Comments(int status)
 		{
 
