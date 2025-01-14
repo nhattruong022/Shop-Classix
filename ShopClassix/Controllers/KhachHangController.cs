@@ -165,20 +165,23 @@ namespace Shop_Classix.Controllers
 			var customerId = _dataContext.customers
 			 .Where(c => c.Email == customerEmail)
 			 .Select(c => c.Id)
-			 .FirstOrDefault();
-			if (id != 0)
-			{
-				var productf = _dataContext.favoriteProducts.FirstOrDefault(p => p.ProductId == id && p.CustomerId == customerId);
-				if (productf != null)
-				{
-					// Xóa sản phẩm yêu thích
-					_dataContext.favoriteProducts.Remove(productf);
 
-					// Lưu thay đổi vào cơ sở dữ liệu
-					_dataContext.SaveChanges();
-				}
-			}
-			var favorite = _dataContext.favoriteProducts
+			 .FirstOrDefault();
+            if (id != 0)
+            {
+                var productf = _dataContext.favoriteProducts.FirstOrDefault(p => p.ProductId == id && p.CustomerId == customerId);
+                if (productf != null)
+                {
+                    // Xóa sản phẩm yêu thích
+                    _dataContext.favoriteProducts.Remove(productf);
+                    // Lưu thay đổi vào cơ sở dữ liệu
+                    _dataContext.SaveChanges();
+					var productfa = _dataContext.products.Where(p => p.Id == id).FirstOrDefault();
+					productfa.FavoriteNumber--;
+                    _dataContext.SaveChanges();
+                }
+            }
+            var favorite = _dataContext.favoriteProducts
 				.Where(f => f.CustomerId == customerId)
 				.ToList();
 
@@ -194,12 +197,12 @@ namespace Shop_Classix.Controllers
 							   };
 			ViewBag.AlertMessage = customerEmail;
 			ViewBag.favoritelist = favoritelist.ToList();
+			ViewBag.number = favoritelist.Count();
 
+			
 
-
-			return View(customer);
+            return View(customer);
 		}
-
 		public async Task<IActionResult> MyOrder(int? status, int page = 1)
 		{
 			const int PageSize = 5;

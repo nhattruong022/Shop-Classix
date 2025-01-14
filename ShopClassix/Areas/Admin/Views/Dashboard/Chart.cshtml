@@ -1,6 +1,51 @@
-﻿@{
-    ViewData["Title"] = "Admin-Chart";
+﻿@model IEnumerable<Shop_Classix.Models.OrderModel>
+@{
+    ViewData["Title"] = "Chart";
+
+
+
     Layout = "_AdminSubLayout";
+
+
+
+
+
+
+
+
+
+
+
+    var revenuesThisYear = ViewBag.RevenuesThisYear as List<double>;
+
+
+
+    var revenuesLastYear = ViewBag.RevenuesLastYear as List<double>;
+
+
+
+
+
+
+
+    // Đảm bảo rằng danh sách có đủ 12 tháng
+
+
+
+    if (revenuesThisYear.Count < 12)
+
+        revenuesThisYear.AddRange(Enumerable.Repeat(0.0, 12 - revenuesThisYear.Count)); // Sử dụng 0.0 cho double
+
+
+
+
+
+
+
+    if (revenuesLastYear.Count < 12)
+
+        revenuesLastYear.AddRange(Enumerable.Repeat(0.0, 12 - revenuesLastYear.Count)); // Sử dụng 0.0 cho double
+
 }
 
 @section Link {
@@ -47,14 +92,14 @@
                 datasets: [
                     {
                         label: 'This Year',
-                        data: [120000, 150000, 180000, 200000, 250000, 300000, 320000, 350000, 400000, 450000, 500000, 550000],
+                        data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(revenuesThisYear)),
                         backgroundColor: 'rgba(75, 192, 192, 0.6)',
                         categoryPercentage: 0.5,
                         barPercentage: 0.9,
                     },
                     {
                         label: 'Last Year',
-                        data: [100000, 130000, 160000, 190000, 210000, 240000, 290000, 310000, 380000, 420000, 480000, 520000],
+                        data: @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(revenuesLastYear)),
                         backgroundColor: 'rgba(153, 102, 255, 0.6)',
                         categoryPercentage: 0.5,
                         barPercentage: 0.9,
@@ -188,8 +233,8 @@
         });
 
         // Node Inventory Levels
-            const legend = document.getElementById('legend');
-            inventoryLabels.forEach((label, index) => {
+        const legend = document.getElementById('legend');
+        inventoryLabels.forEach((label, index) => {
             const legendItem = document.createElement('div');
             legendItem.style.display = 'flex';
             legendItem.style.alignItems = 'center';
@@ -224,7 +269,7 @@
                 plugins: {
                     tooltip: {
                         callbacks: {
-                            label: function(tooltipItem) {
+                            label: function (tooltipItem) {
                                 const percentage = ((tooltipItem.raw / salesData.reduce((a, b) => a + b, 0)) * 100).toFixed(2);
                                 return `${tooltipItem.label}: ${percentage}%`;
                             }

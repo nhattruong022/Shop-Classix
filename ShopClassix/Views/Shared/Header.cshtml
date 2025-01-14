@@ -69,6 +69,21 @@
                 <li class="active"><a asp-action="Contact" asp-controller="Contact">Contact</a></li>
               </ul>
             </nav>
+                        <!-- Form tìm kiếm -->
+                        <div class="col-lg-9">
+                            <form asp-action="TimKiem" asp-controller="Home" method="get" class="row align-items-center g-3">
+
+                                <!-- Tìm kiếm từ khóa -->
+                                <div class="col-md-8">
+                                    <input name="keyword" id="keyword" type="text" class="form-control" placeholder="What do you need?" />
+                                </div>
+
+                                <!-- Nút tìm kiếm -->
+                                <div class="col-md-4 mt-4 d-flex justify-content-start mb-4">
+                                    <button type="submit" class="btn btn-primary w-100">SEARCH</button>
+                                </div>
+                            </form>
+                        </div>
           </div>
           <div class="col-lg-3">
             <div class="header__cart">
@@ -87,12 +102,15 @@
               </ul>
                             <div class="header__cart__price">item: <span> @(ViewBag.TotalAmount != null ? ViewBag.TotalAmount.ToString("C") : "0") VNĐ </span></div>
             </div>
+                       
 
           </div>
         </div>
+               
         <div class="humberger__open">
           <i class="fa fa-bars"></i>
         </div>
       </div>
+           
           
 </header>

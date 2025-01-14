@@ -4,16 +4,13 @@
 
     ViewData["Title"] = "Detail Page";
 
-    var views = ViewBag.view;
-
-    var productid = ViewBag.productid;
-
     var reviews = ViewBag.reviews;
 
     var rating = ViewBag.rating;
     var favorite = ViewBag.favorite;
 
-   
+    var product = ViewBag.product;
+
 }
 
 
@@ -58,22 +55,22 @@
                         <div class="product__details__pic">
                             <div class="product__details__pic__item">
                                 <img class="product__details__pic__item--large"
-                                    src="@Url.Content("~/Classix/img/" + Model.First().Image)" alt="" />
+                                    src="@Url.Content("~/Classix/img/" + product.Image)" alt="" />
                             </div>
 
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="product__details__text">
-                            <h3>@Model.First().Name</h3>
+                            <h3>@product.Name</h3>
                             <div class="product__details__rating">
                                 <span id="rating">@rating</span> <i class="fa fa-star"></i>
                                
-                                <span id="reviews">(@reviews) </span><span id="viewcount">| (@views)</span>
+                                <span id="reviews">(@reviews) </span><span id="viewcount">| (@product.Views)</span>
                             </div>
-                            <div class="product__details__price"> @Model.First().Price.ToString("C")VNĐ</div>
+                            <div class="product__details__price"> @product.Price.ToString("C")VNĐ</div>
                             <p>
-                                @Model.First().Description
+                                @product.Description
                             </p>
                             @* 
                             <div class="product__details__quantity">
@@ -86,7 +83,7 @@
                             <input type="hidden" id="productId" value="@Model.First().Id" />
                             <button onclick="addToCart(event, '@Model.First().Id')" class="primary-btn">ADD TO CART</button>
  *@
-                            <form onsubmit="addToCart(event, '@Model.First().Id')">
+                            <form onsubmit="addToCart(event, '@product.Id')">
                                 <div class="product__details__quantity">
                                     <div class="quantity">
                                         <div class="pro-qty">
@@ -94,7 +91,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <input type="hidden" name="id" value="@Model.First().Id" />
+                                <input type="hidden" name="id" value="@product.Id" />
                                 <button type="submit" class="primary-btn">ADD TO CART</button>
                             </form>
 
@@ -103,10 +100,17 @@
                                 <span class="icon_heart_alt"></span>
                             </a>
                             <span id="favorite"> @favorite</span>
+                            
                             <ul>
                                 <li>
+                                    <b>Inventory:   </b>
+
+                                    <span id="quantitys">@product.Quantity</span>
+                                  
+                                </li>
+                                <li>
                                     <b>Size: </b>
-                                    <span>@Model.First().Size</span>
+                                    <span>@product.Size</span>
                                 </li>
 
                             </ul>
@@ -165,48 +169,14 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                     <div class="product__details__tab__desc">
-                                        <h6>Products Infomation</h6>
-                                        <p>
-                                            The Drum Lamp shows subtle details, adapted in a pure
-                                            shape. The organically shaped rattan lines that give
-                                            the Drum its decorative and distinctive look are
-                                            handwoven according to Javanese technique. A beautiful
-                                            statement pendant that will literally brighten up the
-                                            room. Available in two sizes and in charcoal or
-                                            natural finish.
-                                        </p>
-                                        <p>
-                                            The Drum Lamp shows subtle details, adapted in a pure
-                                            shape. The organically shaped rattan lines that give
-                                            the Drum its decorative and distinctive look are
-                                            handwoven according to Javanese technique. A beautiful
-                                            statement pendant that will literally brighten up the
-                                            room. Available in two sizes and in charcoal or
-                                            natural finish.
-                                        </p>
+                                        <h6>Products Description</h6>
+                                        <p>@product.Description</p>
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tabs-2" role="tabpanel">
                                     <div class="product__details__tab__desc">
                                         <h6>Products Infomation</h6>
-                                        <p>
-                                            The Drum Lamp shows subtle details, adapted in a pure
-                                            shape. The organically shaped rattan lines that give
-                                            the Drum its decorative and distinctive look are
-                                            handwoven according to Javanese technique. A beautiful
-                                            statement pendant that will literally brighten up the
-                                            room. Available in two sizes and in charcoal or
-                                            natural finish.
-                                        </p>
-                                        <p>
-                                            The Drum Lamp shows subtle details, adapted in a pure
-                                            shape. The organically shaped rattan lines that give
-                                            the Drum its decorative and distinctive look are
-                                            handwoven according to Javanese technique. A beautiful
-                                            statement pendant that will literally brighten up the
-                                            room. Available in two sizes and in charcoal or
-                                            natural finish.
-                                        </p>
+                                        <p>@product.Size</p>
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tabs-3" role="tabpanel">
@@ -293,7 +263,7 @@
 
         function GetViewCount() {
 
-            $.get(`/api/Product/${@productid}/viewcount`, function (response) {
+            $.get(`/api/Product/${@product.Id}/viewcount`, function (response) {
 
                 console.log(response); // Kiểm tra giá trị của response
 
@@ -336,7 +306,7 @@
 
         function GetReviews() {
 
-            $.get(`/api/ProductComment/${@productid}/reviews`, function (response) {
+            $.get(`/api/ProductComment/${@product.Id}/reviews`, function (response) {
 
                 console.log(response); // Kiểm tra giá trị của response
 
@@ -380,7 +350,7 @@
 
         function GetFavorite() {
 
-            $.get(`/api/Product/${@productid}/favorite`, function (response) {
+            $.get(`/api/Product/${@product.Id}/favorite`, function (response) {
 
                 console.log(response); // Kiểm tra giá trị của response
 
@@ -420,8 +390,8 @@
 
     </script>
     <script>
-        function GetRating() {
-            $.get(`/api/ProductComment/${@productid}/rating`, function (response) {
+       function GetRating() {
+            $.get(`/api/ProductComment/${@product.Id}/rating`, function (response) {
                 console.log(response); // Kiểm tra giá trị của response
 
                 if (response !== undefined && response !== null) {
@@ -441,11 +411,53 @@
         }
 
         // Gọi hàm GetRating mỗi 10 giây
-        setInterval(GetRating, 10000); // Thay đổi 10 thành 10000 để gọi mỗi 10 giây
+        setInterval(GetRating, 10); // Thay đổi 10 thành 10000 để gọi mỗi 10 giây
 
         // Gọi hàm ngay khi tải trang để có giá trị ban đầu
         $(document).ready(function () {
             GetRating();
         });
+    </script>
+    <script>
+        function GetQuantity() {
+            $.get(`/api/Product/${@product.Id}/quantitys`, function (response) {
+
+                console.log(response); // Kiểm tra giá trị của response
+
+                if (response !== undefined && response !== null) {
+
+                    // Kiểm tra nếu response là một số hợp lệ
+
+                    let quantity = parseInt(response, 10);
+
+                    if (!isNaN(quantity)) {
+                        if (quantity > 0) {
+
+                            $('#quantitys').text(`${quantity} `); // Hiển thị giá trị dưới định dạng chính xác
+                        }
+                        else {
+                            $('#quantitys').text(` out of stock `);
+                        }
+                    } else {
+
+                        console.error('quantitys không phải là một số hợp lệ');
+
+                    }
+
+                } else {
+
+                    console.error('quantitys không có trong phản hồi');
+
+                }
+
+            }).fail(function () {
+
+                console.error('Lỗi khi lấy số lượt quantitys');
+
+            });
+        }
+
+        setInterval(GetQuantity, 100);
+
     </script>
 }
