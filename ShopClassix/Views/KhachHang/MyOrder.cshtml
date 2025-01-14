@@ -5,6 +5,7 @@
     ViewData["Title"] = "My Order Page";
     var orders = ViewBag.Orders as List<Shop_Classix.Models.OrderModel>;
     var status = ViewBag.Status;
+    var detail = ViewBag.Detail as List<Shop_Classix.Models.OrderDetailModel>;
 }
 
 @section Link
@@ -18,6 +19,7 @@
     <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/slicknav.min.css")" type="text/css" />
     <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/style.css")" type="text/css" />
     <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/xuan.css")" type="text/css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 }
 
 
@@ -32,8 +34,8 @@
             new { Value = 1, Text = "Waiting for delivery" },
             new { Value = 2, Text = "Transport" },
             new { Value = 3, Text = "Completed" },
-            new { Value = 4, Text = "Canceled" },
-            new { Value = 5, Text = "Refund" }
+            new { Value = 4, Text = "Pending cancellation confirmation" },
+            new { Value = 5, Text = "Canceled" }
             })
             {
                 <li class="nav-item mx-3">
@@ -109,13 +111,6 @@
                                         onsubmit="return confirm('Are you sure you want to Cancel?');">Cancel order</button>
                                 </form>
                                 break;
-                            case 3: // Hoàn trả
-                                <form asp-controller="KhachHang" asp-action="RefundOrder" method="post">
-                                    <input type="hidden" name="orderId" value="@order.Id" />
-                                    <button type="submit" class="btn btn-warning"
-                                        onsubmit="return confirm('Are you sure you want to Refund?');">Refund</button>
-                                </form>
-                                break;
                         }
                     </td>
                 </tr>
@@ -135,7 +130,48 @@
     </ul>
 </nav>
 
+
+<div class="modal fade" id="orderDetailModal" tabindex="-1" role="dialog" aria-labelledby="orderDetailModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="orderDetailModalLabel">Order Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @if (detail != null && detail.Any())
+                {
+                    foreach (var item in detail)
+                    {
+                        <tr>
+                            <td><img style="width: 100px;" src="~/Classix/img/@item.Products.Image"></td>
+                            <td>@item.Products.Name</td>
+                            <td>@item.Products.Price</td>
+                            <td>@item.Quantity</td>
+                            <td>@(item.TotalPrice)</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5">No order details found.</td>
+                    </tr>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script>
     function GetOrderUser(status = "", page = 1) {
         $.get(`/api/Order/user?status=${status}&page=${page}`, function (response) {
@@ -155,20 +191,14 @@
                             ? `<p>COD (${order.deposit})</p>`
                             : `<p>Credit Card</p>`;
 
-                        let statusButton;
+                        let statusButton = ''; // Khởi tạo biến statusButton rỗng
                         switch (order.status) {
                             case 1:
                             case 2: // Hủy
-                                statusButton = `<form asp-controller="KhachHang" asp-action="CancelOrder" method="post">
-                                <input type="hidden" name="orderId" value="${order.id}" />
-                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to Cancel?');">Cancel order</button>
-                            </form>`;
-                                break;
-                            case 3: // Hoàn trả
-                                statusButton = `<form asp-controller="KhachHang" asp-action="RefundOrder" method="post">
-                                <input type="hidden" name="orderId" value="${order.id}" />
-                                <button type="submit" class="btn btn-warning" onclick="return confirm('Are you sure you want to Refund?');">Refund</button>
-                            </form>`;
+                                statusButton = `<form class="order-form" action="/KhachHang/CancelOrder" method="post">
+                                    <input type="hidden" name="orderId" value="${order.id}" />
+                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to Cancel?');">Cancel order</button>
+                                </form>`;
                                 break;
                             default:
                                 statusButton = ''; // Không có nút nào
@@ -183,10 +213,7 @@
                             <td>${order.phone}</td>
                             <td>${paymentMethodDisplay}</td>
                             <td>
-                                <form asp-controller="KhachHang" asp-action="MyOrderDetail" method="post">
-                                    <input type="hidden" name="orderId" value="${order.id}" />
-                                    <button type="submit" class="btn btn-success">More</button>
-                                </form>
+                                <button class="btn btn-success view-order-detail" data-order-id="${order.id}">More</button>
                             </td>
                             <td>${statusButton}</td>
                         </tr>
@@ -198,6 +225,87 @@
             console.error('Lỗi khi lấy số lượt order');
         });
     }
+
+    //Ajax Hủy đơn hàng
+    $(document).on('submit', '.order-form', function (e) {
+        e.preventDefault(); // Ngăn chặn hành động mặc định của form
+
+        const form = $(this);
+        const actionUrl = form.attr('action'); // Lấy URL từ thuộc tính action của form
+        const orderId = form.find('input[name="orderId"]').val(); // Lấy ID đơn hàng
+
+        $.post(actionUrl, { orderId: orderId })
+            .done(function (response) {
+                // Cập nhật giao diện người dùng sau khi thành công
+                GetOrderUser();
+            })
+            .fail(function () {
+                alert('Failed to complete the action. Please try again.');
+            });
+    });
+
+    //Ajax hiển thị trang chi tiết
+    jQuery.noConflict();
+    jQuery(document).ready(function ($) {
+        // Kiểm tra xem có tham số orderId trong URL không
+        const params = new URLSearchParams(window.location.search);
+        if (params.has('orderId')) {
+            const orderId = params.get('orderId');
+            loadOrderDetails(orderId);
+        }
+
+        // Ajax Hiển thị trang chi tiết
+        $(document).on('click', '.view-order-detail', function () {
+            const orderId = $(this).data('order-id');
+            loadOrderDetails(orderId);
+        });
+
+        function loadOrderDetails(orderId) {
+            $.post('/KhachHang/MyOrderDetail', { orderId: orderId })
+                .done(function (response) {
+                    console.log(response);
+                    if (response && response.length > 0) {
+                        let modalBody = $('#orderDetailModal .modal-body');
+                        modalBody.empty(); // Xóa nội dung cũ
+
+                        // Tạo bảng hiển thị chi tiết đơn hàng
+                        let table = '<table class="table"><thead><tr><th>Product Image</th><th>Product Name</th><th>Price</th><th>Quantity</th><th>Total Price</th></tr></thead><tbody>';
+
+                        response.forEach(item => {
+                            table += `<tr>
+                            <td><img src="/Classix/img/${item.products.image}" style="width: 100px;"></td>
+                            <td>${item.products.name}</td>
+                            <td>${item.products.price}</td>
+                            <td>${item.quantity}</td>
+                            <td>${item.totalPrice}</td>
+                        </tr>`;
+                        });
+
+                        table += '</tbody></table>';
+                        modalBody.html(table); // Cập nhật nội dung modal
+                        $('#orderDetailModal').modal('show'); // Hiển thị modal
+
+                        // Cập nhật URL
+                        const url = new URL(window.location.href);
+                        url.searchParams.set('orderId', orderId);
+                        history.replaceState({}, '', url);
+                    } else {
+                        alert('No details found for this order.');
+                    }
+                })
+                .fail(function () {
+                    alert('Failed to load order details. Please try again.');
+                });
+        }
+
+        // Xóa orderId khỏi URL khi đóng modal
+        $('#orderDetailModal').on('hidden.bs.modal', function () {
+            const url = new URL(window.location.href);
+            url.searchParams.delete('orderId');
+            history.replaceState({}, '', url);
+        });
+    });
+
 
     setInterval(() => {
         const params = new URLSearchParams(window.location.search);
@@ -217,5 +325,5 @@
             url.searchParams.set('page', page);
             history.replaceState({}, '', url);
         }
-    }, 10000);
+    }, 1000);
 </script>

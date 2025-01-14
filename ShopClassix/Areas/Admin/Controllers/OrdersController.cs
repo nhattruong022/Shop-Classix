@@ -17,10 +17,17 @@ namespace Shop_Classix.Areas.Admin.Controllers
         }
 
         [HttpGet("Admin/Orders")]
-        public async Task<IActionResult> Orders(int page = 1, string search = null)
+        public async Task<IActionResult> Orders(int page = 1, string search = null, int? status = null)
         {
-            var ordersQuery = _dataContext.orders.Include(o => o.customers).Where(o => o.Status != 0);
+            var ordersQuery = _dataContext.orders.AsQueryable();
 
+            // Lọc theo trạng thái
+            if (status.HasValue)
+            {
+                ordersQuery = ordersQuery.Where(o => o.Status == status);
+            }
+
+            // Lọc theo tìm kiếm
             if (!string.IsNullOrEmpty(search))
             {
                 ordersQuery = ordersQuery.Where(o => o.Id.ToString().Contains(search));
@@ -30,6 +37,12 @@ namespace Shop_Classix.Areas.Admin.Controllers
             var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
 
             var orders = await ordersQuery
+                .OrderBy(o =>
+                    o.Status == 4 ? 0 :
+                    o.Status == 1 ? 1 :
+                    o.Status == 2 ? 2 :
+                    o.Status == 3 ? 3 :
+                    o.Status == 5 ? 4 : 5) // Thay đổi theo độ ưu tiên
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize)
                 .ToListAsync();
@@ -37,6 +50,12 @@ namespace Shop_Classix.Areas.Admin.Controllers
             ViewBag.TotalPages = totalPages;
             ViewBag.CurrentPage = page;
             ViewBag.Search = search;
+            ViewBag.Status = status;
+
+            if (!orders.Any())
+            {
+                ViewBag.Message = "No orders found matching your criteria.";
+            }
 
             return View(orders);
         }
@@ -44,18 +63,16 @@ namespace Shop_Classix.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> ChangeOrder(int id)
         {
-           var order = await _dataContext.orders.FindAsync(id);
-           if (order == null)
-           {
-               return NotFound();
-           }
+            var order = await _dataContext.orders.FindAsync(id);
+            if (order == null)
+            {
+                return NotFound();
+            }
 
-           order.Status++;
+            order.Status++;
+            await _dataContext.SaveChangesAsync();
 
-
-           await _dataContext.SaveChangesAsync();
-
-           return RedirectToAction("Orders");
+            return Json(new { success = true, message = "Order status updated successfully." });
         }
 
         [HttpPost]
@@ -67,10 +84,10 @@ namespace Shop_Classix.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            order.Status = 0;
+            order.Status = 5;
             await _dataContext.SaveChangesAsync();
 
-            return RedirectToAction("Orders");
+            return Json(new { success = true, message = "Order canceled successfully." });
         }
     }
 }
