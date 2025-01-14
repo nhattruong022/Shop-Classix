@@ -196,6 +196,7 @@ namespace Shop_Classix.Controllers
 							   };
 			ViewBag.AlertMessage = customerEmail;
 			ViewBag.favoritelist = favoritelist.ToList();
+			ViewBag.number = favoritelist.Count();
 
 			
 
