@@ -52,7 +52,16 @@ namespace Shop_Classix.Areas.Admin.Controllers
             ViewBag.RevenuesLastYear = FillMissingMonths(revenuesLastYear);
 
             // Chờ cho phương thức GetMonthlySales hoàn tất
-            ViewBag.RevenuesMonth = await GetMonthlySales(year, month);
+        
+         var RevenuesMonth = await GetMonthlySales(year, month);
+            if (RevenuesMonth.Any())
+            {
+                ViewBag.RevenuesMonth = RevenuesMonth;
+            }
+            else
+            {
+                ViewBag.RevenuesMonth = null;
+            }
 
             return View();
         }
