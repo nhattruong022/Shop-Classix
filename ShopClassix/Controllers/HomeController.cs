@@ -51,14 +51,14 @@ namespace Shop_Classix.Controllers
             // Lấy danh sách sản phẩm nổi bật
             var topRatedProducts = dataContext.products
                .Where(p => p.Rating == dataContext.products.Max(x => x.Rating))
-               .Take(3)
+               .Take(2)
                .ToList();
             // Lấy danh sách sản phẩm mới nhất
             var newProducts = dataContext.products
                 .OrderByDescending(p => p.CreatedAt)
-                .Take(3)
+                .Take(2)
                 .ToList();
-
+            ViewBag.dem= newProducts.Count;
 
 
             //lấy danh sách sản phẩm bán chạy sau khi thanh toán thành công

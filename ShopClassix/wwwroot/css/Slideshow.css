@@ -1,13 +1,5 @@
-﻿/*.slider-body {
-    position: relative;
-    width: 80%;
-    height: 600px;*/ /* Giữ nguyên chiều cao */
-    /*display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;*/ /* Ẩn phần thừa */
-    /*background: transparent;*/ /* Nền của slider */
-/*}*/
+﻿
+
 .slider-body {
     position: relative;
     width: 80%; /* Giữ nguyên chiều rộng */
@@ -32,23 +24,9 @@
     overflow: hidden; /* Ẩn phần thừa */
 }
 
-.shop-caption {
-    position: absolute;
-    left: 50%; /* Căn giữa theo chiều ngang */
-    top: 50%; /* Căn giữa theo chiều dọc */
-    transform: translate(-50%, -50%); /* Đẩy chữ lên trên và sang trái để căn chính giữa */
-    font-size: 2rem; /* Kích thước chữ lớn */
-    font-weight: bold; /* In đậm chữ */
-    color: black; /* Màu chữ đen */
-    text-align: center; /* Căn giữa văn bản */
-    background: rgba(255, 255, 255, 0.7); /* Nền mờ trắng để chữ nổi bật */
-    padding: 1rem; /* Padding để tạo khoảng cách */
-    z-index: 10; /* Đảm bảo chữ nằm trên hình ảnh */
-}
-
 .slider {
     position: relative;
-    width: 300%; /* Chiều rộng của slider */
+    width: 400%; /* Chiều rộng của slider */
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -84,36 +62,28 @@
         z-index: 10; /* Đảm bảo caption nằm trên hình ảnh */
     }
 
+
 @keyframes sliding {
     0% {
-        transform: translateX(0%);
-    }
-
-    20% {
-        transform: translateX(0%);
+        transform: translateX(0%); /* Bắt đầu tại sản phẩm đầu tiên */
     }
 
     25% {
-        transform: translateX(-100%);
-    }
-
-    45% {
-        transform: translateX(-100%);
+        transform: translateX(-100%); /* Di chuyển đến sản phẩm thứ 2 */
     }
 
     50% {
-        transform: translateX(-200%);
-    }
-
-    70% {
-        transform: translateX(-200%);
+        transform: translateX(-200%); /* Di chuyển đến sản phẩm thứ 3 */
     }
 
     75% {
-        transform: translateX(0%); /* Reset to start */
+        transform: translateX(-300%); /* Di chuyển đến sản phẩm thứ 4 */
     }
 
     100% {
-        transform: translateX(0%); /* Reset to start */
+        transform: translateX(0%); /* Quay lại sản phẩm đầu tiên */
     }
 }
+
+
+
