@@ -167,21 +167,21 @@ namespace Shop_Classix.Controllers
 			 .Select(c => c.Id)
 
 			 .FirstOrDefault();
-            if (id != 0)
-            {
-                var productf = _dataContext.favoriteProducts.FirstOrDefault(p => p.ProductId == id && p.CustomerId == customerId);
-                if (productf != null)
-                {
-                    // Xóa sản phẩm yêu thích
-                    _dataContext.favoriteProducts.Remove(productf);
-                    // Lưu thay đổi vào cơ sở dữ liệu
-                    _dataContext.SaveChanges();
+			if (id != 0)
+			{
+				var productf = _dataContext.favoriteProducts.FirstOrDefault(p => p.ProductId == id && p.CustomerId == customerId);
+				if (productf != null)
+				{
+					// Xóa sản phẩm yêu thích
+					_dataContext.favoriteProducts.Remove(productf);
+					// Lưu thay đổi vào cơ sở dữ liệu
+					_dataContext.SaveChanges();
 					var productfa = _dataContext.products.Where(p => p.Id == id).FirstOrDefault();
 					productfa.FavoriteNumber--;
-                    _dataContext.SaveChanges();
-                }
-            }
-            var favorite = _dataContext.favoriteProducts
+					_dataContext.SaveChanges();
+				}
+			}
+			var favorite = _dataContext.favoriteProducts
 				.Where(f => f.CustomerId == customerId)
 				.ToList();
 
@@ -199,14 +199,16 @@ namespace Shop_Classix.Controllers
 			ViewBag.favoritelist = favoritelist.ToList();
 			ViewBag.number = favoritelist.Count();
 
-			
 
-            return View(customer);
+
+			return View(customer);
 		}
+
+		//Hiển thị danh sách đơn theo trạng thái
 		public async Task<IActionResult> MyOrder(int? status, int page = 1)
 		{
 			const int PageSize = 5;
-
+			//Lọc đơn hàng theo người dùng
 			var customerEmail = User.Identity.Name;
 			var customer = await _dataContext.customers
 				.FirstOrDefaultAsync(c => c.Email == customerEmail);
@@ -216,10 +218,11 @@ namespace Shop_Classix.Controllers
 				return NotFound();
 			}
 
+			//Lọc đơng hàng theo trạng thái
 			var filteredOrders = _dataContext.orders
 				.Where(o => o.CustomerId == customer.Id && (!status.HasValue || o.Status == status))
 				.OrderByDescending(o => o.CreateAt);
-
+			//Phân trang
 			var totalOrders = await filteredOrders.CountAsync();
 			var totalPages = (int)Math.Ceiling(totalOrders / (double)PageSize);
 
@@ -236,7 +239,7 @@ namespace Shop_Classix.Controllers
 			return View();
 		}
 
-
+		//Hiển thị chi tiết đơn hàng
 		public async Task<IActionResult> MyOrderDetail(int orderId)
 		{
 			var orderDetail = await _dataContext.orderDetails
@@ -252,6 +255,7 @@ namespace Shop_Classix.Controllers
 			return Json(orderDetail);
 		}
 
+		//Hủy đơn hàng
 		public async Task<IActionResult> CancelOrder(int orderId)
 		{
 			var order = await _dataContext.orders.FindAsync(orderId);
@@ -260,7 +264,7 @@ namespace Shop_Classix.Controllers
 				return NotFound();
 			}
 
-			order.Status = 4; // Canceled
+			order.Status = 4;
 			await _dataContext.SaveChangesAsync();
 
 			return Json(new { success = true });
@@ -268,9 +272,7 @@ namespace Shop_Classix.Controllers
 
 		public IActionResult Comments(int status)
 		{
-
 			//vui
-
 			var customerEmail = User.Identity.Name;
 			var customerId = _dataContext.customers
 			 .Where(c => c.Email == customerEmail)

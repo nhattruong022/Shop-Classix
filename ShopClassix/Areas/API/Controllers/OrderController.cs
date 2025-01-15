@@ -68,7 +68,7 @@ namespace Shop_Classix.Areas.API.Controllers
                     o.Status == 1 ? 1 :
                     o.Status == 2 ? 2 :
                     o.Status == 3 ? 3 :
-                    o.Status == 5 ? 4 : 5) // Thay đổi theo độ ưu tiên
+                    o.Status == 5 ? 4 : 5) 
                 .Skip((page - 1) * PageSize)
                 .Take(PageSize)
                 .ToListAsync();

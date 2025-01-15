@@ -95,10 +95,7 @@
                         }
                     </td>
                     <td>
-                        <form asp-controller="KhachHang" asp-action="MyOrderDetail" method="post">
-                            <input type="hidden" name="orderId" value="@order.Id" />
-                            <button type="submit" class="btn btn-success">More</button>
-                        </form>
+                        <button class="btn btn-success view-order-detail" data-order-id="@order.Id">More</button>
                     </td>
                     <td>
                         @switch (order.Status)
@@ -236,7 +233,6 @@
 
         $.post(actionUrl, { orderId: orderId })
             .done(function (response) {
-                // Cập nhật giao diện người dùng sau khi thành công
                 GetOrderUser();
             })
             .fail(function () {
@@ -266,9 +262,7 @@
                     console.log(response);
                     if (response && response.length > 0) {
                         let modalBody = $('#orderDetailModal .modal-body');
-                        modalBody.empty(); // Xóa nội dung cũ
-
-                        // Tạo bảng hiển thị chi tiết đơn hàng
+                        modalBody.empty();
                         let table = '<table class="table"><thead><tr><th>Product Image</th><th>Product Name</th><th>Price</th><th>Quantity</th><th>Total Price</th></tr></thead><tbody>';
 
                         response.forEach(item => {
@@ -282,10 +276,10 @@
                         });
 
                         table += '</tbody></table>';
-                        modalBody.html(table); // Cập nhật nội dung modal
-                        $('#orderDetailModal').modal('show'); // Hiển thị modal
+                        modalBody.html(table);
+                        $('#orderDetailModal').modal('show');
 
-                        // Cập nhật URL
+                        // Thêm ID đơn hàng vào URl
                         const url = new URL(window.location.href);
                         url.searchParams.set('orderId', orderId);
                         history.replaceState({}, '', url);
@@ -298,15 +292,15 @@
                 });
         }
 
-        // Xóa orderId khỏi URL khi đóng modal
+        // Xóa Id đơn hàng khỏi URL khi đóng modal
         $('#orderDetailModal').on('hidden.bs.modal', function () {
             const url = new URL(window.location.href);
             url.searchParams.delete('orderId');
             history.replaceState({}, '', url);
         });
     });
-
-
+    
+    //Gọi api mỗi giây
     setInterval(() => {
         const params = new URLSearchParams(window.location.search);
         let status = params.has('status') ? parseInt(params.get('status')) : "";
