@@ -1,46 +1,24 @@
 ﻿@model IEnumerable<Shop_Classix.Models.OrderModel>
+
 @{
+
     ViewData["Title"] = "Chart";
-
-
-
     Layout = "_AdminSubLayout";
-
-
-
-
-
-
-
-
-
-
-
     var revenuesThisYear = ViewBag.RevenuesThisYear as List<double>;
-
-
-
     var revenuesLastYear = ViewBag.RevenuesLastYear as List<double>;
-
-
-
-
-
-
+    var RevenuesMonth = ViewBag.RevenuesMonth;
+    var TotalCapital = 0;
+    var TotalSales = 0;
+    var TotalProfit = 0;
+    var hasData = (revenuesThisYear != null && revenuesThisYear.Any()) ||
+                  (revenuesLastYear != null && revenuesLastYear.Any());
 
     // Đảm bảo rằng danh sách có đủ 12 tháng
-
 
 
     if (revenuesThisYear.Count < 12)
 
         revenuesThisYear.AddRange(Enumerable.Repeat(0.0, 12 - revenuesThisYear.Count)); // Sử dụng 0.0 cho double
-
-
-
-
-
-
 
     if (revenuesLastYear.Count < 12)
 
@@ -81,6 +59,7 @@
     <script src="@Url.Content("~/Classix/admin/js/pcoded.min.js")"></script>
     <script src="@Url.Content("~/Classix/admin/js/demo-12.js")"></script>
     <script src="@Url.Content("~/Classix/admin/js/jquery.mCustomScrollbar.concat.min.js")"></script>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
@@ -285,11 +264,133 @@
     <div class="card">
         <div class="card-header">
             <h2>Monthly Revenue Statistics</h2>
-            <canvas id="revenueChart" width="1200" height="400"></canvas>
+            <form method="get" asp-controller="Dashboard" asp-action="Chart" onsubmit="return filterResults()">
+                <div class="row">
+                    <div class="col-md-4">
+                        <select class="form-control" name="oldyear" id="oldyear">
+                            <option value="">Old Year</option>
+                            @for (int year = DateTime.Now.Year; year >= 2020; year--)
+                            {
+                                <option value="@year">@year</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" name="thisyear" id="thisyear">
+                            <option value="">This Year</option>
+                            @for (int year = DateTime.Now.Year; year >= 2020; year--)
+                            {
+                                <option value="@year">@year</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+
+           
+            @if (revenuesThisYear.Count == 12 && revenuesThisYear.All(revenue => revenue == 0.0) && revenuesLastYear.Count == 12 && revenuesLastYear.All(revenue => revenue == 0.0))
+            {
+                <div style="text-align: center; margin-top: 20px;">
+                    <h4>Data For These Two Years Not Found</h4>
+                </div>
+            }
+            else{
+                <canvas id="revenueChart" width="1200" height="400"></canvas>
+            }
         </div>
     </div>
 </div>
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h2>Profit and Loss Statement</h2>
+            <form method="get" asp-controller="Dashboard" asp-action="Chart">
+                <div class="row">
+                    <div class="col-md-4">
+                        <select class="form-control" name="month" id="month">
+                            <option value="">Month</option>
+                            @for (int i = 1; i <= 12; i++)
+                            {
+                                <option value="@i">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i)</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" name="year" id="year">
+                            <option value="">Year</option>
+                            @for (int year = DateTime.Now.Year; year >= 2020; year--)
+                            {
+                                <option value="@year">@year</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+            @if(RevenuesMonth!=null){
+            <table class="table">
+                <thead>
+                    <tr>
+                    <th>Id</th>
+                        <th>Name</th>
+                        <th>Quantity</th>
+                        <th>Total Capital</th>
+                        <th>Total Sales</th>
+                        <th>Total Profit</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (ViewBag.RevenuesMonth != null)
+                    {
+                        foreach (var item in ViewBag.RevenuesMonth )
+                        {
+                            TotalCapital += item.TotalCapital;
+                            TotalSales += item.TotalSales;
+                            TotalProfit +=item.TotalProfit;
+                            <tr>
+                                <td>@item.ProductType</td>
+                                <td>@item.Name</td>
+                                <td>@item.QuantitySold</td>
+                                <td>@item.TotalCapital VND</td>
+                                <td>@item.TotalSales VND</td>
+                                <td>@item.TotalProfit VND</td>
 
+                               
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5">No data available.</td>
+                        </tr>
+                    }
+                    <tr>
+                        <th>Financial Summary: </th>
+                    <th></th>
+                        <th></th>                  
+                        <th>@TotalCapital VND</th>
+                        <th>@TotalSales VND</th>
+                        <th>@TotalProfit VND</th>
+                    </tr>
+                    
+                    <tr><th>Revenue: @ViewBag.Revenues VND</th></tr>
+                </table>
+            }
+            else
+            {
+                <div style="text-align: center; margin-top: 20px;">
+                <h4>No revenue data available for this month</h4>
+                </div>
+            }
+        </div>
+    </div>
+</div>
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header">
@@ -326,3 +427,19 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    function filterResults() {
+        var oldYear = document.getElementById("oldyear").value;
+        var thisYear = document.getElementById("thisyear").value;
+
+        // Kiểm tra nếu năm cũ và năm hiện tại trùng nhau
+        if (oldYear && thisYear && oldYear === thisYear) {
+            alert("The two years cannot be the same. Please select again.");
+            return false; // Ngăn không cho form submit
+        }
+
+        return true; // Cho phép form submit nếu không trùng nhau
+    }
+</script>
