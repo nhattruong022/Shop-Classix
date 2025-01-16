@@ -19,7 +19,6 @@ namespace Shop_Classix.Areas.Admin.Controllers
         [HttpGet("Admin/Orders")]
         public async Task<IActionResult> Orders(int page = 1, string? search = null, int? status = null)
         {
-
             const int PageSize = 10;
             var ordersQuery = _dataContext.orders.AsQueryable();
 

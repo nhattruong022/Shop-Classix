@@ -1,0 +1,39 @@
+﻿@model Shop_Classix.Models.ViewModels.ProductPageViewModel
+
+<div class="slider-body">
+    <section class="slider_container">
+        <section class="slider">
+            <!-- Hiển thị sản phẩm nổi bật -->
+         
+            @foreach (var product in Model.TopRatedProducts)
+            {
+              
+                <div class="slide">
+                    <img src="@Url.Content("~/Classix/img/" + product.Image)" alt="@product.Name" />
+                    <span class="caption">
+                        <strong>Tên sản phẩm:</strong> @product.Name <br />
+                        <strong>Giá:</strong> @string.Format("{0:0,0} VND", product.Price) <br />
+                        <strong>Rating:</strong> @product.Rating ★
+                    </span>
+                </div>
+            }
+
+            <!-- Hiển thị sản phẩm mới -->
+            @foreach (var product in Model.NewProducts)
+            {
+                @if (product != null)
+                {
+                    <div class="slide">
+                        <img src="@Url.Content("~/Classix/img/" + product.Image)" alt="@product.Name" />
+                        <span class="caption">
+                            <strong>Tên sản phẩm:</strong> @product.Name <br />
+                            <strong>Giá:</strong> @string.Format("{0:0,0} VND", product.Price) <br />
+                            <strong>Mô tả:</strong> @product.Description
+                        </span>
+                    </div>
+                }
+            }
+
+        </section>
+    </section>
+</div>

@@ -102,10 +102,10 @@
                         {
                             case 1:
                             case 2:// Hủy
-                                <form asp-controller="KhachHang" asp-action="CancelOrder" method="post">
+                                <form class="order-form" asp-controller="KhachHang" asp-action="CancelOrder" method="post">
                                     <input type="hidden" name="orderId" value="@order.Id" />
                                     <button type="submit" class="btn btn-danger"
-                                        onsubmit="return confirm('Are you sure you want to Cancel?');">Cancel order</button>
+                                        onclick="return confirm('Are you sure you want to Cancel?');">Cancel order</button>
                                 </form>
                                 break;
                         }
@@ -233,7 +233,11 @@
 
         $.post(actionUrl, { orderId: orderId })
             .done(function (response) {
-                GetOrderUser();
+                const params = new URLSearchParams(window.location.search);
+                let status = params.has('status') ? parseInt(params.get('status')) : "";
+                let page = params.has('page') ? parseInt(params.get('page')) : 1;
+
+                GetOrderUser(status, page);
             })
             .fail(function () {
                 alert('Failed to complete the action. Please try again.');
@@ -299,7 +303,7 @@
             history.replaceState({}, '', url);
         });
     });
-    
+
     //Gọi api mỗi giây
     setInterval(() => {
         const params = new URLSearchParams(window.location.search);

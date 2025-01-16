@@ -19,6 +19,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
             _datacontext = datacontext;
             _webHostEnvironment = hostEnvironment;
         }
+<<<<<<< HEAD
        
 
         [HttpGet("Admin/Dashboard/Chart")]
@@ -59,9 +60,76 @@ namespace Shop_Classix.Areas.Admin.Controllers
             {
                 return await GetMonthsales(currentYear, currentMonth);
             }
+=======
+
+        public class ProductSales
+        {
+            public int Year { get; set; }
+            public int Month { get; set; }
+            public string Name {  get; set; }
+            public string ProductType { get; set; }
+            public int QuantitySold { get; set; }
+            public double TotalSales {  get; set; }
+            public double Revenue { get; set; }
+            public double TotalProfit { get; set; }
+            public double TotalCapital {  get; set; }
+        }
+
+        [HttpGet("Admin/Dashboard/Chart")]
+        public async Task<IActionResult> Chart(int oldyear, int thisyear, int month, int year)
+        {
+            if (thisyear == 0)
+            {
+                thisyear = currentYear;
+                oldyear = thisyear - 1;
+            }
+            else if (oldyear == 0)
+            {
+                oldyear = thisyear - 1;
+            }
+
+            var revenuesThisYear = await GetMonthlyRevenueAsync(thisyear);
+            var revenuesLastYear = await GetMonthlyRevenueAsync(oldyear);
+
+            ViewBag.RevenuesThisYear = FillMissingMonths(revenuesThisYear);
+            ViewBag.RevenuesLastYear = FillMissingMonths(revenuesLastYear);
+
+            // Chờ cho phương thức GetMonthlySales hoàn tất
+        
+         var RevenuesMonth = await GetMonthlySales(year, month);
+            if (RevenuesMonth.Any())
+            {
+                ViewBag.RevenuesMonth = RevenuesMonth;
+            }
+            else
+            {
+                ViewBag.RevenuesMonth = null;
+            }
+
+            return View();
+        }
+
+        private async Task<List<ProductSales>> GetMonthlySales(int year, int month)
+        {
+            if (month != 0 && year != 0)
+            {
+                return await GetMonthsales(year, month);
+            }
+            else if (year == 0 && month != 0)
+            {
+                return await GetMonthsales(currentYear, month);
+            }
+            else if (month == 0 && year != 0)
+            {
+                return await GetMonthsales(year, currentMonth);
+            }
+            else
+            {
+                return await GetMonthsales(currentYear, currentMonth);
+            }
+>>>>>>> 14d2cff926a08a786d392c5b70af935b2a29a1ff
         }
        
-
 
         public class MonthlyRevenue
         {
@@ -124,7 +192,6 @@ namespace Shop_Classix.Areas.Admin.Controllers
             return View(contacts);
         }
 
-
         //Edit contact
         [HttpGet("Admin/Dashboard/Edit")]
         public async Task<IActionResult> Edit()
@@ -185,11 +252,6 @@ namespace Shop_Classix.Areas.Admin.Controllers
             return View(contact);
         }
 
-        //[HttpGet("Admin/Dashboard/Comments")]
-        //public IActionResult Comments()
-        //{
-        //    return View();
-        //}
         [HttpGet("Admin/Dashboard/Comments")]
         public IActionResult Comments()
         {
@@ -227,7 +289,6 @@ namespace Shop_Classix.Areas.Admin.Controllers
             // Chuyển hướng về trang danh sách bình luận
             return RedirectToAction("Comments");
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
