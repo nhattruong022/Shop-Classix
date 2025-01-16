@@ -19,37 +19,12 @@ namespace Shop_Classix.Areas.Admin.Controllers
             _datacontext = datacontext;
             _webHostEnvironment = hostEnvironment;
         }
-        public class ProductSales
-        {
-            public int Year { get; set; }
-            public int Month { get; set; }
-            public string Name {  get; set; }
-            public string ProductType { get; set; }
-            public int QuantitySold { get; set; }
-            public double TotalSales {  get; set; }
-            public double Revenue { get; set; }
-            public double TotalProfit { get; set; }
-            public double TotalCapital {  get; set; }
-        }
+       
 
         [HttpGet("Admin/Dashboard/Chart")]
         public async Task<IActionResult> Chart(int oldyear, int thisyear, int month, int year)
         {
-            if (thisyear == 0)
-            {
-                thisyear = currentYear;
-                oldyear = thisyear - 1;
-            }
-            else if (oldyear == 0)
-            {
-                oldyear = thisyear - 1;
-            }
-
-            var revenuesThisYear = await GetMonthlyRevenueAsync(thisyear);
-            var revenuesLastYear = await GetMonthlyRevenueAsync(oldyear);
-
-            ViewBag.RevenuesThisYear = FillMissingMonths(revenuesThisYear);
-            ViewBag.RevenuesLastYear = FillMissingMonths(revenuesLastYear);
+         
 
             // Chờ cho phương thức GetMonthlySales hoàn tất
         
@@ -65,7 +40,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
 
             return View();
         }
-
+       
         private async Task<List<ProductSales>> GetMonthlySales(int year, int month)
         {
             if (month != 0 && year != 0)
@@ -85,40 +60,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
                 return await GetMonthsales(currentYear, currentMonth);
             }
         }
-        private async Task<List<double>> GetMonthlyRevenueAsync(int year)
-        {
-            var monthlyRevenues = await _datacontext.orders
-        .Where(o => o.Status == 3 && o.CreateAt.HasValue && o.CreateAt.Value.Year == year)
-        .GroupBy(o => o.CreateAt.Value.Month)
-        .Select(g => new { Month = g.Key, Total = g.Sum(o => o.TotalPrice) })
-        .OrderBy(m => m.Month)
-        .ToListAsync();
-
-            // Khởi tạo danh sách doanh thu với 12 giá trị 0
-            var revenues = new List<double>(new double[12]);
-
-            // Gán doanh thu cho các tháng tương ứng
-            foreach (var revenue in monthlyRevenues)
-            {
-                revenues[revenue.Month - 1] = revenue.Total; // Gán giá trị vào đúng chỉ số
-            }
-
-            return revenues;
-        }
-        private List<double> FillMissingMonths(List<double> revenues)
-        {
-            // Khởi tạo danh sách với 12 giá trị 0
-            var result = new List<double>(new double[12]);
-
-            // Gán doanh thu cho các tháng tương ứng
-            for (int i = 0; i < revenues.Count; i++)
-            {
-                // Giả sử revenues[i] là doanh thu cho tháng i + 1
-                result[i] = revenues[i]; // Gán doanh thu tại chỉ số tương ứng
-            }
-
-            return result;
-        }
+       
 
 
         public class MonthlyRevenue
