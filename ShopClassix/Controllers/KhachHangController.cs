@@ -267,7 +267,7 @@ namespace Shop_Classix.Controllers
 			order.Status = 4;
 			await _dataContext.SaveChangesAsync();
 
-			return Json(new { success = true });
+			return View("MyOrder");
 		}
 
 		public IActionResult Comments(int status)

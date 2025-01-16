@@ -19,6 +19,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
             _datacontext = datacontext;
             _webHostEnvironment = hostEnvironment;
         }
+
         public class ProductSales
         {
             public int Year { get; set; }
@@ -120,7 +121,6 @@ namespace Shop_Classix.Areas.Admin.Controllers
             return result;
         }
 
-
         public class MonthlyRevenue
         {
             public int Year { get; set; }
@@ -182,7 +182,6 @@ namespace Shop_Classix.Areas.Admin.Controllers
             return View(contacts);
         }
 
-
         //Edit contact
         [HttpGet("Admin/Dashboard/Edit")]
         public async Task<IActionResult> Edit()
@@ -243,11 +242,6 @@ namespace Shop_Classix.Areas.Admin.Controllers
             return View(contact);
         }
 
-        //[HttpGet("Admin/Dashboard/Comments")]
-        //public IActionResult Comments()
-        //{
-        //    return View();
-        //}
         [HttpGet("Admin/Dashboard/Comments")]
         public IActionResult Comments()
         {
@@ -285,7 +279,6 @@ namespace Shop_Classix.Areas.Admin.Controllers
             // Chuyển hướng về trang danh sách bình luận
             return RedirectToAction("Comments");
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]

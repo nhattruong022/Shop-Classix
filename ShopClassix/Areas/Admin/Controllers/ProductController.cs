@@ -14,6 +14,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
         {
             _dataContext = dataContext;
         }
+
         [HttpGet("Admin/Product")]
         public async Task<IActionResult> Index(string? name, string cate, int page = 1)
         {
@@ -91,5 +92,4 @@ namespace Shop_Classix.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
     }
-
 }
