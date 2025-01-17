@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Repository;
 
@@ -58,6 +59,13 @@ namespace Shop_Classix.Areas.Admin.Controllers
             return View();
         }
 
+        // GET: Admin/Product/Add
+        [HttpGet("Add")]
+        public async Task<IActionResult> Add()
+        {
+            ViewBag.Categories = new SelectList(await _dataContext.categories.ToListAsync(), "Id", "Name");
+            return View();
+        }
 
         [Authorize(Policy = "AdminOnly")]
         [HttpGet("Admin/Product/Edit")]
@@ -65,14 +73,6 @@ namespace Shop_Classix.Areas.Admin.Controllers
         {
             return View();
         }
-
-        [Authorize(Policy = "AdminOnly")]
-        [HttpGet("Admin/Product/Add")]
-        public IActionResult Add()
-        {
-            return View();
-        }
-
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
