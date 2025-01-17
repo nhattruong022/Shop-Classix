@@ -11,6 +11,7 @@ using Shop_Classix.Models.VnPay;
 using System.Text.RegularExpressions;
 namespace Shop_Classix.Controllers
 {
+
     public class CartController : Controller
     {
         private readonly IVnPayService _vnPayService;
@@ -29,7 +30,8 @@ namespace Shop_Classix.Controllers
         }
 
 
-        [Authorize]
+        //[Authorize]
+        [Authorize(Policy = "UserOnly")]
         public async Task<IActionResult> Cart(int page = 1)
         {
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
@@ -190,101 +192,93 @@ namespace Shop_Classix.Controllers
         }
 
 
-        [HttpPost]
-        [Authorize]
-        public IActionResult CheckOut(CheckOutViewModel model, string payment = "C0D")
-        {
-          
+          [HttpPost]
+          [Authorize]
+         public IActionResult CheckOut(CheckOutViewModel model, string payment = "C0D")
+            {
 
             //thiết lập giỏ hàng
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
 
-            if (cart.Items == null || !cart.Items.Any())
-            {
-                return RedirectToAction("Cart", "Cart");
-            }
-
-            
-           
 
             //tính tiền cọc 10%
             var totalPrice = cart.Items.Sum(item => item.TotalPrice);
             var depositAmount = totalPrice * 0.1;
 
             
-            model.Items = cart.Items;
-            model.Total = totalPrice;
-            model.deposit = depositAmount;
+               model.Items = cart.Items;
+               model.Total = totalPrice;
+               model.deposit = depositAmount;
 
-            var customerEmail = HttpContext.User.Claims.SingleOrDefault(p => p.Type == ClaimTypes.Email)?.Value;
-            var customer = dataContext.customers.SingleOrDefault(c => c.Email == customerEmail);
+           
+            // kiểm tra email có lưu trong cookie chưa
+                var customerEmail = HttpContext.User.Claims.SingleOrDefault(p => p.Type == ClaimTypes.Email)?.Value;
 
-            if (customer == null)
-            {
-                ModelState.AddModelError("", "Customer not found");
-                return View(model);
-            }
+            //kiểm tra email có trong database không
+                var customer = dataContext.customers.SingleOrDefault(c => c.Email == customerEmail);
 
-        
+                //tạo đơn hàng
+                var order = new OrderModel
+                {
+                    TotalPrice = totalPrice,
+                    deposit = depositAmount,
+                    Status = 1,
+                    PaymentMethod = payment == "Payment VNPAY" ? "VnPay" : "COD",
+                    CustomerId = customer.Id, 
+                    CustomerName = model.Receiver,
+                    Address = model.Address,
+                    Email = model.Email,
+                    Phone = model.Phone,
+                    OrderNotes = model.OrderNotes,
+                    CreateAt = DateTime.Now,
+                    UpdateAt = DateTime.Now
+                };
 
-            //tạo đơn hàng
-            var order = new OrderModel
-            {
-                TotalPrice = totalPrice,
-                deposit = depositAmount,
-                Status = 1,
-                PaymentMethod = payment == "Payment VNPAY" ? "VnPay" : "COD",
-                CustomerId = customer.Id,
-                CustomerName = model.Receiver,
-                Address = model.Address,
-                Email = model.Email,
-                Phone = model.Phone,
-                OrderNotes = model.OrderNotes,
-                CreateAt = DateTime.Now,
-                UpdateAt = DateTime.Now
-            };
-
-            try
-            {
-                dataContext.orders.Add(order);
-                dataContext.SaveChanges();
+                try
+                {
+                    dataContext.orders.Add(order);
+                    dataContext.SaveChanges();
                
-                var orderDetails = cart.Items.Select(item => new OrderDetailModel
-                {
-                    OrderId = order.Id,
-                    ProductId = item.ProductId,
-                    Quantity = item.Quantity,
-                    TotalPrice = item.TotalPrice
-                }).ToList();
-
-                dataContext.orderDetails.AddRange(orderDetails);
-                dataContext.SaveChanges();
-
-                if (payment == "Payment VNPAY")
-                {
-                    var vnPayModel = new VnPaymentRequestModel
+                //lưu đơn hàng chi tiết
+                    var orderDetails = cart.Items.Select(item => new OrderDetailModel
                     {
-                        Amount = totalPrice,
-                        CreatedDate = DateTime.Now,
-                        description = $"{model.Receiver} {model.Phone}",
-                        FullName = model.Receiver,
-                        OrderId = order.Id.ToString()
-                    };
+                        OrderId = order.Id,
+                        ProductId = item.ProductId,
+                        Quantity = item.Quantity,
+                        TotalPrice = item.TotalPrice
+                    }).ToList();
 
-                    return Redirect(_vnPayService.CreatePaymentUrl(HttpContext, vnPayModel));
+                    dataContext.orderDetails.AddRange(orderDetails);
+                    dataContext.SaveChanges();
+
+                    if (payment == "Payment VNPAY")
+                    {
+                    //lưu đơn hàng VNPAY
+                        var vnPayModel = new VnPaymentRequestModel
+                        {
+                            Amount = totalPrice,
+                            CreatedDate = DateTime.Now,
+                            description = $"{model.Receiver} {model.Phone}",
+                            FullName = model.Receiver,
+                            OrderId = order.Id.ToString()
+                        };
+                    
+                        return Redirect(_vnPayService.CreatePaymentUrl(HttpContext, vnPayModel));
+                    }
+                    //xóa giỏ hàng sau khi lưu đơn hàng
+                    HttpContext.Session.Remove("Cart"); 
+                
+                    //hiện thông báo cảm ơn
+                    TempData["ThankYouMessage"] = "Thank you for your order! We will process it shortly.";
+                    return RedirectToAction("CheckOut", "Cart");
                 }
-
-                HttpContext.Session.Remove("Cart");
-                TempData["ThankYouMessage"] = "Thank you for your order! We will process it shortly.";
-                return RedirectToAction("CheckOut", "Cart");
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Error during checkout: {ex.Message}");
+                    TempData["ErrorMessage"] = "An error occurred during checkout. Please try again.";
+                    return View(model);
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error during checkout: {ex.Message}");
-                TempData["ErrorMessage"] = "An error occurred during checkout. Please try again.";
-                return View(model);
-            }
-        }
 
       
 

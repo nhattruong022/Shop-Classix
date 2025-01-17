@@ -29,8 +29,4 @@
     <Folder Include="wwwroot\Classix\admin\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Include="Areas\Admin\Views\Shared\Header.cshtml" />
-  </ItemGroup>
-
 </Project>

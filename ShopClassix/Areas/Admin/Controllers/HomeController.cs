@@ -4,10 +4,14 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using Shop_Classix.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
+
 
 namespace Shop_Classix.Areas.Admin.Controllers
 {
+    
     [Area("Admin")]
+    [Authorize(AuthenticationSchemes ="AdminCookie")]
     public class HomeController : Controller
     {
         private readonly DataContext _dataContext;

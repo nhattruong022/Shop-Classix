@@ -14,16 +14,21 @@ using NuGet.Protocol.Plugins;
 
 namespace Shop_Classix.Controllers
 {
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly DataContext dataContext;
+       
+
+
         public HomeController(ILogger<HomeController> logger, DataContext _datacontext)
         {
             dataContext = _datacontext;
             _logger = logger;
         }
 
+        
         public IActionResult Index(int? categoryId)
         {
             // Lấy thông tin user hiện tại
@@ -293,6 +298,7 @@ namespace Shop_Classix.Controllers
 
 
 
+     
 
 
 
