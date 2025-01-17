@@ -79,10 +79,6 @@ namespace Shop_Classix.Controllers
 			return View();
 		}
 
-       
-
-
-
         [HttpPost]
         public IActionResult Login(LoginViewModel model, string? returnUrl)
         {
