@@ -53,6 +53,17 @@ namespace Shop_Classix.Controllers
                                                .Include(fp => fp.products)
                                                .Select(fp => fp.products)
                                                .ToList();
+            // Lấy danh sách sản phẩm nổi bật
+            var topRatedProducts = dataContext.products
+               .Where(p => p.Rating == dataContext.products.Max(x => x.Rating))
+               .Take(2)
+               .ToList();
+            // Lấy danh sách sản phẩm mới nhất
+            var newProducts = dataContext.products
+                .OrderByDescending(p => p.CreatedAt)
+                .Take(2)
+                .ToList();
+            ViewBag.dem= newProducts.Count;
 
 
             //lấy danh sách sản phẩm bán chạy sau khi thanh toán thành công
@@ -100,7 +111,9 @@ namespace Shop_Classix.Controllers
             var model = new ProductPageViewModel
             {
                 AllProducts = AllProducts,
-                FavoriteProducts = favoriteProducts
+                FavoriteProducts = favoriteProducts,
+                TopRatedProducts= topRatedProducts,
+                NewProducts= newProducts
             };
 
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
@@ -142,20 +155,18 @@ namespace Shop_Classix.Controllers
         public IActionResult Details(int id)
         {
             // Lấy sản phẩm từ cơ sở dữ liệu theo Id
-            var product = dataContext.products
-                .Include(p => p.category)
-                .FirstOrDefault(p => p.Id == id);
+            var product=dataContext.products.Where(p=>p.Id == id).FirstOrDefault();
 
             // Kiểm tra xem sản phẩm có tồn tại không
             if (product == null)
             {
                 return NotFound(); // Nếu không tìm thấy sản phẩm, trả về lỗi 404
             }
-
+            ViewBag.product = product;
             // Lấy danh sách sản phẩm liên quan cùng danh mục, loại trừ sản phẩm hiện tại
             var relatedProducts = dataContext.products
                 .Include(p => p.category)
-                .Where(p => p.CategoryId == product.CategoryId && p.Id != id)
+                .Where(p => p.CategoryId == p.CategoryId && p.Id != id)
                 .Take(4)
                 .ToList();
 
@@ -173,7 +184,7 @@ namespace Shop_Classix.Controllers
                 HttpContext.Session.SetInt32(sessionKey, 1);
             }
             ViewBag.view = product.Views;
-            ViewBag.productid = product.Id;
+           
             var reviewCount = dataContext.productComments.Count();
             // Gán giá trị vào ViewBag
             ViewBag.reviews = reviewCount > 0 ? reviewCount : 0;
@@ -188,10 +199,10 @@ namespace Shop_Classix.Controllers
 
             }
             ViewBag.rating = rating;
+        
 
 
-
-            return View(new List<Shop_Classix.Models.ProductsModel> { product });
+            return View();
         }
 
 

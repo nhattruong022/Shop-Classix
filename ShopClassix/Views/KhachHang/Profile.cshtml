@@ -33,29 +33,25 @@
             new { Value = 1, Text = "Waiting for delivery" },
             new { Value = 2, Text = "Transport" },
             new { Value = 3, Text = "Completed" },
-            new { Value = 4, Text = "Canceled" },
-            new { Value = 6, Text = "Refund" }
-           
+            new { Value = 4, Text = "Pending cancellation confirmation" },
+            new { Value = 5, Text = "Canceled" }
             })
             {
                 <li class="nav-item mx-3">
-                    <form asp-controller="KhachHang" asp-action="MyOrder" method="post" style="display:none;">
+                    <form asp-controller="KhachHang" asp-action="MyOrder" method="get" style="display:none;">
                         <input type="hidden" name="status" value="@statusButton.Value" />
                     </form>
                     <a class="nav-link" href="#"
                         onclick="event.preventDefault(); this.previousElementSibling.submit();">@statusButton.Text</a>
                 </li>
             }
-
             <li class="nav-item mx-3">
-                <a class="nav-link" asp-controller="KhachHang" asp-action="Comments">Bình luận/Đánh giá</a>
+                <a class="nav-link" href="#">Bình luận/Đánh giá</a>
             </li>
-            
-
-          
         </ul>
     </div>
 </nav>
+
 
 <div class="container my-5">
     <div class="row justify-content-center">
@@ -109,7 +105,7 @@
         </div>
     </div>
 </div>
-
+@if(ViewBag.number<=3&&ViewBag.number>0){
 
 <section class="related-product">
     <div class="container">
@@ -201,6 +197,120 @@
     </div>
 </section>
 <!-- Related Product Section End -->
+}
+else if(ViewBag.number>3){
+
+<section class="related-product">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title related__product__title">
+                    <h2>Favorite Product</h2>
+                </div>
+            </div>
+        </div>
+      
+        <section class="categories">
+            <div class="container">
+                <div class="row">
+                    <div class="categories__slider owl-carousel">
+                       
+                            @foreach (var item in favoritelist)
+
+                            {
+                                <div class="col-lg-3 col-md-4 col-sm-6">
+                                    <div class="featured__item">
+                                        <div class="featured__item__pic set-bg" data-setbg="@Url.Content("~/Classix/img/" + item.Image)">
+                                            <a asp-action="Details" asp-controller="Home" asp-route-id="@item.Id">
+                                                <img src="@Url.Content("~/Classix/img/" + item.Image)" alt="Product Image" />
+                                            </a>
+
+                                            <ul class="featured__item__pic__hover">
+                                                @if (User.Identity.IsAuthenticated)
+
+                                                {
+                                                    <li>
+                                                        <a asp-action="Profile" asp-controller="KhachHang" asp-route-id="@item.Id">
+                                                            <i id="favoriteIcon_@item.Id"
+                                                               class="fa fa-heart"
+                                                               style="color: red">
+                                                            </i>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                <li>
+                                                    <a href="#"><i class="fa fa-retweet"></i></a>
+                                                </li>
+                                                <li>
+
+                                                    <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id" onclick="addToCart(event, @item.Id)">
+                                                        <i class="fa fa-shopping-cart"></i>
+                                                    </a>
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                        <div class="product__item__text">
+                                            <h6><a href="#">@item.Name</a></h6>
+                                            <h5>@item.Price</h5>
+                                            <p>
+                                                @for (var i = 1; i <= 5; i++)
+
+                                                {
+
+                                                    if (i <= Math.Floor(item.Rating ?? 0)) // Sao đầy
+
+                                                    {
+                                                        <i class="fa fa-star" style="color: gold;"></i>
+                                                    }
+
+                                                    else if (i == Math.Ceiling(item.Rating ?? 0) && (item.Rating ?? 0) % 1 != 0) // Sao nửa
+
+                                                    {
+                                                        <i class="fas fa-star-half-alt" style="color: gold;"></i>
+                                                    }
+
+                                                    else // Sao rỗng
+
+                                                    {
+                                                        <i class="fa fa-star" style="color: lightgray;"></i>
+                                                    }
+
+                                                }
+                                            </p>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            }
+
+                       
+                    </div>
+                </div>
+            </div>
+            </section>
+       
+    </div>
+    </section>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title related__product__title">
+                    <h2>Favorite Product</h2>
+                </div>
+            </div>
+        </div>
+        </div>
+    <h4 style="text-align: center">
+        no favorite products available
+    </h4>
+}
+
+
 
 
 <script src="@Url.Content("~/Classix/user/js/jquery-3.3.1.min.js")"></script>

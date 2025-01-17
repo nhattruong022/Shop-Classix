@@ -43,6 +43,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3">
@@ -71,6 +72,27 @@
                                 <li class="active"><a asp-action="Contact" asp-controller="Contact">Contact</a></li>
                             </ul>
                         </nav>
+
+          </div>
+          <div class="col-lg-6">
+            <nav class="header__menu">
+              <ul>
+                <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+                <li><a asp-action="TimKiem" asp-controller="Home">Shop</a></li>
+                <li>
+                  <a href="#">Pages</a>
+                  <ul class="header__menu__dropdown">
+                    <li><a asp-action="DetailProduct" asp-controller="Home">Shop Details</a></li>
+                    <li><a asp-action="Cart" asp-controller="Cart">Shoping Cart</a></li>
+                    <li><a asp-action="CheckOut" asp-controller="Cart">Check Out</a></li>
+                    <li><a asp-action="Blog" asp-controller="Blog">Blog Details</a></li>
+                  </ul>
+                </li>
+                <li><a asp-action="About" asp-controller="About">About</a></li>
+                <li class="active"><a asp-action="Contact" asp-controller="Contact">Contact</a></li>
+              </ul>
+            </nav>
+
                         <!-- Form tìm kiếm -->
                         <div class="col-lg-9">
                             <form asp-action="TimKiem" asp-controller="Home" method="get" class="row align-items-center g-3">
@@ -86,6 +108,7 @@
                                 </div>
                             </form>
                         </div>
+
                     </div>
                     <div class="col-lg-3">
                         <div class="header__cart">
@@ -94,6 +117,16 @@
                                     <a href="#"><i class="fa fa-heart"></i> <span>1</span></a>
                                 </li>
                                 <li>
+
+          </div>
+          <div class="col-lg-3">
+            <div class="header__cart">
+              <ul>
+                <li>
+                  <a href="#"><i class="fa fa-heart"></i> <span>1</span></a>
+                </li>
+                <li>
+
 
                                     <a asp-action="Cart" asp-controller="Cart">
                                         <i class="fa fa-shopping-bag"></i> <span>@ViewBag.UniqueProductCount</span>
@@ -113,6 +146,16 @@
                     <i class="fa fa-bars"></i>
                 </div>
             </div>
+                       
 
 
+          </div>
+        </div>
+               
+        <div class="humberger__open">
+          <i class="fa fa-bars"></i>
+        </div>
+      </div>
+           
+          
 </header>

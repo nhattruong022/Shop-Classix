@@ -7,7 +7,6 @@
 
 @section Link {
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
-
     <link rel="icon" href="@Url.Content("~/Classix/admin/images/favicon.ico")" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/css/bootstrap/css/bootstrap.min.css")">
     <link rel="stylesheet" type="text/css" href="@Url.Content("~/Classix/admin/icon/themify-icons/themify-icons.css")">
@@ -62,68 +61,92 @@
 <!-- Page-header end -->
 <div class="page-body">
     <div class="card">
-        <div class="card">
-            <form asp-controller="Orders" asp-action="Orders" method="get">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <input type="text" class="form-control" id="searchInput" name="search" placeholder="Search by Order ID" value="@ViewBag.Search">
-                        </div>
+        <form asp-controller="Orders" asp-action="Orders" method="get">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" id="searchInput" name="search"
+                            placeholder="Search by Order ID" value="@ViewBag.Search">
+                    </div>
+                    <div class="col-md-2 d-flex">
+                        <label for="statusSelect">Order Status</label>
+                        <select class="form-control" id="status" name="status">
+                            <option value="">All</option>
+                            <option value="1">Waiting for delivery</option>
+                            <option value="2">Transport</option>
+                            <option value="3">Completed</option>
+                            <option value="4">Pending cancellation confirmation</option>
+                            <option value="5">Canceled</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
                         <button type="submit" class="btn btn-primary">Search</button>
                     </div>
                 </div>
-            </form>
-            <div class="card-block table-border-style">
-                <div class="table-responsive">
-                    <table class="table">
-                        <thead>
+            </div>
+        </form>
+
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer ID</th>
+                            <th>Phone</th>
+                            <th>Address</th>
+                            <th>Total Price</th>
+                            <th>Payment Method</th>
+                            <th>Notes</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="orderTableBody">
+                        @if (Model == null || !Model.Any())
+                        {
                             <tr>
-                                <th>Order ID</th>
-                                <th>Customer ID</th>
-                                <th>Phone</th>
-                                <th>Address</th>
-                                <th>Total Price</th>
-                                <th>PaymentMethod</th>
-                                <th>Notes</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <td colspan="9" class="text-center">No orders found.</td>
                             </tr>
-                        </thead>
-                        <tbody>
+                        }
+                        else
+                        {
                             @foreach (var order in Model)
                             {
                                 <tr>
                                     <td>@order.Id</td>
-                                    <td>@order.customers.Id</td>
+                                    <td>@order.CustomerId</td>
                                     <td>@order.Phone</td>
                                     <td>@order.Address</td>
-                                    <td>@order.TotalPrice VNĐ</td>
+                                    <td>@order.TotalPrice</td>
                                     <td>
-                                        @if(@order.PaymentMethod == "C0D"){
-                                            <p>Credit Card(@order.deposit)</p>
+                                        @if (@order?.PaymentMethod == "C0D")
+                                        {
+                                            <p>Credit Card(@order?.deposit ?? "N/A")</p>
                                         }
-                                        else{
+                                        else
+                                        {
                                             <p>COD</p>
                                         }
                                     </td>
-                                    <td>@order.OrderNotes</td>
+                                    <td>@order?.OrderNotes</td>
                                     <td>
-                                        @switch (order.Status)
+                                        @switch (order?.Status)
                                         {
                                             case 1:
-                                            <form asp-action="ChangeOrder" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to change this order status?');">
-                                                <input type="hidden" name="id" value="@order.Id" />
-                                                <button type="submit" class="btn btn-success btn-sm">Waiting for delivery</button>
-                                            </form>
+                                                <button class="btn btn-success btn-sm" onclick="changeOrderStatus(@order.Id)">Waiting
+                                                    for delivery</button>
                                                 break;
                                             case 2:
-                                                <form asp-action="ChangeOrder" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to change this order status?');">
-                                                <input type="hidden" name="id" value="@order.Id" />
-                                                <button type="submit" class="btn btn-success btn-sm">Transport</button>
-                                            </form>
+                                                <button class="btn btn-success btn-sm"
+                                                    onclick="changeOrderStatus(@order.Id)">Transport</button>
                                                 break;
                                             case 3:
                                                 <p>Completed</p>
+                                                break;
+                                            case 4:
+                                                <button class="btn btn-success btn-sm" onclick="changeOrderStatus(@order.Id)">Pending
+                                                    cancellation confirmation</button>
                                                 break;
                                             default:
                                                 <p>Canceled</p>
@@ -131,34 +154,167 @@
                                         }
                                     </td>
                                     <td>
-                                        @if (order.Status == 1 || order.Status == 2)
+                                        @if (order?.Status == 1 || order?.Status == 2)
                                         {
-                                            <form asp-action="CancelOrder" method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete?');">
-                                                <input type="hidden" name="id" value="@order.Id" />
-                                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                            </form>
+                                            <button class="btn btn-danger btn-sm" onclick="cancelOrder(@order.Id)">Delete</button>
                                         }
                                         else
                                         {
-                                            <button class="btn btn-danger btn-sm">Delete</button>
+                                            <button class="btn btn-danger btn-sm" disabled>Delete</button>
                                         }
                                     </td>
                                 </tr>
                             }
-                        </tbody>
-                    </table>
-                </div>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             @for (int i = 1; i <= ViewBag.TotalPages; i++)
             {
                 <li class="page-item @(ViewBag.CurrentPage == i ? "active" : "")">
-                    <a class="page-link" href="@Url.Action("Orders", new { page = i })">@i</a>
+                    <a class="page-link"
+                        href="@Url.Action("Orders", new { page = i, search = ViewBag.Search, status = ViewBag.Status })">@i</a>
                 </li>
             }
         </ul>
     </nav>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    function GetOrderAdmin(page = 1, search = "", status = "") {
+        $.get(`/api/Order/admin?search=${search}&page=${page}&status=${status}`, function (response) {
+            console.log(response);
+
+            if (response && response.orders) {
+                const tableBody = $('#orderTableBody');
+                tableBody.empty();
+
+                let ordersResponse = response.orders;
+
+                if (ordersResponse.length === 0) {
+                    tableBody.append('<tr><td colspan="9" class="text-center">No data available</td></tr>');
+                } else {
+                    ordersResponse.forEach(order => {
+                        let statusButton = '';
+                        switch (order.status) {
+                            case 1:
+                                statusButton = `<button class="btn btn-success btn-sm" onclick="confirmChangeOrderStatus(${order.id})">Waiting for delivery</button>`;
+                                break;
+                            case 2:
+                                statusButton = `<button class="btn btn-success btn-sm" onclick="confirmChangeOrderStatus(${order.id})">Transport</button>`;
+                                break;
+                            case 3:
+                                statusButton = `<p>Completed</p>`;
+                                break;
+                            case 4:
+                                statusButton = `<button class="btn btn-success btn-sm" onclick="confirmChangeOrderStatus(${order.id})">Pending cancellation confirmation</button>`;
+                                break;
+                            default:
+                                statusButton = `<p>Canceled</p>`;
+                        }
+
+                        let deleteButton = (order.status == 1 || order.status == 2) ?
+                            `<button class="btn btn-danger btn-sm" onclick="confirmCancelOrder(${order.id})">Delete</button>` :
+                            `<button class="btn btn-danger btn-sm" disabled>Delete</button>`;
+
+                        tableBody.append(`
+                        <tr>
+                            <td>${order.id}</td>
+                            <td>${order.customerId}</td>
+                            <td>${order.phone}</td>
+                            <td>${order.address}</td>
+                            <td>${order.totalPrice} VNĐ</td>
+                            <td>${order.paymentMethod}</td>
+                            <td>${order.orderNotes}</td>
+                            <td>${statusButton}</td>
+                            <td>${deleteButton}</td>
+                        </tr>
+                    `);
+                    });
+                }
+            }
+        }).fail(function () {
+            console.error('Error fetching orders');
+        });
+    }
+
+    //Xác nhận 
+    function confirmChangeOrderStatus(id) {
+        if (confirm('Are you sure you want to change this order status?')) {
+            changeOrderStatus(id);
+        }
+    }
+
+    function confirmCancelOrder(id) {
+        if (confirm('Are you sure you want to delete this order?')) {
+            cancelOrder(id);
+        }
+    }
+
+    //ajax đổi trạng thái
+    function changeOrderStatus(id) {
+        $.ajax({
+            type: "POST",
+            url: '/Admin/Orders/ChangeOrder',
+            data: { id: id },
+            success: function (response) {
+                if (response.success) {
+                    alert(response.message);
+                    GetOrderAdmin(params.get('page') ? parseInt(params.get('page')) : 1, params.get('search') || "", params.get('status') || "");
+                } else {
+                    alert('Error updating order status.');
+                }
+            },
+            error: function () {
+                alert('Error occurred while updating order status.');
+            }
+        });
+    }
+    //ajax xóa đơn hàng
+    function cancelOrder(id) {
+        $.ajax({
+            type: "POST",
+            url: '/Admin/Orders/CancelOrder',
+            data: { id: id },
+            success: function (response) {
+                if (response.success) {
+                    alert(response.message);
+                    GetOrderAdmin(params.get('page') ? parseInt(params.get('page')) : 1, params.get('search') || "", params.get('status') || "");
+                } else {
+                    alert('Error canceling order.');
+                }
+            },
+            error: function () {
+                alert('Error occurred while canceling order.');
+            }
+        });
+    }
+
+    setInterval(() => {
+        const params = new URLSearchParams(window.location.search);
+        let search = params.get('search') || "";
+        let status = params.get('status') || "";
+        let page = params.get('page') ? parseInt(params.get('page')) : 1;
+
+        GetOrderAdmin(page, search, status);
+
+        function updateUrl(page, search, status) {
+            const url = new URL(window.location.href);
+            if (search) {
+                url.searchParams.set('search', search);
+            } else {
+                url.searchParams.delete('search');
+            }
+            url.searchParams.set('page', page);
+            history.replaceState({}, '', url);
+        }
+    }, 1000);
+</script>

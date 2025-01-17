@@ -1,6 +1,33 @@
-﻿@{
-    ViewData["Title"] = "Admin-Chart";
+﻿@model IEnumerable<Shop_Classix.Models.OrderModel>
+
+@{
+    ViewData["Title"] = "Chart";
     Layout = "_AdminSubLayout";
+    var revenuesThisYear = ViewBag.RevenuesThisYear as List<double>;
+
+    var revenuesLastYear = ViewBag.RevenuesLastYear as List<double>;
+    var RevenuesMonth = ViewBag.RevenuesMonth;
+    var TotalCapital = 0;
+    var TotalSales = 0;
+    var TotalProfit = 0;
+   
+
+
+    var hasData = (revenuesThisYear != null && revenuesThisYear.Any()) ||
+                  (revenuesLastYear != null && revenuesLastYear.Any());
+
+    // Đảm bảo rằng danh sách có đủ 12 tháng
+
+
+    if (revenuesThisYear.Count < 12)
+
+        revenuesThisYear.AddRange(Enumerable.Repeat(0.0, 12 - revenuesThisYear.Count)); // Sử dụng 0.0 cho double
+
+    if (revenuesLastYear.Count < 12)
+
+        revenuesLastYear.AddRange(Enumerable.Repeat(0.0, 12 - revenuesLastYear.Count)); // Sử dụng 0.0 cho double
+
+
 }
 
 @section Link {
@@ -39,47 +66,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        const ctxRevenue = document.getElementById('revenueChart').getContext('2d');
-        const revenueChart = new Chart(ctxRevenue, {
-            type: 'bar',
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-                datasets: [
-                    {
-                        label: 'This Year',
-                        data: [120000, 150000, 180000, 200000, 250000, 300000, 320000, 350000, 400000, 450000, 500000, 550000],
-                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
-                        categoryPercentage: 0.5,
-                        barPercentage: 0.9,
-                    },
-                    {
-                        label: 'Last Year',
-                        data: [100000, 130000, 160000, 190000, 210000, 240000, 290000, 310000, 380000, 420000, 480000, 520000],
-                        backgroundColor: 'rgba(153, 102, 255, 0.6)',
-                        categoryPercentage: 0.5,
-                        barPercentage: 0.9,
-                    }
-                ]
-            },
-            options: {
-                indexAxis: 'y',
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Revenue (VNĐ)'
-                        }
-                    },
-                    y: {
-                        title: {
-                            display: true,
-                            text: 'Month'
-                        }
-                    }
-                }
-            }
-        });
+       
 
 
         // Incoming and outgoing quantities chart
@@ -188,8 +175,8 @@
         });
 
         // Node Inventory Levels
-            const legend = document.getElementById('legend');
-            inventoryLabels.forEach((label, index) => {
+        const legend = document.getElementById('legend');
+        inventoryLabels.forEach((label, index) => {
             const legendItem = document.createElement('div');
             legendItem.style.display = 'flex';
             legendItem.style.alignItems = 'center';
@@ -224,7 +211,7 @@
                 plugins: {
                     tooltip: {
                         callbacks: {
-                            label: function(tooltipItem) {
+                            label: function (tooltipItem) {
                                 const percentage = ((tooltipItem.raw / salesData.reduce((a, b) => a + b, 0)) * 100).toFixed(2);
                                 return `${tooltipItem.label}: ${percentage}%`;
                             }
@@ -235,12 +222,195 @@
         });
     </script>
 }
-
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header">
             <h2>Monthly Revenue Statistics</h2>
+            <form method="get" onsubmit="return filterResults(event)">
+                <div class="row">
+                    <div class="col-md-4">
+                        <select class="form-control" name="oldyear" id="oldyear">
+                            <option value="">Old Year</option>
+                            @for (int year = DateTime.Now.Year; year >= 2020; year--)
+                            {
+                                <option value="@year">@year</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" name="thisyear" id="thisyear">
+                            <option value="">This Year</option>
+                            @for (int year = DateTime.Now.Year; year >= 2020; year--)
+                            {
+                                <option value="@year">@year</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+
+            <div id="loadingMessage" style="display: none; text-align: center; margin-top: 20px;">
+                <h4>Loading...</h4>
+            </div>
+            <div id="errorMessage" style="display: none; text-align: center; margin-top: 20px;">
+                alert("Please do not select old year and this year from the dropdown.");
+            </div>
             <canvas id="revenueChart" width="1200" height="400"></canvas>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header">
+            <h2>Profit and Loss Statement</h2>
+            <form method="get" id="searchForm">
+                <div class="row">
+                    <div class="col-md-4">
+                        <select class="form-control" name="month" id="month">
+                            <option value="">Month</option>
+                            @for (int i = 1; i <= 12; i++)
+                            {
+                                <option value="@i">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i)</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <select class="form-control" name="year" id="year">
+                            <option value="">Year</option>
+                            @for (int year = DateTime.Now.Year; year >= 2020; year--)
+                            {
+                                <option value="@year">@year</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn btn-primary" type="button" id="searchButton">Search</button>
+                    </div>
+                </div>
+            </form>
+
+            <div id="revenueData">
+
+                @if(RevenuesMonth!=null){
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th>Id</th>
+                            <th>Name</th>
+                            <th>Quantity</th>
+                            <th>Total Capital</th>
+                            <th>Total Sales</th>
+                            <th>Total Profit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.RevenuesMonth != null)
+                        {
+                            foreach (var item in ViewBag.RevenuesMonth )
+                            {
+                                TotalCapital += item.TotalCapital;
+                                TotalSales += item.TotalSales;
+                                TotalProfit +=item.TotalProfit;
+                                <tr>
+                                    <td>@item.ProductType</td>
+                                    <td>@item.Name</td>
+                                    <td>@item.QuantitySold</td>
+                                    <td>@item.TotalCapital VND</td>
+                                    <td>@item.TotalSales VND</td>
+                                    <td>@item.TotalProfit VND</td>
+
+
+                    @if (RevenuesMonth != null)
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Total Capital</th>
+                                    <th>Total Sales</th>
+                                    <th>Total Profit</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.RevenuesMonth != null)
+                                {
+                                    foreach (var item in ViewBag.RevenuesMonth)
+                                    {
+                                        TotalCapital += item.TotalCapital;
+                                        TotalSales += item.TotalSales;
+                                        TotalProfit += item.TotalProfit;
+                                        <tr>
+                                            <td>@item.ProductType</td>
+                                            <td>@item.Name</td>
+                                            <td>@item.QuantitySold</td>
+                                            <td>@item.TotalCapital VND</td>
+                                            <td>@item.TotalSales VND</td>
+                                            <td>@item.TotalProfit VND</td>
+
+
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="5">No data available.</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <th>Financial Summary: </th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>@TotalCapital VND</th>
+                                    <th>@TotalSales VND</th>
+                                    <th>@TotalProfit VND</th>
+                                </tr>
+
+                                <tr><th>Revenue: @ViewBag.Revenues VND</th></tr>
+                        </table>
+                    }
+                    else
+                    {
+                        <div style="text-align: center; margin-top: 20px;">
+                            <h4>No revenue data available for this month</h4>
+                        </div>
+                    }
+                </div> <!-- This is where the table will be rendered dynamically -->
+
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="5">No data available.</td>
+                            </tr>
+                        }
+                        <tr>
+                            <th>Financial Summary: </th>
+                        <th></th>
+                            <th></th>                  
+                            <th>@TotalCapital VND</th>
+                            <th>@TotalSales VND</th>
+                            <th>@TotalProfit VND</th>
+                        </tr>
+                    
+                        <tr><th>Revenue: @ViewBag.Revenues VND</th></tr>
+                    </table>
+                }
+                else
+                {
+                    <div style="text-align: center; margin-top: 20px;">
+                    <h4>No revenue data available for this month</h4>
+                    </div>
+                }
+
         </div>
     </div>
 </div>
@@ -281,3 +451,240 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    document.getElementById("searchButton").addEventListener("click", function () {
+
+        var month = document.getElementById("month").value;
+        var year = document.getElementById("year").value;
+        if (month === "" || year === "") {
+            event.preventDefault(); // Ngăn không cho gửi biểu mẫu
+            alert("Please select both month and year."); // Hiển thị thông báo
+            return; // Thoát hàm nếu chưa chọn
+        }
+
+        var tableContainer = document.getElementById("revenueData");
+        tableContainer.innerHTML = "<h4>Loading...</h4>"; // Hiển thị thông báo loading
+
+        // Make an AJAX request to fetch revenue data
+        fetch(`/api/revenue/revenuemonth?month=${month}&year=${year}`, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+            },
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                updateRevenueTable(data);
+            })
+            .catch(error => {
+                console.error("Error fetching data:", error);
+                alert("An error occurred while fetching data.");
+                tableContainer.innerHTML = "<h4>Error loading data</h4>"; // Hiển thị thông báo lỗi
+            });
+    });
+
+    function updateRevenueTable(data) {
+        var tableContainer = document.getElementById("revenueData");
+        tableContainer.innerHTML = ""; // Clear any existing data
+
+        if (data && data.value && data.value.length > 0) {
+            let tableHtml = `
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Product Type</th>
+                                <th>Name</th>
+                                <th>Quantity Sold</th>
+                                <th>Total Capital</th>
+                                <th>Total Sales</th>
+                                <th>Total Profit</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+
+            var totalCapital = 0;
+            var totalSales = 0;
+            var totalProfit = 0;
+
+            // Loop through the data and create rows
+            data.value.forEach(item => {
+                totalCapital += item.totalCapital;
+                totalSales += item.totalSales;
+                totalProfit += item.totalProfit;
+
+                tableHtml += `
+                        <tr>
+                            <td>${item.productType}</td>
+                            <td>${item.name}</td>
+                            <td>${item.quantitySold}</td>
+                            <td>${item.totalCapital} VND</td>
+                            <td>${item.totalSales} VND</td>
+                            <td>${item.totalProfit} VND</td>
+                        </tr>
+                    `;
+            });
+
+            // Add the financial summary
+            tableHtml += `
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Financial Summary: </th>
+                            <th></th>
+                            <th></th>
+                            <th>${totalCapital} VND</th>
+                            <th>${totalSales} VND</th>
+                            <th>${totalProfit} VND</th>
+                        </tr>
+                        <tr>
+                            <th>Revenue: ${data.value[0].revenue} VND</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            `;
+
+            // Append the table HTML to the container
+            tableContainer.innerHTML = tableHtml;
+        } else {
+
+            tableContainer.innerHTML = "<h4>No revenue data available for this month</h4>";
+        }
+    }
+  
+</script>
+
+
+<script>
+    const ctxRevenue = document.getElementById('revenueChart').getContext('2d');
+    let revenueChart;
+
+    // Hàm khởi tạo biểu đồ
+    function createChart() {
+        revenueChart = new Chart(ctxRevenue, {
+            type: 'bar',
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [
+                    {
+                        label: 'This Year',
+                        data: [],
+                        backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                        categoryPercentage: 0.5,
+                        barPercentage: 0.9,
+                    },
+                    {
+                        label: 'Last Year',
+                        data: [],
+                        backgroundColor: 'rgba(153, 102, 255, 0.6)',
+                        categoryPercentage: 0.5,
+                        barPercentage: 0.9,
+                    }
+                ]
+            },
+            options: {
+                indexAxis: 'y',
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Revenue (VNĐ)'
+                        }
+                    },
+                    y: {
+                        title: {
+                            display: true,
+                            text: 'Month'
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // Hàm lấy dữ liệu doanh thu từ API
+    async function fetchRevenueForYear(oldYear, thisYear) {
+        try {
+            const response = await fetch(`/api/revenue/Getyear?oldYear=${oldYear}&thisYear=${thisYear}`);
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error fetching revenue data:', error);
+            return null;
+        }
+    }
+
+    // Hàm xử lý khi nhấn nút search
+    function filterResults(event) {
+        event.preventDefault();  // Ngừng reload trang
+
+        var oldYear = document.getElementById("oldyear").value;
+        var thisYear = document.getElementById("thisyear").value;
+
+        // Kiểm tra nếu năm cũ và năm hiện tại trùng nhau
+        if (oldYear && thisYear && oldYear === thisYear) {
+            alert("The two years cannot be the same. Please select again.");
+            return false; // Ngăn không cho form submit
+        }
+        if (!oldYear || !thisYear) {
+            alert("Please select both years before searching.");
+            return false; // Ngăn không cho form submit
+        }
+
+        // Hiển thị thông báo "Loading"
+        document.getElementById('loadingMessage').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'none';
+
+
+        // Gọi API để lấy dữ liệu doanh thu
+        fetchRevenueForYear(oldYear, thisYear).then(revenueData => {
+            // Kiểm tra nếu dữ liệu trả về hợp lệ
+            if (revenueData && revenueData.thisYear && revenueData.lastYear) {
+                // Cập nhật dữ liệu cho biểu đồ
+                revenueChart.data.datasets[0].data = revenueData.thisYear;
+                revenueChart.data.datasets[1].data = revenueData.lastYear;
+
+                // Cập nhật biểu đồ
+                revenueChart.update();
+
+                // Ẩn thông báo loading
+                document.getElementById('loadingMessage').style.display = 'none';
+            } else {
+                // Hiển thị thông báo lỗi nếu không có dữ liệu
+                document.getElementById('loadingMessage').style.display = 'none';
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+    }
+
+    // Khởi tạo biểu đồ khi trang load và lấy dữ liệu của 2 năm gần nhất
+    window.onload = async function () {
+        createChart();
+
+        // Lấy 2 năm gần nhất (Ví dụ: 2024 và 2025)
+        const currentYear = new Date().getFullYear();
+        const lastYear = currentYear - 1;
+
+        // Gọi API để lấy dữ liệu doanh thu cho 2 năm
+        const revenueData = await fetchRevenueForYear(lastYear, currentYear);
+
+        // Kiểm tra và cập nhật biểu đồ với dữ liệu nếu có
+        if (revenueData && revenueData.thisYear && revenueData.lastYear) {
+            revenueChart.data.datasets[0].data = revenueData.thisYear;
+            revenueChart.data.datasets[1].data = revenueData.lastYear;
+            revenueChart.update();
+        } else {
+            console.error('No revenue data available for the last two years');
+        }
+    };
+</script>
+

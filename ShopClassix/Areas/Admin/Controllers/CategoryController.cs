@@ -95,8 +95,8 @@ namespace Shop_Classix.Areas.Admin.Controllers
                 string errorMessage = string.Join("\n", errors);
                 return BadRequest(errorMessage);
             }
-            return View(category);
         }
+        
         [HttpGet("Admin/Category/Add")]
         public async Task<IActionResult> Add()
         {

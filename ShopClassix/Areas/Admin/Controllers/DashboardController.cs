@@ -4,6 +4,8 @@ using Shop_Classix.Models;
 using Shop_Classix.Repository;
 using Shop_Classix.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.Identity.Client;
+
 namespace Shop_Classix.Areas.Admin.Controllers
 {
 
@@ -13,6 +15,8 @@ namespace Shop_Classix.Areas.Admin.Controllers
     {
         private readonly DataContext _datacontext;
         private readonly IWebHostEnvironment _webHostEnvironment;
+        int currentYear = DateTime.Now.Year; // Lấy năm hiện tại
+        int currentMonth = DateTime.Now.Month; // Lấy tháng hiện tại
 
         public DashboardController(DataContext datacontext, IWebHostEnvironment hostEnvironment)
         {
@@ -21,11 +25,171 @@ namespace Shop_Classix.Areas.Admin.Controllers
         }
 
 
+
         [HttpGet("Admin/Dashboard/Chart")]
-        public IActionResult Chart()
+        public async Task<IActionResult> Chart(int oldyear, int thisyear, int month, int year)
         {
+
+
+            // Chờ cho phương thức GetMonthlySales hoàn tất
+
+            var RevenuesMonth = await GetMonthlySales(year, month);
+            if (RevenuesMonth.Any())
+            {
+                ViewBag.RevenuesMonth = RevenuesMonth;
+            }
+            else
+            {
+                ViewBag.RevenuesMonth = null;
+            }
+
             return View();
         }
+
+
+        private async Task<List<ProductSales>> GetMonthlySales(int year, int month)
+        {
+            if (month != 0 && year != 0)
+            {
+                return await GetMonthsales(year, month);
+            }
+            else if (year == 0 && month != 0)
+            {
+                return await GetMonthsales(currentYear, month);
+            }
+            else if (month == 0 && year != 0)
+            {
+                return await GetMonthsales(year, currentMonth);
+            }
+            else
+            {
+                return await GetMonthsales(currentYear, currentMonth);
+            }
+
+        }
+
+        public class ProductSales
+        {
+            public int Year { get; set; }
+            public int Month { get; set; }
+            public string Name {  get; set; }
+            public string ProductType { get; set; }
+            public int QuantitySold { get; set; }
+            public double TotalSales {  get; set; }
+            public double Revenue { get; set; }
+            public double TotalProfit { get; set; }
+            public double TotalCapital {  get; set; }
+        }
+
+        [HttpGet("Admin/Dashboard/Chart")]
+        public async Task<IActionResult> Chart(int oldyear, int thisyear, int month, int year)
+        {
+            if (thisyear == 0)
+            {
+                thisyear = currentYear;
+                oldyear = thisyear - 1;
+            }
+            else if (oldyear == 0)
+            {
+                oldyear = thisyear - 1;
+            }
+
+            var revenuesThisYear = await GetMonthlyRevenueAsync(thisyear);
+            var revenuesLastYear = await GetMonthlyRevenueAsync(oldyear);
+
+            ViewBag.RevenuesThisYear = FillMissingMonths(revenuesThisYear);
+            ViewBag.RevenuesLastYear = FillMissingMonths(revenuesLastYear);
+
+            // Chờ cho phương thức GetMonthlySales hoàn tất
+        
+         var RevenuesMonth = await GetMonthlySales(year, month);
+            if (RevenuesMonth.Any())
+            {
+                ViewBag.RevenuesMonth = RevenuesMonth;
+            }
+            else
+            {
+                ViewBag.RevenuesMonth = null;
+            }
+
+            return View();
+        }
+
+        private async Task<List<ProductSales>> GetMonthlySales(int year, int month)
+        {
+            if (month != 0 && year != 0)
+            {
+                return await GetMonthsales(year, month);
+            }
+            else if (year == 0 && month != 0)
+            {
+                return await GetMonthsales(currentYear, month);
+            }
+            else if (month == 0 && year != 0)
+            {
+                return await GetMonthsales(year, currentMonth);
+            }
+            else
+            {
+                return await GetMonthsales(currentYear, currentMonth);
+            }
+
+        }
+       
+
+        public class MonthlyRevenue
+        {
+            public int Year { get; set; }
+            public int Month { get; set; }
+            public decimal TotalRevenue { get; set; }
+        }
+
+        private async Task<List<ProductSales>> GetMonthsales(int year, int month)
+        {
+            var orderdetail = from o in _datacontext.orders
+                              join d in _datacontext.orderDetails on o.Id equals d.OrderId
+                              join p in _datacontext.products on d.ProductId equals p.Id
+                              select new {
+                              Order=o.Id,
+                              OdName=p.Name,
+                              Odstatus=o.Status,
+                              Productid=d.ProductId,
+                              Quantitys=d.Quantity,
+                              OdCreateAt=o.CreateAt,
+                              Odtotalprice=d.TotalPrice,
+                              OdTotal=o.TotalPrice,
+                                  Odoriginalprice=p.originalprice,
+
+                              };
+            // Đảm bảo orderdetail là danh sách hoặc IQueryable
+            var totalRevenue = orderdetail
+     .Where(o => o.Odstatus == 3 &&
+                  o.OdCreateAt.HasValue &&
+                  o.OdCreateAt.Value.Year == year &&
+                  o.OdCreateAt.Value.Month == month)
+     .Sum(o => o.OdTotal);
+
+            ViewBag.Revenues = totalRevenue;
+            var monthlySales =await orderdetail
+                .Where(o=>o.Odstatus==3 && o.OdCreateAt.HasValue&& o.OdCreateAt.Value.Year==year&& o.OdCreateAt.Value.Month == month)
+                .GroupBy(o => new { o.Productid })
+               .Select(g => new ProductSales
+               {
+                   Year = year,
+                   Month = month,
+                   ProductType = g.Key.Productid.ToString(), // Hoặc sử dụng thông tin loại sản phẩm phù hợp
+                   Name = g.Select(o => o.OdName).FirstOrDefault(),
+                   QuantitySold = g.Sum(o => o.Quantitys), // Tính tổng số lượng bán được
+                  TotalCapital= g.Sum(o => o.Odoriginalprice * o.Quantitys),
+                   TotalSales = g.Sum(o=>o.Odtotalprice), // Cần tính giá trị này nếu có
+                   TotalProfit = g.Sum(o => o.Odtotalprice)- g.Sum(o => o.Odoriginalprice * o.Quantitys)
+
+               })
+    .ToListAsync();
+            return (monthlySales);
+
+        }
+        //het vui
 
         [HttpGet("Admin/Dashboard/Contact")]
         public IActionResult Contact()
@@ -33,7 +197,6 @@ namespace Shop_Classix.Areas.Admin.Controllers
             var contacts = _datacontext.contacts.ToList();
             return View(contacts);
         }
-
 
         //Edit contact
         [HttpGet("Admin/Dashboard/Edit")]
@@ -95,11 +258,6 @@ namespace Shop_Classix.Areas.Admin.Controllers
             return View(contact);
         }
 
-        //[HttpGet("Admin/Dashboard/Comments")]
-        //public IActionResult Comments()
-        //{
-        //    return View();
-        //}
         [HttpGet("Admin/Dashboard/Comments")]
         public IActionResult Comments()
         {
@@ -137,7 +295,6 @@ namespace Shop_Classix.Areas.Admin.Controllers
             // Chuyển hướng về trang danh sách bình luận
             return RedirectToAction("Comments");
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
