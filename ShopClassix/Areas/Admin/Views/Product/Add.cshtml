@@ -52,6 +52,12 @@
             </select>
             <span asp-validation-for="CategoryId" class="text-danger"></span>
         </div>
+        <!-- OriginalPrice -->
+        <div class="mb-3 text-start">
+            <label for="Price" class="form-label">Price</label>
+            <input asp-for="Originalprice" class="form-control" placeholder="Enter price">
+            <span asp-validation-for="Originalprice" class="text-danger"></span>
+        </div>
         <!-- Price -->
         <div class="mb-3 text-start">
             <label asp-for="Price" class="form-label"></label>

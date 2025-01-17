@@ -100,7 +100,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
             }
 
             // Gán các giá trị mặc định
-            product.Views = 100;
+            product.Views = 0;
             product.CreatedAt = DateTime.Now;
             product.UpdatedAt = DateTime.Now;
 
