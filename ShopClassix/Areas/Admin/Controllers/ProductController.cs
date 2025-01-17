@@ -127,6 +127,40 @@ namespace Shop_Classix.Areas.Admin.Controllers
             ViewBag.Categories = new SelectList(await _dataContext.categories.ToListAsync(), "Id", "Name");
             return View(product);
         }
+        [HttpPost("Edit/{id}")]
+        public async Task<IActionResult> Edit(ProductsModel product)
+        {
+            // Kiểm tra Slug trùng lặp
+            product.Slug = Slug.GenerateSlug(product.Name);
+            if (await _dataContext.products.AnyAsync(p => p.Slug == product.Slug && p.Id != product.Id))
+            {
+                ModelState.AddModelError("Slug", "Sản phẩm với tên này đã tồn tại.");
+                ViewBag.Categories = new SelectList(await _dataContext.categories.ToListAsync(), "Id", "Name");
+                return View(product);
+            }
+
+            // Xử lý upload file ảnh mới (nếu có)
+            if (product.ImageUpLoad != null)
+            {
+                string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "media/products");
+                string imageName = Guid.NewGuid() + "_" + product.ImageUpLoad.FileName;
+                string filePath = Path.Combine(uploadDir, imageName);
+
+                using (var fs = new FileStream(filePath, FileMode.Create))
+                {
+                    await product.ImageUpLoad.CopyToAsync(fs);
+                }
+                product.Image = imageName;
+            }
+
+            // Cập nhật thông tin sản phẩm
+            product.UpdatedAt = DateTime.Now;
+            _dataContext.Update(product);
+            await _dataContext.SaveChangesAsync();
+
+            TempData["success"] = "Chỉnh sửa sản phẩm thành công!";
+            return RedirectToAction("Index");
+        }
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
