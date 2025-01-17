@@ -7,12 +7,17 @@
 
     ViewData["Title"] = "Comments Page";
 
+
+
     var comment = ViewBag.comment;
+
+
 
     var status = ViewBag.status;
 }
 
 @section Link
+
 {
     <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/bootstrap.min.css")" type="text/css" />
     <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/font-awesome.min.css")" type="text/css" />
@@ -37,8 +42,10 @@
                 {
                 new { Value = 1, Text = "Bình luận & Đánh giá" },
                 new { Value = 2, Text = "Đã đánh giá" },
-               
+
                 })
+
+
 
                 {
                     <li class="nav-item mx-3">
@@ -49,63 +56,77 @@
                            onclick="event.preventDefault(); this.previousElementSibling.submit();">@statuscomment.Text</a>
                     </li>
                 }
-               
+
             </ul>
         </div>
     </div>
 </nav>
-@if(status==2){
-<table class="table">
+@if (status == 2)
+{
+    <table class="table">
 
-    <thead>
-        <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Rating</th>
-            <th>Content</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (comment == null )
-
-        {
+        <thead>
             <tr>
-                <td colspan="8" class="text-center">No data available</td>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Rating</th>
+                <th>Content</th>
+                <th>Action</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @if (comment == null)
 
-        else
 
-        {
-
-            foreach (var item in comment)
 
             {
                 <tr>
-                    <td >
-                        <a asp-action="Details" asp-controller="Home" asp-route-id="@item.IdProduct">
-                            <img src="@Url.Content("~/Classix/img/" + item.Images)" alt="Product Image" style="width: 25%; height: 15%;" />
-                        </a>
-                    </td>
-                    <td>@item.Names</td>
-                        <td>@item.Ratings</td>
-                    <td>@item.Content</td>
-                 
-                        <td><button type="button" class="btn btn-primary">Edit</button></td>
-                   
-                   
+                    <td colspan="8" class="text-center">No data available</td>
                 </tr>
             }
 
-        }
-    </tbody>
+
+
+            else
+
+
+
+            {
+
+
+
+                foreach (var item in comment)
+
+
+
+                {
+                    <tr>
+                        <td>
+                            <a asp-action="Details" asp-controller="Home" asp-route-id="@item.IdProduct">
+                                <img src="@Url.Content("~/Classix/img/" + item.Images)" alt="Product Image" style="width: 25%; height: 15%;" />
+                            </a>
+                        </td>
+                        <td>@item.Names</td>
+                        <td>@item.Ratings</td>
+                        <td>@item.Content</td>
+
+                        <td><button type="button" class="btn btn-primary">Edit</button></td>
+
+
+                    </tr>
+                }
+
+
+
+            }
+        </tbody>
     </table>
 }
 
 
 @section Script
-                  {
+
+{
     <script src="@Url.Content("~/Classix/user/js/jquery-3.3.1.min.js")"></script>
     <script src="@Url.Content("~/Classix/user/js/bootstrap.min.js")"></script>
     <script src="@Url.Content("~/Classix/user/js/jquery.nice-select.min.js")"></script>
