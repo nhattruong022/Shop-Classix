@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Repository;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Linq;
 namespace Shop_Classix.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(AuthenticationSchemes = "AdminCookie")]
     public class OrdersController : Controller
     {
         private readonly DataContext _dataContext;
@@ -15,6 +17,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
         {
             _dataContext = dataContext;
         }
+
 
         [HttpGet("Admin/Orders")]
         public async Task<IActionResult> Orders(int page = 1, string search = null)

@@ -1,98 +1,118 @@
-﻿<header class="header">
-  <div class="header__top">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="header__top__left">
-            <ul>
-              <li>
-                @if (User.Identity.IsAuthenticated)
-                {
-                  <i class="fa fa-envelope"></i> @User.Identity.Name
-                }
-              </li>
-              <li>Free Shipping for all Order of $99</li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="header__top__right">
-            <div class="header__top__right__social">
-              <a asp-action="Profile" asp-controller="KhachHang"><i class="fa fa-user "></i> My Profile</a>
-              <a href="#"><i class="fa fa-facebook"></i></a>
-              <a href="#"><i class="fa fa-twitter"></i></a>
-              <a href="#"><i class="fa fa-linkedin"></i></a>
-              <a href="#"><i class="fa fa-pinterest-p"></i></a>
-            </div>
+﻿﻿<header class="header">
+    <div class="header__top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="header__top__left">
+                        <ul>
+                            <li>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    <i class="fa fa-envelope"></i> @User.Identity.Name
+                                }
+                            </li>
+                            <li>Free Shipping for all Order of $99</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="header__top__right">
+                        <div class="header__top__right__social">
+                            <a asp-action="Profile" asp-controller="KhachHang"><i class="fa fa-user "></i> My Profile</a>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-linkedin"></i></a>
+                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                        </div>
 
-            @if (User.Identity.IsAuthenticated)
-            {
-              <form asp-action="Logout" asp-controller="KhachHang" method="post" style="display: inline;">
-                <button type="submit" style="border: none; background: none; cursor: pointer; color: #333;">
-                  <i class="fa fa-sign-out"></i> Logout
-                </button>
-              </form>
-            }
-            else
-            {
-              <div class="header__top__right__auth">
-                <a asp-action="Login" asp-controller="KhachHang"><i class="fa fa-user"></i> Login</a>
-              </div>
-            }
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <form asp-action="Logout" asp-controller="KhachHang" method="post" style="display: inline;">
+                                <button type="submit" style="border: none; background: none; cursor: pointer; color: #333;">
+                                    <i class="fa fa-sign-out"></i> Logout
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <div class="header__top__right__auth">
+                                <a asp-action="Login" asp-controller="KhachHang"><i class="fa fa-user"></i> Login</a>
+                            </div>
+                        }
 
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-3">
-            <div class="header__logo">
-              <a href="./index.html"><img src="@Url.Content("~/Classix/img/logox.png")" style="border-radius: 50%"
-                  alt="" /></a>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="col-lg-6">
-            <nav class="header__menu">
-              <ul>
-                <li><a asp-action="Index" asp-controller="Home">Home</a></li>
-                <li><a asp-action="TimKiem" asp-controller="Home">Shop</a></li>
-                <li>
-                  <a href="#">Pages</a>
-                  <ul class="header__menu__dropdown">
-                    <li><a asp-action="DetailProduct" asp-controller="Home">Shop Details</a></li>
-                    <li><a asp-action="Cart" asp-controller="Cart">Shoping Cart</a></li>
-                    <li><a asp-action="CheckOut" asp-controller="Cart">Check Out</a></li>
-                    <li><a asp-action="Blog" asp-controller="Blog">Blog Details</a></li>
-                  </ul>
-                </li>
-                <li><a asp-action="About" asp-controller="About">About</a></li>
-                <li class="active"><a asp-action="Contact" asp-controller="Contact">Contact</a></li>
-              </ul>
-            </nav>
-          </div>
-          <div class="col-lg-3">
-            <div class="header__cart">
-              <ul>
-                <li>
-                  <a href="#"><i class="fa fa-heart"></i> <span>1</span></a>
-                </li>
-                <li>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="header__logo">
+                            <a href="./index.html">
+                                <img src="@Url.Content("~/Classix/img/logox.png")" style="border-radius: 50%"
+                                     alt="" />
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <nav class="header__menu">
+                            <ul>
+                                <li><a asp-action="Index" asp-controller="Home">Home</a></li>
+                                <li><a asp-action="TimKiem" asp-controller="Home">Shop</a></li>
+                                <li>
+                                    <a href="#">Pages</a>
+                                    <ul class="header__menu__dropdown">
+                                        <li><a asp-action="DetailProduct" asp-controller="Home">Shop Details</a></li>
+                                        <li><a asp-action="Cart" asp-controller="Cart">Shoping Cart</a></li>
+                                        <li><a asp-action="CheckOut" asp-controller="Cart">Check Out</a></li>
+                                        <li><a asp-action="Blog" asp-controller="Blog">Blog Details</a></li>
+                                    </ul>
+                                </li>
+                                <li><a asp-action="About" asp-controller="About">About</a></li>
+                                <li class="active"><a asp-action="Contact" asp-controller="Contact">Contact</a></li>
+                            </ul>
+                        </nav>
+                        <!-- Form tìm kiếm -->
+                        <div class="col-lg-9">
+                            <form asp-action="TimKiem" asp-controller="Home" method="get" class="row align-items-center g-3">
+
+                                <!-- Tìm kiếm từ khóa -->
+                                <div class="col-md-8">
+                                    <input name="keyword" id="keyword" type="text" class="form-control" placeholder="What do you need?" />
+                                </div>
+
+                                <!-- Nút tìm kiếm -->
+                                <div class="col-md-4 mt-4 d-flex justify-content-start mb-4">
+                                    <button type="submit" class="btn btn-primary w-100">SEARCH</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="header__cart">
+                            <ul>
+                                <li>
+                                    <a href="#"><i class="fa fa-heart"></i> <span>1</span></a>
+                                </li>
+                                <li>
 
                                     <a asp-action="Cart" asp-controller="Cart">
                                         <i class="fa fa-shopping-bag"></i> <span>@ViewBag.UniqueProductCount</span>
                                     </a>
-                  
-                 
-                </li>
-              </ul>
+
+
+                                </li>
+                            </ul>
                             <div class="header__cart__price">item: <span> @(ViewBag.TotalAmount != null ? ViewBag.TotalAmount.ToString("C") : "0") VNĐ </span></div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+                <div class="humberger__open">
+                    <i class="fa fa-bars"></i>
+                </div>
             </div>
 
-          </div>
-        </div>
-        <div class="humberger__open">
-          <i class="fa fa-bars"></i>
-        </div>
-      </div>
-          
+
 </header>

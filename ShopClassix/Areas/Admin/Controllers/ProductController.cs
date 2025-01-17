@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Repository;
 
@@ -6,6 +7,7 @@ using Shop_Classix.Repository;
 namespace Shop_Classix.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(AuthenticationSchemes = "AdminCookie")]
     public class ProductController : Controller
     {
         private readonly DataContext _dataContext;
@@ -14,6 +16,8 @@ namespace Shop_Classix.Areas.Admin.Controllers
         {
             _dataContext = dataContext;
         }
+
+
         [HttpGet("Admin/Product")]
         public async Task<IActionResult> Index(string? name, string cate, int page = 1)
         {
@@ -53,12 +57,16 @@ namespace Shop_Classix.Areas.Admin.Controllers
 
             return View();
         }
+
+
+        [Authorize(Policy = "AdminOnly")]
         [HttpGet("Admin/Product/Edit")]
         public IActionResult Edit()
         {
             return View();
         }
 
+        [Authorize(Policy = "AdminOnly")]
         [HttpGet("Admin/Product/Add")]
         public IActionResult Add()
         {

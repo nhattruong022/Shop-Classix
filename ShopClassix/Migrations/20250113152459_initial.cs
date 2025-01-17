@@ -135,6 +135,8 @@ namespace Shop_Classix.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    sender = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    receiver = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     MessageContent = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AccountId = table.Column<int>(type: "int", nullable: false),
                     CreateAt = table.Column<DateTime>(type: "datetime2", nullable: false)
@@ -164,7 +166,7 @@ namespace Shop_Classix.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PaymentMethod = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OrderNotes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OrderNotes = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Status = table.Column<int>(type: "int", nullable: false),
                     CreateAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdateAt = table.Column<DateTime>(type: "datetime2", nullable: true)

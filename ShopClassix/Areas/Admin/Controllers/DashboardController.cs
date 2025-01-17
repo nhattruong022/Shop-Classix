@@ -3,9 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Models;
 using Shop_Classix.Repository;
 using Shop_Classix.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 namespace Shop_Classix.Areas.Admin.Controllers
 {
+
     [Area("Admin")]
+    [Authorize(AuthenticationSchemes = "AdminCookie")]
     public class DashboardController : Controller
     {
         private readonly DataContext _datacontext;

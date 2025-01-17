@@ -68,6 +68,14 @@ namespace Shop_Classix.Migrations
                     b.Property<string>("MessageContent")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("receiver")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("sender")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AccountId");
@@ -255,7 +263,6 @@ namespace Shop_Classix.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OrderNotes")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PaymentMethod")
