@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Shop_Classix.Models;
 using Shop_Classix.Repository;
 
 
@@ -64,7 +66,46 @@ namespace Shop_Classix.Areas.Admin.Controllers
         public async Task<IActionResult> Add()
         {
             ViewBag.Categories = new SelectList(await _dataContext.categories.ToListAsync(), "Id", "Name");
-            return View();
+            return View();  
+        }
+
+        // POST: Admin/Product/Add
+        [HttpPost("Add")]
+        public async Task<IActionResult> Add(ProductsModel product)
+        {
+            // Kiểm tra Slug trùng lặp
+            product.Slug = Slug.GenerateSlug(product.Name);
+            if (await _dataContext.products.AnyAsync(p => p.Slug == product.Slug))
+            {
+                ModelState.AddModelError("Slug", "Sản phẩm với tên này đã tồn tại.");
+                ViewBag.Categories = new SelectList(await _dataContext.categories.ToListAsync(), "Id", "Name");
+                return View(product);
+            }
+
+            // Xử lý upload file ảnh
+            if (product.ImageUpLoad != null)
+            {
+                string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "media/products");
+                string imageName = Guid.NewGuid() + "_" + product.ImageUpLoad.FileName;
+                string filePath = Path.Combine(uploadDir, imageName);
+
+                using (var fs = new FileStream(filePath, FileMode.Create))
+                {
+                    await product.ImageUpLoad.CopyToAsync(fs);
+                }
+                product.Image = imageName;
+            }
+
+            // Gán các giá trị mặc định
+            product.Views = 100;
+            product.CreatedAt = DateTime.Now;
+            product.UpdatedAt = DateTime.Now;
+
+            // Lưu sản phẩm vào database
+            await _dataContext.AddAsync(product);
+            await _dataContext.SaveChangesAsync();
+            TempData["success"] = "Thêm sản phẩm thành công!";
+            return RedirectToAction("Index");
         }
 
         [Authorize(Policy = "AdminOnly")]
