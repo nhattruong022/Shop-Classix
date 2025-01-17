@@ -29,7 +29,7 @@ namespace Shop_Classix.Models.ViewModels
 
 
 
-        public string OrderNotes { get; set; }
+        public string? OrderNotes { get; set; }
 
 
 

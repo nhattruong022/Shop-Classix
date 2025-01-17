@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.SignalR;
 using Shop_Classix.Service;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
-
+using Shop_Classix.Helper;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -78,6 +78,8 @@ builder.Services.AddHttpContextAccessor();
 // Thêm SignalR services before building the app
 builder.Services.AddSignalR();
 
+//// Đăng ký CustomUserIdProvider
+//builder.Services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
 
 var app = builder.Build();
 

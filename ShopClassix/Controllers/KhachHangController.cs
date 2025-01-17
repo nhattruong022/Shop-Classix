@@ -114,7 +114,8 @@ namespace Shop_Classix.Controllers
                 new Claim(ClaimTypes.Email, khachHang.Email),  // Email
                 new Claim(ClaimTypes.NameIdentifier, khachHang.Id.ToString()),  // Customer Id
                 new Claim(ClaimTypes.Name, khachHang.Email),  // Display name
-                new Claim(ClaimTypes.Role, khachHang.Role ?? "User")  // Role (Admin or User)
+                new Claim(ClaimTypes.Role, khachHang.Role ?? "User"),  // Role (Admin or User)
+               
             };
 
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -303,10 +304,11 @@ namespace Shop_Classix.Controllers
 						  join pc in _dataContext.productComments on p.Id equals pc.ProductId
 						  select new
 						  {
+							  Idcm=pc.Id,
 							  ID = pc.AccountId,
 							  Images = p.Image,
 							  Names = p.Name,
-							  Content = pc.Cotent,
+							  Content = pc.Content,
 							  Ratings = pc.Rating,
 							  IdProduct = pc.ProductId
 						  };
@@ -322,5 +324,69 @@ namespace Shop_Classix.Controllers
 
 			return View();
 		}
-	}
+		public IActionResult Favorite(int id)
+		{
+
+            //danh sách yêu thích vui
+            // Lấy ID người dùng đang đăng nhập
+            var customerEmail = User.Identity.Name;
+            var customerId = _dataContext.customers
+             .Where(c => c.Email == customerEmail)
+             .Select(c => c.Id)
+
+             .FirstOrDefault();
+            if (id != 0)
+            {
+                var productf = _dataContext.favoriteProducts.FirstOrDefault(p => p.ProductId == id && p.CustomerId == customerId);
+                if (productf != null)
+                {
+                    // Xóa sản phẩm yêu thích
+                    _dataContext.favoriteProducts.Remove(productf);
+                    // Lưu thay đổi vào cơ sở dữ liệu
+                    _dataContext.SaveChanges();
+                    var productfa = _dataContext.products.Where(p => p.Id == id).FirstOrDefault();
+                    productfa.FavoriteNumber--;
+                    _dataContext.SaveChanges();
+                }
+            }
+            var favorite = _dataContext.favoriteProducts
+                .Where(f => f.CustomerId == customerId)
+                .ToList();
+
+            var favoritelist = from f in favorite
+                               join p in _dataContext.products on f.ProductId equals p.Id
+                               select new ProductList
+                               {
+                                   Id = p.Id,
+                                   Image = p.Image,
+                                   Name = p.Name,
+                                   Price = p.Price,
+                                   Rating = p.Rating
+                               };
+            ViewBag.AlertMessage = customerEmail;
+            ViewBag.favoritelist = favoritelist.ToList();
+            ViewBag.number = favoritelist.Count();
+			return View();
+
+
+        }
+
+        [HttpPost]
+        public IActionResult UpdateComment(int id, string content, int rating)
+        {
+            // Tìm bình luận theo ID
+            var comment = _dataContext.productComments.FirstOrDefault(c => c.Id == id);
+            if (comment != null)
+            {
+                // Cập nhật thông tin bình luận
+                comment.Content = content;
+                comment.Rating = rating;
+
+                // Lưu thay đổi vào cơ sở dữ liệu
+                _dataContext.SaveChanges();
+            }
+
+            return Json(new { success = true });
+        }
+    }
 }

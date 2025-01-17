@@ -278,10 +278,77 @@
             </form>
             <div id="revenueData">
 
+<<<<<<< HEAD
+                    @if (RevenuesMonth != null)
+                    {
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Quantity</th>
+                                    <th>Total Capital</th>
+                                    <th>Total Sales</th>
+                                    <th>Total Profit</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                @if (ViewBag.RevenuesMonth != null)
+                                {
+                                    foreach (var item in ViewBag.RevenuesMonth)
+                                    {
+                                        TotalCapital += item.TotalCapital;
+                                        TotalSales += item.TotalSales;
+                                        TotalProfit += item.TotalProfit;
+                                        <tr>
+                                            <td>@item.ProductType</td>
+                                            <td>@item.Name</td>
+                                            <td>@item.QuantitySold</td>
+                                            <td>@item.TotalCapital VND</td>
+                                            <td>@item.TotalSales VND</td>
+                                            <td>@item.TotalProfit VND</td>
+
+
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td colspan="5">No data available.</td>
+                                    </tr>
+                                }
+                                <tr>
+                                    <th>Financial Summary: </th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>@TotalCapital VND</th>
+                                    <th>@TotalSales VND</th>
+                                    <th>@TotalProfit VND</th>
+                                </tr>
+
+                                <tr><th>Revenue: @ViewBag.Revenues VND</th></tr>
+                        </table>
+                    }
+                    else
+                    {
+                        <div style="text-align: center; margin-top: 20px;">
+                            <h4>No revenue data available for this month</h4>
+                        </div>
+                    }
+                </div> <!-- This is where the table will be rendered dynamically -->
+
+                            }
+                        }
+                        else
+                        {
+=======
                 @if (RevenuesMonth != null)
                 {
                     <table class="table">
                         <thead>
+>>>>>>> d964745404fe84227a30a3e4ba2954aaf4f303d8
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
