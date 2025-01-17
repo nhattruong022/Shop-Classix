@@ -286,7 +286,7 @@ namespace Shop_Classix.Controllers
 							  ID = pc.AccountId,
 							  Images = p.Image,
 							  Names = p.Name,
-							  Content = pc.Cotent,
+							  Content = pc.Content,
 							  Ratings = pc.Rating,
 							  IdProduct = pc.ProductId
 						  };

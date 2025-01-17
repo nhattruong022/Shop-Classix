@@ -256,7 +256,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
                     ProductName = pc.products.Name,
                     ProductImage = pc.products.Image,
                     Category = pc.products.category.Name,
-                    Content = pc.Cotent,
+                    Content = pc.Content,
                     Rating = pc.Rating
                 }).ToList();
 

@@ -255,7 +255,6 @@ namespace Shop_Classix.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OrderNotes")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PaymentMethod")
@@ -296,11 +295,11 @@ namespace Shop_Classix.Migrations
                     b.Property<int>("AccountId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Cotent")
+                    b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("CreateAt")
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ProductId")
@@ -370,6 +369,9 @@ namespace Shop_Classix.Migrations
 
                     b.Property<int>("Views")
                         .HasColumnType("int");
+
+                    b.Property<double>("originalprice")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 

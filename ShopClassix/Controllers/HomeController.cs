@@ -191,7 +191,6 @@ namespace Shop_Classix.Controllers
             {
                 rating = productcomment
                   .Average(rc => rc.Rating);
-
             }
             ViewBag.rating = rating;
         
