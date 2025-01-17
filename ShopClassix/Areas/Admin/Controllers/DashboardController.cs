@@ -19,9 +19,15 @@ namespace Shop_Classix.Areas.Admin.Controllers
         {
             _datacontext = datacontext;
             _webHostEnvironment = hostEnvironment;
+<<<<<<< HEAD
         }
 
 
+=======
+        }
+
+
+>>>>>>> d964745404fe84227a30a3e4ba2954aaf4f303d8
         [HttpGet("Admin/Dashboard/Chart")]
         public async Task<IActionResult> Chart(int oldyear, int thisyear, int month, int year)
         {
@@ -40,8 +46,13 @@ namespace Shop_Classix.Areas.Admin.Controllers
             }
 
             return View();
+<<<<<<< HEAD
         }
 
+=======
+        }
+
+>>>>>>> d964745404fe84227a30a3e4ba2954aaf4f303d8
         private async Task<List<ProductSales>> GetMonthlySales(int year, int month)
         {
             if (month != 0 && year != 0)
@@ -60,10 +71,17 @@ namespace Shop_Classix.Areas.Admin.Controllers
             {
                 return await GetMonthsales(currentYear, currentMonth);
             }
+<<<<<<< HEAD
         }
 
 
 
+=======
+        }
+
+
+
+>>>>>>> d964745404fe84227a30a3e4ba2954aaf4f303d8
         public class MonthlyRevenue
         {
             public int Year { get; set; }
@@ -76,6 +94,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
             var orderdetail = from o in _datacontext.orders
                               join d in _datacontext.orderDetails on o.Id equals d.OrderId
                               join p in _datacontext.products on d.ProductId equals p.Id
+<<<<<<< HEAD
                               select new
                               {
                                   Order = o.Id,
@@ -85,6 +104,17 @@ namespace Shop_Classix.Areas.Admin.Controllers
                                   Quantitys = d.Quantity,
                                   OdCreateAt = o.CreateAt,
                                   Odtotalprice = d.TotalPrice,
+=======
+                              select new
+                              {
+                                  Order = o.Id,
+                                  OdName = p.Name,
+                                  Odstatus = o.Status,
+                                  Productid = d.ProductId,
+                                  Quantitys = d.Quantity,
+                                  OdCreateAt = o.CreateAt,
+                                  Odtotalprice = d.TotalPrice,
+>>>>>>> d964745404fe84227a30a3e4ba2954aaf4f303d8
                                   OdTotal = o.TotalPrice,
                                   Odoriginalprice = p.originalprice,
 
@@ -107,7 +137,11 @@ namespace Shop_Classix.Areas.Admin.Controllers
                    Month = month,
                    ProductType = g.Key.Productid.ToString(), // Hoặc sử dụng thông tin loại sản phẩm phù hợp
                    Name = g.Select(o => o.OdName).FirstOrDefault(),
+<<<<<<< HEAD
                    QuantitySold = g.Sum(o => o.Quantitys), // Tính tổng số lượng bán được
+=======
+                   QuantitySold = g.Sum(o => o.Quantitys), // Tính tổng số lượng bán được
+>>>>>>> d964745404fe84227a30a3e4ba2954aaf4f303d8
                    TotalCapital = g.Sum(o => o.Odoriginalprice * o.Quantitys),
                    TotalSales = g.Sum(o => o.Odtotalprice), // Cần tính giá trị này nếu có
                    TotalProfit = g.Sum(o => o.Odtotalprice) - g.Sum(o => o.Odoriginalprice * o.Quantitys)
@@ -206,7 +240,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
                     ProductName = pc.products.Name,
                     ProductImage = pc.products.Image,
                     Category = pc.products.category.Name,
-                    Content = pc.Cotent,
+                    Content = pc.Content,
                     Rating = pc.Rating
                 }).ToList();
 

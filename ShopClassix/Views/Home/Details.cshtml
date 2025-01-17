@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/slicknav.min.css")" type="text/css" />
     <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/style.css")" type="text/css" />
     <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/detail.css")" type="text/css" />
+
 }
 
 
@@ -104,15 +105,12 @@
                             <ul>
                                 <li>
                                     <b>Inventory:   </b>
-
                                     <span id="quantitys">@product.Quantity</span>
-                                  
                                 </li>
                                 <li>
                                     <b>Size: </b>
                                     <span>@product.Size</span>
                                 </li>
-
                             </ul>
                         </div>
                     </div>
@@ -259,6 +257,7 @@
     <script src="@Url.Content("~/Classix/user/js/owl.carousel.min.js")"></script>
     <script src="@Url.Content("~/Classix/user/js/main.js")"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
     <script>
 
         function GetViewCount() {
@@ -460,4 +459,16 @@
         setInterval(GetQuantity, 100);
 
     </script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/productHub")
+            .build();
+
+        connection.start().catch(err => console.error(err.toString()));
+
+        connection.on("ReceiveProductCount", function (count) {
+            document.getElementById("productCount").innerText = count;
+        });
+    </script>
+
 }
