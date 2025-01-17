@@ -72,7 +72,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
             return View();  
         }
 
-        // POST: Admin/Product/Add
+        [Authorize(Policy = "AdminOnly")]
         [HttpPost("Add")]
         public async Task<IActionResult> Add(ProductsModel product)
         {
@@ -112,11 +112,22 @@ namespace Shop_Classix.Areas.Admin.Controllers
         }
 
         [Authorize(Policy = "AdminOnly")]
-        [HttpGet("Admin/Product/Edit")]
-        public IActionResult Edit()
+        [HttpGet("Edit/{id}")]
+        public async Task<IActionResult> Edit(int id)
         {
-            return View();
+            var product = await _dataContext.products
+                .Include(p => p.category)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Categories = new SelectList(await _dataContext.categories.ToListAsync(), "Id", "Name");
+            return View(product);
         }
+
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
