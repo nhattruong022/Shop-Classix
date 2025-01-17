@@ -78,8 +78,8 @@ builder.Services.AddHttpContextAccessor();
 // Thêm SignalR services before building the app
 builder.Services.AddSignalR();
 
-// Đăng ký CustomUserIdProvider
-builder.Services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
+//// Đăng ký CustomUserIdProvider
+//builder.Services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
 
 var app = builder.Build();
 
