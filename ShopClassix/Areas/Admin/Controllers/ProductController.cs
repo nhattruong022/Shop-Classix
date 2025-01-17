@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Models;
+using Shop_Classix.Helper;
 using Shop_Classix.Repository;
 
 
@@ -15,9 +16,11 @@ namespace Shop_Classix.Areas.Admin.Controllers
     {
         private readonly DataContext _dataContext;
         private const int PageSize = 5;
-        public ProductController(DataContext dataContext)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public ProductController(DataContext dataContext, IWebHostEnvironment webHostEnvironment)
         {
             _dataContext = dataContext;
+            _webHostEnvironment = webHostEnvironment;
         }
 
 
