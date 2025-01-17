@@ -378,7 +378,7 @@ namespace Shop_Classix.Controllers
             if (comment != null)
             {
                 // Cập nhật thông tin bình luận
-                comment.Cotent = content;
+                comment.Content = content;
                 comment.Rating = rating;
 
                 // Lưu thay đổi vào cơ sở dữ liệu
