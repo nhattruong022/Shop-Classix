@@ -11,7 +11,5 @@ namespace Shop_Classix.Models.ViewModels
 		[Required(ErrorMessage = "Password is required.")]
 		[MinLength(8, ErrorMessage = "Password must have at least 8 characters.")]
 		public string Password { get; set; }
-
-
 	}
 }

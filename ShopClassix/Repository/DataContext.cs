@@ -20,7 +20,12 @@ namespace Shop_Classix.Repository
         public DbSet<ImportsDetailModel> importsDetails { get; set; }
         public DbSet<ProductCommentModel> productComments { get; set; }
         public DbSet<VnPayModel> vnPay { get; set; }
-        
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ProductCommentModel>()
+                .Property(c => c.CreatedAt)
+                .HasDefaultValueSql("CURRENT_TIMESTAMP");
+        }
     }
 }
