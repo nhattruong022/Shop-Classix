@@ -192,95 +192,97 @@ namespace Shop_Classix.Controllers
         }
 
 
-          [HttpPost]
-          [Authorize]
-         public IActionResult CheckOut(CheckOutViewModel model, string payment = "C0D")
-            {
-
-            //thiết lập giỏ hàng
+        [HttpPost]
+        [Authorize]
+        public IActionResult CheckOut(CheckOutViewModel model, string payment = "C0D")
+        {
+            // Thiết lập giỏ hàng
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
 
+            // Kiểm tra nếu giỏ hàng trống
+            if (cart.Items == null || !cart.Items.Any())
+            {
+                TempData["ErrorMessage"] = "Your cart is empty. Please add items to your cart before checking out.";
+                return RedirectToAction("Index", "Cart"); // Chuyển hướng về trang giỏ hàng
+            }
 
-            //tính tiền cọc 10%
+            // Tính tiền cọc 10%
             var totalPrice = cart.Items.Sum(item => item.TotalPrice);
             var depositAmount = totalPrice * 0.1;
 
-            
-               model.Items = cart.Items;
-               model.Total = totalPrice;
-               model.deposit = depositAmount;
+            model.Items = cart.Items;
+            model.Total = totalPrice;
+            model.deposit = depositAmount;
 
-           
-            // kiểm tra email có lưu trong cookie chưa
-                var customerEmail = HttpContext.User.Claims.SingleOrDefault(p => p.Type == ClaimTypes.Email)?.Value;
+            // Kiểm tra email có lưu trong cookie chưa
+            var customerEmail = HttpContext.User.Claims.SingleOrDefault(p => p.Type == ClaimTypes.Email)?.Value;
 
-            //kiểm tra email có trong database không
-                var customer = dataContext.customers.SingleOrDefault(c => c.Email == customerEmail);
+            // Kiểm tra email có trong database không
+            var customer = dataContext.customers.SingleOrDefault(c => c.Email == customerEmail);
 
-                //tạo đơn hàng
-                var order = new OrderModel
+            // Tạo đơn hàng
+            var order = new OrderModel
+            {
+                TotalPrice = totalPrice,
+                deposit = depositAmount,
+                Status = 1,
+                PaymentMethod = payment == "Payment VNPAY" ? "VnPay" : "COD",
+                CustomerId = customer.Id,
+                CustomerName = model.Receiver,
+                Address = model.Address,
+                Email = model.Email,
+                Phone = model.Phone,
+                OrderNotes = string.IsNullOrEmpty(model.OrderNotes) ? null : model.OrderNotes,
+                CreateAt = DateTime.Now,
+                UpdateAt = DateTime.Now
+            };
+
+            try
+            {
+                dataContext.orders.Add(order);
+                dataContext.SaveChanges();
+
+                // Lưu đơn hàng chi tiết
+                var orderDetails = cart.Items.Select(item => new OrderDetailModel
                 {
-                    TotalPrice = totalPrice,
-                    deposit = depositAmount,
-                    Status = 1,
-                    PaymentMethod = payment == "Payment VNPAY" ? "VnPay" : "COD",
-                    CustomerId = customer.Id, 
-                    CustomerName = model.Receiver,
-                    Address = model.Address,
-                    Email = model.Email,
-                    Phone = model.Phone,
-                    OrderNotes = model.OrderNotes,
-                    CreateAt = DateTime.Now,
-                    UpdateAt = DateTime.Now
-                };
+                    OrderId = order.Id,
+                    ProductId = item.ProductId,
+                    Quantity = item.Quantity,
+                    TotalPrice = item.TotalPrice
+                }).ToList();
 
-                try
+                dataContext.orderDetails.AddRange(orderDetails);
+                dataContext.SaveChanges();
+
+                if (payment == "Payment VNPAY")
                 {
-                    dataContext.orders.Add(order);
-                    dataContext.SaveChanges();
-               
-                //lưu đơn hàng chi tiết
-                    var orderDetails = cart.Items.Select(item => new OrderDetailModel
+                    // Lưu đơn hàng VNPAY
+                    var vnPayModel = new VnPaymentRequestModel
                     {
-                        OrderId = order.Id,
-                        ProductId = item.ProductId,
-                        Quantity = item.Quantity,
-                        TotalPrice = item.TotalPrice
-                    }).ToList();
+                        Amount = totalPrice,
+                        CreatedDate = DateTime.Now,
+                        description = $"{model.Receiver} {model.Phone}",
+                        FullName = model.Receiver,
+                        OrderId = order.Id.ToString()
+                    };
 
-                    dataContext.orderDetails.AddRange(orderDetails);
-                    dataContext.SaveChanges();
+                    return Redirect(_vnPayService.CreatePaymentUrl(HttpContext, vnPayModel));
+                }
 
-                    if (payment == "Payment VNPAY")
-                    {
-                    //lưu đơn hàng VNPAY
-                        var vnPayModel = new VnPaymentRequestModel
-                        {
-                            Amount = totalPrice,
-                            CreatedDate = DateTime.Now,
-                            description = $"{model.Receiver} {model.Phone}",
-                            FullName = model.Receiver,
-                            OrderId = order.Id.ToString()
-                        };
-                    
-                        return Redirect(_vnPayService.CreatePaymentUrl(HttpContext, vnPayModel));
-                    }
-                    //xóa giỏ hàng sau khi lưu đơn hàng
-                    HttpContext.Session.Remove("Cart"); 
-                
-                    //hiện thông báo cảm ơn
-                    TempData["ThankYouMessage"] = "Thank you for your order! We will process it shortly.";
-                    return RedirectToAction("CheckOut", "Cart");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine($"Error during checkout: {ex.Message}");
-                    TempData["ErrorMessage"] = "An error occurred during checkout. Please try again.";
-                    return View(model);
-                }
+                // Xóa giỏ hàng sau khi lưu đơn hàng
+                HttpContext.Session.Remove("Cart");
+
+                // Hiện thông báo cảm ơn
+                TempData["ThankYouMessage"] = "Thank you for your order! We will process it shortly.";
+                return RedirectToAction("CheckOut", "Cart");
             }
-
-      
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error during checkout: {ex.Message}");
+                TempData["ErrorMessage"] = "An error occurred during checkout. Please try again.";
+                return View(model);
+            }
+        }
 
 
 
@@ -326,6 +328,9 @@ namespace Shop_Classix.Controllers
                     dataContext.orders.Update(order);
 
                     await dataContext.SaveChangesAsync();
+
+                    //xóa giỏ hàng sau khi lưu đơn hàng
+                    HttpContext.Session.Remove("Cart");
 
                     TempData["ThankYouMessage"] = "Payment successful! Your order has been placed.";
                     return View(response);

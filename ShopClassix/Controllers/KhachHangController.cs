@@ -114,7 +114,8 @@ namespace Shop_Classix.Controllers
                 new Claim(ClaimTypes.Email, khachHang.Email),  // Email
                 new Claim(ClaimTypes.NameIdentifier, khachHang.Id.ToString()),  // Customer Id
                 new Claim(ClaimTypes.Name, khachHang.Email),  // Display name
-                new Claim(ClaimTypes.Role, khachHang.Role ?? "User")  // Role (Admin or User)
+                new Claim(ClaimTypes.Role, khachHang.Role ?? "User"),  // Role (Admin or User)
+                new Claim(ClaimTypes.Role, "Admin")  // Ensure that the role is set here
             };
 
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
