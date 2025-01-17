@@ -95,7 +95,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <input type="text" name="name" class="form-control" id="searchInput"
-                            placeholder="Search by Product Name">
+                               placeholder="Search by Product Name">
 
                     </div>
 
@@ -120,7 +120,7 @@
                 <div class="card-header">
                     <h5>Table Orders</h5>
                     <div class="card-header-right">
-                        <button class="btn btn-primary">Add</button>
+                        <a href="@Url.Action("Add", "Product", new { area = "Admin" })" class="btn btn-success">Add Category</a>
                     </div>
                 </div>
 
@@ -173,7 +173,7 @@
                                                 }
                                             </td>
                                             <td>
-                                                <button class="btn btn-warning btn-sm">Edit</button>
+                                                <a href="@Url.Action("Edit", "Product", new { area = "Admin", id = item.Id })" class="btn btn-warning btn-sm">Edit</a>
                                             </td>
                                             <td>
                                                 @{
@@ -187,7 +187,7 @@
                                                             break;
                                                         case 1:
                                                             <form asp-action="Delete" method="post"
-                                                                onsubmit="showConfirmModal(event, this)">
+                                                                  onsubmit="showConfirmModal(event, this)">
                                                                 <input type="hidden" value="@item.Id" name="id">
                                                                 <button class="btn btn-danger btn-sm" type="submit">Delete</button>
                                                             </form>
