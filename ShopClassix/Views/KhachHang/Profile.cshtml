@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="@Url.Content("~/Classix/user/css/xuan.css")" type="text/css" />
 }
 
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto">
@@ -187,16 +188,17 @@
                                     }
                                 </p>
                             </div>
-
+                            
 
                         </div>
-                    </div>
+                    </div> 
                 }
 
             </div>
 
         </div>
     </section>
+   
     <!-- Related Product Section End -->
 }
 else if (ViewBag.number > 3)
@@ -311,6 +313,15 @@ else
         no favorite products available
     </h4>
 }
+<div style="
+		display: flex; 
+		justify-content: center;
+		
+	}">
+    <a asp-controller="KhachHang" asp-action="Favorite">
+        <button type="submit">View All Favorite</button>
+    </a>
+</div>
 
 
 

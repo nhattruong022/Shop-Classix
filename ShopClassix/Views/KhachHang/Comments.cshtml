@@ -4,10 +4,7 @@
 @{
 
 
-
     ViewData["Title"] = "Comments Page";
-
-
 
     var comment = ViewBag.comment;
 
@@ -77,29 +74,20 @@
         <tbody>
             @if (comment == null)
 
-
-
             {
                 <tr>
                     <td colspan="8" class="text-center">No data available</td>
                 </tr>
+
             }
-
-
 
             else
 
-
-
             {
-
-
-
                 foreach (var item in comment)
-
-
-
                 {
+
+                 
                     <tr>
                         <td>
                             <a asp-action="Details" asp-controller="Home" asp-route-id="@item.IdProduct">
@@ -107,10 +95,40 @@
                             </a>
                         </td>
                         <td>@item.Names</td>
-                        <td>@item.Ratings</td>
+                        <td>
+                            <p>
+                                @for (var i = 1; i <= 5; i++)
+
+                                {
+
+                                    if (i <= item.Ratings) // Sao đầy
+
+                                    {
+                                        <i class="fa fa-star" style="color: gold;"></i>
+                                    }
+
+                                    else // Sao rỗng
+
+                                    {
+                                        <i class="fa fa-star" style="color: lightgray;"></i>
+                                    }
+
+                                }
+                            </p>
+                        </td>
                         <td>@item.Content</td>
 
-                        <td><button type="button" class="btn btn-primary">Edit</button></td>
+                        <td>
+                            <!-- Thêm thuộc tính data-id để lưu ID bình luận -->
+                            <button type="button" class="btn btn-primary"
+                                    data-toggle="modal"
+                                    data-target="#comment"
+                                    data-id="@item.Idcm"
+                                    data-content="@item.Content"
+                                    data-rating="@item.Ratings">
+                                Edit
+                            </button>
+                        </td>
 
 
                     </tr>
@@ -123,7 +141,36 @@
     </table>
 }
 
-
+<div class="modal fade" id="comment" tabindex="-1" role="dialog" aria-labelledby="commentLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="commentLabel">Edit Comment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="modalContent">Content</label>
+                    <textarea id="modalContent" class="form-control" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="modalRating">Rating</label>
+                    <input type="number" id="modalRating" class="form-control" min="1" max="5" />
+                </div>
+                <div id="modalRatingStars" class="mb-2">
+                    <!-- Phần hiển thị sao sẽ được cập nhật ở đây -->
+                </div>
+                <input type="hidden" id="modalId" /> <!-- Lưu ID bình luận -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="saveChanges">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 @section Script
 
 {
@@ -135,4 +182,103 @@
     <script src="@Url.Content("~/Classix/user/js/mixitup.min.js")"></script>
     <script src="@Url.Content("~/Classix/user/js/owl.carousel.min.js")"></script>
     <script src="@Url.Content("~/Classix/user/js/main.js")"></script>
+    <script>
+        // JavaScript để cập nhật nội dung modal
+        $('#comment').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget); // Nút đã nhấn
+            var content = button.data('content'); // Lấy nội dung
+            var rating = button.data('rating'); // Lấy đánh giá
+            var id = button.data('id'); // Lấy ID bình luận
+
+            // Cập nhật nội dung modal
+            var modal = $(this);
+            modal.find('#modalContent').val(content); // Sử dụng .val() cho textarea
+            modal.find('#modalRating').val(rating); // Sử dụng .val() cho input
+            modal.find('#modalId').val(id); // Cập nhật ID bình luận vào trường ẩn
+        });
+    </script>
+    <script>
+        // Lưu thay đổi
+        $('#saveChanges').on('click', function () {
+            var id = $('#modalId').val();
+            var newContent = $('#modalContent').val().trim(); // Cắt bỏ khoảng trắng
+            var newRating = $('#modalRating').val();
+
+            // Kiểm tra xem có giá trị nào không
+            if (!newContent) {
+                alert('Please enter content.');
+                return;
+            }
+
+            if (!newRating || newRating < 1 || newRating > 5) {
+                alert('Please enter a rating between 1 and 5.');
+                return;
+            }
+
+            // Gửi yêu cầu AJAX đến Controller
+            $.ajax({
+                url: '@Url.Action("UpdateComment", "KhachHang")', // Thay "YourControllerName" bằng tên Controller của bạn
+                type: 'POST',
+                data: {
+                    id: id,
+                    content: newContent,
+                    rating: newRating
+                },
+                success: function (response) {
+                    if (response.success) {
+                        alert('Comment updated successfully!');
+                        location.reload(); // Reload trang để thấy thay đổi
+                    } else {
+                        alert('Error updating comment.');
+                    }
+                },
+                error: function () {
+                    alert('An error occurred. Please try again.');
+                }
+            });
+
+            // Đóng modal
+            $('#comment').modal('hide');
+        });
+    </script>
+    <script>
+        // JavaScript để cập nhật nội dung modal
+        $('#comment').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var content = button.data('content');
+            var rating = button.data('rating');
+            var id = button.data('id');
+
+            // Cập nhật nội dung modal
+            var modal = $(this);
+            modal.find('#modalContent').val(content);
+            modal.find('#modalRating').val(rating);
+            modal.find('#modalId').val(id);
+
+            // Cập nhật hiển thị sao trong modal
+            var starsHtml = '';
+            for (var i = 1; i <= 5; i++) {
+                if (i <= rating) {
+                    starsHtml += '<i class="fa fa-star" style="color: gold;"></i>';
+                } else {
+                    starsHtml += '<i class="fa fa-star" style="color: lightgray;"></i>';
+                }
+            }
+            modal.find('#modalRatingStars').html(starsHtml);
+        });
+
+        // Cập nhật hiển thị sao khi nhập rating
+        $('#modalRating').on('input', function () {
+            var rating = $(this).val();
+            var starsHtml = '';
+            for (var i = 1; i <= 5; i++) {
+                if (i <= rating) {
+                    starsHtml += '<i class="fa fa-star" style="color: gold;"></i>';
+                } else {
+                    starsHtml += '<i class="fa fa-star" style="color: lightgray;"></i>';
+                }
+            }
+            $('#modalRatingStars').html(starsHtml);
+        });
+    </script>
 }
