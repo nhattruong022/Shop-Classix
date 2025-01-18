@@ -72,48 +72,93 @@ namespace Shop_Classix.Controllers
             return View(cart);
         }
 
-   
+
 
         [HttpPost]
-        public IActionResult UpdateQuantity(int id, int quantity)
+        public JsonResult UpdateQuantity(int id, int quantity)
         {
-            if (quantity < 1)
+            var cart = HttpContext.Session.Get<CartViewModel>("Cart");
+            var existingItem = cart.Items.FirstOrDefault(item => item.ProductId == id);
+
+            // Kiểm tra nếu sản phẩm không tồn tại trong giỏ hàng
+            if (existingItem == null)
             {
-                return BadRequest("Số lượng phải lớn hơn hoặc bằng 1.");
+                return Json(new { success = false, message = "Sản phẩm không có trong giỏ hàng." });
             }
 
-            var cart = HttpContext.Session.Get<CartViewModel>("Cart");
-            if (cart != null)
+            // Lấy tổng số lượng sản phẩm đã có trong các đơn hàng
+            int totalQuantityInOrders = dataContext.orderDetails
+                .Where(od => od.ProductId == id)
+                .Sum(od => od.Quantity);
+            
+            // Lấy sản phẩm từ bảng products
+            var product = dataContext.products.FirstOrDefault(p => p.Id == id);
+            if (product == null)
             {
-                var existingItem = cart.Items.FirstOrDefault(item => item.ProductId == id);
-                if (existingItem != null)
+                return Json(new { success = false, message = "Sản phẩm không tồn tại." });
+            }
+            int productQuantity = product.Quantity.GetValueOrDefault();
+            int availableQuantity = productQuantity - totalQuantityInOrders;
+         
+            // Kiểm tra số lượng có thể cập nhật
+            if (quantity > availableQuantity)
+            {
+                if (availableQuantity <= 0)
                 {
-                    existingItem.Quantity = quantity;
+                    return Json(new { success = false, message = "Sản phẩm đã hết hàng." });
+                }
+                else
+                {
+                    return Json(new { success = false, message = $"Không thể cập nhật số lượng. Số lượng tối đa có thể cập nhật là {availableQuantity}." });
                 }
             }
 
+            // Cập nhật số lượng trong giỏ hàng
+            existingItem.Quantity = quantity;
             HttpContext.Session.Set("Cart", cart);
-            return Ok();
-        }
 
+            return Json(new { success = true, message = "Cập nhật số lượng thành công." });
+        }
         [Authorize]
         [HttpPost]
         public IActionResult AddToCart(int id, int quantity = 1)
         {
             if (quantity < 1)
             {
-                return BadRequest("Số lượng phải lớn hơn hoặc bằng 1.");
+                return Json(new { success = false, message = "Số lượng phải lớn hơn hoặc bằng 1." });
             }
 
             var product = dataContext.products.FirstOrDefault(p => p.Id == id);
             if (product == null)
             {
-                return NotFound();
+                return Json(new { success = false, message = "Sản phẩm không tồn tại." });
             }
 
+            // Lấy tổng số lượng sản phẩm đã có trong giỏ hàng
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
-
             var existingItem = cart.Items.FirstOrDefault(item => item.ProductId == product.Id);
+            int totalQuantityInOrders = dataContext.orderDetails
+                .Where(od => od.ProductId == id)
+                .Sum(od => od.Quantity);
+            int cartQuantity = cart.Items
+        .Where(item => item.ProductId == id)
+        .Sum(item => item.Quantity);
+            // Kiểm tra số lượng có thể thêm vào giỏ hàng
+            int productQuantity = product.Quantity.GetValueOrDefault();
+            int availableQuantity = productQuantity - totalQuantityInOrders- cartQuantity;
+            if (quantity > availableQuantity)
+            {
+                if (availableQuantity <= 0)
+                {
+                    return Json(new { success = false, message = "Sản phẩm đã hết hàng." });
+                }
+                else
+                {
+                    return Json(new { success = false, message = $"Không thể thêm sản phẩm này vào giỏ hàng. Số lượng tối đa có thể thêm là {availableQuantity}." });
+                }
+            }
+
+            // Thêm sản phẩm vào giỏ hàng
             if (existingItem != null)
             {
                 existingItem.Quantity += quantity;
@@ -130,9 +175,9 @@ namespace Shop_Classix.Controllers
                 };
                 cart.Items.Add(cartItem);
             }
-            HttpContext.Session.Set("Cart", cart);
-            return Json(new { success = true, message = "Thêm vào giỏ thành công!" });
 
+            HttpContext.Session.Set("Cart", cart);
+            return Json(new { success = true, message = $"Thêm vào giỏ hàng thành công!" });
         }
 
 

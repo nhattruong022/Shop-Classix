@@ -9,26 +9,31 @@
             {
               
                 <div class="slide">
-                    <img src="@Url.Content("~/Classix/img/" + product.Image)" alt="@product.Name" />
-                    <span class="caption">
-                        <strong>Tên sản phẩm:</strong> @product.Name <br />
-                        <strong>Giá:</strong> @string.Format("{0:0,0} VND", product.Price) <br />
-                        <strong>Rating:</strong> @product.Rating ★
+                    <a asp-action="Details" asp-controller="Home" asp-route-id="@product.Id">
+                        <img src="@Url.Content("~/Classix/img/" + product.Image)" alt="Product Image" />
+                    </a>
+                @*     <img src="@Url.Content("~/Classix/img/" + product.Image)" alt="@product.Name" /> *@
+                    <span class="caption" >
+                        <strong> <span style="color:black">Name:</span> </strong><span style="color:burlywood">  @product.Name</span> <br />
+                        <strong><span style="color:black">Price:</span></strong> <span style="color:brown"> @string.Format("{0:0,0} VND", product.Price)</span> <br />
+                        <strong><span style="color:black">Rating:</span></strong> <span style="color:gold">@product.Rating★</span>
                     </span>
                 </div>
             }
-
+           
             <!-- Hiển thị sản phẩm mới -->
             @foreach (var product in Model.NewProducts)
             {
                 @if (product != null)
                 {
                     <div class="slide">
-                        <img src="@Url.Content("~/Classix/img/" + product.Image)" alt="@product.Name" />
+                        <a asp-action="Details" asp-controller="Home" asp-route-id="@product.Id">
+                            <img src="@Url.Content("~/Classix/img/" + product.Image)" alt="Product Image" />
+                        </a>
                         <span class="caption">
-                            <strong>Tên sản phẩm:</strong> @product.Name <br />
-                            <strong>Giá:</strong> @string.Format("{0:0,0} VND", product.Price) <br />
-                            <strong>Mô tả:</strong> @product.Description
+                            <strong> <span style="color:black">Name:</span></strong><span style="color:orange">  @product.Name</span> <br />
+                            <strong><span style="color:black">Price:</span></strong> <span style="color:brown"> @string.Format("{0:0,0} VND", product.Price)</span> <br />
+                            <strong><span style="color:black">Rating:</span></strong> <span style="color:chocolate">@product.Description</span>
                         </span>
                     </div>
                 }
