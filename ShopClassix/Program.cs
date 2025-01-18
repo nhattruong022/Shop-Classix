@@ -85,6 +85,8 @@ var app = builder.Build();
 
 //cấu hình endpoint cho SignalR
 app.MapHub<ChatHub>("/chatHub");
+app.MapHub<ProductHub>("/productHub");
+
 
 
 

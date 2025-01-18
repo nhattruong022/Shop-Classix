@@ -20,12 +20,12 @@ namespace Shop_Classix.Areas.API.Controllers
         [HttpGet("revenuemonth")]
         public async Task<JsonResult> GetValueMonth(int month, int year)
         {
-         
+
 
             var valuemonth = await GetMonthsales(year, month);
             return new JsonResult(valuemonth);
         }
-       
+
         [HttpGet("getrevenue")]
         public async Task<JsonResult> GetMonthsales(int year, int month)
         {
