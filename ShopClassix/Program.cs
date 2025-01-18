@@ -89,7 +89,6 @@ app.MapHub<ProductHub>("/productHub");
 
 
 
-
 // Cấu hình HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {

@@ -1,0 +1,73 @@
+@model IEnumerable<Shop_Classix.Models.BlogPost>
+
+@{
+    ViewData["Title"] = "Danh sách bài viết";
+    var currentPage = (int)(ViewData["CurrentPage"] ?? 1);
+    var totalPages = (int)(ViewData["TotalPages"] ?? 1);
+    var searchKeyword = (string)ViewData["SearchKeyword"];
+}
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/bootstrap.min.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/font-awesome.min.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/elegant-icons.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/nice-select.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/jquery-ui.min.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/owl.carousel.min.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/slicknav.min.css")" type="text/css" />
+<link rel="stylesheet" href="@Url.Content("~/Classix/user/css/style.css")" type="text/css" />
+
+<!-- Form tìm kiếm -->
+<form method="get" action="@Url.Action("Index", "Blog")">
+    <input type="text" name="searchKeyword" value="@searchKeyword" placeholder="Tìm kiếm bài viết..." />
+    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+</form>
+
+<!-- Danh sách bài viết -->
+<div class="row mt-4">
+    @if (Model != null && Model.Any())
+    {
+        @foreach (var post in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <a href="@Url.Action("PostDetail", "Blog", new { id = post.Id })">@post.Title</a>
+                        </h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Ngày đăng: @post.PublishedDate.ToString("dd/MM/yyyy")</h6>
+                        <p class="card-text">
+                            @(post.Content != null ? post.Content.Substring(0, Math.Min(post.Content.Length, 100)) : "No content")...
+                        </p>
+                        <a class="btn btn-dark" href="@Url.Action("PostDetail", "Blog", new { id = post.Id })">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <p>Không có bài viết nào.</p>
+    }
+</div>
+
+<!-- Phân trang -->
+<nav>
+    <ul class="pagination">
+        @for (int i = 1; i <= totalPages; i++)
+        {
+            <li class="page-item @(i == currentPage ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", "Blog", new { page = i, searchKeyword = searchKeyword })">@i</a>
+            </li>
+        }
+    </ul>
+</nav>
+
+<script src="@Url.Content("~/Classix/user/js/jquery-3.3.1.min.js")"></script>
+<script src="@Url.Content("~/Classix/user/js/bootstrap.min.js")"></script>
+<script src="@Url.Content("~/Classix/user/js/jquery.nice-select.min.js")"></script>
+<script src="@Url.Content("~/Classix/user/js/jquery-ui.min.js")"></script>
+<script src="@Url.Content("~/Classix/user/js/jquery.slicknav.js")"></script>
+<script src="@Url.Content("~/Classix/user/js/mixitup.min.js")"></script>
+<script src="@Url.Content("~/Classix/user/js/owl.carousel.min.js")"></script>
+<script src="@Url.Content("~/Classix/user/js/main.js")"></script>
