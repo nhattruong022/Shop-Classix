@@ -52,9 +52,19 @@
                             }
                             else
                             {
-                                <form asp-action="RemoveAllFromCart" asp-controller="Cart" method="post">
-                                    <button type="submit" class="btn btn-danger">Remove All</button>
+                                <form asp-action="RemoveAllFromCart" asp-controller="Cart" method="post" id="removeCartForm">
+                                    <button type="button" class="btn btn-danger" onclick="confirmRemoveFromCart()">Remove All</button>
                                 </form>
+
+                                <script>
+                                    function confirmRemoveFromCart() {
+                                        if (confirm("Bạn có chắc chắn muốn xóa tất cả sản phẩm trong giỏ hàng?")) {
+                                            // Nếu người dùng nhấn OK, gửi yêu cầu POST đến action RemoveAllFromCart
+                                            document.getElementById('removeCartForm').submit();
+                                        }
+                                    }
+                                </script>
+                             
                                 <table>
                                     <thead>
                                         <tr>
@@ -112,15 +122,23 @@
                                     var productId = $(this).data('id');
 
                                     $.ajax({
-                                        url: '@Url.Action("UpdateQuantity", "Cart")', 
+                                        url: '@Url.Action("UpdateQuantity", "Cart")',
                                         type: 'POST',
                                         data: { id: productId, quantity: quantity },
                                         success: function (response) {
-                                           
-                                            location.reload(); 
+                                            if (response.success) {
+                                                // Hiển thị thông báo thành công
+                                              
+                                                alert(response.message);
+                                                window.location.reload();
+                                            } else {
+                                                // Hiển thị thông báo lỗi
+                                                alert(response.message);
+                                            }
                                         },
-                                        error: function () {
-                                            alert('Error updating quantity.'); 
+                                        error: function (xhr, status, error) {
+                                            // Hiển thị thông báo lỗi
+                                            alert('Đã xảy ra lỗi khi cập nhật số lượng: ' + error);
                                         }
                                     });
                                 });

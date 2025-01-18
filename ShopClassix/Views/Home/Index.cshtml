@@ -126,9 +126,9 @@
                                     <ul class="featured__item__pic__hover">
                                       
                                         <li>
-                                            <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id">
-                                                <i class="fa fa-shopping-cart"></i>
-                                            </a>
+                                    <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id" onclick="addToCart(event, @item.Id)">
+                                        <i class="fa fa-shopping-cart"></i>
+                                    </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -223,7 +223,7 @@
                                             <a href="#"><i class="fa fa-retweet"></i></a>
                                         </li>
                                         <li>
-                                     
+        
                                             <a asp-action="AddToCart" asp-controller="Cart" asp-route-id="@item.Id" onclick="addToCart(event, @item.Id)">
                                                 <i class="fa fa-shopping-cart"></i>
                                             </a>
@@ -261,40 +261,52 @@
                         }
                     }
                 </div>
+              
+   
+                   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    function addToCart(event, itemId) {
+        event.preventDefault(); // Ngăn chặn việc tải lại trang
 
-                <script>
-                    function addToCart(event, itemId) {
-                        event.preventDefault(); // Ngăn chặn việc tải lại trang
-                        // Tạo dữ liệu để gửi
-                        var formData = new URLSearchParams();
-                        formData.append('id', itemId);
-                        formData.append('quantity', '1'); // Số lượng mặc định là 1
+        // Tạo dữ liệu để gửi
+        var formData = new URLSearchParams();
+        formData.append('id', itemId);
+        formData.append('quantity', '1'); // Số lượng mặc định là 1
 
-                        // Gửi yêu cầu đến server
-                        fetch('/Cart/AddToCart', { // Chỉ định rõ controller và action
-                            method: 'POST',
-                            body: formData,
-                            headers: {
-                                'X-Requested-With': 'XMLHttpRequest' // Để server biết đây là yêu cầu AJAX
-                            }
-                        })
-                            .then(response => {
-                                if (response.ok) {
-                                    // Xử lý thành công (có thể cập nhật giỏ hàng hoặc hiển thị thông báo)
-                                    alert('Thêm vào giỏ thành công!');
-                                } else {
-                                    // Xử lý lỗi
-                                    alert('Có lỗi xảy ra khi thêm vào giỏ.');
-                                }
-                            })
-                            .catch(error => {
-                                console.error('Error:', error);
-                                alert('Có lỗi xảy ra.');
-                            });
-                    }
-                </script>
+        // Gửi yêu cầu đến server qua Fetch API
+        fetch('/Cart/AddToCart', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded', // Định dạng dữ liệu
+                'X-Requested-With': 'XMLHttpRequest' // Để server biết đây là AJAX request
+            }
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json(); // Parse JSON từ phản hồi của server
+            })
+            .then(data => {
+                if (data.success) {
+                    // Hiển thị thông báo thành công
+                    alert(data.message);
+                } else {
+                    // Hiển thị thông báo lỗi
+                    alert(data.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                        alert('Bạn chưa Đăng nhập tài khoản!');
+            });
+    }
+</script>
 
-        </section>
+
+
+      
         <!-- Featured Section End -->
         <!-- Latest Product Section Begin -->
         <section class="latest-product spad">
