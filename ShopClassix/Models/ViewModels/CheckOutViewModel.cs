@@ -11,14 +11,15 @@ namespace Shop_Classix.Models.ViewModels
         public string Address { get; set; }
 
 
+
         [Required(ErrorMessage = "Phone number is required")]
-        [RegularExpression(@"^(\+84|0)\d{9,10}$",ErrorMessage ="Invalid Phone Number")]
+        [RegularExpression(@"^(\+84|0)\d{9,10}$", ErrorMessage = "Invalid Phone Number")]
         public string Phone { get; set; }
 
 
 
         [Required(ErrorMessage = "Email is required")]
-        [RegularExpression(@"^[a-zA-Z0-9]+@gmail\.com$", ErrorMessage = "Invalid email format   ")]
+        [RegularExpression(@"^[a-zA-Z0-9]+@gmail\.com$", ErrorMessage = "Invalid email format ")]
         public string Email { get; set; }
 
 
@@ -28,7 +29,7 @@ namespace Shop_Classix.Models.ViewModels
 
 
 
-        public string OrderNotes { get; set; }
+        public string? OrderNotes { get; set; }
 
 
 

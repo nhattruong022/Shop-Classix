@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
+using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Repository;
 
 namespace Shop_Classix.Areas.API.Controllers
@@ -9,7 +11,8 @@ namespace Shop_Classix.Areas.API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly DataContext _dataContext;
-        public ProductController(DataContext dataContext)
+
+        public ProductController(DataContext dataContext, IHubContext<ProductHub> hubContext)
         {
             _dataContext = dataContext;
         }
@@ -60,5 +63,6 @@ namespace Shop_Classix.Areas.API.Controllers
             return new JsonResult(quantity);
 
         }
+ 
     }
 }

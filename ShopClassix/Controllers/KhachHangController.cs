@@ -8,6 +8,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Shop_Classix.Controllers
 {
@@ -78,82 +79,98 @@ namespace Shop_Classix.Controllers
 			return View();
 		}
 
-		[HttpPost]
-		public IActionResult Login(LoginViewModel model, string? returnUrl)
-		{
-			if (ModelState.IsValid)
-			{
-				//kiểm tra email có tồn tại trong database ko
+        [HttpPost]
+        public IActionResult Login(LoginViewModel model, string? returnUrl)
+        {
+            if (ModelState.IsValid)
+            {
+                // kiểm tra nếu email tồn tại trong database
+                var khachHang = _dataContext.customers.SingleOrDefault(kh => kh.Email == model.Email);
 
-				var khachHang = _dataContext.customers.SingleOrDefault(kh => kh.Email == model.Email);
+                if (khachHang == null)
+                {
+                    ModelState.AddModelError("loi", "This customer does not exist");
+                    return View();
+                }
 
-				if (khachHang == null)
-				{
-					ModelState.AddModelError("loi", "This customer does not exist");
-					return View();
-				}
+                // kiểm tra nếu password đúng
+                var passwordHasher = new PasswordHasher<CustomerModel>();  
+                var passwordVerificationResult = passwordHasher.VerifyHashedPassword(khachHang, khachHang.Password, model.Password); //mẫ hóa mật khẩu
 
-				// Kiểm tra mật khẩu đã mã hóa
-				var passwordHasher = new PasswordHasher<CustomerModel>();
-				var passwordVerificationResult = passwordHasher.VerifyHashedPassword(khachHang, khachHang.Password, model.Password);
+                if (passwordVerificationResult == PasswordVerificationResult.Failed)
+                {
+                    ModelState.AddModelError("loi", "Password is not correct");
+                    return View();
+                }
+                else
+                {
+                    // Create the claims based on user role
+                    var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Email, khachHang.Email),  // Email
+                new Claim(ClaimTypes.NameIdentifier, khachHang.Id.ToString()),  // Customer Id
+                new Claim(ClaimTypes.Name, khachHang.Email),  // Display name
+                new Claim(ClaimTypes.Role, khachHang.Role ?? "User"),  // Role (Admin or User)
+               
+            };
 
-				if (passwordVerificationResult == PasswordVerificationResult.Failed)
-				{
-					ModelState.AddModelError("loi", "Password is not correct");
-					return View();
-				}
-				else
-				{
+                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-					//Nếu người dùng nhập đúng thông tin: Tạo ra các claim
-					//thiết lập cookie xác thực
-
-					var claims = new List<Claim>
-				   {
-					   new Claim(ClaimTypes.Email, khachHang.Email), //email khách hàng
-					   new Claim(ClaimTypes.NameIdentifier, khachHang.Id.ToString()), //id khách hàng
-					   new Claim(ClaimTypes.Name,khachHang.Email), //gán email vào claimtypes.name để hiển thị trong @User.identity.Name
-					   new Claim(ClaimTypes.Role,khachHang.Role??"User")
-				   };
-
-					//ClaimsIdentity: Đại diện cho danh tính của người dùng. Nó chứa danh sách các "Claim" và thông tin về cách xác thực
-					var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-
-					//cấu hình thuộc tính xác thực
-					var authProperties = new AuthenticationProperties
-					{
-						IsPersistent = true,  //cookie tồn tại khi người dùng đóng trình duyệt
-						RedirectUri = returnUrl ?? Url.Action("Index", "Home")   //nếu không có ReturnUrl, chuyển đến trang chủ
-					};
-
-					HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), authProperties).Wait();
+                    // Authentication properties
+                    var authProperties = new AuthenticationProperties
+                    {
+                        IsPersistent = true,  //Cookie tồn tại sau khi trình duyệt đóng 
+                        RedirectUri = returnUrl ?? Url.Action("Index", "Home")  // Redirect to the appropriate page
+                    };
 
 
+                    // Add cookies for User and Admin
+                    var cookieOptions = new CookieOptions
+                    {
+                        HttpOnly = false, // Có thể truy cập từ JavaScript
+                        Secure = true,    // Chỉ gửi qua HTTPS
+                        Expires = DateTime.UtcNow.AddDays(7), // Cookie hết hạn sau 7 ngày
+						SameSite = SameSiteMode.Lax  // or SameSiteMode.Strict depending on your use case
+                    };
+
+                    // Check if the user is an Admin or User
+                    if (khachHang.Role == "Admin")
+                    {
+                        // Sign-in with Admin cookie
+                        HttpContext.SignInAsync("AdminCookie", new ClaimsPrincipal(claimsIdentity), authProperties).Wait();
+
+                        return RedirectToAction("Index", "Home", new { area = "Admin" });  // Redirect to Admin area
+                                                         
+                    }
+                    else
+                    {
+                        // Sign-in with User cookie
+                        HttpContext.SignInAsync("UserCookie", new ClaimsPrincipal(claimsIdentity), authProperties).Wait();
+
+                        return Redirect(returnUrl ?? Url.Action("Index", "Home"));
+                       
+                    }
+                }
+            }
+
+            return View();
+        }
 
 
-					if (khachHang.Role == "Admin")
-					{
-						return RedirectToAction("Index", "Home", new { area = "Admin" });  // Redirect to Admin area, Admin/Index
-					}
-					else
-					{
-						return Redirect(returnUrl ?? Url.Action("Index", "Home"));
-					}
-				}
-			}
+		//đăng xuát
+        public IActionResult LogOut(string role)
+        {
+            string authScheme = role == "Admin" ? "AdminCookie" : "UserCookie";
 
-			return View();
-		}
-
-		public IActionResult LogOut()
-		{
-			HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-			return RedirectToAction("Login", "KhachHang");
-		}
+            HttpContext.SignOutAsync(authScheme); // Đảm bảo xóa đúng cookie
+            return RedirectToAction("Login", "KhachHang"); // Chuyển về trang login
+        }
 
 
-		public IActionResult Profile(int id)
+
+        //[Authorize]
+        [Authorize(Policy = "UserOnly")]
+        public IActionResult Profile(int id)
 		{
 
 
@@ -283,10 +300,11 @@ namespace Shop_Classix.Controllers
 						  join pc in _dataContext.productComments on p.Id equals pc.ProductId
 						  select new
 						  {
+							  Idcm=pc.Id,
 							  ID = pc.AccountId,
 							  Images = p.Image,
 							  Names = p.Name,
-							  Content = pc.Cotent,
+							  Content = pc.Content,
 							  Ratings = pc.Rating,
 							  IdProduct = pc.ProductId
 						  };
@@ -302,5 +320,69 @@ namespace Shop_Classix.Controllers
 
 			return View();
 		}
-	}
+		public IActionResult Favorite(int id)
+		{
+
+            //danh sách yêu thích vui
+            // Lấy ID người dùng đang đăng nhập
+            var customerEmail = User.Identity.Name;
+            var customerId = _dataContext.customers
+             .Where(c => c.Email == customerEmail)
+             .Select(c => c.Id)
+
+             .FirstOrDefault();
+            if (id != 0)
+            {
+                var productf = _dataContext.favoriteProducts.FirstOrDefault(p => p.ProductId == id && p.CustomerId == customerId);
+                if (productf != null)
+                {
+                    // Xóa sản phẩm yêu thích
+                    _dataContext.favoriteProducts.Remove(productf);
+                    // Lưu thay đổi vào cơ sở dữ liệu
+                    _dataContext.SaveChanges();
+                    var productfa = _dataContext.products.Where(p => p.Id == id).FirstOrDefault();
+                    productfa.FavoriteNumber--;
+                    _dataContext.SaveChanges();
+                }
+            }
+            var favorite = _dataContext.favoriteProducts
+                .Where(f => f.CustomerId == customerId)
+                .ToList();
+
+            var favoritelist = from f in favorite
+                               join p in _dataContext.products on f.ProductId equals p.Id
+                               select new ProductList
+                               {
+                                   Id = p.Id,
+                                   Image = p.Image,
+                                   Name = p.Name,
+                                   Price = p.Price,
+                                   Rating = p.Rating
+                               };
+            ViewBag.AlertMessage = customerEmail;
+            ViewBag.favoritelist = favoritelist.ToList();
+            ViewBag.number = favoritelist.Count();
+			return View();
+
+
+        }
+
+        [HttpPost]
+        public IActionResult UpdateComment(int id, string content, int rating)
+        {
+            // Tìm bình luận theo ID
+            var comment = _dataContext.productComments.FirstOrDefault(c => c.Id == id);
+            if (comment != null)
+            {
+                // Cập nhật thông tin bình luận
+                comment.Content = content;
+                comment.Rating = rating;
+
+                // Lưu thay đổi vào cơ sở dữ liệu
+                _dataContext.SaveChanges();
+            }
+
+            return Json(new { success = true });
+        }
+    }
 }

@@ -7,7 +7,7 @@ namespace Shop_Classix.Models
     {
         [Key]
         public int Id { get; set; }
-        public string Cotent { get; set; } = string.Empty;
+        public string Content { get; set; } = string.Empty;
      
         public int Rating { get; set; }
 
@@ -16,7 +16,7 @@ namespace Shop_Classix.Models
 
         [ForeignKey("products")]
         public int ProductId { get; set; }
-        public DateTime CreateAt { get; set; }
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
         //tham chieu den Accounts
         public virtual CustomerModel customers { get; set; }
         //tham chieu den products

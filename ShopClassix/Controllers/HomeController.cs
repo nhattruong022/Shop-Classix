@@ -11,18 +11,24 @@ using X.PagedList.Extensions;
 using Shop_Classix.Helper;
 using Microsoft.CodeAnalysis;
 using NuGet.Protocol.Plugins;
+using Microsoft.AspNetCore.Identity;
 
 namespace Shop_Classix.Controllers
 {
+
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly DataContext dataContext;
+
+
+
         public HomeController(ILogger<HomeController> logger, DataContext _datacontext)
         {
             dataContext = _datacontext;
             _logger = logger;
         }
+
 
         public IActionResult Index(int? categoryId)
         {
@@ -147,7 +153,7 @@ namespace Shop_Classix.Controllers
         }
 
 
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(int id)
         {
             // Lấy sản phẩm từ cơ sở dữ liệu theo Id
             var product=dataContext.products.Where(p=>p.Id == id).FirstOrDefault();
@@ -191,11 +197,15 @@ namespace Shop_Classix.Controllers
             {
                 rating = productcomment
                   .Average(rc => rc.Rating);
-
             }
             ViewBag.rating = rating;
-        
 
+            var comments = await dataContext.productComments
+                                     .Where(c => c.ProductId == id)
+                                     .Include(c => c.customers)
+                                     .OrderByDescending(c => c.CreatedAt)
+                                     .ToListAsync();
+            ViewBag.comments = comments;
 
             return View();
         }
@@ -292,20 +302,55 @@ namespace Shop_Classix.Controllers
             });
         }
 
-
-
-
-
-
-
-
-
-
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [Authorize] // Chỉ cho phép người dùng đã đăng nhập
+        [HttpPost]
+        public async Task<IActionResult> AddComment(int productId, string content,int rating)
+        {
+            if (string.IsNullOrEmpty(content))
+            {
+                TempData["Error"] = "Nội dung bình luận không được để trống.";
+                return RedirectToAction("Details", "Home", new { id = productId });
+            }
+
+            if (content.Length > 100)
+            {
+                TempData["Error"] = "Nội dung bình luận không được vượt quá 100 ký tự.";
+                return RedirectToAction("Details", "Home", new { id = productId });
+            }
+
+            var userId = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value;
+            if (userId == null) return Unauthorized();
+            int accountId = int.Parse(userId);
+            var customer = await dataContext.customers.FindAsync(accountId);
+            if (customer == null) return Unauthorized();
+
+            var existingComment = await dataContext.productComments
+        .FirstOrDefaultAsync(c => c.ProductId == productId && c.AccountId == accountId);
+
+            if (existingComment != null)
+            {
+                TempData["Error"] = "Bạn đã bình luận cho sản phẩm này rồi.";
+                return RedirectToAction("Details", "Home", new { id = productId });
+            }
+
+            var comment = new ProductCommentModel
+            {
+                ProductId = productId,
+                AccountId = accountId,
+                Content = content,
+                Rating = rating
+            };
+
+            dataContext.productComments.Add(comment);
+            await dataContext.SaveChangesAsync();
+
+            return RedirectToAction("Details", "Home", new { id = productId });
         }
     }
 }

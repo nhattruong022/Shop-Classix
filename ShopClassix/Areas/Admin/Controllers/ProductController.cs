@@ -1,19 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Shop_Classix.Models;
+using Shop_Classix.Helper;
 using Shop_Classix.Repository;
 
 
 namespace Shop_Classix.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(AuthenticationSchemes = "AdminCookie")]
     public class ProductController : Controller
     {
         private readonly DataContext _dataContext;
         private const int PageSize = 5;
-        public ProductController(DataContext dataContext)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public ProductController(DataContext dataContext, IWebHostEnvironment webHostEnvironment)
         {
             _dataContext = dataContext;
+            _webHostEnvironment = webHostEnvironment;
         }
+
+
         [HttpGet("Admin/Product")]
         public async Task<IActionResult> Index(string? name, string cate, int page = 1)
         {
@@ -53,16 +63,103 @@ namespace Shop_Classix.Areas.Admin.Controllers
 
             return View();
         }
-        [HttpGet("Admin/Product/Edit")]
-        public IActionResult Edit()
+
+        // GET: Admin/Product/Add
+        [HttpGet("Add")]
+        public async Task<IActionResult> Add()
         {
-            return View();
+            ViewBag.Categories = new SelectList(await _dataContext.categories.ToListAsync(), "Id", "Name");
+            return View();  
         }
 
-        [HttpGet("Admin/Product/Add")]
-        public IActionResult Add()
+        [Authorize(Policy = "AdminOnly")]
+        [HttpPost("Add")]
+        public async Task<IActionResult> Add(ProductsModel product)
         {
-            return View();
+            // Kiểm tra Slug trùng lặp
+            product.Slug = Slug.GenerateSlug(product.Name);
+            if (await _dataContext.products.AnyAsync(p => p.Slug == product.Slug))
+            {
+                ModelState.AddModelError("Slug", "Sản phẩm với tên này đã tồn tại.");
+                ViewBag.Categories = new SelectList(await _dataContext.categories.ToListAsync(), "Id", "Name");
+                return View(product);
+            }
+
+            // Xử lý upload file ảnh
+            if (product.ImageUpLoad != null)
+            {
+                string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "media/products");
+                string imageName = Guid.NewGuid() + "_" + product.ImageUpLoad.FileName;
+                string filePath = Path.Combine(uploadDir, imageName);
+
+                using (var fs = new FileStream(filePath, FileMode.Create))
+                {
+                    await product.ImageUpLoad.CopyToAsync(fs);
+                }
+                product.Image = imageName;
+            }
+
+            // Gán các giá trị mặc định
+            product.Views = 0;
+            product.CreatedAt = DateTime.Now;
+            product.UpdatedAt = DateTime.Now;
+
+            // Lưu sản phẩm vào database
+            await _dataContext.AddAsync(product);
+            await _dataContext.SaveChangesAsync();
+            TempData["success"] = "Thêm sản phẩm thành công!";
+            return RedirectToAction("Index");
+        }
+
+        [Authorize(Policy = "AdminOnly")]
+        [HttpGet("Edit/{id}")]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var product = await _dataContext.products
+                .Include(p => p.category)
+                .FirstOrDefaultAsync(p => p.Id == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Categories = new SelectList(await _dataContext.categories.ToListAsync(), "Id", "Name");
+            return View(product);
+        }
+        [HttpPost("Edit/{id}")]
+        public async Task<IActionResult> Edit(ProductsModel product)
+        {
+            // Kiểm tra Slug trùng lặp
+            product.Slug = Slug.GenerateSlug(product.Name);
+            if (await _dataContext.products.AnyAsync(p => p.Slug == product.Slug && p.Id != product.Id))
+            {
+                ModelState.AddModelError("Slug", "Sản phẩm với tên này đã tồn tại.");
+                ViewBag.Categories = new SelectList(await _dataContext.categories.ToListAsync(), "Id", "Name");
+                return View(product);
+            }
+
+            // Xử lý upload file ảnh mới (nếu có)
+            if (product.ImageUpLoad != null)
+            {
+                string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "media/products");
+                string imageName = Guid.NewGuid() + "_" + product.ImageUpLoad.FileName;
+                string filePath = Path.Combine(uploadDir, imageName);
+
+                using (var fs = new FileStream(filePath, FileMode.Create))
+                {
+                    await product.ImageUpLoad.CopyToAsync(fs);
+                }
+                product.Image = imageName;
+            }
+
+            // Cập nhật thông tin sản phẩm
+            product.UpdatedAt = DateTime.Now;
+            _dataContext.Update(product);
+            await _dataContext.SaveChangesAsync();
+
+            TempData["success"] = "Chỉnh sửa sản phẩm thành công!";
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -91,5 +188,4 @@ namespace Shop_Classix.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
     }
-
 }

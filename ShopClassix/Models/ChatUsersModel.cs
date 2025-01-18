@@ -1,17 +1,24 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
+﻿    using System.ComponentModel.DataAnnotations.Schema;
+    using System.ComponentModel.DataAnnotations;
 
-namespace Shop_Classix.Models
-{
-    public class ChatUsersModel
+    namespace Shop_Classix.Models
     {
-        [Key]
-        public int Id { get; set; }
-        public string? MessageContent { get; set; }
-        [ForeignKey("customers")]
-        public int AccountId { get; set; }
-        public DateTime CreateAt { get; set; }
-        //tham chieu den Accounts
-        public virtual CustomerModel customers { get; set; }
+        public class ChatUsersModel
+        {
+            [Key]
+            public int Id { get; set; }
+
+            public string sender {  get; set; }
+
+            public string receiver {  get; set; }
+        
+            public string? MessageContent { get; set; }
+            [ForeignKey("customers")]
+            public int AccountId { get; set; }
+            public DateTime CreateAt { get; set; }
+            //tham chieu den Accounts
+            public virtual CustomerModel customers { get; set; }
+
+
+        }
     }
-}

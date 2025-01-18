@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Models;
@@ -8,6 +9,7 @@ namespace Shop_Classix.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
+    [Authorize(AuthenticationSchemes = "AdminCookie")]
     public class CategoryController : Controller
     {
         public static string GenerateSlug(string? name)
@@ -93,8 +95,8 @@ namespace Shop_Classix.Areas.Admin.Controllers
                 string errorMessage = string.Join("\n", errors);
                 return BadRequest(errorMessage);
             }
-            return View(category);
         }
+        
         [HttpGet("Admin/Category/Add")]
         public async Task<IActionResult> Add()
         {

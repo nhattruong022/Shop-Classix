@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Repository;
+using Microsoft.AspNetCore.SignalR;
 using Shop_Classix.Service;
 using Microsoft.AspNetCore.Http;
-using SignalRChat.Hubs;
+using System.Security.Claims;
+using Shop_Classix.Helper;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,13 +23,32 @@ builder.Services.AddDbContext<DataContext>(options =>
 // Cấu hình MVC cho Controllers và Views
 builder.Services.AddControllersWithViews();
 
+
+
 // Cấu hình xác thực với Cookie Authentication
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+builder.Services.AddAuthentication(options =>
+{ 
+
+    //mặc định là UserCookie
+    options.DefaultScheme = "UserCookie";
+    options.DefaultChallengeScheme ="UserCookie";
+})      //thêm cookie User
+.AddCookie("UserCookie", options =>
 {
-    options.LoginPath = "/KhachHang/Login";  // Người dùng chưa đăng nhập -> chuyển hướng đến trang đăng nhập
-    options.LogoutPath = "/KhachHang/LogOut";  // Trang xử lý đăng xuất
-    options.AccessDeniedPath = "/AccessDenied";  // Người dùng đã đăng nhập nhưng không đủ quyền truy cập
+    options.Cookie.Name = "UserCookie";
+    options.LoginPath = "/KhachHang/Login";  // nếu chưa đăng nhập thì chuyển sang trang đăng nhập
+    options.AccessDeniedPath = "/AccessDenied";  // người dùng đã đăng nhập nhưng không có quyền truy cập
+})  //thêm cookie Admin
+.AddCookie("AdminCookie", options =>
+{
+    options.Cookie.Name = "AdminCookie";
+    options.LoginPath = "/KhachHang/Login";   // nếu admin chưa đăng nhập thì chuyển sang trang đăng nhập
+    options.AccessDeniedPath = "/AccessDenied";   // người dùng đã đăng nhập nhưng không có quyền truy cập
 });
+
+
+
+
 
 // Cấu hình session
 builder.Services.AddDistributedMemoryCache();
@@ -38,10 +59,13 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+
+
 // Cấu hình phân quyền admin
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+    options.AddPolicy("UserOnly", policy => policy.RequireRole("User"));
 });
 
 // Cấu hình dịch vụ email
@@ -54,13 +78,17 @@ builder.Services.AddHttpContextAccessor();
 // Thêm SignalR services before building the app
 builder.Services.AddSignalR();
 
+//// Đăng ký CustomUserIdProvider
+//builder.Services.AddSingleton<IUserIdProvider, CustomUserIdProvider>();
 
 var app = builder.Build();
 
-
-
 //cấu hình endpoint cho SignalR
-app.MapHub<ChatHub>("/chathub");
+app.MapHub<ChatHub>("/chatHub");
+app.MapHub<ProductHub>("/productHub");
+
+
+
 
 // Cấu hình HTTP request pipeline
 if (app.Environment.IsDevelopment())
@@ -83,10 +111,12 @@ app.UseSession();  // Sử dụng session
 app.UseAuthentication();  // Cấu hình xác thực
 app.UseAuthorization();  // Cấu hình phân quyền
 
+
 // Cấu hình route cho Admin
 app.MapControllerRoute(
     name: "areaRoute",
     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
 
 // Cấu hình route cho trang chủ
 app.MapControllerRoute(

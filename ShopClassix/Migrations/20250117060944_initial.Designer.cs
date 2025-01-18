@@ -12,7 +12,7 @@ using Shop_Classix.Repository;
 namespace Shop_Classix.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20250112031540_initial")]
+    [Migration("20250117060944_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -69,6 +69,14 @@ namespace Shop_Classix.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("MessageContent")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("receiver")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("sender")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -258,7 +266,6 @@ namespace Shop_Classix.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OrderNotes")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PaymentMethod")
@@ -373,6 +380,9 @@ namespace Shop_Classix.Migrations
 
                     b.Property<int>("Views")
                         .HasColumnType("int");
+
+                    b.Property<double>("originalprice")
+                        .HasColumnType("float");
 
                     b.HasKey("Id");
 

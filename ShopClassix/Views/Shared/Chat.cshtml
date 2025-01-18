@@ -1,155 +1,181 @@
-﻿ <!-- Chat Popup Button -->
- <button class="chat-popup-btn" onclick="openChat()">Chat</button>
+﻿<!-- Chat Popup Button -->
+<button class="chat-popup-btn" onclick="openChat()">💬 Chat</button>
 
- <!-- Chat Popup -->
- <div id="chatPopup" class="chat-popup">
-     <div class="chat-popup-header">
-         <h4>Chat with Us</h4>
-         <button class="close-btn" onclick="closeChat()">X</button>
-     </div>
-     <div class="chat-popup-body">
-         <div id="chatMessages" class="chat-messages">
-             <!-- Chat messages will appear here -->
-         </div>
-         <textarea id="chatInput" placeholder="Type your message..."></textarea>
-         <button class="send-btn" onclick="sendMessage()">Send</button>
-     </div>
- </div>
+<!--Chat Popup -->
+<div id="chatPopup" class="chat-popup">
+    <div class="chat-popup-header">
+        <h4>Chat with Us</h4>
+        <button class="close-btn" onclick="closeChat()">&times;</button>
+    </div>
+    <div id="chatMessages" class="chat-popup-body">
+        <!-- Chat messages will appear here -->
+    </div>
+    <div class="chat-popup-footer">
+        <textarea id="chatInput" placeholder="Type your message..."></textarea>
+        <button class="send-btn" onclick="sendMessage()">Send</button>
+    </div>
+</div>
 
 
- <!-- Blog Section End -->
 
- <style>
+<!-- Blog Section End -->
 
- 	/* Style for the chat popup button */
- 	.chat-popup-btn {
- 		position: fixed;
- 		bottom: 20px;
- 		right: 20px;
- 		background-color: #007bff;
- 		color: white;
- 		padding: 15px;
- 		border: none;
- 		border-radius: 10%;
- 		font-size: 20px;
- 		cursor: pointer;
- 	}
+<style>
 
- 		.chat-popup-btn:hover {
- 			background-color: #0056b3;
- 		}
+    /* Style for the chat popup button */
+    .chat-popup-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background-color: #007bff;
+        color: white;
+        padding: 15px;
+        border: none;
+        border-radius: 10%;
+        font-size: 20px;
+        cursor: pointer;
+    }
 
- 	/* Style for the chat popup */
- 	.chat-popup {
- 		display: none;
- 		position: fixed;
- 		bottom: 0;
- 		right: 20px;
- 		width: 300px;
- 		background-color: #fff;
- 		border: 1px solid #ccc;
- 		border-radius: 5px;
- 		box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
- 		z-index: 1000;
- 	}
+        .chat-popup-btn:hover {
+            background-color: #0056b3;
+        }
 
- 	/* Header of the chat */
- 	.chat-popup-header {
- 		background-color: #007bff;
- 		color: white;
- 		padding: 10px;
- 		text-align: center;
- 		font-size: 16px;
- 		border-top-left-radius: 5px;
- 		border-top-right-radius: 5px;
- 		display: flex;
- 		justify-content: space-between;
- 		align-items: center;
- 	}
+    /* Style for the chat popup */
+    .chat-popup {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 20px;
+        width: 300px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
 
- 	/* Close button */
- 	.close-btn {
- 		background-color: transparent;
- 		border: none;
- 		color: white;
- 		font-size: 20px;
- 		cursor: pointer;
- 	}
+    /* Header of the chat */
+    .chat-popup-header {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        text-align: center;
+        font-size: 16px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
- 	/* Chat message area */
- 	.chat-popup-body {
- 		padding: 10px;
- 		height: 250px;
- 		overflow-y: auto;
- 	}
+    /* Close button */
+    .close-btn {
+        background-color: transparent;
+        border: none;
+        color: white;
+        font-size: 20px;
+        cursor: pointer;
+    }
 
- 	.chat-messages {
- 		margin-bottom: 10px;
- 	}
+    /* Chat message area */
+    .chat-popup-body {
+        padding: 10px;
+        height: 250px;
+        overflow-y: auto;
+    }
 
- 	/* Message input area */
- 	textarea {
- 		width: 100%;
- 		padding: 10px;
- 		border: 1px solid #ccc;
- 		border-radius: 5px;
- 		resize: none;
- 		margin-bottom: 10px;
- 	}
+    .chat-messages {
+        margin-bottom: 10px;
+    }
 
- 	/* Send button */
- 	.send-btn {
- 		width: 100%;
- 		padding: 10px;
- 		background-color: #007bff;
- 		color: white;
- 		border: none;
- 		border-radius: 5px;
- 		cursor: pointer;
- 	}
+    /* Message input area */
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+        margin-bottom: 10px;
+    }
 
- 		.send-btn:hover {
- 			background-color: #0056b3;
- 		}
+    /* Send button */
+    .send-btn {
+        width: 100%;
+        padding: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
 
- </style>
+        .send-btn:hover {
+            background-color: #0056b3;
+        }
+
+</style>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/6.0.1/signalr.js"></script>
- <script src="~/js/chat.js"></script>
-
 <script>
-    // Kết nối đến SignalR Hub
-    const connection = new signalR.HubConnectionBuilder()
+    const userConnection = new signalR.HubConnectionBuilder()
         .withUrl("/chatHub")
         .build();
 
-    // Bắt đầu kết nối với server
-    connection.start()
-        .then(() => console.log("SignalR connected"))
+    userConnection.start()
+        .then(() => console.log("SignalR connected for user"))
         .catch(err => console.error("Connection failed: ", err));
 
-    // Lắng nghe sự kiện 'ReceiveMessage' từ SignalR
-    connection.on("ReceiveMessage", function(user, message){
-        const chatMessages = document.getElementById("chatMessages");
+
+    userConnection.on("ReceiveMessage", function (user, message, timeStamp) {
+        const chatMessages = document.getElementById("userChatMessages");
+        if (!chatMessages) {
+            console.error("Element with ID 'userChatMessages' not found.");
+            return;
+        }
+
         const newMessage = document.createElement("div");
-        newMessage.textContent = `${user}: ${message}`;
+
+        // Hiển thị tin nhắn từ admin kèm thời gian
+        newMessage.textContent = `${user}: ${message} (Received at: ${timeStamp})`;
         chatMessages.appendChild(newMessage);
-        chatMessages.scrollTop = chatMessages.scrollHeight; // Scroll to bottom of messages
+        chatMessages.scrollTop = chatMessages.scrollHeight;
     });
 
-    // Hàm gửi tin nhắn khi nhấn nút Send
+
     function sendMessage() {
-        const user = "User1"; // Thay thế bằng tên người dùng thực tế
         const message = document.getElementById("chatInput").value;
+
         if (message.trim() !== "") {
-            connection.invoke("SendMessage", user, message)
+            // Get the current timestamp
+            const timeStamp = new Date().toLocaleString(); // Current time in readable format
+
+            // Send the message to the admin via SignalR
+            userConnection.invoke("SendMessageToAdmin", message)
                 .then(() => {
-                    document.getElementById("chatInput").value = ""; // Xóa ô nhập
+                    const chatMessages = document.getElementById("chatMessages");
+
+                    // Check if the message already exists
+                    const existingMessage = Array.from(chatMessages.children).some(
+                        (msg) => msg.textContent === `You: ${message} (Sent at: ${timeStamp})`
+                    );
+
+                    if (!existingMessage) {
+                        // Show the user's message with "You: ..." prefix and timestamp
+                        const newMessage = document.createElement("div");
+                        newMessage.textContent = `You: ${message} (Sent at: ${timeStamp})`;
+                        chatMessages.appendChild(newMessage);
+
+                        // Clear input and scroll to bottom
+                        document.getElementById("chatInput").value = "";
+                        chatMessages.scrollTop = chatMessages.scrollHeight;
+                    }
                 })
                 .catch(err => console.error("Send failed: ", err));
         }
     }
+
+
 
     // Mở cửa sổ chat
     function openChat() {
@@ -160,4 +186,6 @@
     function closeChat() {
         document.getElementById("chatPopup").style.display = "none";
     }
+
+
 </script>

@@ -11,6 +11,7 @@ using Shop_Classix.Models.VnPay;
 using System.Text.RegularExpressions;
 namespace Shop_Classix.Controllers
 {
+
     public class CartController : Controller
     {
         private readonly IVnPayService _vnPayService;
@@ -29,7 +30,8 @@ namespace Shop_Classix.Controllers
         }
 
 
-        [Authorize]
+        //[Authorize]
+        [Authorize(Policy = "UserOnly")]
         public async Task<IActionResult> Cart(int page = 1)
         {
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
@@ -239,40 +241,31 @@ namespace Shop_Classix.Controllers
         [Authorize]
         public IActionResult CheckOut(CheckOutViewModel model, string payment = "C0D")
         {
-          
-
-            //thiết lập giỏ hàng
+            // Thiết lập giỏ hàng
             var cart = HttpContext.Session.Get<CartViewModel>("Cart") ?? new CartViewModel();
 
+            // Kiểm tra nếu giỏ hàng trống
             if (cart.Items == null || !cart.Items.Any())
             {
-                return RedirectToAction("Cart", "Cart");
+                TempData["ErrorMessage"] = "Your cart is empty. Please add items to your cart before checking out.";
+                return RedirectToAction("Index", "Cart"); // Chuyển hướng về trang giỏ hàng
             }
 
-            
-           
-
-            //tính tiền cọc 10%
+            // Tính tiền cọc 10%
             var totalPrice = cart.Items.Sum(item => item.TotalPrice);
             var depositAmount = totalPrice * 0.1;
 
-            
             model.Items = cart.Items;
             model.Total = totalPrice;
             model.deposit = depositAmount;
 
+            // Kiểm tra email có lưu trong cookie chưa
             var customerEmail = HttpContext.User.Claims.SingleOrDefault(p => p.Type == ClaimTypes.Email)?.Value;
+
+            // Kiểm tra email có trong database không
             var customer = dataContext.customers.SingleOrDefault(c => c.Email == customerEmail);
 
-            if (customer == null)
-            {
-                ModelState.AddModelError("", "Customer not found");
-                return View(model);
-            }
-
-        
-
-            //tạo đơn hàng
+            // Tạo đơn hàng
             var order = new OrderModel
             {
                 TotalPrice = totalPrice,
@@ -284,7 +277,7 @@ namespace Shop_Classix.Controllers
                 Address = model.Address,
                 Email = model.Email,
                 Phone = model.Phone,
-                OrderNotes = model.OrderNotes,
+                OrderNotes = string.IsNullOrEmpty(model.OrderNotes) ? null : model.OrderNotes,
                 CreateAt = DateTime.Now,
                 UpdateAt = DateTime.Now
             };
@@ -293,7 +286,8 @@ namespace Shop_Classix.Controllers
             {
                 dataContext.orders.Add(order);
                 dataContext.SaveChanges();
-               
+
+                // Lưu đơn hàng chi tiết
                 var orderDetails = cart.Items.Select(item => new OrderDetailModel
                 {
                     OrderId = order.Id,
@@ -307,6 +301,7 @@ namespace Shop_Classix.Controllers
 
                 if (payment == "Payment VNPAY")
                 {
+                    // Lưu đơn hàng VNPAY
                     var vnPayModel = new VnPaymentRequestModel
                     {
                         Amount = totalPrice,
@@ -319,7 +314,10 @@ namespace Shop_Classix.Controllers
                     return Redirect(_vnPayService.CreatePaymentUrl(HttpContext, vnPayModel));
                 }
 
+                // Xóa giỏ hàng sau khi lưu đơn hàng
                 HttpContext.Session.Remove("Cart");
+
+                // Hiện thông báo cảm ơn
                 TempData["ThankYouMessage"] = "Thank you for your order! We will process it shortly.";
                 return RedirectToAction("CheckOut", "Cart");
             }
@@ -330,8 +328,6 @@ namespace Shop_Classix.Controllers
                 return View(model);
             }
         }
-
-      
 
 
 
@@ -377,6 +373,9 @@ namespace Shop_Classix.Controllers
                     dataContext.orders.Update(order);
 
                     await dataContext.SaveChangesAsync();
+
+                    //xóa giỏ hàng sau khi lưu đơn hàng
+                    HttpContext.Session.Remove("Cart");
 
                     TempData["ThankYouMessage"] = "Payment successful! Your order has been placed.";
                     return View(response);

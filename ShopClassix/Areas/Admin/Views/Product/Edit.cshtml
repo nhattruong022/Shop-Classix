@@ -1,8 +1,8 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Admin-Edit Product";
     Layout = "_AdminSubLayout";
 }
+@model Shop_Classix.Models.ProductsModel
 
 @section Link {
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,800" rel="stylesheet">
@@ -31,57 +31,85 @@
 }
 
 <div class="card-header bg-primary text-white">
-    <h5>Add Product</h5>
+    <h5>Edit Product</h5>
 </div>
 
 <div class="card-body">
-    <form>
+    <form asp-action="Edit" asp-controller="Product" method="post" enctype="multipart/form-data">
+        <!-- Validation Summary -->
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
         <!-- Name -->
         <div class="mb-3 text-start">
-            <label for="name" class="form-label">Name</label>
-            <input value="wood table" type="text" class="form-control" id="name" placeholder="Enter name">
+            <label for="Name" class="form-label">Product Name</label>
+            <input asp-for="Name" class="form-control" placeholder="Enter product name">
+            <span asp-validation-for="Name" class="text-danger"></span>
         </div>
 
-
+        <!-- Category -->
         <div class="mb-3 text-start">
-            <label for="name" class="form-label">Category</label>
-            <select class="form-control" id="filterCategory">
-                <option value="">All Categories</option>
-                <option value="Table">Table</option>
-                <option value="Desk">Desk</option>
-                <option value="Light">Light</option>
+            <label for="CategoryId" class="form-label">Category</label>
+            <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.Categories">
+                <option value="">-- Select Category --</option>
             </select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
         </div>
 
+        <!-- Price -->
         <div class="mb-3 text-start">
-            <label for="price" class="form-label">Price</label>
-            <input value="10000vnd" type="text" class="form-control" id="name" placeholder="Enter price">
+            <label for="Price" class="form-label">Price</label>
+            <input asp-for="Price" class="form-control" placeholder="Enter price">
+            <span asp-validation-for="Price" class="text-danger"></span>
         </div>
-
 
         <!-- Description -->
         <div class="mb-3 text-start">
-            <label for="description" class="form-label">Description</label>
-            <textarea class="form-control" id="description" rows="3" placeholder="Enter description">Đây là trang web bán nội thất gỗ</textarea>
+            <label for="Description" class="form-label">Description</label>
+            <textarea asp-for="Description" class="form-control" rows="3" placeholder="Enter product description"></textarea>
+            <span asp-validation-for="Description" class="text-danger"></span>
         </div>
 
-        <!-- Logo -->
+        <!-- Image -->
         <div class="mb-3 text-start">
-            <label for="logo" class="form-label">Logo</label>
-            <input type="file" class="form-control" id="logo">
-            <img src="./assets/images/logo/logo.png" alt="" />
+            <label for="ImageUpLoad" class="form-label">Upload Image</label>
+            <img src="~/media/products/@Model.Image" style="max-width: 200px; height: auto;" />
+            <input asp-for="ImageUpLoad" type="file" class="form-control">
+            @if (!string.IsNullOrEmpty(Model.Image))
+            {
+                <img src="@Url.Content("~/images/products/" + Model.Image)" alt="Product Image" class="mt-2" style="width: 150px;">
+            }
+            <span asp-validation-for="ImageUpLoad" class="text-danger"></span>
         </div>
 
-        <!-- Phone -->
+        <!-- Status -->
         <div class="mb-3 text-start">
-            <label for="phone" class="form-label">Slug</label>
-            <input value="wood-table" type="text" class="form-control" id="slug">
+            <label for="Status" class="form-label">Status</label>
+            <select asp-for="Status" class="form-control">
+                <option value="1">Available</option>
+                <option value="0">Unavailable</option>
+            </select>
+            <span asp-validation-for="Status" class="text-danger"></span>
+        </div>
+
+        <!-- Slug (auto-generated) -->
+        <div class="mb-3 text-start">
+            <label asp-for="Slug" class="form-label"></label>
+            <input asp-for="Slug" class="form-control" readonly />
+            <span asp-validation-for="Slug" class="text-danger"></span>
+        </div>
+
+
+        <!-- Quantity -->
+        <div class="mb-3 text-start">
+            <label for="Quantity" class="form-label">Quantity</label>
+            <input asp-for="Quantity" class="form-control" placeholder="Enter product quantity">
+            <span asp-validation-for="Quantity" class="text-danger"></span>
         </div>
 
         <!-- Submit and Cancel Buttons -->
         <div class="d-flex justify-content-between">
-            <button type="submit" class="btn btn-success">Edit Product</button>
-            <button type="button" class="btn btn-secondary">Cancel</button>
+            <button type="submit" class="btn btn-success">Update Product</button>
+            <a href="@Url.Action("Index", "Product", new { Area = "Admin" })" class="btn btn-secondary">Cancel</a>
         </div>
     </form>
 </div>
