@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
+using Shop_Classix.Models;
 using Shop_Classix.Repository;
 
 namespace Shop_Classix.Areas.API.Controllers
@@ -10,9 +13,12 @@ namespace Shop_Classix.Areas.API.Controllers
     public class ProductCommentController : ControllerBase
     {
         private readonly DataContext _dataContext;
-        public ProductCommentController(DataContext dataContext)
+        private readonly IHubContext<ProductHub> _hubContext;
+
+        public ProductCommentController(DataContext dataContext, IHubContext<ProductHub> hubContext)
         {
             _dataContext = dataContext;
+            _hubContext = hubContext;
         }
         public JsonResult GetProductComment()
         {
@@ -65,6 +71,60 @@ namespace Shop_Classix.Areas.API.Controllers
                                    order.orderDetails.Any(od => od.ProductId == productId));  // Sản phẩm đã được mua
 
             return Ok(new { canReview = purchaseExists });
+        }
+
+        // Thêm bình luận cho sản phẩm
+        [HttpPost("{productId}/comment")]
+        public async Task<IActionResult> PostComment(int productId, [FromBody] ProductCommentModel model)
+        {
+            // Lấy userId từ User.Identity.Name hoặc từ Claims
+            var userIdString = User.Identity.Name ?? User.Claims.FirstOrDefault(c => c.Type == "userId")?.Value;
+
+            if (string.IsNullOrEmpty(userIdString))
+            {
+                return Unauthorized("User is not authenticated.");
+            }
+
+            // Chuyển userId từ string sang int
+            if (!int.TryParse(userIdString, out var userId))
+            {
+                return BadRequest("Invalid userId.");
+            }
+
+            // Kiểm tra người dùng đã mua sản phẩm hay chưa
+            var purchaseResult = await VerifyPurchase(userId, productId) as OkObjectResult;
+
+            if (purchaseResult?.Value is JObject response &&
+                response["canReview"] != null &&
+                (bool)response["canReview"])
+            {
+                // Thêm bình luận vào cơ sở dữ liệu
+                var productComment = new ProductCommentModel
+                {
+                    ProductId = productId,
+                    AccountId = userId,
+                    Rating = model.Rating,
+                    Content = model.Content,
+                    CreatedAt = DateTime.Now
+                };
+
+                _dataContext.productComments.Add(productComment);
+                await _dataContext.SaveChangesAsync();
+
+                // Cập nhật số lượng bình luận và điểm đánh giá
+                var reviewCount = _dataContext.productComments.Count(rc => rc.ProductId == productId);
+                var averageRating = await _dataContext.productComments
+                    .Where(rc => rc.ProductId == productId)
+                    .AverageAsync(rc => (double?)rc.Rating);
+
+                // Gửi thông báo cập nhật cho tất cả client qua SignalR
+                await _hubContext.Clients.All.SendAsync("ReceiveProductCount", reviewCount);
+                await _hubContext.Clients.All.SendAsync("ReceiveProductRating", averageRating ?? 0.0);
+
+                return Ok(new { message = "Comment posted successfully!" });
+            }
+
+            return BadRequest("You are not eligible to review this product.");
         }
     }
 }
