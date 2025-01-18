@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Shop_Classix.Repository;
 
 namespace Shop_Classix.Areas.API.Controllers
@@ -52,6 +53,18 @@ namespace Shop_Classix.Areas.API.Controllers
            
 
             return new JsonResult(rating);
+        }
+
+        // Xác thực người dùng đã mua sản phẩm để được phép đánh giá
+        [HttpGet("{userId}/{productId}/verify-purchase")]
+        public async Task<IActionResult> VerifyPurchase(int userId, int productId)
+        {
+            var purchaseExists = await _dataContext.orders
+                .AnyAsync(order => order.CustomerId == userId &&
+                                   order.Status == 4 &&  // Đơn hàng đã giao thành công
+                                   order.orderDetails.Any(od => od.ProductId == productId));  // Sản phẩm đã được mua
+
+            return Ok(new { canReview = purchaseExists });
         }
     }
 }
