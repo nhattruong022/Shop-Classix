@@ -295,7 +295,6 @@
 </div>
 
 
-
 @section Script
 {
     <script src="@Url.Content("~/Classix/user/js/jquery-3.3.1.min.js")"></script>
@@ -308,219 +307,82 @@
     <script src="@Url.Content("~/Classix/user/js/main.js")"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/7.0.5/signalr.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
 
-            document.getElementById("loginLink").addEventListener("click", function (event) {
-                event.preventDefault();  // Ngừng hành động mặc định (tránh nhảy trang mới)
-                loginModal.show();  // Hiển thị modal đăng nhập
-            });
-        });
-    </script>
     <script>
-
         function GetViewCount() {
-
             $.get(`/api/Product/${@product.Id}/viewcount`, function (response) {
-
-                console.log(response); // Kiểm tra giá trị của response
-
                 if (response !== undefined && response !== null) {
-
-                    // Kiểm tra nếu response là một số hợp lệ
-
                     let views = parseInt(response, 10);
-
                     if (!isNaN(views)) {
-
-                        $('#viewcount').text(`| (${views} views)`); // Hiển thị giá trị dưới định dạng chính xác
-
-                    } else {
-
-                        console.error('viewcount không phải là một số hợp lệ');
-
+                        $('#viewcount').text(`| (${views} views)`);
                     }
-
-                } else {
-
-                    console.error('viewcount không có trong phản hồi');
-
                 }
-
             }).fail(function () {
-
                 console.error('Lỗi khi lấy số lượt views');
-
             });
-
         }
-
-        // Gọi hàm updateViewCount
-
-        setInterval(GetViewCount, 10);
-
-    </script>
-    <script>
+        setInterval(GetViewCount, 10000);
 
         function GetReviews() {
-
             $.get(`/api/ProductComment/${@product.Id}/reviews`, function (response) {
-
-                console.log(response); // Kiểm tra giá trị của response
-
                 if (response !== undefined && response !== null) {
-
-                    // Kiểm tra nếu response là một số hợp lệ
-
                     let count = parseInt(response, 10);
-
                     if (!isNaN(count)) {
-
-                        $('#reviews').text(`| (${count} reviews)`); // Hiển thị giá trị dưới định dạng chính xác
-
-                    } else {
-
-                        console.error('reviews không phải là một số hợp lệ');
-
+                        $('#reviews').text(`| (${count} reviews)`);
                     }
-
-                } else {
-
-                    console.error('reviews không có trong phản hồi');
-
                 }
-
             }).fail(function () {
-
                 console.error('Lỗi khi lấy số lượt reviews');
-
             });
-
         }
-
-        // Gọi hàm updateViewCount
-
-        setInterval(GetReviews, 10);
-
-    </script>
-
-    <script>
+        setInterval(GetReviews, 10000);
 
         function GetFavorite() {
-
             $.get(`/api/Product/${@product.Id}/favorite`, function (response) {
-
-                console.log(response); // Kiểm tra giá trị của response
-
                 if (response !== undefined && response !== null) {
-
-                    // Kiểm tra nếu response là một số hợp lệ
-
                     let favorite = parseInt(response, 10);
-
                     if (!isNaN(favorite)) {
-
-                        $('#favorite').text(` (${favorite} favorite)`); // Hiển thị giá trị dưới định dạng chính xác
-
-                    } else {
-
-                        console.error('favorite không phải là một số hợp lệ');
-
+                        $('#favorite').text(` (${favorite} favorite)`);
                     }
-
-                } else {
-
-                    console.error('favorite không có trong phản hồi');
-
                 }
-
             }).fail(function () {
-
                 console.error('Lỗi khi lấy số lượt favorite');
-
             });
-
         }
+        setInterval(GetFavorite, 10000);
 
-        // Gọi hàm updateViewCount
-
-        setInterval(GetFavorite, 10);
-
-    </script>
-    <script>
-       function GetRating() {
+        function GetRating() {
             $.get(`/api/ProductComment/${@product.Id}/rating`, function (response) {
-                console.log(response); // Kiểm tra giá trị của response
-
                 if (response !== undefined && response !== null) {
-                    // Kiểm tra nếu response là một số hợp lệ
                     let rating = parseFloat(response);
                     if (!isNaN(rating)) {
-                        $('#rating').text(`${rating.toFixed(1)}`); // Hiển thị giá trị với 1 chữ số thập phân
-                    } else {
-                        console.error('rating không phải là một số hợp lệ');
+                        $('#rating').text(`${rating.toFixed(1)}`);
                     }
-                } else {
-                    console.error('rating không có trong phản hồi');
                 }
             }).fail(function () {
                 console.error('Lỗi khi lấy số lượt rating');
             });
         }
+        setInterval(GetRating, 10000);
 
-        // Gọi hàm GetRating mỗi 10 giây
-        setInterval(GetRating, 10); // Thay đổi 10 thành 10000 để gọi mỗi 10 giây
-
-        // Gọi hàm ngay khi tải trang để có giá trị ban đầu
-        $(document).ready(function () {
-            GetRating();
-        });
-    </script>
-    <script>
         function GetQuantity() {
             $.get(`/api/Product/${@product.Id}/quantitys`, function (response) {
-
-                console.log(response); // Kiểm tra giá trị của response
-
                 if (response !== undefined && response !== null) {
-
-                    // Kiểm tra nếu response là một số hợp lệ
-
                     let quantity = parseInt(response, 10);
-
                     if (!isNaN(quantity)) {
                         if (quantity > 0) {
-
-                            $('#quantitys').text(`${quantity} `); // Hiển thị giá trị dưới định dạng chính xác
+                            $('#quantitys').text(`${quantity}`);
+                        } else {
+                            $('#quantitys').text(` out of stock`);
                         }
-                        else {
-                            $('#quantitys').text(` out of stock `);
-                        }
-                    } else {
-
-                        console.error('quantitys không phải là một số hợp lệ');
-
                     }
-
-                } else {
-
-                    console.error('quantitys không có trong phản hồi');
-
                 }
-
             }).fail(function () {
-
                 console.error('Lỗi khi lấy số lượt quantitys');
-
             });
         }
+        setInterval(GetQuantity, 10000);
 
-        setInterval(GetQuantity, 100);
-
-    </script>
-    <script>
         const connection = new signalR.HubConnectionBuilder()
             .withUrl("/productHub")
             .build();
@@ -529,6 +391,39 @@
 
         connection.on("ReceiveProductCount", function (count) {
             document.getElementById("productCount").innerText = count;
+        });
+
+        // Xử lý sự kiện submit đánh giá
+        $('#ratingForm').submit(function (event) {
+            event.preventDefault();
+
+            const rating = $('input[name="rating"]:checked').val();
+            const review = $('#review').val();
+
+            $.post('/api/ProductComment/submit', { productId: '@product.Id', rating, review })
+                .done(function (response) {
+                    alert('Thank you for your review!');
+                    GetReviews(); // Cập nhật lại số reviews
+                    GetRating(); // Cập nhật lại rating
+                })
+                .fail(function () {
+                    alert('Failed to submit your review. Please try again.');
+                });
+        });
+
+        // Cập nhật giao diện sao đánh giá khi người dùng thay đổi sao
+        document.querySelectorAll('.rating-stars input').forEach((input, index) => {
+            input.addEventListener('change', () => {
+                document.querySelectorAll('.rating-stars label i').forEach((star, starIndex) => {
+                    if (starIndex <= index) {
+                        star.classList.remove('fa-star-o');
+                        star.classList.add('fa-star');
+                    } else {
+                        star.classList.remove('fa-star');
+                        star.classList.add('fa-star-o');
+                    }
+                });
+            });
         });
     </script>
 }
