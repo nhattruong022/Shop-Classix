@@ -237,7 +237,22 @@
 
         </section>
         <!-- Product Details Section End -->
-
+        <div class="rating-section mb-5">
+            <h4>Rate this product</h4>
+            <form id="ratingForm">
+                <div class="rating-stars">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <input type="radio" id="star-@i" name="rating" value="@i" />
+                        <label for="star-@i" title="@i star">
+                            <i class="fa fa-star"></i> <!-- Biểu tượng sao đầy -->
+                        </label>
+                    }
+                </div>
+                <textarea name="review" id="review" rows="4" placeholder="Write your review here..." required></textarea>
+                <button type="submit" class="primary-btn">Submit Rating</button>
+            </form>
+        </div>
 
         <!-- Related Product Section Begin -->
         <section class="related-product">

@@ -7,4 +7,8 @@ public class ProductHub : Hub
     {
         await Clients.All.SendAsync("ReceiveProductCount", count);
     }
+    public async Task UpdateProductRating(double rating)
+    {
+        await Clients.All.SendAsync("ReceiveProductRating", rating);
+    }
 }
