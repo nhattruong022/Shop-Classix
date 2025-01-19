@@ -278,77 +278,10 @@
             </form>
             <div id="revenueData">
 
-<<<<<<< HEAD
-                    @if (RevenuesMonth != null)
-                    {
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Name</th>
-                                    <th>Quantity</th>
-                                    <th>Total Capital</th>
-                                    <th>Total Sales</th>
-                                    <th>Total Profit</th>
-                                </tr>
-
-                            </thead>
-                            <tbody>
-                                @if (ViewBag.RevenuesMonth != null)
-                                {
-                                    foreach (var item in ViewBag.RevenuesMonth)
-                                    {
-                                        TotalCapital += item.TotalCapital;
-                                        TotalSales += item.TotalSales;
-                                        TotalProfit += item.TotalProfit;
-                                        <tr>
-                                            <td>@item.ProductType</td>
-                                            <td>@item.Name</td>
-                                            <td>@item.QuantitySold</td>
-                                            <td>@item.TotalCapital VND</td>
-                                            <td>@item.TotalSales VND</td>
-                                            <td>@item.TotalProfit VND</td>
-
-
-                                        </tr>
-                                    }
-                                }
-                                else
-                                {
-                                    <tr>
-                                        <td colspan="5">No data available.</td>
-                                    </tr>
-                                }
-                                <tr>
-                                    <th>Financial Summary: </th>
-                                    <th></th>
-                                    <th></th>
-                                    <th>@TotalCapital VND</th>
-                                    <th>@TotalSales VND</th>
-                                    <th>@TotalProfit VND</th>
-                                </tr>
-
-                                <tr><th>Revenue: @ViewBag.Revenues VND</th></tr>
-                        </table>
-                    }
-                    else
-                    {
-                        <div style="text-align: center; margin-top: 20px;">
-                            <h4>No revenue data available for this month</h4>
-                        </div>
-                    }
-                </div> <!-- This is where the table will be rendered dynamically -->
-
-                            }
-                        }
-                        else
-                        {
-=======
                 @if (RevenuesMonth != null)
                 {
                     <table class="table">
                         <thead>
->>>>>>> d964745404fe84227a30a3e4ba2954aaf4f303d8
                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
@@ -488,19 +421,19 @@
 
         if (data && data.value && data.value.length > 0) {
             let tableHtml = `
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Product Type</th>
-                                    <th>Name</th>
-                                    <th>Quantity Sold</th>
-                                    <th>Total Capital</th>
-                                    <th>Total Sales</th>
-                                    <th>Total Profit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                `;
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Product Type</th>
+                                        <th>Name</th>
+                                        <th>Quantity Sold</th>
+                                        <th>Total Capital</th>
+                                        <th>Total Sales</th>
+                                        <th>Total Profit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                    `;
 
             var totalCapital = 0;
             var totalSales = 0;
@@ -513,35 +446,35 @@
                 totalProfit += item.totalProfit;
 
                 tableHtml += `
-                            <tr>
-                                <td>${item.productType}</td>
-                                <td>${item.name}</td>
-                                <td>${item.quantitySold}</td>
-                                <td>${item.totalCapital} VND</td>
-                                <td>${item.totalSales} VND</td>
-                                <td>${item.totalProfit} VND</td>
-                            </tr>
-                        `;
+                                <tr>
+                                    <td>${item.productType}</td>
+                                    <td>${item.name}</td>
+                                    <td>${item.quantitySold}</td>
+                                    <td>${item.totalCapital} VND</td>
+                                    <td>${item.totalSales} VND</td>
+                                    <td>${item.totalProfit} VND</td>
+                                </tr>
+                            `;
             });
 
             // Add the financial summary
             tableHtml += `
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>Financial Summary: </th>
-                                <th></th>
-                                <th></th>
-                                <th>${totalCapital} VND</th>
-                                <th>${totalSales} VND</th>
-                                <th>${totalProfit} VND</th>
-                            </tr>
-                            <tr>
-                                <th>Revenue: ${data.value[0].revenue} VND</th>
-                            </tr>
-                        </tfoot>
-                    </table>
-                `;
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Financial Summary: </th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>${totalCapital} VND</th>
+                                    <th>${totalSales} VND</th>
+                                    <th>${totalProfit} VND</th>
+                                </tr>
+                                <tr>
+                                    <th>Revenue: ${data.value[0].revenue} VND</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    `;
 
             // Append the table HTML to the container
             tableContainer.innerHTML = tableHtml;
@@ -678,4 +611,3 @@
         }
     };
 </script>
-

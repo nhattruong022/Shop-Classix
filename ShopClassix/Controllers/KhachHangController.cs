@@ -104,19 +104,19 @@ namespace Shop_Classix.Controllers
                 }
                 else
                 {
-                    // Create the claims based on user role
+                    // tạo các claims
                     var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Email, khachHang.Email),  // Email
                 new Claim(ClaimTypes.NameIdentifier, khachHang.Id.ToString()),  // Customer Id
-                new Claim(ClaimTypes.Name, khachHang.Email),  // Display name
-                new Claim(ClaimTypes.Role, khachHang.Role ?? "User"),  // Role (Admin or User)
+                new Claim(ClaimTypes.Name, khachHang.Email),  // hiển thị email
+                new Claim(ClaimTypes.Role, khachHang.Role ?? "User"),  // Role (Admin or User) mặc định là User
                
             };
 
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                    // Authentication properties
+                    // Authentication 
                     var authProperties = new AuthenticationProperties
                     {
                         IsPersistent = true,  //Cookie tồn tại sau khi trình duyệt đóng 

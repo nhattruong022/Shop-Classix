@@ -142,31 +142,31 @@
         chatMessages.scrollTop = chatMessages.scrollHeight;
     });
 
-
+    //gui tin nhan den admin
     function sendMessage() {
         const message = document.getElementById("chatInput").value;
 
         if (message.trim() !== "") {
-            // Get the current timestamp
-            const timeStamp = new Date().toLocaleString(); // Current time in readable format
+            // lay thoi gian hien tai
+            const timeStamp = new Date().toLocaleString(); 
 
-            // Send the message to the admin via SignalR
+            
             userConnection.invoke("SendMessageToAdmin", message)
                 .then(() => {
                     const chatMessages = document.getElementById("chatMessages");
 
-                    // Check if the message already exists
+                    // kiem tra xem neu tin nhan do co ton tai khong
                     const existingMessage = Array.from(chatMessages.children).some(
                         (msg) => msg.textContent === `You: ${message} (Sent at: ${timeStamp})`
                     );
 
                     if (!existingMessage) {
-                        // Show the user's message with "You: ..." prefix and timestamp
+                        // hien thi tin nhan nguoi dung va thoi gian
                         const newMessage = document.createElement("div");
                         newMessage.textContent = `You: ${message} (Sent at: ${timeStamp})`;
                         chatMessages.appendChild(newMessage);
 
-                        // Clear input and scroll to bottom
+                        
                         document.getElementById("chatInput").value = "";
                         chatMessages.scrollTop = chatMessages.scrollHeight;
                     }
