@@ -20,7 +20,9 @@ namespace Shop_Classix.Repository
         public DbSet<ImportsDetailModel> importsDetails { get; set; }
         public DbSet<ProductCommentModel> productComments { get; set; }
         public DbSet<VnPayModel> vnPay { get; set; }
-
+        
+        public DbSet<BlogPost> BlogPosts { get; set; }
+        public DbSet<ProductPost> ProductPosts { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProductCommentModel>()
